@@ -130,3 +130,6 @@ dmypy.json
 
 # Postgresql service config
 .my_pgpass
+
+# Pycharm stuff
+.idea
