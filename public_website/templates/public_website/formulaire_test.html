@@ -2,6 +2,22 @@
 
 {% block content %}
 <h1>Ceci est ma page de test de formulaire</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "success" %}
+                <div class="fr-alert fr-alert--success fr-alert--sm">
+                    <p>Données enregistrées. Merci pour votre intérêt !</p>
+                </div>
+            {% elif message.tags == "error" %}
+                <div class="fr-alert fr-alert--error fr-alert--sm">
+                    <p>Formulaire invalide. Veuillez vérifier vos réponses.</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    
+    <br>
     <form action="{% url 'formulaire_test' %}" method="post">
     {% csrf_token %}
     {{ form }}

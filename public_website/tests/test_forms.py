@@ -22,17 +22,27 @@ class ItemFormTest(TestCase):
         form = FormulaireForm()
         self.fail(form.as_p())
 
-    def test_succesfully_submit(self):
+    def test_submit_successfully(self):
         response = self.client.post(reverse('formulaire_test'),{
             "first_name": "Prudence",
             "email": "prudence.crandall@educ.gouv.fr",
             "postal_code": "06331",
-            "prefered_themes": ["education"],
-            "participant_type": "Citoyen",
+            "prefered_themes": ['education'],
+            "participant_type": ['citoyen'],
             "consent": True,
         })
         self.assertContains(response, "Merci pour votre intérêt !")
-    
+
+    def test_fails_without_consent(self):
+        response = self.client.post(reverse('formulaire_test'),{
+            "first_name": "Prudence",
+            "email": "prudence.crandall@educ.gouv.fr",
+            "postal_code": "06331",
+            "prefered_themes": ['education'],
+            "participant_type": ['citoyen'],
+            "consent": False,
+        })
+        self.assertContains(response, "Formulaire invalide. Veuillez vérifier vos réponses.")
+
     # test_cannot_submit_invalid_email
     # test_cannot_submit_without_themes
-    # test_cannot_submit_without_consent
