@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "widget_tweaks",
     "dsfr",
+    'sass_processor',
     'public_website',
 ]
 
@@ -131,6 +132,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
+]
+# Django Sass
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static')
 
 STATIC_URL = 'static/'
 

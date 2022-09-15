@@ -1,4 +1,6 @@
 {% load static dsfr_tags %}
+{% load sass_tags %}
+
 <!doctype html>
 <html lang="fr" data-fr-scheme="system" {% if SITE_CONFIG.mourning %}data-fr-mourning{% endif %}>
 
@@ -8,7 +10,9 @@
 
   {% dsfr_css %}
   {% dsfr_favicon %}
-  {% block extra_css %}{% endblock extra_css %}
+  {% block extra_css %}
+    <link href="{% sass_src 'style.sass' %}" rel="stylesheet" type="text/css" />
+  {% endblock extra_css %}
 
   {% block title %}
   <title>
