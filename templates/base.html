@@ -1,4 +1,6 @@
 {% load static dsfr_tags %}
+{% load sass_tags %}
+
 <!doctype html>
 <html lang="fr" data-fr-scheme="system" {% if SITE_CONFIG.mourning %}data-fr-mourning{% endif %}>
 
@@ -8,7 +10,9 @@
 
   {% dsfr_css %}
   {% dsfr_favicon %}
-  {% block extra_css %}{% endblock extra_css %}
+  {% block extra_css %}
+    <link href="{% sass_src 'css/style.sass' %}" rel="stylesheet" type="text/css" />
+  {% endblock extra_css %}
 
   {% block title %}
   <title>
@@ -29,11 +33,11 @@
     {% include "blocks/header.html" %}
     {% dsfr_theme_modale %}
 
-    <div class="fr-container fr-mt-4w fr-mb-6w">
-      <main id="content" role="main">
-        {% block content %}{% endblock content %}
-      </main>
-    </div>
+    <main id="content" role="main">
+      {% block content %}{% endblock content %}
+    </main>
+
+    {% include "blocks/footer.html" %}
 
   {% dsfr_js %}
   {% block extra_js %}{% endblock extra_js %}
