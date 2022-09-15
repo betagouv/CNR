@@ -28,4 +28,8 @@ class FormulaireForm(forms.Form):
         widget=forms.CheckboxSelectMultiple,
         choices=PARTICIPANT_TYPE,
     )
+    consent = forms.BooleanField(
+        label="J'accepte que mes données soient traitées par gouv.fr conformément au RGPD.",
+        required=True
+    )
 
