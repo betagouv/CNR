@@ -13,10 +13,12 @@ def formulaire_test(request):
     if request.method == 'POST':
         form = FormulaireForm(request.POST)
         if form.is_valid():
+            # print(form.cleaned_data)
             thank_you_message = 'Données enregistrées. Merci pour votre intérêt !'
             messages.success(request, thank_you_message)
         else:
             error_message = "Formulaire invalide. Veuillez vérifier vos réponses."
+            # replace with return HttpResponseBadRequest("We cannot process the request") ?
             messages.error(request, error_message)
     if request.method == 'GET':
         form = FormulaireForm()

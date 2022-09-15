@@ -6,8 +6,8 @@ class FormulaireForm(forms.Form):
         ('education', 'Éducation'),
         ('sante', 'Santé'),
         ('logement', 'Logement'),
-        ('bien_viellir', 'Bien Viellir'),
-        ('theme5', 'Theme 5'),
+        ('bien_viellir', 'Bien vieillir'),
+        ('democratie', 'Démocratie'),
         ('theme6', 'Theme 6'),
     ]
     PARTICIPANT_TYPE = [
@@ -19,17 +19,17 @@ class FormulaireForm(forms.Form):
     email = forms.EmailField()
     postal_code = forms.RegexField(regex="^[0-9]{1}[1-9]{1}[0-9]{3}$", max_length=5, min_length=5)
     prefered_themes = forms.MultipleChoiceField(
-        required=False,
+        required=True,
         widget=forms.CheckboxSelectMultiple,
         choices=INTEREST_CHOICES,
     )
-    participant_type = forms.MultipleChoiceField(
-        required=False,
-        widget=forms.CheckboxSelectMultiple,
+    # TODO faire un radio button
+    participant_type = forms.ChoiceField(
+        required=True,
+        widget=forms.RadioSelect,
         choices=PARTICIPANT_TYPE,
     )
     consent = forms.BooleanField(
         label="J'accepte que mes données soient traitées par gouv.fr conformément au RGPD.",
         required=True
     )
-

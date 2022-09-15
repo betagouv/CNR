@@ -17,32 +17,44 @@ class TestFormPage(TestCase):
 
 
 class ItemFormTest(TestCase):
-
-    def test_form_renders_item_text_input(self):
-        form = FormulaireForm()
-        self.fail(form.as_p())
-
-    def test_submit_successfully(self):
-        response = self.client.post(reverse('formulaire_test'),{
+    base_user = {
             "first_name": "Prudence",
             "email": "prudence.crandall@educ.gouv.fr",
             "postal_code": "06331",
             "prefered_themes": ['education'],
             "participant_type": ['citoyen'],
             "consent": True,
+        }
+
+    # def test_form_renders_item_text_input(self):
+    #     form = FormulaireForm()
+    #     self.fail(form.as_p())
+
+    def test_submit_successfully(self):
+        response = self.client.post(reverse('formulaire_test'), self.base_user)
+        self.assertContains(response, "Merci pour votre intérêt !")
+
+
+    def test_submit_successfully_several_interests(self):
+        response = self.client.post(reverse('formulaire_test'),{
+            "first_name": "Prudence",
+            "email": "prudence.crandall@educ.gouv.fr",
+            "postal_code": "06331",
+            "prefered_themes": ['education', 'democratie'],
+            "participant_type": ['citoyen'],
+            "consent": True,
         })
         self.assertContains(response, "Merci pour votre intérêt !")
+
 
     def test_fails_without_consent(self):
         response = self.client.post(reverse('formulaire_test'),{
             "first_name": "Prudence",
             "email": "prudence.crandall@educ.gouv.fr",
             "postal_code": "06331",
-            "prefered_themes": ['education'],
+            "prefered_themes": ['education', 'bien_viellir'],
             "participant_type": ['citoyen'],
             "consent": False,
         })
+        self.assertEqual(response.status_code, 400)
         self.assertContains(response, "Formulaire invalide. Veuillez vérifier vos réponses.")
-
-    # test_cannot_submit_invalid_email
-    # test_cannot_submit_without_themes
