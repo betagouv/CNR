@@ -15,3 +15,11 @@ class TestIndex(TestCase):
     def test_index_response_contains_welcome_message(self):
         response = self.client.get("/")
         self.assertContains(response, "Une nouvelle méthode")
+
+
+class TestDSFR(TestCase):
+
+    def test_dsfr_is_loaded(self):
+        response = self.client.get('/')
+        dsfr_proof = '<link rel="stylesheet" href="/static/dsfr/dist/utility/icons/icons.css">'
+        self.assertContains(response, dsfr_proof)
