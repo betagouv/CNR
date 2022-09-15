@@ -15,6 +15,9 @@ def formulaire_test(request):
         if form.is_valid():
             thank_you_message = 'Données enregistrées. Merci pour votre intérêt !'
             messages.success(request, thank_you_message)
+            # Send information to sendinblue
+            return redirect('formulaire_test')
+
         else:
             error_message = "Formulaire invalide. Veuillez vérifier vos réponses."
             messages.error(request, error_message)

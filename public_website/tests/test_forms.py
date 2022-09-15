@@ -16,14 +16,15 @@ class TestFormPage(TestCase):
         self.assertTemplateUsed(response, "public_website/formulaire_test.html")
 
 
-class ItemFormTest(TestCase):
+class FormulaireFormTest(TestCase):
 
     def test_form_renders_item_text_input(self):
         form = FormulaireForm()
         self.fail(form.as_p())
 
-    def test_submit_successfully(self):
-        response = self.client.post(reverse('formulaire_test'),{
+
+    def test_succesfully_submit(self):
+        response = self.client.post(reverse('formulaire_test'), {
             "first_name": "Prudence",
             "email": "prudence.crandall@educ.gouv.fr",
             "postal_code": "06331",
@@ -46,3 +47,4 @@ class ItemFormTest(TestCase):
 
     # test_cannot_submit_invalid_email
     # test_cannot_submit_without_themes
+    # test_cannot_submit_without_consent
