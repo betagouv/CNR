@@ -1,5 +1,58 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<h1>Une nouvelle méthode pour construire ensemble et au plus près du terrain l'avenir de la France</h1>
+<div class="cover" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url({% static 'images/cover.jpg' %})">
+  <div class="fr-container fr-mt-4w fr-mb-6w">
+    <h1 class="bg-white fr-p-3w fr-h3">Une nouvelle méthode pour construire ensemble et au plus près du terrain l'avenir de la France</h1>
+  </div>
+</div>
+
+<div class="fr-container fr-mt-4w fr-mb-6w">
+  <div class="box fr-mt-n15w">
+    <h2>Participez au CNR</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <div class="fr-grid-row fr-grid-row--gutters">
+      <div class="fr-col-12 fr-col-sm-4">
+        <label class="fr-label" for="text-input-text">Votre prénom</label>
+        <input class="fr-input" type="text" id="text-input-text" name="text-input-text">
+      </div>
+      <div class="fr-col-12 fr-col-sm-8">
+        <label class="fr-label" for="text-input-text">Votre adresse e-mail</label>
+        <input class="fr-input" type="text" id="text-input-text" name="text-input-text">
+      </div>
+
+    <div class="fr-col-12">
+      <button class="fr-btn">Participer</button>
+        <div class="fr-checkbox-group">
+          <input type="checkbox" id="checkbox" name="checkbox">
+          <label class="fr-label" for="checkbox">J'ai lu et j'accepte
+            <a title="les CGU - ouvre une nouvelle fenêtre" href="#" target="_blank" rel="noopener" class="fr-link">les CGU</a>
+            et
+            <a title="la politique de protection des données - ouvre une nouvelle fenêtre" href="#" target="_blank" rel="noopener" class="fr-link">
+            la politique de protection des données</a>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-blue-france-975">
+  <div class="fr-container fr-py-5w">
+    <div class="fr-grid-row fr-grid-row--gutters">
+      <div class="fr-col-12">
+        <h2>Un constat partagé</h2>
+      </div>
+      <div class="fr-col-12 fr-col-sm-4">
+        <img src="{% static 'images/logo-carre.png' %}" alt="Logo du Conseil National de la Refondation" class="fr-responsive-img">
+      </div>
+      <div class="fr-col-12 fr-col-sm-8">
+        <p>Nam malesuada tortor ac nisl viverra, vitae bibendum ligula blandit. Sed libero felis, congue id commodo nec, laoreet et felis. Proin pretium iaculis ligula. Nulla placerat elementum neque, dictum facilisis elit vehicula sit amet. Maecenas non ultrices risus. Fusce vel imperdiet neque, non rhoncus nisl. Curabitur aliquam nisi eu massa consequat, ac rutrum tellus tincidunt.</p>
+        <p>Aliquam at lacus lacinia, blandit purus ac, auctor nulla. Aenean posuere magna imperdiet metus facilisis malesuada. Ut viverra, est in dignissim porta, velit tellus hendrerit velit, vel vehicula mauris odio at tellus. Nam vel ex lobortis, aliquet risus et, tempor dolor. Duis maximus vulputate felis, non lacinia ipsum. Aliquam erat volutpat. Proin imperdiet, justo molestie lacinia rutrum, eros nisl egestas justo, at dapibus eros diam eu nisl. Nam lorem diam, gravida non sem nec, aliquam blandit quam. Vestibulum hendrerit cursus magna, sed ultricies ex posuere non. Maecenas lacinia nulla quis urna faucibus, vel ultrices risus congue. Phasellus eget augue ac nibh euismod convallis eu non leo. Cras tincidunt orci et lorem lobortis vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum neque ac nibh convallis interdum. Aenean in ante nec justo consequat ultrices. Suspendisse finibus augue at elementum posuere. </p>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock content %}
