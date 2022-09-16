@@ -69,7 +69,8 @@ SECURE_HSTS_SECONDS = 2592000
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = "DENY"
 REFERRER_POLICY = "no-referrer"
-CSP_DEFAULT_SRC = "'self' data: localhost:" + runserver.default_port
+CSP_DEFAULT_SRC = ["'self'", "data:", "localhost:" + runserver.default_port]
+CSP_FRAME_SRC = ["*.youtube.com"]
 
 ROOT_URLCONF = "cnr.urls"
 
