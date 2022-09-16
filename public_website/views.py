@@ -12,10 +12,8 @@ def index_view(request):
 def inscription_view(request):
     if request.method == 'POST':
         form = InscriptionForm(request.POST)
-        print(form.data)
         if form.is_valid():
             # Send information to sendinblue
-            # print(form.cleaned_data)
             thank_you_message = 'Données enregistrées. Merci pour votre intérêt !'
             messages.success(request, thank_you_message)
         else:
