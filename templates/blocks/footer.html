@@ -1,5 +1,18 @@
 {% extends "dsfr/footer.html" %}
+{% load static %}
+
+{% block brand %}
+  <p class="fr-logo" title="Accueil — Conseil National de la Refondation">
+    république<br />française
+  </p>
+  <a class="fr-footer__brand-link" href="/" title="Retour à l’accueil du site - Conseil National de la Refondation">
+    <img class="fr-footer__logo logo" src="{% static 'images/cnr_logo.svg' %}" alt="Logo du Conseil National de la Refondation" />
+  </a>
+{% endblock brand %}
 
 {% block footer_links %}
   {{ block.super }}
+  <li class="fr-footer__bottom-item">
+    <button class="fr-btn--display fr-btn" aria-controls="fr-theme-modal" data-fr-opened="false">Paramètres d'affichage</button>
+  </li>
 {% endblock footer_links %}
