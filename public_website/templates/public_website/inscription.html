@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Ceci est ma page de test de formulaire</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "success" %}
+                <div class="fr-alert fr-alert--success fr-alert--sm">
+                    <p>Données enregistrées. Merci pour votre intérêt !</p>
+                </div>
+            {% elif message.tags == "error" %}
+                <div class="fr-alert fr-alert--error fr-alert--sm">
+                    <p>Formulaire invalide. Veuillez vérifier vos réponses.</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    
+    <br>
+    <form action="{% url 'inscription' %}" method="post">
+        {% csrf_token %}
+
+        <fieldset class="fr-fieldset fr-my-4w">
+            <legend class="fr-fieldset__legend" id="text-legend">Champs</legend>
+            <div class="fr-input-group">
+                <label class="fr-label" for="email">{{ form.email.label }}</label>
+                <input class="fr-input" type="email" id="email" name="email" required>
+            </div>
+    
+            <div class="fr-input-group">
+                <label class="fr-label" for="text-input-text">{{ form.first_name.label }}</label>
+                <input class="fr-input" type="text" id="text-input-text" name="first_name" required>
+            </div>
+    
+            <div class="fr-input-group">
+                <label class="fr-label" for="text-input-text">{{ form.postal_code.label }}</label>
+                <input class="fr-input" type="text" id="text-input-text" name="postal_code">
+            </div>
+        </fieldset>
+
+        <div class="fr-form-group">
+            <fieldset class="fr-fieldset">
+                <legend class="fr-fieldset__legend fr-text--regular">{{ form.participant_type.label }}</legend>
+                <div class="fr-fieldset__content">
+                    {% for type in form.participant_type  %}
+                    <div>
+                    <!-- <div class="fr-radio-group"> -->
+                        <label for="{{ type.id_for_label }}">
+                            <input class="radio">{{ type.tag }}
+                            {{ type.choice_label }}
+                        </label>                    
+                    </div>
+                    {% endfor %}
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="fr-form-group">
+            <h3 for="prefered_themes">Les thematiques sur lesquelles je veux m'investir</h3>
+            <fieldset class="fr-fieldset" role="group">
+                <legend class="fr-fieldset__legend fr-text--regular" id="checkboxes-hint-legend">
+                    Légende pour l’ensemble de champs
+                    <span class="fr-hint-text" id="checkboxes-hint-desc-hint">Texte de description additionnel</span>
+                </legend>
+                <div class="fr-fieldset__content">
+                    {% for theme in form.prefered_themes %}
+                    <div>
+                    <!-- <div class="fr-checkbox-group"> -->
+                        <label class="fr-label" for="{{ theme.id_for_label }}">
+                            <input>{{ theme.tag }}
+                            {{ theme.choice_label }}
+                        </label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="fr-form-group">
+            <fieldset class="fr-fieldset" role="group">
+                <div class="fr-fieldset__content">
+                    <div>
+                    <!-- <div class="fr-checkbox-group"> -->
+                        <label for="{{ form.consent.id_for_label }}" class="notification warning margin-top-1em">
+                            <input type="checkbox" name="consent" required>{{ form.consent.tag }}
+                            {{ form.consent.label }}
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="fr-input-group fr-my-4w">
+            <button type="submit" class="fr-btn" title="Réserver ma conférence">Valider ce formulaire</button>
+            <button type="" class="fr-btn fr-btn--secondary" title="Réserver ma conférence">Annuler</button>
+        </div>
+    </form>
+{% endblock content %}
