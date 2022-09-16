@@ -34,3 +34,11 @@ python manage.py migrate
 ```
 python manage.py test
 ```
+
+## Déployer en production
+
+Configurer en local votre projet : https://doc.scalingo.com/platform/deployment/deploy-with-git, puis lancer:
+
+```
+git push scalingo main
+```
