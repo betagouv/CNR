@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="fr-container fr-my-6w">
-  <img src="{% static 'images/cover.jpg' %}" alt="Logo du Conseil National de la Refondation" class="fr-responsive-img">
+  <img src="{% static 'images/cover.jpg' %}" alt="Conseil National de la Refondation" class="fr-responsive-img">
   <figcaption class="fr-content-media__caption">© Légende de l‘image</figcaption>
   <div class="fr-grid-row fr-grid-row--gutters">
     <div class="fr-col-12 fr-col-sm-10 fr-col-offset-sm-1 fr-mt-6w">
@@ -15,14 +15,14 @@
           <a class="fr-btn" href="#">Participer</a>
         </li>
         <li>
-          <a class="fr-btn fr-btn--secondary" href="#">Découvrir son fonctionnement</a>
+          <a class="fr-btn fr-btn--secondary" href="{% url 'fonctionnement' %}">Découvrir son fonctionnement</a>
         </li>
       </ul>
     </div>
   </div>
 </div> <!--container -->
 
-<div class="bg-blue-france-975 fr-my-6w">
+<div class="fr-background-alt--blue-france fr-my-6w">
   <div class="fr-container fr-py-6w">
     <div class="fr-grid-row fr-grid-row--gutters">
       <div class="fr-col-12">
@@ -52,7 +52,7 @@
         <a class="fr-btn" href="#">Participer</a>
       </li>
       <li>
-        <a class="fr-btn fr-btn--secondary" href="#">Découvrir son fonctionnement</a>
+        <a class="fr-btn fr-btn--secondary" href="{% url 'fonctionnement' %}">Découvrir son fonctionnement</a>
       </li>
     </ul>
   </div>
