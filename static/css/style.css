@@ -4,11 +4,4 @@
 .logo {
   height: 95px; }
 
-.fr-checkbox-group input[type="checkbox"] + label {
-  display: inherit; }
-
-@media (max-width: 575px) {
-  .box {
-    padding: 1em; } }
-
 /*# sourceMappingURL=style.css.map */
