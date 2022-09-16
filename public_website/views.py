@@ -23,3 +23,7 @@ def inscription_view(request):
     if request.method == 'GET':
         form = InscriptionForm()
     return render(request, "public_website/inscription.html", {'form': form})
+
+
+def fonctionnement_view(request):
+    return render(request, "public_website/fonctionnement.html")

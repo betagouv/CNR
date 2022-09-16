@@ -1,19 +1,44 @@
 {% extends "dsfr/header.html" %}
+{% load static %}
+
+{% block brand %}
+  <a href="/" title="Accueil — {{ SITE_CONFIG.site_title }}">
+    <p class="fr-logo">république<br />française</p>
+  </a>
+{% endblock brand %}
 
 {% block service_title %}
-<a href="/" title="Accueil — CNR">
-    <p class="fr-header__service-title">CNR</p>
-</a>
+<img src="{% static 'images/cnr_logo.svg' %}" alt="Logo du Conseil National de la Refondation" class="fr-responsive-img logo">
 {% endblock service_title %}
 
-{% block service_tagline %}Conseil National de la Refondation{% endblock service_tagline %}
+{% block service_tagline %}
+{% endblock service_tagline %}
 
 {% block header_tools %}
 {% endblock header_tools %}
 
 {# Leave burger_menu and main_menu blocks empty if the main menu is not used #}
-{% block burger_menu %}
-{% endblock burger_menu %}
+{# block burger_menu #}
+{# endblock burger_menu #}
 
 {% block main_menu %}
+<div class="fr-header__menu fr-modal" id="fr-menu-mobile" aria-labelledby="fr-btn-menu-mobile">
+    <div class="fr-container">
+      <button type="button" class="fr-btn--close fr-btn" aria-controls="fr-menu-mobile">Fermer</button>
+      <div class="fr-header__menu-links"></div>
+      <nav role="navigation" class="fr-nav" id="fr-navigation" aria-label="Menu principal">
+        <ul class="fr-nav__list">
+          <li class="fr-nav__item">
+            <a class="fr-nav__link" href="{% url 'index' %}" target="_self">Accueil</a>
+          </li>
+          <li class="fr-nav__item">
+            <a class="fr-nav__link" href="#" target="_self">Participer</a>
+          </li>
+          <li class="fr-nav__item">
+            <a class="fr-nav__link" href="{% url 'fonctionnement' %}" target="_self">Fonctionnement</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 {% endblock main_menu %}
