@@ -29,13 +29,13 @@
       <nav role="navigation" class="fr-nav" id="fr-navigation" aria-label="Menu principal">
         <ul class="fr-nav__list">
           <li class="fr-nav__item">
-            <a class="fr-nav__link" href="{% url 'index' %}" target="_self">Accueil</a>
+            <a class="fr-nav__link" {% if request.resolver_match.url_name == "index" %}aria-current="page"{% endif %} href="{% url 'index' %}" target="_self">Accueil</a>
           </li>
           <li class="fr-nav__item">
-            <a class="fr-nav__link" href="#" target="_self">Participer</a>
+            <a class="fr-nav__link" {% if request.resolver_match.url_name == "inscription" %}aria-current="page"{% endif %} href="#" target="_self">Participer</a>
           </li>
           <li class="fr-nav__item">
-            <a class="fr-nav__link" href="{% url 'fonctionnement' %}" target="_self">Fonctionnement</a>
+            <a class="fr-nav__link" {% if request.resolver_match.url_name == "fonctionnement" %}aria-current="page"{% endif %} href="{% url 'fonctionnement' %}" target="_self">Fonctionnement</a>
           </li>
         </ul>
       </nav>
