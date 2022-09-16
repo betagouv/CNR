@@ -12,12 +12,21 @@ python -m venv venv
 
 # Installer les packages requis
 pip install -r requirements.txt
+
+# Copier les variables d'environnement
+cp .env.example .env
 ```
 
 ## Lancer le serveur
 
 ```
 python manage.py runserver
+```
+
+## Lancer les migrations
+
+```
+python manage.py migrate
 ```
 
 ## Effectuer les tests
