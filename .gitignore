@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# Statics
+static/css/style.css.map
+
 # Distribution / packaging
 .Python
 build/

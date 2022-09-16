@@ -12,6 +12,9 @@ python -m venv venv
 
 # Installer les packages requis
 pip install -r requirements.txt
+
+# Copier les variables d'environnement
+cp .env.example .env
 ```
 
 ## Lancer le serveur
@@ -20,8 +23,22 @@ pip install -r requirements.txt
 python manage.py runserver
 ```
 
+## Lancer les migrations
+
+```
+python manage.py migrate
+```
+
 ## Effectuer les tests
 
 ```
 python manage.py test
+```
+
+## Déployer en production
+
+Configurer en local votre projet : https://doc.scalingo.com/platform/deployment/deploy-with-git, puis lancer:
+
+```
+git push scalingo main
 ```
