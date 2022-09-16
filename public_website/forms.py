@@ -11,6 +11,7 @@ class InscriptionForm(forms.Form):
         ('elu', 'Élu'),
         ('association', "Représentant d'une association" ),
     ]
+
     first_name = forms.CharField(label="Prénom")
     email = forms.EmailField(label="Courriel")
     postal_code = forms.RegexField(label="Code postal", regex="^[0-9]{1}[1-9]{1}[0-9]{3}$", max_length=5, min_length=5)

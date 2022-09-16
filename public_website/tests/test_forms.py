@@ -50,8 +50,19 @@ class ItemFormTest(TestCase):
             "participant_type": ['citoyen'],
             "consent": False,
         })
-        # self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 400)
         self.assertContains(response, "Formulaire invalide. Veuillez vérifier vos réponses.")
+
+    def test_form_data_is_validated(self):
+        response = self.client.post(reverse('inscription'),{
+            "first_name": "Sandy",
+            "email": "sandy.claws@educ.gouv.fr",
+            "postal_code": "99999",
+            "prefered_themes": ["Représentant d'une association"],
+            "participant_type": ['Le Père Noel'],
+            "consent": True,
+        })
+        self.assertEqual(response.status_code, 400)
 
     # test_cannot_submit_invalid_email
     # test_cannot_submit_without_themes
