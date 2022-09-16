@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from public_website.forms import FormulaireForm
+from public_website.forms import InscriptionForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.contrib import messages
@@ -9,17 +9,19 @@ def index_view(request):
     return render(request, 'public_website/index.html')
 
 
-def formulaire_test(request):
+def inscription_view(request):
     if request.method == 'POST':
-        form = FormulaireForm(request.POST)
+        form = InscriptionForm(request.POST)
+        print(form.data)
         if form.is_valid():
+            # Send information to sendinblue
             # print(form.cleaned_data)
             thank_you_message = 'Données enregistrées. Merci pour votre intérêt !'
             messages.success(request, thank_you_message)
         else:
-            error_message = "Formulaire invalide. Veuillez vérifier vos réponses."
-            # replace with return HttpResponseBadRequest("We cannot process the request") ?
+            # Bad Request ? 
+            error_message = "Formulaire invalide. Veuillez vérifier vos réponses."            
             messages.error(request, error_message)
     if request.method == 'GET':
-        form = FormulaireForm()
-    return render(request, "public_website/formulaire_test.html", {'form': form.as_p()})
+        form = InscriptionForm()
+    return render(request, "public_website/inscription.html", {'form': form})
