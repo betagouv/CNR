@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+from django.core.management.commands.runserver import Command as runserver
 from dotenv import load_dotenv
 
 from cnr.utils.postgres import turn_psql_url_into_param
@@ -37,7 +38,6 @@ ALLOWED_HOSTS = ["127.0.0.1", os.getenv("HOST_URL", "localhost")]
 
 
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -59,7 +59,16 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_referrer_policy.middleware.ReferrerPolicyMiddleware",
+    "csp.middleware.CSPMiddleware",
 ]
+
+# Security headers
+SECURE_HSTS_SECONDS = 2592000
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = "DENY"
+REFERRER_POLICY = "no-referrer"
+CSP_DEFAULT_SRC = "'self' data: localhost:" + runserver.default_port
 
 ROOT_URLCONF = "cnr.urls"
 
