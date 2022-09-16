@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+from cnr.utils.postgres import turn_psql_url_into_param
 
 load_dotenv('.pg_service.conf')
 load_dotenv()
@@ -87,16 +88,33 @@ WSGI_APPLICATION = 'cnr.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        "NAME": os.getenv("db_name"),
-        "USER": os.getenv("db_user"),
-        "PASSWORD": os.getenv("db_password"),
-        "HOST": os.getenv("db_host"),
-        "PORT": os.getenv("db_port"),
+postgres_url = os.getenv("DATABASE_URL")
+if postgres_url:
+    environment_info = turn_psql_url_into_param(postgres_url)
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": environment_info.get("db_name"),
+            "USER": environment_info.get("db_user"),
+            "PASSWORD": environment_info.get("db_password"),
+            "HOST": environment_info.get("db_host"),
+            "PORT": environment_info.get("db_port"),
+        }
     }
-}
+
+    ssl_option = environment_info.get("sslmode")
+
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.getenv("DATABASE_NAME"),
+            "USER": os.getenv("DATABASE_USER"),
+            "PASSWORD": os.getenv("DATABASE_PASSWORD"),
+            "HOST": os.getenv("DATABASE_HOST"),
+            "PORT": os.getenv("DATABASE_PORT"),
+        }
+    }
 
 
 # Password validation
