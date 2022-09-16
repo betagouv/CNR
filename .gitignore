@@ -8,6 +8,7 @@ __pycache__/
 
 # Statics
 static/css/style.css.map
+static/css/style.css
 
 # Distribution / packaging
 .Python
