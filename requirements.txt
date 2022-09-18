@@ -23,3 +23,4 @@ isort==5.10.1
 pre-commit==2.20.0
 urllib3==1.26.12
 sib-api-v3-sdk==7.5.0
+factory-boy==3.2.1

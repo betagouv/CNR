@@ -4,7 +4,7 @@ from django.urls import resolve, reverse
 from public_website import views
 
 
-class TestFormPage(TestCase):
+class FormPageTest(TestCase):
     def test_form_url_calls_right_view(self):
         match = resolve("/inscription/")
         self.assertEqual(match.func, views.inscription_view)
