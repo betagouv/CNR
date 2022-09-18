@@ -15,11 +15,11 @@ class InscriptionForm(ModelForm):
     prefered_themes = forms.MultipleChoiceField(
         choices=models.Theme.choices,
         widget=forms.CheckboxSelectMultiple,
-        label="Je choisis les thème sur lesquels je souhaite donner mon avis",
+        label="Les thématiques sur lesquelles je veux m'investir :",
     )
 
     gives_gdpr_consent = forms.BooleanField(
-        label="Je consens à l'utilisation de mes données personnelles",
+        label="J'ai lu et j'accepte les CGU et la politique de protection des données",
     )
 
     def clean_postal_code(self):

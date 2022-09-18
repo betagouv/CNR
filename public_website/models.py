@@ -7,20 +7,20 @@ class Theme(models.TextChoices):
 
 
 class ParticipantType(models.TextChoices):
-    CITOYEN = "CITOYEN", "Citoyen"
+    CITOYEN = "PARTICULIER", "Particulier"
     ELU = "ELU", "Élu"
-    ASSOCIATION = "ASSOCIATION", "Représentant d'une association"
+    ASSOCIATION = "ASSOCIATION", "Représentant(e) d'une association"
 
 
 class Participant(models.Model):
     email = models.EmailField(
-        max_length=150, unique=True, verbose_name="Courriel", blank=False, null=False
+        max_length=150, unique=True, verbose_name="Adresse électronique", blank=False, null=False
     )
     first_name = models.CharField(
         max_length=150, verbose_name="Prénom", blank=False, null=False
     )
     postal_code = models.CharField(
-        max_length=5, verbose_name="Code Postal", blank=False, null=False
+        max_length=5, verbose_name="Code postal", blank=False, null=False
     )
     participant_type = models.CharField(
         blank=False,
