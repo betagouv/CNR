@@ -1,6 +1,8 @@
 from django.contrib import messages
 from django.shortcuts import render
 
+from public_website.email_provider import \
+    send_participant_profile_to_email_provider
 from public_website.forms import InscriptionForm
 
 
@@ -13,8 +15,11 @@ def inscription_view(request):
     if request.method == "POST":
         form = InscriptionForm(request.POST)
         if form.is_valid():
-            form.save()
-            # Send information to sendinblue
+            new_participant = form.save()
+            new_participant.registration_success = (
+                send_participant_profile_to_email_provider(new_participant)
+            )
+            new_participant.save()
             thank_you_message = "Données enregistrées. Merci pour votre intérêt !"
             messages.success(request, thank_you_message)
         else:
