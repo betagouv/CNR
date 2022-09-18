@@ -21,7 +21,7 @@ class FormulaireFormTest(TestCase):
             "email": "prudence.crandall@educ.gouv.fr",
             "postal_code": "06331",
             "prefered_themes": ["EDUCATION"],
-            "participant_type": ["CITOYEN"],
+            "participant_type": ["PARTICULIER"],
             "gives_gdpr_consent": ["on"],
         }
 
