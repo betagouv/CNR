@@ -45,7 +45,7 @@
                             <div class="fr-fieldset__content">
                                 {% for type in form.participant_type  %}
                                 <div class="fr-radio-group">
-                                    <input class="radio">{{ type.tag }}
+                                    {{ type.tag }}
                                     <label for="{{ type.id_for_label }}">
                                         {{ type.choice_label }}
                                     </label>
@@ -61,7 +61,7 @@
                             <div class="fr-fieldset__content">
                                 {% for theme in form.prefered_themes %}
                                 <div class="fr-checkbox-group">
-                                    <input>{{ theme.tag }}
+                                    {{ theme.tag }}
                                     <label class="fr-label" for="{{ theme.id_for_label }}">
                                         {{ theme.choice_label }}
                                     </label>

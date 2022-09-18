@@ -14,19 +14,19 @@ class ParticipantType(models.TextChoices):
 
 class Participant(models.Model):
     email = models.EmailField(
-        unique=True, verbose_name="Courriel", blank=False, null=False
+        max_length=150, unique=True, verbose_name="Courriel", blank=False, null=False
     )
     first_name = models.CharField(
-        max_length=100, verbose_name="Prénom", blank=False, null=False
+        max_length=150, verbose_name="Prénom", blank=False, null=False
     )
     postal_code = models.CharField(
-        max_length=10, verbose_name="Code Postal", blank=False, null=False
+        max_length=5, verbose_name="Code Postal", blank=False, null=False
     )
     participant_type = models.CharField(
         blank=False,
         null=False,
         choices=ParticipantType.choices,
-        max_length=30,
+        max_length=11,
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -35,4 +35,4 @@ class Participant(models.Model):
 class Subscription(models.Model):
     participant = models.ForeignKey(Participant, models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    theme = models.CharField(blank=False, choices=Theme.choices, max_length=30)
+    theme = models.CharField(blank=False, choices=Theme.choices, max_length=9)
