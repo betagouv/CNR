@@ -29,7 +29,7 @@ def send_payload_to_send_in_blue(email: str, attributes: dict) -> bool:
 
 
 def create_payload_for_email_provider(participant: Participant):
-    participant_type_mapping = {"CITOYEN": 1, "ELU": 2, "ASSOCIATION": 3}
+    participant_type_mapping = {"PARTICULIER": 1, "ELU": 2, "ASSOCIATION": 3}
     try:
         participant_type = participant_type_mapping[participant.participant_type]
     except KeyError:
