@@ -15,7 +15,7 @@ class TestIndex(TestCase):
 
     def test_index_response_contains_welcome_message(self):
         response = self.client.get("/")
-        self.assertContains(response, "Une nouvelle méthode")
+        self.assertContains(response, "Construisons ensemble")
 
 
 class TestDSFR(TestCase):
