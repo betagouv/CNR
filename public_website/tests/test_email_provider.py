@@ -1,9 +1,6 @@
 from django.test import TestCase
 
-from public_website.email_provider import (
-    create_payload_for_email_provider,
-    send_participant_profile_to_email_provider,
-)
+from public_website.email_provider import create_payload_for_email_provider
 from public_website.tests.factories.factory import SubscriptionFactory
 
 
@@ -33,8 +30,9 @@ class EmailProviderTest(TestCase):
         }
         self.assertEqual(payload_should_be, payload_is)
 
-    def test_creating_a_contact(self):
-        subscription = SubscriptionFactory()
-        SubscriptionFactory(participant=subscription.participant, theme="SANTE")
-        send_participant_profile_to_email_provider(subscription.participant)
-        pass
+    # TODO -> Mock email provider API
+    # def test_creating_a_contact(self):
+    #     subscription = SubscriptionFactory()
+    #     SubscriptionFactory(participant=subscription.participant, theme="SANTE")
+    #     send_participant_profile_to_email_provider(subscription.participant)
+    #     pass
