@@ -28,8 +28,14 @@ class Participant(models.Model):
         choices=ParticipantType.choices,
         max_length=11,
     )
+    registration_success = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def get_subscription_list(self):
+        return Subscription.objects.filter(participant=self).values_list(
+            "theme", flat=True
+        )
 
 
 class Subscription(models.Model):
