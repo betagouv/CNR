@@ -1,0 +1,26 @@
+Climat et biodiversité:
+environment
+
+Générations et vieillissement:
+human-cooperation
+
+Souveraineté économique:
+money
+
+Futur du travail:
+map
+
+Santé:
+health
+
+Education:
+school
+
+Logement:
+france-localization
+
+Jeunesse:
+avatar
+
+Numérique:
+coding
