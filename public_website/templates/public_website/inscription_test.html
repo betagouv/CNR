@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="fr-container fr-my-6w">
+        <div class="fr-grid-row fr-grid-row--gutters">
+            <div class="fr-col-12 fr-col-sm-10 fr-col-offset-sm-1 fr-mt-6w">
+                <h1 class="fr-display--sm">S’inscrire pour participer</h1>
+
+                <p>Rejoindre dès maintenant le Conseil national de la Refondation vous permet de participer sur les thématiques qui vous intéressent, de vous engager localement et de suivre l'avancement du Conseil national de la Refondation.</p>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags == "success" %}
+                            <div class="fr-alert fr-alert--success fr-alert--sm">
+                                <p>{{ message }}</p>
+                            </div>
+                        {% elif message.tags == "error" %}
+                            <div class="fr-alert fr-alert--error fr-alert--sm">
+                                <p>{{ message }}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+                {{ form.errors }}
+                <br>
+                <form action="{% url 'inscription_test' sub %}" method="post">
+                    {% csrf_token %}
+
+                    <fieldset class="fr-fieldset fr-my-4w">
+                        <div class="fr-input-group">
+                            <label class="fr-label" for="text-input-text">{{ form.first_name.label }}</label>
+                            <input class="fr-input" type="text" id="text-input-text" name="first_name" required>
+                        </div>
+
+                        <!-- <div class="fr-input-group">
+                            <label class="fr-label" for="email">{{ form.email.label }}</label>
+                            <span class="fr-hint-text">Format attendu: nom@domaine.fr .</span>
+                            <input class="fr-input" type="email" id="email" name="email" required>
+                        </div> -->
+
+                        <div class="fr-input-group">
+                            <label class="fr-label" for="text-input-text">{{ form.postal_code.label }}</label>
+                            <input class="fr-input" type="text" id="text-input-text" name="postal_code">
+                        </div>
+                    </fieldset>
+
+                    <div class="fr-form-group">
+                        <fieldset class="fr-fieldset">
+                            <legend class="fr-fieldset__legend fr-text--regular">{{ form.participant_type.label }}</legend>
+                            <div class="fr-fieldset__content">
+                                {% for type in form.participant_type  %}
+                                <div class="fr-radio-group">
+                                    {{ type.tag }}
+                                    <label for="{{ type.id_for_label }}">
+                                        {{ type.choice_label }}
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="fr-form-group">
+                        <h3 for="{{ theme.id_for_label }}">Les thématiques sur lesquelles je veux m'investir</h3>
+                        <fieldset class="fr-fieldset" role="group">
+                            <span class="fr-hint-text">Choisissez une ou plusieurs thématiques sur lesquelles vous souhaitez apporter une contribution nationale.</span>
+                            <div class="fr-fieldset__content">
+                                {% for theme in form.prefered_themes %}
+                                <div class="fr-checkbox-group">
+                                    {{ theme.tag }}
+                                    <label class="fr-label" for="{{ theme.id_for_label }}">
+                                        {{ theme.choice_label }}
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="fr-input-group fr-my-4w">
+                        <button type="submit" class="fr-btn" title="Valider ce formulaire">Je confirme ma participation</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

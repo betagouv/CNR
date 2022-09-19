@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.hashers import make_password
 
 
 class Theme(models.TextChoices):
@@ -27,15 +28,17 @@ class Participant(models.Model):
         blank=False,
         null=False,
     )
+    sub = models.CharField(
+        max_length=150, unique=True, blank=False, null=False
+    )
     first_name = models.CharField(
-        max_length=150, verbose_name="Prénom", blank=False, null=False
+        max_length=150, verbose_name="Prénom", blank=False
     )
     postal_code = models.CharField(
-        max_length=5, verbose_name="Code postal", blank=False, null=False
+        max_length=5, verbose_name="Code postal", blank=False
     )
     participant_type = models.CharField(
         blank=False,
-        null=False,
         choices=ParticipantType.choices,
         max_length=11,
     )

@@ -7,7 +7,23 @@ from public_website.captcha import check_captcha_token
 from . import models
 
 
-class InscriptionForm(ModelForm):
+class RegisterForm(ModelForm):
+
+    class Meta:
+        model = models.Participant
+        fields = ["email"]
+    
+    gives_gdpr_consent = forms.BooleanField(
+        label="J'ai lu et j'accepte les CGU et la politique de protection des données",
+        required=True
+    )
+
+    # def save(self, commit=True):
+    #     instance = super(RegisterForm, self).save(commit=commit)
+    #     return instance
+
+
+class ProfileForm(ModelForm):
     participant_type = forms.ChoiceField(
         choices=models.ParticipantType.choices,
         widget=forms.RadioSelect,
@@ -20,6 +36,7 @@ class InscriptionForm(ModelForm):
         label="Les thématiques sur lesquelles je veux m'investir :",
     )
 
+<<<<<<< HEAD
     gives_gdpr_consent = forms.BooleanField(
         label="J'ai lu et j'accepte les CGU et la politique de protection des données",
     )
@@ -27,6 +44,8 @@ class InscriptionForm(ModelForm):
     def is_captcha_valid(self):
         return check_captcha_token(self.data["csrfmiddlewaretoken"])
 
+=======
+>>>>>>> separate email from form + send to SIB after each form
     def clean_postal_code(self):
         postal_code = self.cleaned_data["postal_code"]
         for character in postal_code:
@@ -43,10 +62,10 @@ class InscriptionForm(ModelForm):
 
     class Meta:
         model = models.Participant
-        fields = ["email", "first_name", "postal_code", "participant_type"]
+        fields = ["first_name", "postal_code", "participant_type"]
 
     def save(self, commit=True):
-        instance = super(InscriptionForm, self).save(commit=commit)
+        instance = super(ProfileForm, self).save(commit=commit)
         preferred_themes = self.cleaned_data["prefered_themes"]
         for theme in preferred_themes:
             subscription = models.Subscription(participant_id=instance.id, theme=theme)

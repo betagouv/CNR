@@ -11,7 +11,7 @@ load_dotenv()
 logger = logging.getLogger(__name__)
 
 
-def send_payload_to_send_in_blue(email: str, attributes: dict) -> bool:
+def send_payload_to_send_in_blue(email: str, payload: dict) -> bool:
     configuration = sib_api_v3_sdk.Configuration()
     configuration.api_key["api-key"] = os.getenv("SEND_IN_BLUE")
     try:
@@ -19,7 +19,7 @@ def send_payload_to_send_in_blue(email: str, attributes: dict) -> bool:
             sib_api_v3_sdk.ApiClient(configuration)
         )
         contact = sib_api_v3_sdk.CreateContact(
-            email=email, update_enabled=True, attributes=attributes, list_ids=[1]
+            email=email, update_enabled=True, attributes=payload, list_ids=[1]
         )
         api_instance.create_contact(contact)
         return True
@@ -47,12 +47,17 @@ def create_payload_for_email_provider(participant: Participant):
     }
 
 
-def send_participant_profile_to_email_provider(participant: Participant):
+def send_participant_profile_to_email_provider(participant: Participant, has_profile_information: bool):
     try:
+        if has_profile_information:            
+            payload = create_payload_for_email_provider(participant)
+        else: 
+            payload = {}
         send_payload_to_send_in_blue(
-            participant.email, create_payload_for_email_provider(participant)
+            participant.email,
+            payload=payload
         )
-    except Exception:
+    except Exception as exception:
         return False
 
     return True
