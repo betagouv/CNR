@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "dsfr",
     "sass_processor",
     "public_website",
+    "surveys",
 ]
 
 MIDDLEWARE = [
