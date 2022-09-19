@@ -17,7 +17,6 @@ class TestIndex(TestCase):
         response = self.client.get("/")
         self.assertContains(response, "Construisons ensemble")
 
-
 class TestDSFR(TestCase):
     def test_dsfr_is_loaded(self):
         response = self.client.get("/")
