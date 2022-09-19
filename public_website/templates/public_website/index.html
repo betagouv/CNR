@@ -9,23 +9,25 @@
       <p>Citoyennes et citoyens, partenaires sociaux, professionnels, élus : nous avons tous une voix et des idées à apporter pour faire avancer notre pays. Le Conseil National de la Refondation vous propose plusieurs formats pour échanger ensemble et de manière constructive sur les défis à venir: au niveau national avec des ateliers et des consultations et au niveau local avec des concertations.</p>
     </div>
     <div class="fr-col-12 fr-col-md-6">
-      <div class="fr-background-alt--blue-france fr-p-8w">
-        <label class="fr-label" for="email">Adresse électronique</label>
-        <span class="fr-hint-text">Format attendu: nom@domaine.fr .</span>
-        <input class="fr-input" type="email" id="email" name="email" required>
-
-        <div class="fr-checkbox-group">
-          <input type="checkbox" id="checkbox" name="checkbox">
-          <label class="fr-label" for="checkbox">J'ai lu et j'accepte les CGU et la politique de protection des données</label>
-        </div>
-        <a class="fr-btn fr-mt-3w" href="#">Je participe</a>
-      </div>
-
+      <img src="{% static 'images/public_discussion.svg' %}" alt="" class="fr-responsive-img">
     </div>
+  </div>
+
+  <hr class="fr-mt-6w fr-mb-3w">
+
+  <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
+    <label class="fr-label" for="email">Adresse électronique</label>
+    <span class="fr-hint-text">Format attendu: nom@domaine.fr .</span>
+    <input class="fr-input" type="email" id="email" name="email" required>
+    <div class="fr-checkbox-group">
+      <input type="checkbox" id="checkbox" name="checkbox">
+      <label class="fr-label" for="checkbox">J'ai lu et j'accepte les CGU et la politique de protection des données</label>
+    </div>
+    <a class="fr-btn fr-mt-3w" href="#">Je participe</a>
   </div>
 </div> <!--container -->
 
-<div class="fr-background-alt--blue-france fr-my-6w">
+<div class="fr-background-alt--blue-france">
   <div class="fr-container fr-py-6w">
     <div class="fr-grid-row fr-grid-row--gutters">
       <div class="fr-col-12">
@@ -34,17 +36,17 @@
       </div>
 
       <div class="fr-col-12 fr-col-sm-4">
-        <img src="https://via.placeholder.com/150" alt="">
+        <img src="{% static 'artwork/community.svg' %}" alt="">
         <h3>Participer</h3>
         <p>Paticiper dès maintenant sur les thématiques qui vous intéressent : des consultations sont déjà ouvertes, et vos réponses seront présentées et discutées lors des ateliers nationaux avec les acteurs de chaque secteur.</p>
       </div>
       <div class="fr-col-12 fr-col-sm-4">
-        <img src="https://via.placeholder.com/150" alt="">
+        <img src="{% static 'artwork/france-localization.svg' %}" alt="">
         <h3>Rencontrer</h3>
         <p>Rencontrer des citoyens et des professionnels près de chez vous : dans le cadre de réunions publiques locales qui seront organisées partout en France.</p>
       </div>
       <div class="fr-col-12 fr-col-sm-4">
-        <img src="https://via.placeholder.com/150" alt="">
+        <img src="{% static 'artwork/notification.svg' %}" alt="">
         <h3>Rester informé</h3>
         <p>Rester informé de l’avancement du Conseil de la refondation : en accédant aux comptes rendus et aux documents produits par les différents ateliers.</p>
       </div>
@@ -75,7 +77,7 @@
           <h3 class="fr-tile__title">Climat et biodiversité</h3>
         </div>
         <div class="fr-tile__img">
-          <img src="https://via.placeholder.com/150" class="fr-responsive-img" alt="">
+          <img src="{% static 'artwork/environment.svg' %}" class="fr-responsive-img" alt="">
         </div>
       </div>
     </div>
@@ -86,7 +88,7 @@
           <h3 class="fr-tile__title">Générations et vieillissement </h3>
         </div>
         <div class="fr-tile__img">
-          <img src="https://via.placeholder.com/150" class="fr-responsive-img" alt="">
+          <img src="{% static 'artwork/human-cooperation.svg' %}" class="fr-responsive-img" alt="">
         </div>
       </div>
     </div>
@@ -97,7 +99,7 @@
           <h3 class="fr-tile__title">Souveraineté économique</h3>
         </div>
         <div class="fr-tile__img">
-          <img src="https://via.placeholder.com/150" class="fr-responsive-img" alt="">
+          <img src="{% static 'artwork/money.svg' %}" class="fr-responsive-img" alt="">
         </div>
       </div>
     </div>
@@ -108,7 +110,7 @@
           <h3 class="fr-tile__title">Futur du travail</h3>
         </div>
         <div class="fr-tile__img">
-          <img src="https://via.placeholder.com/150" class="fr-responsive-img" alt="">
+          <img src="{% static 'artwork/map.svg' %}" class="fr-responsive-img" alt="">
         </div>
       </div>
     </div>
@@ -119,7 +121,7 @@
           <h3 class="fr-tile__title">Santé</h3>
         </div>
         <div class="fr-tile__img">
-          <img src="https://via.placeholder.com/150" class="fr-responsive-img" alt="">
+          <img src="{% static 'artwork/health.svg' %}" class="fr-responsive-img" alt="">
         </div>
       </div>
     </div>
@@ -130,7 +132,7 @@
           <h3 class="fr-tile__title">Éducation</h3>
         </div>
         <div class="fr-tile__img">
-          <img src="https://via.placeholder.com/150" class="fr-responsive-img" alt="">
+          <img src="{% static 'artwork/school.svg' %}" class="fr-responsive-img" alt="">
         </div>
       </div>
     </div>
@@ -141,7 +143,7 @@
           <h3 class="fr-tile__title">Logement</h3>
         </div>
         <div class="fr-tile__img">
-          <img src="https://via.placeholder.com/150" class="fr-responsive-img" alt="">
+          <img src="{% static 'artwork/france-localization.svg' %}" class="fr-responsive-img" alt="">
         </div>
       </div>
     </div>
@@ -152,7 +154,7 @@
           <h3 class="fr-tile__title">Jeunesse</h3>
         </div>
         <div class="fr-tile__img">
-          <img src="https://via.placeholder.com/150" class="fr-responsive-img" alt="">
+          <img src="{% static 'artwork/avatar.svg' %}" class="fr-responsive-img" alt="">
         </div>
       </div>
     </div>
@@ -163,7 +165,7 @@
           <h3 class="fr-tile__title">Numérique</h3>
         </div>
         <div class="fr-tile__img">
-          <img src="https://via.placeholder.com/150" class="fr-responsive-img" alt="">
+          <img src="{% static 'artwork/coding.svg' %}" class="fr-responsive-img" alt="">
         </div>
       </div>
     </div>
