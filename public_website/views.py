@@ -9,6 +9,18 @@ from public_website.forms import InscriptionForm
 def index_view(request):
     return render(request, "public_website/index.html")
 
+def cgu_view(request):
+    return render(request, "public_website/cgu.html")
+
+def mentions_legales_view(request):
+    return render(request, "public_website/mentions_legales.html")
+
+def accessibilite_view(request):
+    return render(request, "public_website/accessibilite.html")
+
+def donnees_personnelles_view(request):
+    return render(request, "public_website/donnees_personnelles.html")
+
 
 def inscription_view(request):
 
