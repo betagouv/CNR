@@ -32,9 +32,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if os.getenv("IS_DEBUG_ENABLED")== "True" :
-    DEBUG = True 
-else : 
+if os.getenv("IS_DEBUG_ENABLED") == "True":
+    DEBUG = True
+else:
     DEBUG = False
 
 ALLOWED_HOSTS = (
@@ -77,6 +77,7 @@ REFERRER_POLICY = "no-referrer"
 CSP_DEFAULT_SRC = ["'self'", "data:", "localhost:" + runserver.default_port]
 CSP_FRAME_SRC = ["*.youtube.com"]
 CSP_STYLE_SRC = [
+    "'self'",
     "'unsafe-hashes'",
     "'sha256-97Nu+xH6RFiNysiEruAPi2Y1R2HdNUPC+MzWb+yusNE='",  # balise style inline in footer.html
 ]
