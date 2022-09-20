@@ -29,7 +29,7 @@ class Participant(models.Model):
         null=False,
     )
     sub = models.CharField(
-        max_length=150, unique=True, blank=False, null=False
+        max_length=150, unique=True, blank=False, null=True,
     )
     first_name = models.CharField(
         max_length=150, verbose_name="Prénom", blank=False
