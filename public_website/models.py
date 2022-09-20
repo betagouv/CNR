@@ -2,8 +2,15 @@ from django.db import models
 
 
 class Theme(models.TextChoices):
-    EDUCATION = "EDUCATION", "Éducation"
+    CLIMAT = "CLIMAT", "Climat"
+    VIEILLISSEMENT = "VIEILLISSEMENT", "Générations et vieillissement"
+    SOUVERAINETE = "SOUVERAINETE", "Souveraineté économique"
+    TRAVAIL = "TRAVAIL", "Futur du travail"
     SANTE = "SANTE", "Santé"
+    EDUCATION = "EDUCATION", "Éducation"
+    LOGEMENT = "LOGEMENT", "Logement"
+    JEUNESSE = "JEUNESSE", "Jeunesse"
+    NUMERIQUE = "NUMERIQUE", "Numérique"
 
 
 class ParticipantType(models.TextChoices):
@@ -14,7 +21,11 @@ class ParticipantType(models.TextChoices):
 
 class Participant(models.Model):
     email = models.EmailField(
-        max_length=150, unique=True, verbose_name="Adresse électronique", blank=False, null=False
+        max_length=150,
+        unique=True,
+        verbose_name="Adresse électronique",
+        blank=False,
+        null=False,
     )
     first_name = models.CharField(
         max_length=150, verbose_name="Prénom", blank=False, null=False
@@ -41,4 +52,4 @@ class Participant(models.Model):
 class Subscription(models.Model):
     participant = models.ForeignKey(Participant, models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    theme = models.CharField(blank=False, choices=Theme.choices, max_length=9)
+    theme = models.CharField(blank=False, choices=Theme.choices, max_length=14)
