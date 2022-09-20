@@ -17,6 +17,7 @@ class TestIndex(TestCase):
         response = self.client.get("/")
         self.assertContains(response, "Construisons ensemble")
 
+
 class TestCgu(TestCase):
     def test_cgu_url_calls_right_view(self):
         match = resolve("/cgu/")
@@ -29,6 +30,7 @@ class TestCgu(TestCase):
     def test_cgu_response_contains_welcome_message(self):
         response = self.client.get("/cgu/")
         self.assertContains(response, "Conditions générales d'utilisation")
+
 
 class TestMentionsLegales(TestCase):
     def test_mentions_legales_url_calls_right_view(self):
@@ -43,6 +45,7 @@ class TestMentionsLegales(TestCase):
         response = self.client.get("/mentions-legales/")
         self.assertContains(response, "Mentions légales")
 
+
 class TestAccessibilite(TestCase):
     def test_accessibilite_url_calls_right_view(self):
         match = resolve("/accessibilite/")
@@ -56,6 +59,7 @@ class TestAccessibilite(TestCase):
         response = self.client.get("/accessibilite/")
         self.assertContains(response, "Accessibilité")
 
+
 class TestDonneesPersonnelles(TestCase):
     def test_donnees_personnelles_url_calls_right_view(self):
         match = resolve("/donnees-personnelles/")
@@ -68,6 +72,7 @@ class TestDonneesPersonnelles(TestCase):
     def test_donnees_personnelles_response_contains_welcome_message(self):
         response = self.client.get("/accessibilite/")
         self.assertContains(response, "Données personnelles")
+
 
 class TestDSFR(TestCase):
     def test_dsfr_is_loaded(self):

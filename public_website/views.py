@@ -1,8 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render
 
-from public_website.email_provider import \
-    send_participant_profile_to_email_provider
+from public_website.email_provider import send_participant_profile_to_email_provider
 from public_website.forms import InscriptionForm
 
 
