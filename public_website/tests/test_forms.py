@@ -32,6 +32,7 @@ class FormulaireFormTest(TestCase):
             if changed_value is None:
                 del response[changed_param]
 
+        response["csrfmiddlewaretoken"] = "fake-token"
         return self.client.post(reverse("inscription"), response)
 
     def test_submit_successfully(self):

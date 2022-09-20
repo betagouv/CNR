@@ -24,6 +24,7 @@
                 <br>
                 <form action="{% url 'inscription' %}" method="post">
                     {% csrf_token %}
+                    <div class="mtcaptcha"></div>
 
                     <fieldset class="fr-fieldset fr-my-4w">
                         <div class="fr-input-group">
