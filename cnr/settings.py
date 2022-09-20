@@ -80,13 +80,10 @@ CSP_STYLE_SRC = [
     "'self'",
     "'unsafe-hashes'",
     "'sha256-97Nu+xH6RFiNysiEruAPi2Y1R2HdNUPC+MzWb+yusNE='",  # balise style inline in footer.html
-]
-CSP_STYLE_SRC_ELEM = [
-    "'self'",
     "'sha256-d//Lck7pNf/OY9MPfGYaIOTmqjEzvwlSukK3UObI08A='",  # inject-svg.js de django-dsfr
     "'sha256-Eyt3MCqJJqqqUJzUlVq9BLYX+kVGQZVLpJ4toZz4mb8='",  # inject-svg.js de django-dsfr
 ]
-CSP_SCRIPT_SRC_ELEM = [
+CSP_SCRIPT_SRC = [
     "'self'",
     "'sha256-3nqjSbGHbyxcg93jUSCv0aA9rA4otXw9BvbTMV83oig='",  # matomo
     "cnr-matomo.osc-secnum-fr1.scalingo.io",
