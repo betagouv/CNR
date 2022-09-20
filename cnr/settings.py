@@ -79,7 +79,6 @@ CSP_FRAME_SRC = ["*.youtube.com"]
 CSP_STYLE_SRC = [
     "'self'",
     "'unsafe-hashes'",
-    "'sha256-97Nu+xH6RFiNysiEruAPi2Y1R2HdNUPC+MzWb+yusNE='",  # balise style inline in footer.html
     "'sha256-d//Lck7pNf/OY9MPfGYaIOTmqjEzvwlSukK3UObI08A='",  # inject-svg.js de django-dsfr
     "'sha256-Eyt3MCqJJqqqUJzUlVq9BLYX+kVGQZVLpJ4toZz4mb8='",  # inject-svg.js de django-dsfr
 ]
