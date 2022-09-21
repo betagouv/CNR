@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "sass_processor",
     "public_website",
     "surveys",
+    "behave_django",
 ]
 
 MIDDLEWARE = [

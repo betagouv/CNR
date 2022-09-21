@@ -52,10 +52,27 @@ python manage.py migrate
 
 ### Effectuer les tests
 
+D'abord installer les dépendances de test :
+
+```sh
+pip install -r requirements_for_test.txt
+```
+
+Tests unitaires :
+
 ```
 python manage.py test
 ```
 
+Tests E2E :
+
+Si vous n'utilisez pas Docker, il vous faudra `firefox` et
+`geckodriver` accessibles sur votre machine pour lancer les tests
+E2E. Sur macOS ils sont disponibles via `brew`.
+
+```
+make test-e2e
+```
 
 
 ## via Docker

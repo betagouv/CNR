@@ -19,7 +19,7 @@ RUN pip install -r requirements_for_test.txt
 
 COPY . .
 
-RUN python manage.py compilescss && python manage.py collectstatic
+RUN python manage.py compilescss && python manage.py collectstatic --no-input
 
 ENTRYPOINT ["./entrypoint.sh"]
 
