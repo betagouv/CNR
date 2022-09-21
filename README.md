@@ -2,12 +2,12 @@
 
 L'application web qui soutient le projet du Conseil National de la Refondation (CNR).
 
-# Prérequis
+## Prérequis
 
 - Python 3.9
 - Postgreql 13.x.
 
-# Installer les pre-commit hooks
+## Installer les pre-commit hooks
 
 ```
 pre-commit install
@@ -19,10 +19,13 @@ On peut faire un premier test en faisant tourner :
 pre-commit run --all-files
 ```
 
-# Installation
+## Installation
 
-## En local
-### Créer un environnement virtuel
+Le projet peut se lancer en local ou avec Docker.
+
+### En local
+
+#### Créer un environnement virtuel
 
 ```
 # Configurer et activer l'environnement virtuel
@@ -33,24 +36,25 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
-### Copier les variables d'environnement
+#### Copier les variables d'environnement
+
 ```
 cp .env.example .env
 ```
 
-### Lancer le serveur
+#### Lancer le serveur
 
 ```
 python manage.py runserver
 ```
 
-### Lancer les migrations
+#### Lancer les migrations
 
 ```
 python manage.py migrate
 ```
 
-### Effectuer les tests
+#### Effectuer les tests
 
 D'abord installer les dépendances de test :
 
@@ -75,15 +79,15 @@ make test-e2e
 ```
 
 
-## via Docker
+### via Docker
 
-### Copier les variables d'environnement
+#### Copier les variables d'environnement
 
 ```sh
 cp .env.example .env
 ```
 
-### Lancer les containers
+#### Lancer les containers
 
 ```sh
 docker-compose up
