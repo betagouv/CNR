@@ -2,9 +2,11 @@ from django.test import TestCase
 from django.urls import resolve, reverse
 
 from public_website import views
+from public_website.models import Participant
 
 
 class FormPageTest(TestCase):
+
     def test_form_url_calls_right_view(self):
         match = resolve("/inscription/")
         self.assertEqual(match.func, views.inscription_view)
@@ -14,7 +16,36 @@ class FormPageTest(TestCase):
         self.assertTemplateUsed(response, "public_website/inscription.html")
 
 
-class FormulaireFormTest(TestCase):
+class RegisterFormTest(TestCase):
+
+    def generate_base_user(self):
+        return {
+            "email": "prudence.crandall@educ.gouv.fr",
+            "gives_gdpr_consent": True
+        }
+    
+    def generate_response(self, changed_param=None, changed_value=None):
+        user = self.generate_base_user()
+        if changed_param:
+            user[changed_param] = changed_value
+            if changed_value is None:
+                del user[changed_param]
+
+        return self.client.post(reverse("index"), user)        
+
+    def test_valid_registerform_registers_participant(self):
+        self.generate_response()
+        new_participant = Participant.objects.filter(email=self.generate_base_user()['email'])
+        self.assertTrue(new_participant.exists())
+        self.assertTrue(new_participant[0].registration_success)
+
+    def test_valid_registerform_sends_uuid_to_session(self):
+        self.generate_response()
+        new_participant = Participant.objects.filter(email=self.generate_base_user()['email'])
+        self.assertTrue('uuid' in self.client.session)
+
+
+class ProfileForm(TestCase):
     def generate_base_user(self):
         return {
             "first_name": "Prudence",
@@ -36,6 +67,7 @@ class FormulaireFormTest(TestCase):
         return self.client.post(reverse("inscription"), response)
 
     def test_submit_successfully(self):
+        # self.simulate_user_filled_registered_form()
         response = self.generate_response()
         self.assertContains(response, "Merci pour votre intérêt !")
 
@@ -68,16 +100,14 @@ class FormulaireFormTest(TestCase):
             response, "Formulaire invalide. Veuillez vérifier vos réponses."
         )
 
-    def test_returning_user_gets_invalid_form_message(self):
-        from public_website.models import Participant
-
+    def test_returning_user_gets_confirmation_form_message(self):
         self.generate_response()
         self.assertTrue(
             Participant.objects.filter(email="prudence.crandall@educ.gouv.fr").exists()
         )
         response2 = self.generate_response()
         self.assertContains(
-            response2, "Formulaire invalide. Veuillez vérifier vos réponses."
+            response2, "Données enregistrées. Merci pour votre intérêt !"
         )
 
     def test_99_validates_for_postal_code(self):

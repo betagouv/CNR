@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from django.contrib.auth.hashers import make_password
 
@@ -28,9 +29,7 @@ class Participant(models.Model):
         blank=False,
         null=False,
     )
-    sub = models.CharField(
-        max_length=150, unique=True, blank=False, null=True,
-    )
+    uuid = models.UUIDField(default=uuid.uuid4)
     first_name = models.CharField(
         max_length=150, verbose_name="Prénom", blank=False
     )

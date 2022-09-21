@@ -21,22 +21,25 @@
                         {% endif %}
                     {% endfor %}
                 {% endif %}
+
+                <!-- {{ form.errors }} -->
                 <br>
                 <form action="{% url 'inscription' %}" method="post">
                     {% csrf_token %}
                     <div class="mtcaptcha"></div>
 
                     <fieldset class="fr-fieldset fr-my-4w">
-                        <div class="fr-input-group">
-                            <label class="fr-label" for="text-input-text">{{ form.first_name.label }}</label>
-                            <input class="fr-input" type="text" id="text-input-text" name="first_name" required>
-                        </div>
 
                         <div class="fr-input-group">
                             <label class="fr-label" for="email">{{ form.email.label }}</label>
                             <span class="fr-hint-text">Format attendu: nom@domaine.fr .</span>
-                            <input class="fr-input" type="email" id="email" name="email" required>
+                            <input class="fr-input" type="email" id="email" name="email" value="{{ form.instance.email }}" required>
                         </div>
+
+                        <div class="fr-input-group">
+                            <label class="fr-label" for="text-input-text">{{ form.first_name.label }}</label>
+                            <input class="fr-input" type="text" id="text-input-text" name="first_name" required>
+                        </div>                       
 
                         <div class="fr-input-group">
                             <label class="fr-label" for="text-input-text">{{ form.postal_code.label }}</label>
@@ -82,7 +85,7 @@
                         <fieldset class="fr-fieldset" role="group">
                             <div class="fr-fieldset__content">
                                 <div class="fr-checkbox-group">
-                                    <input type="checkbox" id="id_gives_gdpr_consent" name="gives_gdpr_consent" >
+                                    <input type="checkbox" id="id_gives_gdpr_consent" name="gives_gdpr_consent">
                                     <label class="fr-label" for="id_gives_gdpr_consent">
                                         {{ form.gives_gdpr_consent.label }}
                                     </label>

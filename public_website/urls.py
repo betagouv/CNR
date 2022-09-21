@@ -10,12 +10,7 @@ urlpatterns = [
     path("mentions-legales/", views.mentions_legales_view, name="mentions_legales"),
     path("accessibilite/", views.accessibilite_view, name="accessibilite"),
     path("donnees-personnelles/", views.donnees_personnelles_view, name="donnees_personnelles"),
-<<<<<<< HEAD
     path("survey/", views.survey_view, name="survey"),
     path("survey-intro/", views.survey_intro_view, name="survey_intro"),
-    path("survey-outro/", views.survey_outro_view, name="survey_outro"),
-=======
-
-    path("inscription_test/<sub>/", views.inscription_view_test, name='inscription_test'),
->>>>>>> separate email from form + send to SIB after each form
+    path("survey-outro/", views.survey_outro_view, name="survey_outro")
 ]

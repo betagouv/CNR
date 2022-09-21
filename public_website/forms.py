@@ -1,6 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from django.forms import ModelForm
+from django.forms import Form, ModelForm
 
 from public_website.captcha import check_captcha_token
 
@@ -11,16 +11,12 @@ class RegisterForm(ModelForm):
 
     class Meta:
         model = models.Participant
-        fields = ["email"]
+        fields = ['email']
     
     gives_gdpr_consent = forms.BooleanField(
         label="J'ai lu et j'accepte les CGU et la politique de protection des données",
         required=True
     )
-
-    # def save(self, commit=True):
-    #     instance = super(RegisterForm, self).save(commit=commit)
-    #     return instance
 
 
 class ProfileForm(ModelForm):
@@ -36,7 +32,6 @@ class ProfileForm(ModelForm):
         label="Les thématiques sur lesquelles je veux m'investir :",
     )
 
-<<<<<<< HEAD
     gives_gdpr_consent = forms.BooleanField(
         label="J'ai lu et j'accepte les CGU et la politique de protection des données",
     )
@@ -44,8 +39,6 @@ class ProfileForm(ModelForm):
     def is_captcha_valid(self):
         return check_captcha_token(self.data["csrfmiddlewaretoken"])
 
-=======
->>>>>>> separate email from form + send to SIB after each form
     def clean_postal_code(self):
         postal_code = self.cleaned_data["postal_code"]
         for character in postal_code:
@@ -62,7 +55,7 @@ class ProfileForm(ModelForm):
 
     class Meta:
         model = models.Participant
-        fields = ["first_name", "postal_code", "participant_type"]
+        fields = ["email", "first_name", "postal_code", "participant_type"]
 
     def save(self, commit=True):
         instance = super(ProfileForm, self).save(commit=commit)
