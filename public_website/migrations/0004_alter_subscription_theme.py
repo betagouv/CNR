@@ -6,13 +6,26 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('public_website', '0003_auto_20220919_1335'),
+        ("public_website", "0003_auto_20220919_1335"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='subscription',
-            name='theme',
-            field=models.CharField(choices=[('CLIMAT', 'Climat'), ('VIEILLISSEMENT', 'Générations et vieillissement'), ('SOUVERAINETE', 'Souveraineté économique'), ('TRAVAIL', 'Futur du travail'), ('SANTE', 'Santé'), ('EDUCATION', 'Éducation'), ('LOGEMENT', 'Logement'), ('JEUNESSE', 'Jeunesse'), ('NUMERIQUE', 'Numérique')], max_length=14),
+            model_name="subscription",
+            name="theme",
+            field=models.CharField(
+                choices=[
+                    ("CLIMAT", "Climat"),
+                    ("VIEILLISSEMENT", "Générations et vieillissement"),
+                    ("SOUVERAINETE", "Souveraineté économique"),
+                    ("TRAVAIL", "Futur du travail"),
+                    ("SANTE", "Santé"),
+                    ("EDUCATION", "Éducation"),
+                    ("LOGEMENT", "Logement"),
+                    ("JEUNESSE", "Jeunesse"),
+                    ("NUMERIQUE", "Numérique"),
+                ],
+                max_length=14,
+            ),
         ),
     ]

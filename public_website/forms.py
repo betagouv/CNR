@@ -2,6 +2,8 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 
+from public_website.captcha import check_captcha_token
+
 from . import models
 
 
@@ -21,6 +23,9 @@ class InscriptionForm(ModelForm):
     gives_gdpr_consent = forms.BooleanField(
         label="J'ai lu et j'accepte les CGU et la politique de protection des données",
     )
+
+    def is_captcha_valid(self):
+        return check_captcha_token(self.data["csrfmiddlewaretoken"])
 
     def clean_postal_code(self):
         postal_code = self.cleaned_data["postal_code"]

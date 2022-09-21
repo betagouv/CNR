@@ -1,22 +1,25 @@
 from django.contrib import messages
 from django.shortcuts import render
 
-from public_website.email_provider import \
-    send_participant_profile_to_email_provider
+from public_website.email_provider import send_participant_profile_to_email_provider
 from public_website.forms import InscriptionForm
 
 
 def index_view(request):
     return render(request, "public_website/index.html")
 
+
 def cgu_view(request):
     return render(request, "public_website/cgu.html")
+
 
 def mentions_legales_view(request):
     return render(request, "public_website/mentions_legales.html")
 
+
 def accessibilite_view(request):
     return render(request, "public_website/accessibilite.html")
+
 
 def donnees_personnelles_view(request):
     return render(request, "public_website/donnees_personnelles.html")
@@ -35,7 +38,8 @@ def inscription_view(request):
 
     if request.method == "POST":
         form = InscriptionForm(request.POST)
-        if form.is_valid():
+
+        if form.is_captcha_valid() and form.is_valid():
             new_participant = form.save()
             new_participant.registration_success = (
                 send_participant_profile_to_email_provider(new_participant)
