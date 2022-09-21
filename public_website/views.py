@@ -21,6 +21,15 @@ def accessibilite_view(request):
 def donnees_personnelles_view(request):
     return render(request, "public_website/donnees_personnelles.html")
 
+def survey_view(request):
+    return render(request, "public_website/survey.html")
+
+def survey_intro_view(request):
+    return render(request, "public_website/survey_intro.html")
+
+def survey_outro_view(request):
+    return render(request, "public_website/survey_outro.html")
+
 
 def inscription_view(request):
 
