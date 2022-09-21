@@ -3,3 +3,7 @@ reset-db:
 	psql -c 'ALTER USER cnr CREATEDB;'
 	psql -c 'CREATE DATABASE cnr OWNER cnr;'
 	python manage.py migrate
+
+.PHONY: web-prompt
+web-prompt:
+	docker-compose run --rm web bash
