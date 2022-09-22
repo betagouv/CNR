@@ -1,3 +1,5 @@
+import random
+
 from django.contrib import messages
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.hashers import make_password
@@ -6,7 +8,7 @@ from django.http import HttpResponse
 from public_website.email_provider import send_participant_profile_to_email_provider
 from public_website.forms import RegisterForm, ProfileForm
 
-from public_website.models import Participant, Subscription
+from public_website.models import Participant
 
 
 def index_view(request):
@@ -46,14 +48,16 @@ def accessibilite_view(request):
     return render(request, "public_website/accessibilite.html")
 
 
-def confidentialite_view(request):
-    return render(request, "public_website/confidentialite.html")
+def donnees_personnelles_view(request):
+    return render(request, "public_website/donnees_personnelles.html")
 
 def survey_view(request):
     return render(request, "public_website/survey.html")
 
+
 def survey_intro_view(request):
     return render(request, "public_website/survey_intro.html")
+
 
 def survey_outro_view(request):
     return render(request, "public_website/survey_outro.html")
@@ -73,8 +77,9 @@ def inscription_view(request):
         form = ProfileForm(request.POST)
 
         if form.is_captcha_valid() and form.is_valid():
+            random_value = random.randint(0, 100000000)
             try:
-                participant = Participant.objects.get(email=form.cleaned_data['email'])                
+                participant = Participant.objects.get(email=form.cleaned_data['email'])
                 if participant.has_profile:
                     error_message = "Votre profil est déjà rempli. Il n'a pas été mis à jour."
                     messages.error(request, error_message)
@@ -84,6 +89,7 @@ def inscription_view(request):
             except Participant.DoesNotExist:
                 pass
             
+            participant.email = "benoit.truc" + str(random_value) + "@beta.gouv.fr"
             participant = form.save()
             participant.registration_success = send_participant_profile_to_email_provider(
                 participant)

@@ -1,17 +1,22 @@
 import logging
-import os
 
-import sib_api_v3_sdk
+# import sib_api_v3_sdk
 from dotenv import load_dotenv
-from sib_api_v3_sdk.rest import ApiException
 
 from public_website.models import Participant, Theme
+
+# import os
+
+
+# from sib_api_v3_sdk.rest import ApiException
+
 
 load_dotenv()
 logger = logging.getLogger(__name__)
 
 
-def send_payload_to_send_in_blue(email: str, payload: dict) -> bool:
+def send_payload_to_send_in_blue(email: str, attributes: dict) -> bool:
+    return True
     configuration = sib_api_v3_sdk.Configuration()
     configuration.api_key["api-key"] = os.getenv("SEND_IN_BLUE")
     try:
@@ -19,7 +24,7 @@ def send_payload_to_send_in_blue(email: str, payload: dict) -> bool:
             sib_api_v3_sdk.ApiClient(configuration)
         )
         contact = sib_api_v3_sdk.CreateContact(
-            email=email, update_enabled=True, attributes=payload, list_ids=[1]
+            email=email, update_enabled=True, attributes=attributes, list_ids=[1]
         )
         api_instance.create_contact(contact)
         return True
