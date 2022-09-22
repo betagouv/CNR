@@ -107,7 +107,7 @@ class ProfileForm(TestCase):
         )
         response2 = self.generate_response()
         self.assertContains(
-            response2, "Données enregistrées. Merci pour votre intérêt !"
+            response2, "Votre inscription est enregistrée : vous serez tenu au courant des consultations à venir sur vos thématiques sélectionnées."
         )
 
     def test_99_validates_for_postal_code(self):

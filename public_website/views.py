@@ -81,8 +81,9 @@ def inscription_view(request, *args, **kwargs):
                 new_participant,
                 has_profile_information=True)
             new_participant.save()
-            thank_you_message = "Données enregistrées. Merci pour votre intérêt !"
-            messages.success(request, thank_you_message)
+            # confirmation_message = "Votre inscription est enregistrée : vous serez tenu au courant des consultations à venir sur vos thématiques sélectionnées."
+            # messages.success(request, confirmation_message)
+            return redirect('survey_intro')
         else:
             error_message = "Formulaire invalide. Veuillez vérifier vos réponses."
             messages.error(request, error_message)
