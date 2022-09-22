@@ -64,16 +64,15 @@ class ProfileForm(TestCase):
                 del response[changed_param]
 
         response["csrfmiddlewaretoken"] = "fake-token"
-        return self.client.post(reverse("inscription"), response)
+        return self.client.post(reverse("inscription"), response, follow=True)
 
     def test_submit_successfully(self):
-        # self.simulate_user_filled_registered_form()
         response = self.generate_response()
-        self.assertContains(response, "Merci pour votre intérêt !")
+        self.assertRedirects(response, '/survey-intro/')
 
     def test_submit_successfully_several_interests(self):
         response = self.generate_response("prefered_themes", ["EDUCATION", "SANTE"])
-        self.assertContains(response, "Merci pour votre intérêt !")
+        self.assertRedirects(response, '/survey-intro/')
 
     def test_fails_without_consent(self):
         response = self.generate_response("gives_gdpr_consent", None)
@@ -112,7 +111,7 @@ class ProfileForm(TestCase):
 
     def test_99_validates_for_postal_code(self):
         response = self.generate_response("postal_code", "99")
-        self.assertContains(response, "Merci pour votre intérêt !")
+        self.assertRedirects(response, '/survey-intro/')
 
     def test_98_does_not_validates_for_postal_code(self):
         response = self.generate_response("postal_code", "98")
