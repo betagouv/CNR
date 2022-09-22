@@ -21,7 +21,8 @@ class RegisterFormTest(TestCase):
     def generate_base_user(self):
         return {
             "email": "prudence.crandall@educ.gouv.fr",
-            "gives_gdpr_consent": True
+            "gives_gdpr_consent": True,
+            "csrfmiddlewaretoken": "fake-token"
         }
     
     def generate_response(self, changed_param=None, changed_value=None):

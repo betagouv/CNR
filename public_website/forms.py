@@ -18,8 +18,16 @@ class RegisterForm(ModelForm):
         required=True
     )
 
+    def is_captcha_valid(self):
+        return check_captcha_token(self.data["csrfmiddlewaretoken"])
+
 
 class ProfileForm(ModelForm):
+
+    email = forms.EmailField(
+        label="Adresse électronique",
+    )
+
     participant_type = forms.ChoiceField(
         choices=models.ParticipantType.choices,
         widget=forms.RadioSelect,
@@ -55,10 +63,17 @@ class ProfileForm(ModelForm):
 
     class Meta:
         model = models.Participant
-        fields = ["email", "first_name", "postal_code", "participant_type"]
+        fields = ["first_name", "postal_code", "participant_type"]
 
-    def save(self, commit=True):
+    def save(self, commit=True, *args, **kwargs):
         instance = super(ProfileForm, self).save(commit=commit)
+        # breakpoint()
+        # instance = models.Participant(
+        #     email=self.cleaned_data['email'],
+        #     first_name=self.cleaned_data['first_name'],
+        #     postal_code=self.cleaned_data['postal_code'],
+        #     participant_type=self.cleaned_data['participant_type'])
+        # instance.save()
         preferred_themes = self.cleaned_data["prefered_themes"]
         for theme in preferred_themes:
             subscription = models.Subscription(participant_id=instance.id, theme=theme)
