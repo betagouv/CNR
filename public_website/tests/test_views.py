@@ -11,13 +11,11 @@ class ProfileViewTest(TestCase):
         self.participant = ParticipantFactory()
 
     def test_correct_info_with_existing_user_updates_profile(self):
-        session = self.client.session
-        session['uuid'] = str(self.no_profile_participant.uuid)
-        session.save()
-        self.assertEqual(self.no_profile_participant.postal_code, None)
+        prudence = Participant.objects.get(email=self.no_profile_participant.email)
+        self.assertFalse(prudence.has_profile)
         
         response = self.client.post('/inscription/', {
-            'email': self.no_profile_participant.email,
+            'email': prudence.email,
             'first_name': 'Prudence',
             'postal_code': "27120",
             'participant_type': 'ELU',
@@ -25,7 +23,8 @@ class ProfileViewTest(TestCase):
             'prefered_themes': ['SANTE'],
             "csrfmiddlewaretoken": "fake-token"
             })
-        prudence = Participant.objects.get(email=self.no_profile_participant.email)
+        prudence = Participant.objects.get(email=prudence.email)
+        self.assertTrue(prudence.has_profile)
         self.assertEqual(prudence.first_name, 'Prudence')
         self.assertRedirects(response, '/survey-intro/')
 

@@ -47,9 +47,9 @@ def create_payload_for_email_provider(participant: Participant):
     }
 
 
-def send_participant_profile_to_email_provider(participant: Participant, has_profile_information: bool):
+def send_participant_profile_to_email_provider(participant: Participant):
     try:
-        if has_profile_information:            
+        if participant.has_profile:            
             payload = create_payload_for_email_provider(participant)
         else: 
             payload = {}
@@ -57,7 +57,7 @@ def send_participant_profile_to_email_provider(participant: Participant, has_pro
             participant.email,
             payload=payload
         )
-    except Exception as exception:
+    except Exception:
         return False
 
     return True

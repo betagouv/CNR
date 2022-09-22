@@ -66,7 +66,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_referrer_policy.middleware.ReferrerPolicyMiddleware",
     "csp.middleware.CSPMiddleware",
-    "django.middleware.locale.LocaleMiddleware",
 ]
 
 # Security headers
