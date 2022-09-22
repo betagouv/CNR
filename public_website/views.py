@@ -78,13 +78,11 @@ def inscription_view(request):
         email = "benoit.truc" + str(random_value) + "@beta.gouv.fr"
         (
             first_name,
-            csrfmiddlewaretoken,
             postal_code,
             participant_type,
             gives_gdpr_consent,
         ) = itemgetter(
             "first_name",
-            "csrfmiddlewaretoken",
             "postal_code",
             "participant_type",
             "gives_gdpr_consent",
@@ -94,7 +92,6 @@ def inscription_view(request):
         mocked_form = {}
         mocked_form["email"] = email
         mocked_form["first_name"] = first_name
-        # mocked_form["csrfmiddlewaretoken"] = csrfmiddlewaretoken
         mocked_form["postal_code"] = postal_code
         mocked_form["participant_type"] = participant_type
         mocked_form["prefered_themes"] = ["TRAVAIL", "SANTE"]
