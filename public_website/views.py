@@ -1,9 +1,9 @@
 import random
+from operator import itemgetter
 
 from django.contrib import messages
-from django.shortcuts import render, redirect, reverse
-from django.contrib.auth.hashers import make_password
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 from public_website.email_provider import send_participant_profile_to_email_provider
 from public_website.forms import RegisterForm, ProfileForm
@@ -74,6 +74,31 @@ def inscription_view(request):
                 form = ProfileForm(instance=existing_participant[0])
 
     if request.method == "POST":
+        random_value = random.randint(0, 100000000)
+        email = "benoit.truc" + str(random_value) + "@beta.gouv.fr"
+        (
+            first_name,
+            csrfmiddlewaretoken,
+            postal_code,
+            participant_type,
+            gives_gdpr_consent,
+        ) = itemgetter(
+            "first_name",
+            "csrfmiddlewaretoken",
+            "postal_code",
+            "participant_type",
+            "gives_gdpr_consent",
+        )(
+            request.POST
+        )
+        mocked_form = {}
+        mocked_form["email"] = email
+        mocked_form["first_name"] = first_name
+        mocked_form["csrfmiddlewaretoken"] = csrfmiddlewaretoken
+        mocked_form["postal_code"] = postal_code
+        mocked_form["participant_type"] = participant_type
+        mocked_form["prefered_themes"] = ["TRAVAIL", "SANTE"]
+        mocked_form["gives_gdpr_consent"] = gives_gdpr_consent
         form = ProfileForm(request.POST)
 
         if form.is_captcha_valid() and form.is_valid():
@@ -95,6 +120,7 @@ def inscription_view(request):
                 participant)
             participant.save()
             return redirect('survey_intro')
+
         else:
             error_message = "Formulaire invalide. Veuillez vérifier vos réponses."
             messages.error(request, error_message)
