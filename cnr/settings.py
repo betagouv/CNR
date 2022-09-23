@@ -74,17 +74,26 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = "DENY"
 REFERRER_POLICY = "same-origin"
 CSP_DEFAULT_SRC = ["'self'", "data:", "localhost:" + runserver.default_port]
-CSP_FRAME_SRC = ["*.youtube.com"]
+CSP_FRAME_SRC = ["*.youtube.com", "*.mtcaptcha.com"]
 CSP_STYLE_SRC = [
     "'self'",
     "'unsafe-hashes'",
     "'sha256-d//Lck7pNf/OY9MPfGYaIOTmqjEzvwlSukK3UObI08A='",  # inject-svg.js de django-dsfr
     "'sha256-Eyt3MCqJJqqqUJzUlVq9BLYX+kVGQZVLpJ4toZz4mb8='",  # inject-svg.js de django-dsfr
     "'sha256-Xhd5+zYamb/dMdyIkYwXmzaXokrsMrINTdCsO/s+Hcc='",  # inject style inline for homepage cover
+    "'sha256-R2Vkrx5FLpmMY0750ljuQem15/f/bIrrGl+TXyzeETo='",  # mtcaptcha
+    "'sha256-8kPOCl/iIr6YgWLvLnIRMrYnCJHOzs6WNYAedT41SM8='",  # mtcaptcha
+    "'sha256-2Go/yMtz4sEcAbw1TnjkjLz983Zxq7frCShdJs2OobM='",  # mtcaptcha
+    "'sha256-2Go/yMtz4sEcAbw1TnjkjLz983Zxq7frCShdJs2OobM='",  # mtcaptcha
+    "'sha256-g6zf946PtVM63bZ+fe9QUc3hDXp5BMl6OBmAlKhKV60='",  # mtcaptcha
+    "'sha256-zqo/Gf4mmbgvoqPGTNSkHYfibgllewm/seDhWyooOOk='",  # mtcaptcha
+    "'sha256-FVE4UqDzJ5GzKFQlZqU4Zq3EAxxb/T0hpPQU9k6uwkA='",  # mtcaptcha
 ]
 CSP_SCRIPT_SRC = [
     "'self'",
     "'sha256-3nqjSbGHbyxcg93jUSCv0aA9rA4otXw9BvbTMV83oig='",  # matomo
+    "*.mtcaptcha.com",  # MTCaptcha
+    "'sha256-UZ2I/y6SWrKs1gKjxUELei+nt5Om6TTRLTMIbocuE8E='",  # MTCaptcha
     "cnr-matomo.osc-secnum-fr1.scalingo.io",
 ]
 CSP_CONNECT_SRC = ["'self'", "cnr-matomo.osc-secnum-fr1.scalingo.io"]
