@@ -6,18 +6,26 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('public_website', '0006_alter_participant_postal_code'),
+        ("public_website", "0006_alter_participant_postal_code"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='participant',
-            name='first_name',
-            field=models.CharField(max_length=150, null=True, verbose_name='Prénom'),
+            model_name="participant",
+            name="first_name",
+            field=models.CharField(max_length=150, null=True, verbose_name="Prénom"),
         ),
         migrations.AlterField(
-            model_name='participant',
-            name='participant_type',
-            field=models.CharField(choices=[('PARTICULIER', 'Particulier'), ('ELU', 'Élu'), ('ASSOCIATION', "Représentant(e) d'une association")], max_length=11, null=True),
+            model_name="participant",
+            name="participant_type",
+            field=models.CharField(
+                choices=[
+                    ("PARTICULIER", "Particulier"),
+                    ("ELU", "Élu"),
+                    ("ASSOCIATION", "Représentant(e) d'une association"),
+                ],
+                max_length=11,
+                null=True,
+            ),
         ),
     ]

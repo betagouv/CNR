@@ -49,14 +49,11 @@ def create_payload_for_email_provider(participant: Participant):
 
 def send_participant_profile_to_email_provider(participant: Participant):
     try:
-        if participant.has_profile:            
+        if participant.has_profile:
             payload = create_payload_for_email_provider(participant)
-        else: 
+        else:
             payload = {}
-        send_payload_to_send_in_blue(
-            participant.email,
-            payload=payload
-        )
+        send_payload_to_send_in_blue(participant.email, payload=payload)
     except Exception:
         return False
 

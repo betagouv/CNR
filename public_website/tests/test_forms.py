@@ -107,17 +107,12 @@ class ProfileForm(TestCase):
 
     @patch_send_in_blue
     def test_returning_user_gets_confirmation_form_message(self):
-        from public_website.models import Participant
-
         self.generate_response()
         self.assertTrue(
             Participant.objects.filter(email="prudence.crandall@educ.gouv.fr").exists()
         )
         response2 = self.generate_response()
-        self.assertContains(
-            response2,
-            "Votre inscription est enregistrée : vous serez tenu au courant des consultations à venir sur vos thématiques sélectionnées.",
-        )
+        self.assertRedirects(response2, "/survey-intro/")
 
     @patch_send_in_blue
     def test_99_validates_for_postal_code(self):

@@ -1,4 +1,5 @@
 import uuid
+
 from django.db import models
 
 
@@ -49,10 +50,10 @@ class Participant(models.Model):
         return Subscription.objects.filter(participant=self).values_list(
             "theme", flat=True
         )
-    
+
     @property
     def has_profile(self):
-        return self.postal_code != None
+        return self.postal_code is not None
 
 
 class Subscription(models.Model):

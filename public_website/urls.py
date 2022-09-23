@@ -12,5 +12,5 @@ urlpatterns = [
     path("confidentialite/", views.confidentialite_view, name="confidentialite"),
     path("survey/", views.survey_view, name="survey"),
     path("survey-intro/", views.survey_intro_view, name="survey_intro"),
-    path("survey-outro/", views.survey_outro_view, name="survey_outro")
+    path("survey-outro/", views.survey_outro_view, name="survey_outro"),
 ]
