@@ -105,8 +105,9 @@ class ProfileViewTest(TestCase):
         still_prudence = Participant.objects.get(email=email)
 
         self.assertRedirects(response, "/participation-intro/")
-        self.assertEqual(still_prudence.postal_code, '06331')
-        self.assertEqual(still_prudence.first_name, 'Prudence')
+        self.assertEqual(still_prudence.postal_code, "06331")
+        self.assertEqual(still_prudence.first_name, "Prudence")
+        self.assertRedirects(response, "/participation-intro/")
 
     def test_invalid_form_returns_invalid_data_for_correction(self):
         response = self.client.post(

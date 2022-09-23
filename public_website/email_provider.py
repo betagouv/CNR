@@ -56,5 +56,4 @@ def send_participant_profile_to_email_provider(participant: Participant):
         send_payload_to_send_in_blue(participant.email, payload=payload)
     except Exception:
         return False
-
     return True

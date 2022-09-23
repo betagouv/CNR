@@ -1,8 +1,9 @@
 from django.contrib import messages
 from django.shortcuts import redirect, render
 
-from public_website.email_provider import send_participant_profile_to_email_provider
-from public_website.forms import RegisterForm, ProfileForm
+from public_website.email_provider import \
+    send_participant_profile_to_email_provider
+from public_website.forms import ProfileForm, RegisterForm
 from public_website.models import Participant
 
 
@@ -51,7 +52,6 @@ def confidentialite_view(request):
 
 
 def inscription_view(request):
-
     form = ProfileForm()
 
     if request.method == "GET":
@@ -64,7 +64,6 @@ def inscription_view(request):
 
     if request.method == "POST":
         form = ProfileForm(request.POST)
-
         if form.is_captcha_valid() and form.is_valid():
             try:
                 participant = Participant.objects.get(email=form.cleaned_data["email"])
@@ -73,7 +72,7 @@ def inscription_view(request):
                         "Votre profil est déjà rempli. Il n'a pas été mis à jour."
                     )
                     messages.error(request, error_message)
-                    return redirect("/survey-intro/")
+                    return redirect("survey_intro")
                 else:
                     form = ProfileForm(request.POST, instance=participant)
             except Participant.DoesNotExist:

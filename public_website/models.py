@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Theme(models.TextChoices):
-    CLIMAT = "CLIMAT", "Climat"
+    CLIMAT = "CLIMAT", "Climat et biodiversité"
     VIEILLISSEMENT = "VIEILLISSEMENT", "Générations et vieillissement"
     SOUVERAINETE = "SOUVERAINETE", "Souveraineté économique"
     TRAVAIL = "TRAVAIL", "Futur du travail"
@@ -59,7 +59,7 @@ class Participant(models.Model):
         from surveys.models import Survey
 
         available_surveys = Survey.objects.exclude(
-            participants__in=self.participations.all()
+            participations__in=self.participations.all()
         )
         if themes:
             available_surveys = available_surveys.filter(theme__in=themes)
@@ -67,6 +67,8 @@ class Participant(models.Model):
 
 
 class Subscription(models.Model):
-    participant = models.ForeignKey(Participant, models.CASCADE)
+    participant = models.ForeignKey(
+        Participant, models.CASCADE, related_name="subscriptions"
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     theme = models.CharField(blank=False, choices=Theme.choices, max_length=14)
