@@ -77,20 +77,18 @@
                     </div>
 
                     <div class="fr-form-group">
-                        <h3 for="{{ theme.id_for_label }}">Les thématiques sur lesquelles je veux m'investir</h3>
-                        <fieldset class="fr-fieldset" role="group">
-                            <span class="fr-hint-text">Choisissez une ou plusieurs thématiques sur lesquelles vous souhaitez apporter une contribution nationale.</span>
-                            <div class="fr-fieldset__content">
-                                {{ form.errors.prefered_themes }}
-                                {% for theme in form.prefered_themes %}
-                                <div class="fr-checkbox-group">
-                                    {{ theme.tag }}
-                                    <label class="fr-label" for="{{ theme.id_for_label }}">
-                                        {{ theme.choice_label }}
-                                    </label>
-                                </div>
-                                {% endfor %}
-                            </div>
+                      <h3>Les thématiques sur lesquelles je veux m'investir</h3>
+                        <fieldset class="fr-fieldset checkbox-group" role="group">
+                          {% for theme in form.prefered_themes %}
+                          <div class="checkbox">
+                            <label class="checkbox-wrapper" for="{{ theme.id_for_label }}">
+                              <input type="checkbox" class="checkbox-input" id="{{ theme.id_for_label }}" />
+                              <span class="checkbox-tile">
+                                <span class="checkbox-label">{{ theme.choice_label }}</span>
+                              </span>
+                            </label>
+                          </div>
+                          {% endfor %}
                         </fieldset>
                     </div>
 
