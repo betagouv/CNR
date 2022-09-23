@@ -52,7 +52,7 @@
                           <div class="fr-col-12 fr-col-sm-6">
                             <div class="fr-input-group">
                                 <label class="fr-label" for="text-input-text">{{ form.postal_code.label }}</label>
-                                <input class="fr-input" type="text" id="text-input-text" name="postal_code" value="{{ form.data.postal_code }}" autocomplete="postal-code" inputmode="numeric" pattern="[0-9]{5}">
+                                <input class="fr-input" type="text" id="text-input-text" name="postal_code" value="{{ form.data.postal_code }}" autocomplete="postal-code" inputmode="numeric" pattern="^[0-9]{2}([0-9]{3})?$">
                                 {{ form.errors.postal_code }}
                             </div>
                           </div>
