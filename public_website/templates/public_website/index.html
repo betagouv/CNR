@@ -2,43 +2,48 @@
 {% load static %}
 
 {% block content %}
-<div class="fr-container fr-my-6w">
-  <div class="fr-grid-row fr-grid-row--gutters">
-    <div class="fr-col-12 fr-col-md-6">
-      <h1 class="fr-display--sm">Construisons ensemble l'avenir de la France</h1>
-      <img src="{% static 'images/macron_CNR.jpg' %}" alt="" class="fr-responsive-img fr-hidden-md fr-mb-3w">
-      <p>Citoyennes et citoyens, partenaires sociaux, professionnels, élus : nous avons tous une voix et des idées à apporter pour faire avancer notre pays. Le Conseil National de la Refondation vous propose plusieurs formats pour échanger ensemble et de manière constructive sur les défis à venir: au niveau national avec des ateliers et des consultations et au niveau local avec des concertations.</p>
-
-  <hr class="fr-mt-6w fr-mb-3w">
-
-  <form action="{% url 'index' %}" method="post">
-    {% csrf_token %}
-    <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
-      <label class="fr-label" for="email">{{ form.email.label }}</label>
-      <span class="fr-hint-text">Format attendu: nom@domaine.fr .</span>
-      <input class="fr-input" type="email" id="email" name="email" required>
-      <div class="fr-checkbox-group">
-        <input type="checkbox" id="id_gives_gdpr_consent" name="gives_gdpr_consent" required>
-        <label class="fr-label" for="id_gives_gdpr_consent">
-            {{ form.gives_gdpr_consent.label }}
-        </label>
-      </div>
-      <div class="fr-input-group fr-my-4w">
-        <button type="submit" class="fr-btn fr-mt-3w" title="Valider ce formulaire">Je confirme ma participation</button>
-      </div>
-      <div class="fr-col-12 fr-col-md-6">
-        <img src="{% static 'images/macron_CNR_verticale.jpg' %}" alt="" class="fr-responsive-img fr-hidden fr-unhidden-md">
+<div class="cover" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url({% static 'images/macron_CNR.jpg' %})">
+  <div class="fr-container fr-py-6w">
+    <div class="fr-grid-row fr-grid-row--gutters">
+      <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
+        <h1 class="fr-display--sm">Construisons ensemble l'avenir de la France</h1>
       </div>
     </div>
-  </form>
-</div> <!--container -->
+  </div>
+</div>
+
+<div class="fr-container fr-py-6w">
+  <div class="fr-grid-row fr-grid-row--gutters">
+    <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
+      <div class="fr-background-default--grey fr-p-6w mt-n30vh bordered">
+        <p><strong>Citoyennes et citoyens, partenaires sociaux, professionnels, élus : nous avons tous une voix et des idées à apporter pour faire avancer notre pays.</strong> Le Conseil National de la Refondation vous propose plusieurs formats pour échanger ensemble et de manière constructive sur les défis à venir: au niveau national avec des ateliers et des consultations et au niveau local avec des concertations.</p>
+        <hr>
+        <form action="{% url 'index' %}" method="post">
+          {% csrf_token %}
+          <label class="fr-label" for="email">{{ form.email.label }}</label>
+          <span class="fr-hint-text">Format attendu: nom@domaine.fr .</span>
+          <input class="fr-input" type="email" id="email" name="email" required>
+          <div class="fr-checkbox-group">
+            <input type="checkbox" id="id_gives_gdpr_consent" name="gives_gdpr_consent" required>
+            <label class="fr-label" for="id_gives_gdpr_consent">
+                {{ form.gives_gdpr_consent.label }}
+            </label>
+            <div class="fr-input-group">
+              <button type="submit" class="fr-btn fr-mt-3w" title="Valider ce formulaire">Je confirme ma participation</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="fr-background-alt--blue-france">
   <div class="fr-container fr-py-6w">
     <div class="fr-grid-row fr-grid-row--gutters">
       <div class="fr-col-12">
         <h2>S'inscrire pour participer</h2>
-        <p>Rejoindre dès maintenant le Conseil national de la Refondation vous permet de :</p>
+        <p>Rejoindre dès maintenant le Conseil national de la Refondation vous permet de :</p>
       </div>
 
       <div class="fr-col-12 fr-col-sm-4">
