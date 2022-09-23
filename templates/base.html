@@ -1,6 +1,5 @@
 {% load static dsfr_tags %}
 {% load sass_tags %}
-{% load full_url %}
 
 <!doctype html>
 <html lang="fr" data-fr-scheme="system" {% if SITE_CONFIG.mourning %}data-fr-mourning{% endif %}>
@@ -13,8 +12,8 @@
   <meta property="og:title" content="Conseil National de la Refondation - Construisons ensemble l'avenir de la France" />
   <meta property="og:description" content="Citoyennes et citoyens, partenaires sociaux, professionnels, élus : nous avons tous une voix et des idées à apporter pour faire avancer notre pays. Le Conseil National de la Refondation vous propose plusieurs formats pour échanger ensemble et de manière constructive sur les défis à venir: au niveau national avec des ateliers et des consultations et au niveau local avec des concertations.">
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="{% full_url request %}" />
-  <meta property="og:image" content="{% full_url request %}/static/images/cnr_logo.svg" />
+  <meta property="og:url" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}" />
+  <meta property="og:image" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}/static/images/macron_CNR.jpg" />
 
   {% dsfr_css %}
   {% dsfr_favicon %}
