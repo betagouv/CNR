@@ -1,13 +1,33 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from django.forms import ModelForm
+from django.forms import Form, ModelForm
 
 from public_website.captcha import check_captcha_token
 
 from . import models
 
 
-class InscriptionForm(ModelForm):
+class RegisterForm(Form):
+
+    email = forms.EmailField(
+        label="Adresse électronique",
+    )
+    
+    gives_gdpr_consent = forms.BooleanField(
+        label="J'ai lu et j'accepte les CGU et la politique de protection des données",
+        required=True
+    )
+
+    def is_captcha_valid(self):
+        return check_captcha_token(self.data["csrfmiddlewaretoken"])
+
+
+class ProfileForm(ModelForm):
+
+    email = forms.EmailField(
+        label="Adresse électronique",
+    )
+
     participant_type = forms.ChoiceField(
         choices=models.ParticipantType.choices,
         widget=forms.RadioSelect,
@@ -43,10 +63,11 @@ class InscriptionForm(ModelForm):
 
     class Meta:
         model = models.Participant
-        fields = ["email", "first_name", "postal_code", "participant_type"]
+        fields = ["first_name", "postal_code", "participant_type"]
 
-    def save(self, commit=True):
-        instance = super(InscriptionForm, self).save(commit=commit)
+    def save(self, commit=True, *args, **kwargs):
+        instance = super(ProfileForm, self).save(commit=commit)
+        instance.email = self.cleaned_data['email']
         preferred_themes = self.cleaned_data["prefered_themes"]
         for theme in preferred_themes:
             subscription = models.Subscription(participant_id=instance.id, theme=theme)

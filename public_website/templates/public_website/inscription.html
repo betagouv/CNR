@@ -21,26 +21,31 @@
                         {% endif %}
                     {% endfor %}
                 {% endif %}
+
                 <br>
                 <form action="{% url 'inscription' %}" method="post">
                     {% csrf_token %}
                     <div class="mtcaptcha"></div>
 
                     <fieldset class="fr-fieldset fr-my-4w">
-                        <div class="fr-input-group">
-                            <label class="fr-label" for="text-input-text">{{ form.first_name.label }}</label>
-                            <input class="fr-input" type="text" id="text-input-text" name="first_name" required>
-                        </div>
 
                         <div class="fr-input-group">
                             <label class="fr-label" for="email">{{ form.email.label }}</label>
                             <span class="fr-hint-text">Format attendu: nom@domaine.fr .</span>
-                            <input class="fr-input" type="email" id="email" name="email" required>
+                            <input class="fr-input" type="email" id="email" name="email" value="{{ form.instance.email }}" required>
+                            {{ form.errors.email }}
                         </div>
+
+                        <div class="fr-input-group">
+                            <label class="fr-label" for="text-input-text">{{ form.first_name.label }}</label>
+                            <input class="fr-input" type="text" id="text-input-text" name="first_name" required>
+                            {{ form.errors.first_name }}
+                        </div>                       
 
                         <div class="fr-input-group">
                             <label class="fr-label" for="text-input-text">{{ form.postal_code.label }}</label>
                             <input class="fr-input" type="text" id="text-input-text" name="postal_code">
+                            {{ form.errors.postal_code }}
                         </div>
                     </fieldset>
 
@@ -48,6 +53,7 @@
                         <fieldset class="fr-fieldset">
                             <legend class="fr-fieldset__legend fr-text--regular">{{ form.participant_type.label }}</legend>
                             <div class="fr-fieldset__content">
+                                {{ form.errors.participant_type }}
                                 {% for type in form.participant_type  %}
                                 <div class="fr-radio-group">
                                     {{ type.tag }}
@@ -65,6 +71,7 @@
                         <fieldset class="fr-fieldset" role="group">
                             <span class="fr-hint-text">Choisissez une ou plusieurs thématiques sur lesquelles vous souhaitez apporter une contribution nationale.</span>
                             <div class="fr-fieldset__content">
+                                {{ form.errors.prefered_themes }}
                                 {% for theme in form.prefered_themes %}
                                 <div class="fr-checkbox-group">
                                     {{ theme.tag }}
@@ -82,10 +89,11 @@
                         <fieldset class="fr-fieldset" role="group">
                             <div class="fr-fieldset__content">
                                 <div class="fr-checkbox-group">
-                                    <input type="checkbox" id="id_gives_gdpr_consent" name="gives_gdpr_consent" >
+                                    <input type="checkbox" id="id_gives_gdpr_consent" name="gives_gdpr_consent" required>
                                     <label class="fr-label" for="id_gives_gdpr_consent">
                                         {{ form.gives_gdpr_consent.label }}
                                     </label>
+                                    {{ form.errors.gives_gdpr_consent }}
                                 </div>
                             </div>
                         </fieldset>

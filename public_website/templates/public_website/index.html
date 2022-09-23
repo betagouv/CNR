@@ -9,20 +9,28 @@
       <img src="{% static 'images/macron_CNR.jpg' %}" alt="" class="fr-responsive-img fr-hidden-md fr-mb-3w">
       <p>Citoyennes et citoyens, partenaires sociaux, professionnels, élus : nous avons tous une voix et des idées à apporter pour faire avancer notre pays. Le Conseil National de la Refondation vous propose plusieurs formats pour échanger ensemble et de manière constructive sur les défis à venir: au niveau national avec des ateliers et des consultations et au niveau local avec des concertations.</p>
 
+  <hr class="fr-mt-6w fr-mb-3w">
 
-      <label class="fr-label" for="email">Adresse électronique</label>
+  <form action="{% url 'index' %}" method="post">
+    {% csrf_token %}
+    <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
+      <label class="fr-label" for="email">{{ form.email.label }}</label>
       <span class="fr-hint-text">Format attendu: nom@domaine.fr .</span>
       <input class="fr-input" type="email" id="email" name="email" required>
       <div class="fr-checkbox-group">
-        <input type="checkbox" id="checkbox" name="checkbox">
-        <label class="fr-label" for="checkbox">J'ai lu et j'accepte les CGU et la politique de protection des données</label>
+        <input type="checkbox" id="id_gives_gdpr_consent" name="gives_gdpr_consent" required>
+        <label class="fr-label" for="id_gives_gdpr_consent">
+            {{ form.gives_gdpr_consent.label }}
+        </label>
       </div>
-      <a class="fr-btn fr-mt-3w" href="#">Je participe</a>
+      <div class="fr-input-group fr-my-4w">
+        <button type="submit" class="fr-btn fr-mt-3w" title="Valider ce formulaire">Je confirme ma participation</button>
+      </div>
+      <div class="fr-col-12 fr-col-md-6">
+        <img src="{% static 'images/macron_CNR_verticale.jpg' %}" alt="" class="fr-responsive-img fr-hidden fr-unhidden-md">
+      </div>
     </div>
-    <div class="fr-col-12 fr-col-md-6">
-      <img src="{% static 'images/macron_CNR_verticale.jpg' %}" alt="" class="fr-responsive-img fr-hidden fr-unhidden-md">
-    </div>
-  </div>
+  </form>
 </div> <!--container -->
 
 <div class="fr-background-alt--blue-france">
@@ -167,9 +175,7 @@
         </div>
       </div>
     </div>
-    <div class="fr-col-12">
-      <a href="{% url 'fonctionnement' %}#anchor_thematiques" target="_self" class="fr-link">Voir le détail des thématiques</a>
-    </div>
+
   </div>
 
   <hr class="fr-my-6w">

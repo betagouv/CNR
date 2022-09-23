@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 
 
@@ -27,15 +28,16 @@ class Participant(models.Model):
         blank=False,
         null=False,
     )
+    uuid = models.UUIDField(default=uuid.uuid4)
     first_name = models.CharField(
-        max_length=150, verbose_name="Prénom", blank=False, null=False
+        max_length=150, verbose_name="Prénom", blank=False, null=True
     )
     postal_code = models.CharField(
-        max_length=5, verbose_name="Code postal", blank=False, null=False
+        max_length=5, verbose_name="Code postal", blank=False, null=True
     )
     participant_type = models.CharField(
         blank=False,
-        null=False,
+        null=True,
         choices=ParticipantType.choices,
         max_length=11,
     )
@@ -47,6 +49,10 @@ class Participant(models.Model):
         return Subscription.objects.filter(participant=self).values_list(
             "theme", flat=True
         )
+    
+    @property
+    def has_profile(self):
+        return self.postal_code != None
 
 
 class Subscription(models.Model):
