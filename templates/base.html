@@ -52,9 +52,18 @@
 </head>
 
 <body>
-    {% block skiplinks %}
-        {% dsfr_skiplinks skiplinks %}
-    {% endblock skiplinks %}
+  <div class="fr-skiplinks">
+    <nav class="fr-container" role="navigation" aria-label="Accès rapide">
+      <ul class="fr-skiplinks__list">
+        <li>
+            <a class="fr-link" href="#content">Accéder au contenu</a>
+        </li>
+        <li>
+            <a class="fr-link" href="#footer">Accéder au pied de page</a>
+        </li>
+      </ul>
+    </nav>
+</div>
 
     {% include "blocks/header.html" %}
     {% dsfr_theme_modale %}
