@@ -104,3 +104,18 @@ class ProfileViewTest(TestCase):
         self.assertEqual(still_prudence.postal_code, "06331")
         self.assertEqual(still_prudence.first_name, "Prudence")
         self.assertRedirects(response, "/survey-intro/")
+
+    def test_invalid_form_returns_invalid_data_for_correction(self):
+        response = self.client.post(
+            "/inscription/",
+            {
+                "email": "not_an_email",
+                "first_name": "",
+                "postal_code": "123",
+                "gives_gdpr_consent": True,
+                "csrfmiddlewaretoken": "fake-token",
+            },
+        )
+        self.assertContains(response, "Formulaire invalide")
+        self.assertContains(response, "not_an_email")
+        self.assertContains(response, "123")

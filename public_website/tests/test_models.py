@@ -1,11 +1,10 @@
 from django.test import TestCase
-from public_website.tests.factories.factory import ParticipantFactory, NoProfileParticipantFactory
 
-from public_website.models import Participant
+from public_website.tests.factories.factory import (
+    NoProfileParticipantFactory, ParticipantFactory)
 
 
 class ParticipantModelTest(TestCase):
-
     def setUp(self):
         self.no_profile_participant = NoProfileParticipantFactory()
         self.participant = ParticipantFactory()

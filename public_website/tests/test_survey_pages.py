@@ -3,6 +3,7 @@ from django.urls import resolve
 
 from public_website import views
 
+
 class TestSurvey(TestCase):
     def test_survey_url_calls_right_view(self):
         match = resolve("/survey/")
@@ -16,6 +17,7 @@ class TestSurvey(TestCase):
         response = self.client.get("/survey/")
         self.assertContains(response, "Questionnaire")
 
+
 class TestSurveyIntro(TestCase):
     def test_survey_intro_url_calls_right_view(self):
         match = resolve("/survey-intro/")
@@ -28,6 +30,7 @@ class TestSurveyIntro(TestCase):
     def test_survey_intro_response_contains_welcome_message(self):
         response = self.client.get("/survey-intro/")
         self.assertContains(response, "Votre inscription est enregistrée")
+
 
 class TestSurveyOutro(TestCase):
     def test_survey_outro_url_calls_right_view(self):
