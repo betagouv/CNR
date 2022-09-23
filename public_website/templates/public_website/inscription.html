@@ -11,18 +11,17 @@
                 {% if messages %}
                     {% for message in messages %}
                         {% if message.tags == "success" %}
-                            <div class="fr-alert fr-alert--success fr-alert--sm">
+                            <div class="fr-alert fr-alert--success fr-alert--sm fr-mb-5w">
                                 <p>{{ message }}</p>
                             </div>
                         {% elif message.tags == "error" %}
-                            <div class="fr-alert fr-alert--error fr-alert--sm">
+                            <div class="fr-alert fr-alert--error fr-alert--sm fr-mb-5w">
                                 <p>{{ message }}</p>
                             </div>
                         {% endif %}
                     {% endfor %}
                 {% endif %}
 
-                <br>
                 <form action="{% url 'inscription' %}" method="post" id="inscription_form">
                     {% csrf_token %}
                     <fieldset class="fr-fieldset fr-my-4w">
@@ -87,8 +86,8 @@
                             </div>
                         </fieldset>
                     </div>
-                    <br>
-                    <br>
+
+                    <hr>
                     <div class="fr-form-group">
                         <fieldset class="fr-fieldset" role="group">
                             <div class="fr-fieldset__content">
