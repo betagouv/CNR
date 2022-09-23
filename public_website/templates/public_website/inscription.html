@@ -25,8 +25,6 @@
                 <br>
                 <form action="{% url 'inscription' %}" method="post">
                     {% csrf_token %}
-                    <div class="mtcaptcha"></div>
-
                     <fieldset class="fr-fieldset fr-my-4w">
 
                         <div class="fr-input-group">
@@ -98,6 +96,7 @@
                             </div>
                         </fieldset>
                     </div>
+                    <div class="mtcaptcha"></div>
                     <div class="fr-input-group fr-my-4w">
                         <button type="submit" class="fr-btn" title="Valider ce formulaire">Je confirme ma participation</button>
                     </div>
