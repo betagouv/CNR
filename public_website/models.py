@@ -55,6 +55,16 @@ class Participant(models.Model):
     def has_profile(self):
         return self.postal_code is not None
 
+    def get_available_surveys(self, themes: list = None):
+        from surveys.models import Survey
+
+        available_surveys = Survey.objects.exclude(
+            participants__in=self.participations.all()
+        )
+        if themes:
+            available_surveys = available_surveys.filter(theme__in=themes)
+        return available_surveys.order_by("label")
+
 
 class Subscription(models.Model):
     participant = models.ForeignKey(Participant, models.CASCADE)

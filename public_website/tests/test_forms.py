@@ -117,7 +117,7 @@ class ProfileForm(TestCase):
     @patch_send_in_blue
     def test_99_validates_for_postal_code(self):
         response = self.generate_response("postal_code", "99")
-        self.assertRedirects(response, "/survey-intro/")
+        self.assertRedirects(response, "/participation-intro/")
 
     def test_98_does_not_validates_for_postal_code(self):
         response = self.generate_response("postal_code", "98")

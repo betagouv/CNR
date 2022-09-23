@@ -10,7 +10,4 @@ urlpatterns = [
     path("mentions-legales/", views.mentions_legales_view, name="mentions_legales"),
     path("accessibilite/", views.accessibilite_view, name="accessibilite"),
     path("confidentialite/", views.confidentialite_view, name="confidentialite"),
-    path("survey/", views.survey_view, name="survey"),
-    path("survey-intro/", views.survey_intro_view, name="survey_intro"),
-    path("survey-outro/", views.survey_outro_view, name="survey_outro"),
 ]

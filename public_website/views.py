@@ -1,9 +1,8 @@
 from django.contrib import messages
 from django.shortcuts import redirect, render
 
-from public_website.email_provider import \
-    send_participant_profile_to_email_provider
-from public_website.forms import ProfileForm, RegisterForm
+from public_website.email_provider import send_participant_profile_to_email_provider
+from public_website.forms import RegisterForm, ProfileForm
 from public_website.models import Participant
 
 
@@ -49,18 +48,6 @@ def accessibilite_view(request):
 
 def confidentialite_view(request):
     return render(request, "public_website/confidentialite.html")
-
-
-def survey_view(request):
-    return render(request, "public_website/survey.html")
-
-
-def survey_intro_view(request):
-    return render(request, "public_website/survey_intro.html")
-
-
-def survey_outro_view(request):
-    return render(request, "public_website/survey_outro.html")
 
 
 def inscription_view(request):
