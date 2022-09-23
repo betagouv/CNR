@@ -18,7 +18,7 @@
       <div class="fr-background-default--grey fr-p-6w mt-n30vh bordered">
         <p><strong>Citoyennes et citoyens, partenaires sociaux, professionnels, élus : nous avons tous une voix et des idées à apporter pour faire avancer notre pays.</strong> Le Conseil National de la Refondation vous propose plusieurs formats pour échanger ensemble et de manière constructive sur les défis à venir: au niveau national avec des ateliers et des consultations et au niveau local avec des concertations.</p>
         <hr>
-        <form action="{% url 'index' %}" method="post" id="home_email">
+        <form action="{% url 'index' %}" method="post" id="home_email_form">
           {% csrf_token %}
           <label class="fr-label" for="email">{{ form.email.label }}</label>
           <span class="fr-hint-text">Format attendu: nom@domaine.fr .</span>
