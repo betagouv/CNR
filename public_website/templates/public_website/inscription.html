@@ -3,7 +3,7 @@
 {% block content %}
     <div class="fr-container fr-my-6w">
         <div class="fr-grid-row fr-grid-row--gutters">
-            <div class="fr-col-12 fr-col-sm-10 fr-col-offset-sm-1 fr-mt-6w">
+            <div class="fr-col-12 fr-col-sm-10 fr-col-offset-sm-1">
                 <h1 class="fr-display--sm">S'inscrire pour participer</h1>
 
                 <p>Rejoindre dès maintenant le Conseil national de la Refondation vous permet de participer sur les thématiques qui vous intéressent, de vous engager localement et de suivre l'avancement du Conseil national de la Refondation.</p>
@@ -11,45 +11,51 @@
                 {% if messages %}
                     {% for message in messages %}
                         {% if message.tags == "success" %}
-                            <div class="fr-alert fr-alert--success fr-alert--sm">
+                            <div class="fr-alert fr-alert--success fr-alert--sm fr-mb-5w">
                                 <p>{{ message }}</p>
                             </div>
                         {% elif message.tags == "error" %}
-                            <div class="fr-alert fr-alert--error fr-alert--sm">
+                            <div class="fr-alert fr-alert--error fr-alert--sm fr-mb-5w">
                                 <p>{{ message }}</p>
                             </div>
                         {% endif %}
                     {% endfor %}
                 {% endif %}
 
-                <br>
                 <form action="{% url 'inscription' %}" method="post" id="inscription_form">
                     {% csrf_token %}
                     <fieldset class="fr-fieldset fr-my-4w">
+                        <div class="fr-grid-row fr-grid-row--gutters">
+                          <div class="fr-col-12">
+                            <div class="fr-input-group">
+                                <label class="fr-label" for="email">{{ form.email.label }}</label>
+                                <span class="fr-hint-text">Format attendu: nom@domaine.fr .</span>
+                                <input class="fr-input" type="email" id="email" name="email"
+                                {% if form.data %}
+                                    value="{{ form.data.email }}"
+                                {% else %}
+                                    value="{{ form.instance.email }}"
+                                {% endif %}
+                                required>
+                                {{ form.errors.email }}
+                            </div>
+                          </div>
 
-                        <div class="fr-input-group">
-                            <label class="fr-label" for="email">{{ form.email.label }}</label>
-                            <span class="fr-hint-text">Format attendu: nom@domaine.fr .</span>
-                            <input class="fr-input" type="email" id="email" name="email"
-                            {% if form.data %}
-                                value="{{ form.data.email }}"
-                            {% else %}
-                                value="{{ form.instance.email }}"
-                            {% endif %}
-                            required>
-                            {{ form.errors.email }}
-                        </div>
+                          <div class="fr-col-12 fr-col-sm-6">
+                            <div class="fr-input-group">
+                                <label class="fr-label" for="text-input-text">{{ form.first_name.label }}</label>
+                                <input class="fr-input" type="text" id="text-input-text" name="first_name" value="{{ form.data.first_name }}" autocomplete="given-name" required>
+                                {{ form.errors.first_name }}
+                            </div>
+                          </div>
 
-                        <div class="fr-input-group">
-                            <label class="fr-label" for="text-input-text">{{ form.first_name.label }}</label>
-                            <input class="fr-input" type="text" id="text-input-text" name="first_name" value="{{ form.data.first_name }}" autocomplete="given-name" required>
-                            {{ form.errors.first_name }}
-                        </div>                       
-
-                        <div class="fr-input-group">
-                            <label class="fr-label" for="text-input-text">{{ form.postal_code.label }}</label>
-                            <input class="fr-input" type="text" id="text-input-text" name="postal_code" value="{{ form.data.postal_code }}" autocomplete="postal-code">
-                            {{ form.errors.postal_code }}
+                          <div class="fr-col-12 fr-col-sm-6">
+                            <div class="fr-input-group">
+                                <label class="fr-label" for="text-input-text">{{ form.postal_code.label }}</label>
+                                <input class="fr-input" type="text" id="text-input-text" name="postal_code" value="{{ form.data.postal_code }}" autocomplete="postal-code" inputmode="numeric" pattern="^(99)|[0-9]{5}$">
+                                {{ form.errors.postal_code }}
+                            </div>
+                          </div>
                         </div>
                     </fieldset>
 
@@ -71,24 +77,26 @@
                     </div>
 
                     <div class="fr-form-group">
-                        <h3 for="{{ theme.id_for_label }}">Les thématiques sur lesquelles je veux m'investir</h3>
-                        <fieldset class="fr-fieldset" role="group">
-                            <span class="fr-hint-text">Choisissez une ou plusieurs thématiques sur lesquelles vous souhaitez apporter une contribution nationale.</span>
-                            <div class="fr-fieldset__content">
-                                {{ form.errors.prefered_themes }}
-                                {% for theme in form.prefered_themes %}
-                                <div class="fr-checkbox-group">
-                                    {{ theme.tag }}
-                                    <label class="fr-label" for="{{ theme.id_for_label }}">
-                                        {{ theme.choice_label }}
-                                    </label>
-                                </div>
-                                {% endfor %}
-                            </div>
+                      <h2 class="fr-mb-0">Les thématiques sur lesquelles je veux m'investir</h2>
+                      <span class="fr-hint-text fr-mb-5w">Choisissez une ou plusieurs thématiques sur lesquelles vous souhaitez apporter une contribution nationale.</span>
+                      {{ form.errors.prefered_themes }}
+                        <fieldset class="fr-fieldset checkbox-group" role="group">
+                          {% for theme in form.prefered_themes %}
+
+                          <div class="checkbox">
+                            <label class="checkbox-wrapper" for="{{ theme.id_for_label }}">
+                              {{ theme.tag }}
+
+                              <span class="checkbox-tile">
+                                <span class="checkbox-label">{{ theme.choice_label }}</span>
+                              </span>
+                            </label>
+                          </div>
+                          {% endfor %}
                         </fieldset>
                     </div>
-                    <br>
-                    <br>
+
+                    <hr>
                     <div class="fr-form-group">
                         <fieldset class="fr-fieldset" role="group">
                             <div class="fr-fieldset__content">
