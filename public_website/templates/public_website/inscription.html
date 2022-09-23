@@ -25,30 +25,37 @@
                 <form action="{% url 'inscription' %}" method="post" id="inscription_form">
                     {% csrf_token %}
                     <fieldset class="fr-fieldset fr-my-4w">
+                        <div class="fr-grid-row fr-grid-row--gutters">
+                          <div class="fr-col-12">
+                            <div class="fr-input-group">
+                                <label class="fr-label" for="email">{{ form.email.label }}</label>
+                                <span class="fr-hint-text">Format attendu: nom@domaine.fr .</span>
+                                <input class="fr-input" type="email" id="email" name="email"
+                                {% if form.data %}
+                                    value="{{ form.data.email }}"
+                                {% else %}
+                                    value="{{ form.instance.email }}"
+                                {% endif %}
+                                required>
+                                {{ form.errors.email }}
+                            </div>
+                          </div>
 
-                        <div class="fr-input-group">
-                            <label class="fr-label" for="email">{{ form.email.label }}</label>
-                            <span class="fr-hint-text">Format attendu: nom@domaine.fr .</span>
-                            <input class="fr-input" type="email" id="email" name="email"
-                            {% if form.data %}
-                                value="{{ form.data.email }}"
-                            {% else %}
-                                value="{{ form.instance.email }}"
-                            {% endif %}
-                            required>
-                            {{ form.errors.email }}
-                        </div>
+                          <div class="fr-col-12 fr-col-sm-6">
+                            <div class="fr-input-group">
+                                <label class="fr-label" for="text-input-text">{{ form.first_name.label }}</label>
+                                <input class="fr-input" type="text" id="text-input-text" name="first_name" value="{{ form.data.first_name }}" autocomplete="given-name" required>
+                                {{ form.errors.first_name }}
+                            </div>
+                          </div>
 
-                        <div class="fr-input-group">
-                            <label class="fr-label" for="text-input-text">{{ form.first_name.label }}</label>
-                            <input class="fr-input" type="text" id="text-input-text" name="first_name" value="{{ form.data.first_name }}" autocomplete="given-name" required>
-                            {{ form.errors.first_name }}
-                        </div>
-
-                        <div class="fr-input-group">
-                            <label class="fr-label" for="text-input-text">{{ form.postal_code.label }}</label>
-                            <input class="fr-input" type="text" id="text-input-text" name="postal_code" value="{{ form.data.postal_code }}" autocomplete="postal-code" inputmode="numeric" pattern="[0-9]{5}">
-                            {{ form.errors.postal_code }}
+                          <div class="fr-col-12 fr-col-sm-6">
+                            <div class="fr-input-group">
+                                <label class="fr-label" for="text-input-text">{{ form.postal_code.label }}</label>
+                                <input class="fr-input" type="text" id="text-input-text" name="postal_code" value="{{ form.data.postal_code }}" autocomplete="postal-code" inputmode="numeric" pattern="[0-9]{5}">
+                                {{ form.errors.postal_code }}
+                            </div>
+                          </div>
                         </div>
                     </fieldset>
 
