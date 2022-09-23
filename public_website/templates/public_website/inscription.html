@@ -23,7 +23,7 @@
                 {% endif %}
 
                 <br>
-                <form action="{% url 'inscription' %}" method="post">
+                <form action="{% url 'inscription' %}" method="post" id="inscription_form">
                     {% csrf_token %}
                     <fieldset class="fr-fieldset fr-my-4w">
 
