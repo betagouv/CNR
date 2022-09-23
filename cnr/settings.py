@@ -88,15 +88,25 @@ CSP_STYLE_SRC = [
     "'sha256-g6zf946PtVM63bZ+fe9QUc3hDXp5BMl6OBmAlKhKV60='",  # mtcaptcha
     "'sha256-zqo/Gf4mmbgvoqPGTNSkHYfibgllewm/seDhWyooOOk='",  # mtcaptcha
     "'sha256-FVE4UqDzJ5GzKFQlZqU4Zq3EAxxb/T0hpPQU9k6uwkA='",  # mtcaptcha
+    "'sha256-jPZyQpI7D4ke0fa/phXRncbbLQIiMkuCkTySdu4EzXc='",  # Axeptio
+    "'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='",  # Axeptio
 ]
 CSP_SCRIPT_SRC = [
     "'self'",
     "'sha256-3nqjSbGHbyxcg93jUSCv0aA9rA4otXw9BvbTMV83oig='",  # matomo
-    "*.mtcaptcha.com",  # MTCaptcha
+    "service.mtcaptcha.com",
+    "service2.mtcaptcha.com",
     "'sha256-UZ2I/y6SWrKs1gKjxUELei+nt5Om6TTRLTMIbocuE8E='",  # MTCaptcha
+    "'sha256-ZTMKNQ5MIpdbyJDEJu7yB2I1401ZvxXMEcFgk+0Gn6g='",  # Axeptio
+    "static.axept.io",
     "cnr-matomo.osc-secnum-fr1.scalingo.io",
 ]
-CSP_CONNECT_SRC = ["'self'", "cnr-matomo.osc-secnum-fr1.scalingo.io"]
+CSP_CONNECT_SRC = [
+    "'self'",
+    "client.axept.io",
+    "api.axept.io",
+    "cnr-matomo.osc-secnum-fr1.scalingo.io",
+]
 
 ROOT_URLCONF = "cnr.urls"
 
