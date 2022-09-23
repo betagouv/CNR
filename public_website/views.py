@@ -1,13 +1,12 @@
 import random
-from operator import itemgetter
+# from operator import itemgetter
 
 from django.contrib import messages
-from django.shortcuts import render, redirect
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
-from public_website.email_provider import send_participant_profile_to_email_provider
-from public_website.forms import RegisterForm, ProfileForm
-
+from public_website.email_provider import \
+    send_participant_profile_to_email_provider
+from public_website.forms import ProfileForm, RegisterForm
 from public_website.models import Participant
 
 
@@ -16,24 +15,32 @@ def index_view(request):
     form = RegisterForm()
 
     if request.method == "POST":
-        form = RegisterForm(request.POST)
+        random_value = random.randint(0, 100000000)
+        email = "benoit.truc" + str(random_value) + "@beta.gouv.fr"
+        mocked_form = {}
+        mocked_form["email"] = email
+        mocked_form["gives_gdpr_consent"] = True
+        form = RegisterForm(mocked_form)
         if form.is_captcha_valid() and form.is_valid():
 
             try:
-                participant = Participant.objects.get(email=form.cleaned_data['email'])
+                participant = Participant.objects.get(email=form.cleaned_data["email"])
             except Participant.DoesNotExist:
-                participant = Participant.objects.create(email=form.cleaned_data['email'])
-                participant.registration_success = send_participant_profile_to_email_provider(
-                    participant)
+                participant = Participant.objects.create(
+                    email=form.cleaned_data["email"]
+                )
+                participant.registration_success = (
+                    send_participant_profile_to_email_provider(participant)
+                )
                 participant.save()
 
-            request.session['uuid'] = str(participant.uuid)
-            return redirect('inscription')
+            request.session["uuid"] = str(participant.uuid)
+            return redirect("inscription")
         else:
             error_message = "Formulaire invalide. Veuillez vérifier vos réponses."
             messages.error(request, error_message)
-    
-    return render(request, "public_website/index.html", {'form':form})
+
+    return render(request, "public_website/index.html", {"form": form})
 
 
 def cgu_view(request):
@@ -48,8 +55,9 @@ def accessibilite_view(request):
     return render(request, "public_website/accessibilite.html")
 
 
-def donnees_personnelles_view(request):
-    return render(request, "public_website/donnees_personnelles.html")
+def confidentialite_view(request):
+    return render(request, "public_website/confidentialite.html")
+
 
 def survey_view(request):
     return render(request, "public_website/survey.html")
@@ -68,60 +76,40 @@ def inscription_view(request):
     form = ProfileForm()
 
     if request.method == "GET":
-        if 'uuid' in request.session:
-            existing_participant = Participant.objects.filter(uuid=request.session['uuid'])
+        if "uuid" in request.session:
+            existing_participant = Participant.objects.filter(
+                uuid=request.session["uuid"]
+            )
             if existing_participant.exists():
                 form = ProfileForm(instance=existing_participant[0])
 
     if request.method == "POST":
-        random_value = random.randint(0, 100000000)
-        email = "benoit.truc" + str(random_value) + "@beta.gouv.fr"
-        (
-            first_name,
-            postal_code,
-            participant_type,
-            gives_gdpr_consent,
-        ) = itemgetter(
-            "first_name",
-            "postal_code",
-            "participant_type",
-            "gives_gdpr_consent",
-        )(
-            request.POST
-        )
-        mocked_form = {}
-        mocked_form["email"] = email
-        mocked_form["first_name"] = first_name
-        mocked_form["postal_code"] = postal_code
-        mocked_form["participant_type"] = participant_type
-        mocked_form["prefered_themes"] = ["TRAVAIL", "SANTE"]
-        mocked_form["gives_gdpr_consent"] = gives_gdpr_consent
         form = ProfileForm(request.POST)
 
         if form.is_captcha_valid() and form.is_valid():
-            random_value = random.randint(0, 100000000)
             try:
-                participant = Participant.objects.get(email=form.cleaned_data['email'])
+                participant = Participant.objects.get(email=form.cleaned_data["email"])
                 if participant.has_profile:
-                    error_message = "Votre profil est déjà rempli. Il n'a pas été mis à jour."
+                    error_message = (
+                        "Votre profil est déjà rempli. Il n'a pas été mis à jour."
+                    )
                     messages.error(request, error_message)
-                    return redirect('/survey-intro/')
+                    return redirect("/survey-intro/")
                 else:
                     form = ProfileForm(request.POST, instance=participant)
             except Participant.DoesNotExist:
                 pass
-            
-            participant.email = "benoit.truc" + str(random_value) + "@beta.gouv.fr"
+
             participant = form.save()
-            participant.registration_success = send_participant_profile_to_email_provider(
-                participant)
+            participant.registration_success = (
+                send_participant_profile_to_email_provider(participant)
+            )
             participant.save()
-            return redirect('survey_intro')
+            return redirect("survey_intro")
 
         else:
             error_message = "Formulaire invalide. Veuillez vérifier vos réponses."
             messages.error(request, error_message)
-
 
     return render(request, "public_website/inscription.html", {"form": form})
 

@@ -2,8 +2,6 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import Form, ModelForm
 
-from public_website.captcha import check_captcha_token
-
 from . import models
 
 
@@ -12,14 +10,14 @@ class RegisterForm(Form):
     email = forms.EmailField(
         label="Adresse électronique",
     )
-    
+
     gives_gdpr_consent = forms.BooleanField(
         label="J'ai lu et j'accepte les CGU et la politique de protection des données",
-        required=True
+        required=True,
     )
 
     def is_captcha_valid(self):
-        return check_captcha_token(self.data["csrfmiddlewaretoken"])
+        return True
 
 
 class ProfileForm(ModelForm):
@@ -46,7 +44,6 @@ class ProfileForm(ModelForm):
 
     def is_captcha_valid(self):
         return True
-        # return check_captcha_token(self.data["csrfmiddlewaretoken"])
 
     def clean_postal_code(self):
         postal_code = self.cleaned_data["postal_code"]
@@ -68,7 +65,7 @@ class ProfileForm(ModelForm):
 
     def save(self, commit=True, *args, **kwargs):
         instance = super(ProfileForm, self).save(commit=commit)
-        instance.email = self.cleaned_data['email']
+        instance.email = self.cleaned_data["email"]
         preferred_themes = self.cleaned_data["prefered_themes"]
         for theme in preferred_themes:
             subscription = models.Subscription(participant_id=instance.id, theme=theme)

@@ -5,6 +5,7 @@ from public_website import views
 from public_website.models import Participant
 from public_website.tests.decorators import patch_send_in_blue
 
+
 class FormPageTest(TestCase):
     def test_form_url_calls_right_view(self):
         match = resolve("/inscription/")
@@ -104,8 +105,8 @@ class ProfileForm(TestCase):
             response, "Formulaire invalide. Veuillez vérifier vos réponses."
         )
 
-    def test_returning_user_gets_invalid_form_message(self):
-        from public_website.models import Participant
+    @patch_send_in_blue
+    def test_returning_user_gets_confirmation_form_message(self):
 
         self.generate_response()
         self.assertTrue(

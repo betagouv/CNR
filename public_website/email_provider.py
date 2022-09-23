@@ -15,22 +15,22 @@ load_dotenv()
 logger = logging.getLogger(__name__)
 
 
-def send_payload_to_send_in_blue(email: str, attributes: dict) -> bool:
+def send_payload_to_send_in_blue(email: str, payload: dict) -> bool:
     return True
-    configuration = sib_api_v3_sdk.Configuration()
-    configuration.api_key["api-key"] = os.getenv("SEND_IN_BLUE")
-    try:
-        api_instance = sib_api_v3_sdk.ContactsApi(
-            sib_api_v3_sdk.ApiClient(configuration)
-        )
-        contact = sib_api_v3_sdk.CreateContact(
-            email=email, update_enabled=True, attributes=attributes, list_ids=[1]
-        )
-        api_instance.create_contact(contact)
-        return True
-    except ApiException as e:
-        logger.exception("Exception when calling ContactsApi->create_contact: %s", e)
-        raise
+    # configuration = sib_api_v3_sdk.Configuration()
+    # configuration.api_key["api-key"] = os.getenv("SEND_IN_BLUE")
+    # try:
+    #     api_instance = sib_api_v3_sdk.ContactsApi(
+    #         sib_api_v3_sdk.ApiClient(configuration)
+    #     )
+    #     contact = sib_api_v3_sdk.CreateContact(
+    #         email=email, update_enabled=True, attributes=payload, list_ids=[1]
+    #     )
+    #     api_instance.create_contact(contact)
+    #     return True
+    # except ApiException as e:
+    #     logger.exception("Exception when calling ContactsApi->create_contact: %s", e)
+    #     raise
 
 
 def create_payload_for_email_provider(participant: Participant):
@@ -54,14 +54,11 @@ def create_payload_for_email_provider(participant: Participant):
 
 def send_participant_profile_to_email_provider(participant: Participant):
     try:
-        if participant.has_profile:            
+        if participant.has_profile:
             payload = create_payload_for_email_provider(participant)
-        else: 
+        else:
             payload = {}
-        send_payload_to_send_in_blue(
-            participant.email,
-            payload=payload
-        )
+        send_payload_to_send_in_blue(participant.email, payload=payload)
     except Exception:
         return False
 
