@@ -30,7 +30,7 @@
                         <div class="fr-input-group">
                             <label class="fr-label" for="email">{{ form.email.label }}</label>
                             <span class="fr-hint-text">Format attendu: nom@domaine.fr .</span>
-                            <input class="fr-input" type="email" id="email" name="email"
+                            <input class="fr-input" type="email" id="email" name="email" autocomplete="email"
                             {% if form.data %}
                                 value="{{ form.data.email }}"
                             {% else %}
@@ -42,13 +42,13 @@
 
                         <div class="fr-input-group">
                             <label class="fr-label" for="text-input-text">{{ form.first_name.label }}</label>
-                            <input class="fr-input" type="text" id="text-input-text" name="first_name" value="{{ form.data.first_name }}" required>
+                            <input class="fr-input" type="text" id="text-input-text" name="first_name" value="{{ form.data.first_name }}" autocomplete="given-name" required>
                             {{ form.errors.first_name }}
                         </div>                       
 
                         <div class="fr-input-group">
                             <label class="fr-label" for="text-input-text">{{ form.postal_code.label }}</label>
-                            <input class="fr-input" type="text" id="text-input-text" name="postal_code" value="{{ form.data.postal_code }}">
+                            <input class="fr-input" type="text" id="text-input-text" name="postal_code" value="{{ form.data.postal_code }}" autocomplete="postal-code" required>
                             {{ form.errors.postal_code }}
                         </div>
                     </fieldset>
