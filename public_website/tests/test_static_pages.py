@@ -60,18 +60,18 @@ class TestAccessibilite(TestCase):
         self.assertContains(response, "Accessibilité")
 
 
-class TestDonneesPersonnelles(TestCase):
-    def test_donnees_personnelles_url_calls_right_view(self):
-        match = resolve("/donnees-personnelles/")
-        self.assertEqual(match.func, views.donnees_personnelles_view)
+class TestConfidentialite(TestCase):
+    def test_confidentialite_url_calls_right_view(self):
+        match = resolve("/confidentialite/")
+        self.assertEqual(match.func, views.confidentialite_view)
 
-    def test_donnees_personnelles_url_calls_right_template(self):
-        response = self.client.get("/donnees-personnelles/")
-        self.assertTemplateUsed(response, "public_website/donnees_personnelles.html")
+    def test_confidentialite_url_calls_right_template(self):
+        response = self.client.get("/confidentialite/")
+        self.assertTemplateUsed(response, "public_website/confidentialite.html")
 
-    def test_donnees_personnelles_response_contains_welcome_message(self):
-        response = self.client.get("/accessibilite/")
-        self.assertContains(response, "Données personnelles")
+    def test_confidentialite_response_contains_welcome_message(self):
+        response = self.client.get("/confidentialite/")
+        self.assertContains(response, "Politique de confidentialité")
 
 
 class TestDSFR(TestCase):

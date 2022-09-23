@@ -46,8 +46,8 @@ def accessibilite_view(request):
     return render(request, "public_website/accessibilite.html")
 
 
-def donnees_personnelles_view(request):
-    return render(request, "public_website/donnees_personnelles.html")
+def confidentialite_view(request):
+    return render(request, "public_website/confidentialite.html")
 
 def survey_view(request):
     return render(request, "public_website/survey.html")
