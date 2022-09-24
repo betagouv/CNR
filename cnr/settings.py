@@ -75,6 +75,14 @@ X_FRAME_OPTIONS = "DENY"
 REFERRER_POLICY = "same-origin"
 CSP_DEFAULT_SRC = ["'self'", "data:", "localhost:" + runserver.default_port]
 CSP_FRAME_SRC = ["*.youtube.com", "*.mtcaptcha.com"]
+CSP_IMG_SRC = [
+    "'self'",
+    "data:",
+    "localhost:" + runserver.default_port,
+    "axeptio.imgix.net",
+    "*.google.com",
+    "*.gstatic.com",
+]
 CSP_STYLE_SRC = [
     "'self'",
     "'unsafe-hashes'",
