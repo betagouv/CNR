@@ -8,6 +8,13 @@ reset-db:
 web-prompt:
 	docker-compose run --rm web bash
 
+.PHONY: test-unit
+test-unit:
+	python manage.py test
+
 .PHONY: test-e2e
 test-e2e:
 	python manage.py behave
+
+.PHONY: test
+test: test-e2e test-unit

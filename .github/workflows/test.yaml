@@ -32,4 +32,4 @@ jobs:
           cp .env.test .env
       - name: Run the unit tests
         run: |
-          python manage.py test
+          make test-unit
