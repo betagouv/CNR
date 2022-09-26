@@ -55,7 +55,7 @@ class ProfileForm(TestCase):
             "first_name": "Prudence",
             "email": "prudence.crandall@educ.gouv.fr",
             "postal_code": "06331",
-            "prefered_themes": ["EDUCATION"],
+            "preferred_themes": ["EDUCATION"],
             "participant_type": ["PARTICULIER"],
             "gives_gdpr_consent": ["on"],
         }
@@ -79,7 +79,7 @@ class ProfileForm(TestCase):
 
     @patch_send_in_blue
     def test_submit_successfully_several_interests(self):
-        response = self.generate_response("prefered_themes", ["EDUCATION", "SANTE"])
+        response = self.generate_response("preferred_themes", ["EDUCATION", "SANTE"])
         # FIXME because there is no UUID, the /participation-intro/ redirects on index
         self.assertIsNone(self.client.session.get("uuid", None))
         self.assertRedirects(response, "/")
@@ -104,7 +104,7 @@ class ProfileForm(TestCase):
         )
 
     def test_fails_without_themes(self):
-        response = self.generate_response("prefered_themes", "[]")
+        response = self.generate_response("preferred_themes", "[]")
         self.assertContains(
             response, "Formulaire invalide. Veuillez vérifier vos réponses."
         )
