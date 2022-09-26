@@ -132,6 +132,7 @@ if postgres_url:
     environment_info = turn_psql_url_into_param(postgres_url)
     DATABASES = {
         "default": {
+            "CONN_MAX_AGE": 60,
             "ENGINE": "django.db.backends.postgresql",
             "NAME": environment_info.get("db_name"),
             "USER": environment_info.get("db_user"),
@@ -146,6 +147,7 @@ if postgres_url:
 else:
     DATABASES = {
         "default": {
+            "CONN_MAX_AGE": 60,
             "ENGINE": "django.db.backends.postgresql",
             "NAME": os.getenv("DATABASE_NAME"),
             "USER": os.getenv("DATABASE_USER"),
@@ -155,6 +157,7 @@ else:
         }
     }
 
+CONN_MAX_AGE = 60
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
