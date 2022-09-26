@@ -29,6 +29,7 @@ def index_view(request):
             request.session["uuid"] = str(participant.uuid)
             return redirect("inscription")
         else:
+            form = RegisterForm(request.POST, initial=form.data)
             error_message = "Formulaire invalide. Veuillez vérifier vos réponses."
             messages.error(request, error_message)
 

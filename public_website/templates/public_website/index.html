@@ -2,6 +2,22 @@
 {% load static %}
 
 {% block content %}
+
+<div class="fr-container fr-my-6w">
+  <!-- <div class="fr-grid-row fr-grid-row--gutters"> -->
+      <div class="fr-col-12 fr-col-sm-10 fr-col-offset-sm-1">
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "error" %}
+                    <div class="fr-alert fr-alert--error fr-alert--sm fr-mb-5w">
+                        <p>{{ message }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+      </div>
+  <!-- </div> -->
+</div>
 <div class="cover" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url({% static 'images/macron_CNR.jpg' %})">
   <div class="fr-container fr-py-6w">
     <div class="fr-grid-row fr-grid-row--gutters">
@@ -22,7 +38,9 @@
           {% csrf_token %}
           <label class="fr-label" for="email">{{ form.email.label }}</label>
           <span class="fr-hint-text">Format attendu: nom@domaine.fr .</span>
-          <input class="fr-input" type="email" id="email" name="email" autocomplete="email" required>
+          <input class="fr-input" type="email" id="email" name="email" autocomplete="email" value="{{ form.data.email }}" required>
+          {{ form.errors.email }}
+          
           <div class="fr-checkbox-group">
             <input type="checkbox" id="id_gives_gdpr_consent" name="gives_gdpr_consent" required>
             <label class="fr-label" for="id_gives_gdpr_consent">
