@@ -34,15 +34,16 @@
         <hr>
         <form action="{% url 'index' %}" method="post" id="home_email_form">
           {% csrf_token %}
-          <label class="fr-label" for="email">{{ form.email.label }}</label>
-          <span class="fr-hint-text">Format attendu: nom@domaine.fr .</span>
-          <input class="fr-input" type="email" id="email" name="email" autocomplete="email" value="{{ form.data.email }}" required>
-          {{ form.errors.email }}
-          
+          <div class="fr-input-group">
+            <label class="fr-label" for="email">{{ form.email.label }}</label>
+            <span class="fr-hint-text">Format attendu: nom@domaine.fr .</span>
+            <input class="fr-input" type="email" id="email" name="email" autocomplete="email" value="{{ form.data.email }}" required>
+            {{ form.errors.email }}
+          </div>
           <div class="fr-checkbox-group">
             <input type="checkbox" id="id_gives_gdpr_consent" name="gives_gdpr_consent" required>
             <label class="fr-label" for="id_gives_gdpr_consent">
-                {{ form.gives_gdpr_consent.label }}
+              {{ form.gives_gdpr_consent.label }}
             </label>
             <div class="fr-input-group">
               <button type="submit" class="fr-btn fr-mt-3w" title="Valider ce formulaire">Je participe !</button>
