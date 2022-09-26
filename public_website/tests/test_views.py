@@ -24,7 +24,7 @@ class ProfileViewTest(TestCase):
                 "postal_code": "27120",
                 "participant_type": "ELU",
                 "gives_gdpr_consent": True,
-                "prefered_themes": ["SANTE"],
+                "preferred_themes": ["SANTE"],
                 "csrfmiddlewaretoken": "fake-token",
             },
         )
@@ -54,7 +54,7 @@ class ProfileViewTest(TestCase):
                 "postal_code": "27120",
                 "participant_type": "ELU",
                 "gives_gdpr_consent": True,
-                "prefered_themes": ["EDUCATION"],
+                "preferred_themes": ["EDUCATION"],
                 "csrfmiddlewaretoken": "fake-token",
             },
         )
@@ -79,7 +79,7 @@ class ProfileViewTest(TestCase):
                 "postal_code": "27120",
                 "participant_type": "ELU",
                 "gives_gdpr_consent": True,
-                "prefered_themes": ["SANTE"],
+                "preferred_themes": ["SANTE"],
                 "csrfmiddlewaretoken": "fake-token",
             },
         )
@@ -104,7 +104,7 @@ class ProfileViewTest(TestCase):
                 "postal_code": "27120",
                 "participant_type": "ELU",
                 "gives_gdpr_consent": True,
-                "prefered_themes": ["EDUCATION"],
+                "preferred_themes": ["EDUCATION"],
                 "csrfmiddlewaretoken": "fake-token",
             },
         )

@@ -79,9 +79,9 @@
                     <div class="fr-form-group">
                       <h2 class="fr-mb-0">Les thématiques sur lesquelles je veux m'investir</h2>
                       <span class="fr-hint-text fr-mb-5w">Choisissez une ou plusieurs thématiques sur lesquelles vous souhaitez apporter une contribution nationale.</span>
-                      {{ form.errors.prefered_themes }}
+                      {{ form.errors.preferred_themes }}
                         <fieldset class="fr-fieldset checkbox-group" role="group">
-                          {% for theme in form.prefered_themes %}
+                          {% for theme in form.preferred_themes %}
 
                           <div class="checkbox">
                             <label class="checkbox-wrapper" for="{{ theme.id_for_label }}">

@@ -34,7 +34,7 @@ class ProfileForm(ModelForm):
         label="Je suis :",
     )
 
-    prefered_themes = forms.MultipleChoiceField(
+    preferred_themes = forms.MultipleChoiceField(
         choices=models.Theme.choices,
         widget=forms.CheckboxSelectMultiple,
         label="Les thématiques sur lesquelles je veux m'investir :",
@@ -68,7 +68,7 @@ class ProfileForm(ModelForm):
     def save(self, commit=True, *args, **kwargs):
         instance = super(ProfileForm, self).save(commit=commit)
         instance.email = self.cleaned_data["email"]
-        preferred_themes = self.cleaned_data["prefered_themes"]
+        preferred_themes = self.cleaned_data["preferred_themes"]
         for theme in preferred_themes:
             subscription = models.Subscription(participant_id=instance.id, theme=theme)
             subscription.save()
