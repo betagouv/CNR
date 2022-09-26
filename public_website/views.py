@@ -72,6 +72,7 @@ def inscription_view(request):
                         "Votre profil est déjà rempli. Il n'a pas été mis à jour."
                     )
                     messages.error(request, error_message)
+                    request.session["uuid"] = str(participant.uuid)
                     return redirect("survey_intro")
                 else:
                     form = ProfileForm(request.POST, instance=participant)
@@ -83,6 +84,7 @@ def inscription_view(request):
                 send_participant_profile_to_email_provider(participant)
             )
             participant.save()
+            request.session["uuid"] = str(participant.uuid)
             return redirect("survey_intro")
         else:
             form = ProfileForm(request.POST, initial=form.data)

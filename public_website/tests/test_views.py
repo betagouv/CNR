@@ -32,17 +32,15 @@ class ProfileViewTest(TestCase):
         self.assertTrue(prudence.has_profile)
         self.assertEqual(prudence.first_name, "Prudence")
 
-        # FIXME: No UUID is provided by the view, therefore the participant
-        # is redirected to the index in the survey-intro
-        self.assertRedirects(response, "/participation-intro/", target_status_code=302)
-        self.assertIsNone(self.client.session.get("uuid", None))
+        self.assertEqual(self.client.session.get("uuid"), str(prudence.uuid))
+        self.assertRedirects(response, "/participation-intro/")
 
     @patch_send_in_blue
     def test_incorrect_info_with_existing_user_create_new_participant(self):
         session = self.client.session
         session["uuid"] = str(self.no_profile_participant.uuid)
         session.save()
-        self.assertEqual(self.no_profile_participant.postal_code, None)
+        self.assertFalse(self.no_profile_participant.has_profile)
         ruben_email = "ruben.crandall@educ.gouv.fr"
         self.assertFalse(Participant.objects.filter(email=ruben_email).exists())
 
@@ -62,8 +60,10 @@ class ProfileViewTest(TestCase):
         self.assertFalse(prudence.has_profile)
 
         ruben = Participant.objects.filter(email=ruben_email)
-        self.assertTrue(Participant.objects.filter(email=ruben_email).exists())
+        self.assertTrue(ruben.exists())
         self.assertTrue(ruben[0].has_profile)
+
+        self.assertEqual(self.client.session.get("uuid"), str(ruben[0].uuid))
         self.assertRedirects(response, "/participation-intro/")
 
     @patch_send_in_blue
@@ -74,7 +74,6 @@ class ProfileViewTest(TestCase):
             "/inscription/",
             {
                 "email": email,
-                "email_test": email,
                 "first_name": "esther",
                 "postal_code": "27120",
                 "participant_type": "ELU",
@@ -84,14 +83,11 @@ class ProfileViewTest(TestCase):
             },
         )
         esther = Participant.objects.filter(email=email)
-
         self.assertTrue(esther.exists())
         self.assertEqual(esther[0].postal_code, "27120")
 
-        # FIXME: No UUID is provided by the view, therefore the participant
-        # is redirected to the index in the survey-intro
-        self.assertRedirects(response, "/participation-intro/", target_status_code=302)
-        self.assertIsNone(self.client.session.get("uuid", None))
+        self.assertEqual(self.client.session.get("uuid"), str(esther[0].uuid))
+        self.assertRedirects(response, "/participation-intro/")
 
     def test_complete_profile_cannot_update(self):
         self.assertEqual(self.participant.postal_code, "06331")
@@ -109,14 +105,11 @@ class ProfileViewTest(TestCase):
             },
         )
         still_prudence = Participant.objects.get(email=email)
-
         self.assertEqual(still_prudence.postal_code, "06331")
         self.assertEqual(still_prudence.first_name, "Prudence")
 
-        # FIXME: No UUID is provided by the view, therefore the participant
-        # is redirected to the index in the survey-intro
-        self.assertRedirects(response, "/participation-intro/", target_status_code=302)
-        self.assertIsNone(self.client.session.get("uuid", None))
+        self.assertEqual(self.client.session.get("uuid"), str(still_prudence.uuid))
+        self.assertRedirects(response, "/participation-intro/")
 
     def test_invalid_form_returns_invalid_data_for_correction(self):
         response = self.client.post(
