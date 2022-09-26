@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="fr-container fr-my-6w">
+        <div class="fr-grid-row fr-grid-row--gutters">
+            <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
+                <h1>Bravo</h1>
+                <div class="fr-alert fr-alert--success">
+                    <p>Votre inscription est enregistrée : vous serez tenu au
+                        courant des consultations à venir sur vos thématiques
+                        sélectionnées.</p>
+                </div>
+
+                <hr class="fr-mt-5w">
+
+                <h2>Contribuer dès maintenant</h2>
+                <p>Choisissez une ou plusieurs thématiques sur lesquelles vous
+                    souhaitez apporter une contribution dès maintenant.</p>
+
+                <form action="{% url 'survey_intro' %}" method="post">
+                    {% csrf_token %}
+                    <div class="fr-form-group">
+                        <fieldset class="fr-fieldset checkbox-group"
+                                  role="group">
+                            {% for survey in form.surveys %}
+                                <div class="checkbox">
+                                    <label class="checkbox-wrapper"
+                                           for="{{ survey.id_for_label }}">
+                                        <input type="checkbox"
+                                               class="checkbox-input"
+                                               name="surveys"
+                                               value="{{ survey.choice_label.label }}"
+                                               id="{{ survey.id_for_label }}"
+                                               {% if survey.choice_label.label in checked %}checked{% endif %}/>
+                                        <span class="checkbox-tile">
+                                            <span class="checkbox-label">{{ survey.choice_label.hr_label }}</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </fieldset>
+                    </div>
+                    <div class="fr-input-group fr-my-4w">
+                        <button type="submit" class="fr-btn"
+                                title="Contribuer aux thèmes sélectionnés">Je
+                            contribue
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}

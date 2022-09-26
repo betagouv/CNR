@@ -51,20 +51,7 @@ def confidentialite_view(request):
     return render(request, "public_website/confidentialite.html")
 
 
-def survey_view(request):
-    return render(request, "public_website/survey.html")
-
-
-def survey_intro_view(request):
-    return render(request, "public_website/survey_intro.html")
-
-
-def survey_outro_view(request):
-    return render(request, "public_website/survey_outro.html")
-
-
 def inscription_view(request):
-
     form = ProfileForm()
 
     if request.method == "GET":
@@ -77,7 +64,6 @@ def inscription_view(request):
 
     if request.method == "POST":
         form = ProfileForm(request.POST)
-
         if form.is_captcha_valid() and form.is_valid():
             try:
                 participant = Participant.objects.get(email=form.cleaned_data["email"])
@@ -86,7 +72,7 @@ def inscription_view(request):
                         "Votre profil est déjà rempli. Il n'a pas été mis à jour."
                     )
                     messages.error(request, error_message)
-                    return redirect("/survey-intro/")
+                    return redirect("survey_intro")
                 else:
                     form = ProfileForm(request.POST, instance=participant)
             except Participant.DoesNotExist:

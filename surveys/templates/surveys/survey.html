@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="fr-container fr-my-6w">
+  <div class="fr-grid-row fr-grid-row--gutters">
+    <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
+      <h1>Questionnaire</h1>
+
+      <div class="fr-stepper">
+          <h2 class="fr-stepper__title">
+              <span class="fr-stepper__state">Étape {{ current_step }} sur {{ steps }}</span>
+              Question sur la thématique « {{ theme }} »
+          </h2>
+          <div class="fr-stepper__steps" data-fr-current-step="{{ current_step }}" data-fr-steps="{{ steps }}"></div>
+          <p class="fr-stepper__details">
+              {% if next_theme %}
+              <span class="fr-text--bold">Étape suivante :</span> Question sur la thématique « {{ next_theme }} »
+              {% else %}
+              <span class="fr-text--bold">Étape suivante :</span> Merci d'avoir participé
+              {% endif %}
+          </p>
+      </div>
+
+      <hr>
+        <form action="{% url 'survey' %}" method="post">
+            {% csrf_token %}
+            {% for question in questions %}
+                <div class="fr-input-group">
+                    {{ question.hr_label }}
+                    {% for field in form %}
+                        {% if field.label == question.label %}
+                            <input class="fr-input fr-mt-1w" type="text" name="{{ survey.id_for_label }}" id="{{ survey.id_for_label }}"></label>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <p class="fr-text--xs">Vos contributions ne seront pas rattachées à votre adresse mail et l’analyse des réponses collectives sera publiée en données ouvertes.
+                Vous pouvez participer à titre individuel, en tant qu’élu ou représentant d’une association.</p>
+
+            <div class="fr-input-group fr-my-4w">
+                <button type="submit" class="fr-btn" title="Continuer">Je continue</button>
+            </div>
+            </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

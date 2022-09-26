@@ -1,6 +1,7 @@
 import factory
 
 from public_website.models import Theme
+from public_website.tests.factories.factory import ParticipantFactory
 from surveys import models
 
 
@@ -8,8 +9,13 @@ class SurveyFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.Survey
 
-    label = factory.Sequence("Q_EDU_{}".format)
-    hr_label = "Voici le premier questionnaire du thème Education"
+    label = factory.LazyAttributeSequence(
+        lambda survey, counter: f"{survey.theme.label}-{counter}"
+    )
+    hr_label = factory.LazyAttributeSequence(
+        lambda survey, counter: f"Voici le questionnaire n°{counter} du thème "
+                                f"{survey.theme.label}"
+    )
     theme = Theme.EDUCATION
 
 
@@ -18,9 +24,11 @@ class SurveyQuestionFactory(factory.django.DjangoModelFactory):
         model = models.SurveyQuestion
 
     survey = factory.SubFactory(SurveyFactory)
-    label = factory.Sequence("Q_EDU_{}".format)
+    label = factory.LazyAttributeSequence(
+        lambda question, counter: f"{question.survey.label}-Q-{counter}"
+    )
     hr_label = "Que pensez vous de cette réforme ?"
-    rank = factory.Sequence("{}".format)
+    answer_type = models.SurveyQuestion.AnswerType.THREE_TEXT_FIELD
 
 
 class SurveyAnswerFactory(factory.django.DjangoModelFactory):
@@ -34,3 +42,11 @@ class SurveyAnswerFactory(factory.django.DjangoModelFactory):
         "Donec imperdiet a lacus at porttitor !"
     )
     postal_code = "34567"
+
+
+class SurveyParticipationFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = models.SurveyParticipation
+
+    survey = factory.SubFactory(SurveyFactory)
+    participant = factory.SubFactory(ParticipantFactory)

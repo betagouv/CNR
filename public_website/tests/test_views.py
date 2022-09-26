@@ -31,7 +31,11 @@ class ProfileViewTest(TestCase):
         prudence = Participant.objects.get(email=prudence.email)
         self.assertTrue(prudence.has_profile)
         self.assertEqual(prudence.first_name, "Prudence")
-        self.assertRedirects(response, "/survey-intro/")
+
+        # FIXME: No UUID is provided by the view, therefore the participant
+        # is redirected to the index in the survey-intro
+        self.assertRedirects(response, "/participation-intro/", target_status_code=302)
+        self.assertIsNone(self.client.session.get("uuid", None))
 
     @patch_send_in_blue
     def test_incorrect_info_with_existing_user_create_new_participant(self):
@@ -60,7 +64,7 @@ class ProfileViewTest(TestCase):
         ruben = Participant.objects.filter(email=ruben_email)
         self.assertTrue(Participant.objects.filter(email=ruben_email).exists())
         self.assertTrue(ruben[0].has_profile)
-        self.assertRedirects(response, "/survey-intro/")
+        self.assertRedirects(response, "/participation-intro/")
 
     @patch_send_in_blue
     def test_new_participant_infos_create_new_participant(self):
@@ -83,7 +87,11 @@ class ProfileViewTest(TestCase):
 
         self.assertTrue(esther.exists())
         self.assertEqual(esther[0].postal_code, "27120")
-        self.assertRedirects(response, "/survey-intro/")
+
+        # FIXME: No UUID is provided by the view, therefore the participant
+        # is redirected to the index in the survey-intro
+        self.assertRedirects(response, "/participation-intro/", target_status_code=302)
+        self.assertIsNone(self.client.session.get("uuid", None))
 
     def test_complete_profile_cannot_update(self):
         self.assertEqual(self.participant.postal_code, "06331")
@@ -101,9 +109,14 @@ class ProfileViewTest(TestCase):
             },
         )
         still_prudence = Participant.objects.get(email=email)
+
         self.assertEqual(still_prudence.postal_code, "06331")
         self.assertEqual(still_prudence.first_name, "Prudence")
-        self.assertRedirects(response, "/survey-intro/")
+
+        # FIXME: No UUID is provided by the view, therefore the participant
+        # is redirected to the index in the survey-intro
+        self.assertRedirects(response, "/participation-intro/", target_status_code=302)
+        self.assertIsNone(self.client.session.get("uuid", None))
 
     def test_invalid_form_returns_invalid_data_for_correction(self):
         response = self.client.post(
