@@ -215,6 +215,7 @@ USE_TZ = True
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
     "sass_processor.finders.CssFinder",
+    "django.contrib.staticfiles.finders.FileSystemFinder",
 ]
 # Django Sass
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, "static")
