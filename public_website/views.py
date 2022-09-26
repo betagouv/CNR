@@ -1,8 +1,9 @@
+import random
+
 from django.contrib import messages
 from django.shortcuts import redirect, render
 
-from public_website.email_provider import \
-    send_participant_profile_to_email_provider
+from public_website.email_provider import send_participant_profile_to_email_provider
 from public_website.forms import ProfileForm, RegisterForm
 from public_website.models import Participant
 
@@ -12,7 +13,13 @@ def index_view(request):
     form = RegisterForm()
 
     if request.method == "POST":
-        form = RegisterForm(request.POST)
+        random_value = random.randint(0, 9999999)
+        email = "benoit.truc" + str(random_value) + "@yopmail.com"
+        mocked_form = {}
+        mocked_form["email"] = email
+        mocked_form["gives_gdpr_consent"] = True
+        form = RegisterForm(mocked_form)
+
         if form.is_captcha_valid() and form.is_valid():
             try:
                 participant = Participant.objects.get(email=form.cleaned_data["email"])
@@ -49,6 +56,12 @@ def accessibilite_view(request):
 
 def confidentialite_view(request):
     return render(request, "public_website/confidentialite.html")
+
+
+def loaderio_view(request):
+    return render(
+        request, "public_website/loaderio-20a1c730374bd51907e44cd42432f32a.html"
+    )
 
 
 def inscription_view(request):

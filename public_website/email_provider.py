@@ -1,8 +1,8 @@
 import logging
 
 import sib_api_v3_sdk
-from django.conf import settings
 from dotenv import load_dotenv
+from django.conf import settings
 
 from public_website.models import Participant, Theme
 
