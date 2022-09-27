@@ -29,7 +29,7 @@
                     {{ question.hr_label }}
                     {% for field in form %}
                         {% if field.label == question.label %}
-                            <input class="fr-input fr-mt-1w" type="text" name="{{ survey.id_for_label }}" id="{{ survey.id_for_label }}"></label>
+                            <input class="fr-input fr-mt-1w" type="text" name="{{ field.id_for_label }}" id="{{ field.id_for_label }}"></label>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -40,7 +40,7 @@
             <div class="fr-input-group fr-my-4w">
                 <button type="submit" class="fr-btn" title="Continuer">Je continue</button>
             </div>
-            </form>
+        </form>
     </div>
   </div>
 </div>
