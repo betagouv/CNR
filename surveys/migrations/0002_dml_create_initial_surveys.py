@@ -19,7 +19,9 @@ def populate_surveys(apps, schema_editor):
             theme=theme.name,
         )
 
-    path = os.path.join(settings.BASE_DIR, "static/20220922-questionnaires_CNR.csv")
+    path = os.path.join(
+        settings.BASE_DIR, "surveys/migrations/fixtures/20220922-questionnaires_CNR.csv"
+    )
     with open(path) as file:
         data = csv.reader(file, delimiter=";")
         for row in data:
