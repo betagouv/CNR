@@ -1,9 +1,31 @@
 # CNR
 
-`git clone https://github.com/betagouv/CNR.git`
+L'application web qui soutient le projet du Conseil National de la Refondation (CNR).
 
-# Installation local 
-## Créer un environnement virtuel
+## Prérequis
+
+- Python 3.9
+- Postgreql 13.x.
+
+## Installer les pre-commit hooks
+
+```
+pre-commit install
+```
+
+On peut faire un premier test en faisant tourner :
+
+```
+pre-commit run --all-files
+```
+
+## Installation
+
+Le projet peut se lancer en local ou avec Docker.
+
+### En local
+
+#### Créer un environnement virtuel
 
 ```
 # Configurer et activer l'environnement virtuel
@@ -14,37 +36,51 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
-# Copier les variables d'environnement
+#### Copier les variables d'environnement
+
 ```
 cp .env.example .env
 ```
 
-## Lancer le serveur
+#### Lancer le serveur
 
 ```
 python manage.py runserver
 ```
 
-## Lancer les migrations
+#### Lancer les migrations
 
 ```
 python manage.py migrate
 ```
 
-# Installer les pre-commit hooks
+#### Effectuer les tests
 
-```
-pre-commit install
-```
+D'abord installer les dépendances de test :
 
-On peut faire un premier test en faisant tourner : 
-
-```
-pre-commit run --all-files
+```sh
+pip install -r requirements_for_test.txt
 ```
 
-## Effectuer les tests
+Les tests unitaires peuvent être lancés avec `make test-units`, les
+tests E2E avec `make test-e2e`, les deux avec `make test`.
 
+Pour les tests E2E, si vous n'utilisez pas Docker, il vous faudra
+[Firefox](https://www.mozilla.org/fr/firefox/download/thanks/) et
+[`geckodriver`](https://github.com/mozilla/geckodriver/releases)
+accessibles sur votre machine pour lancer les tests E2E.  Sur MacOS,
+vous pouvez les installer via [brew](https://brew.sh/).
+
+### via Docker
+
+#### Copier les variables d'environnement
+
+```sh
+cp .env.example .env
 ```
-python manage.py test
+
+#### Lancer les containers
+
+```sh
+docker-compose up
 ```
