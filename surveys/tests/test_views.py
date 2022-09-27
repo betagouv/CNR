@@ -50,6 +50,7 @@ class TestSurveyView(TestCase):
         self.survey_2_question_1 = SurveyQuestionFactory(
             survey=self.survey_2,
             label="survey_2_Q-1",
+            hr_label="Is this a good idea ?",
             answer_type=self.answer_type.FIVE_TEXT_FIELD,
         )
         SurveyQuestionFactory(
@@ -58,6 +59,10 @@ class TestSurveyView(TestCase):
             answer_type=self.answer_type.ONE_TEXT_FIELD,
         )
         self.survey_3 = SurveyFactory(theme=Theme.EDUCATION)
+        self.survey_3_question_1 = SurveyQuestionFactory(
+            survey=self.survey_3,
+            hr_label="What do you think ?"
+        )
         self.survey_4 = SurveyFactory(theme=Theme.SANTE)
 
         self.participation = SurveyParticipationFactory(survey=self.survey_1)
@@ -92,6 +97,21 @@ class TestSurveyView(TestCase):
         self.assertEqual(survey_2_question_1_answers.last().rank, 1)
         self.assertEqual(SurveyParticipation.objects.all().count(), 2)
         # TOD0: test the attributes of the instances
+
+    def test_all_surveys_appear_in_order(self):
+        response = self.client.get("/participation/")
+        self.assertContains(response, self.survey_2_question_1.hr_label)
+        response_2 = self.client.post(
+            "/participation/",
+            {
+                "survey_2_Q-1-0": "Je pense que cette idée est bonne",
+                "survey_2_Q-1-1": "J'ajouterais que j'aimerais la voir appliquée localement",
+                "survey_2_Q-2-0": "je ne suis pas assez expert pour avoir une opinion",
+            },
+        )
+
+        self.assertContains(response_2, self.survey_3_question_1.hr_label)
+
 
 
 @tag("views")
