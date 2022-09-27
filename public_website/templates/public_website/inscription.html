@@ -69,6 +69,9 @@
                                     {{ type.tag }}
                                     <label for="{{ type.id_for_label }}">
                                         {{ type.choice_label }}
+                                        {% if "corps intermédiaire" in  type.choice_label %}
+                                            <span class="fr-hint-text fr-mb-5w">(association, syndicat, organisation professionnelle, ...)</span>
+                                        {% endif %}
                                     </label>
                                 </div>
                                 {% endfor %}

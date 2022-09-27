@@ -17,8 +17,8 @@ class Theme(models.TextChoices):
 
 class ParticipantType(models.TextChoices):
     CITOYEN = "PARTICULIER", "Particulier"
-    ELU = "ELU", "Élu"
-    ASSOCIATION = "ASSOCIATION", "Représentant(e) d'une association"
+    ELU = "ELU", "Élu(e)"
+    ASSOCIATION = "ASSOCIATION", "Représentant(e) d'un corps intermédiaire"
 
 
 class Participant(models.Model):
