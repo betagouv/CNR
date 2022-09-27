@@ -3,20 +3,18 @@
 
 {% block content %}
 
-<div class="fr-container fr-my-6w">
-  <!-- <div class="fr-grid-row fr-grid-row--gutters"> -->
+<div class="fr-container">
       <div class="fr-col-12 fr-col-sm-10 fr-col-offset-sm-1">
         {% if messages %}
             {% for message in messages %}
                 {% if message.tags == "error" %}
-                    <div class="fr-alert fr-alert--error fr-alert--sm fr-mb-5w">
+                    <div class="fr-alert fr-alert--error fr-alert--sm fr-my-5w">
                         <p>{{ message }}</p>
                     </div>
                 {% endif %}
             {% endfor %}
         {% endif %}
       </div>
-  <!-- </div> -->
 </div>
 <div class="cover" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url({% static 'images/macron_CNR.jpg' %})">
   <div class="fr-container fr-py-6w">
