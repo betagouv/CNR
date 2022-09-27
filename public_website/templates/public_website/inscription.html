@@ -53,7 +53,7 @@
                           <div class="fr-col-12 fr-col-sm-6">
                             <div class="fr-input-group">
                                 <label class="fr-label" for="postal_code">{{ form.postal_code.label }}</label>
-                                <span class="fr-hint-text">Pour les départements et térritoires d'Outre-Mer saisissez 99</span>
+                                <span class="fr-hint-text">Si vous résidez à l'étranger, saisissez 99</span>
                                 <input class="fr-input" type="text" id="postal_code" name="postal_code" value="{{ form.data.postal_code }}" autocomplete="postal-code" inputmode="numeric" pattern="^(99)|[0-9]{5}$">
                                 {{ form.errors.postal_code }}
                             </div>
