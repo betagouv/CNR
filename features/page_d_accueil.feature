@@ -11,4 +11,4 @@ Fonctionnalité: Page d'accueil
     Et je remplis le champ "Adresse électronique" avec "jeanne@france.org"
     Et je coche la case "accepte les CGU"
     Et je soumets le formulaire
-    Alors je peux lire "jeanne@france.org" dans la page
+    Alors un participant existe avec l'email "jeanne@france.org"
