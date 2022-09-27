@@ -29,7 +29,7 @@
                     {{ question.hr_label }}
                     {% for field in form %}
                         {% if field.label == question.label %}
-                            <input class="fr-input fr-mt-1w" type="text" name="{{ field.id_for_label }}" id="{{ field.id_for_label }}"></label>
+                          <input class="fr-input fr-mt-1w" type="text" name="{{ field.html_name }}" id="{{ field.id_for_label }}"></input>
                         {% endif %}
                     {% endfor %}
                 </div>
