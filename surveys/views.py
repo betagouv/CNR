@@ -3,7 +3,7 @@ import logging
 from django.contrib import messages
 from django.shortcuts import redirect, render, reverse
 
-from public_website.models import Participant, Theme
+from public_website.models import Participant
 
 from . import forms, models
 
@@ -52,17 +52,15 @@ def survey_intro_view(request):
 
 
 def survey_view(request):
-    def get_current_next_surveys(
-        selected_surveys: list, survey_current_step: int
-    ) -> tuple:
+    def get_current_next_surveys(selected_surveys: list, survey_step: int) -> tuple:
         try:
-            current_label = selected_surveys[survey_current_step - 1]
+            current_label = selected_surveys[survey_step - 1]
             current_survey = models.Survey.objects.get(label=current_label)
-            is_last_step = (len(selected_surveys) - survey_current_step) == 0
+            is_last_step = (len(selected_surveys) - survey_step) == 0
             if is_last_step:
                 next_survey = None
             else:
-                next_survey_label = selected_surveys[survey_current_step]
+                next_survey_label = selected_surveys[survey_step]
                 next_survey = models.Survey.objects.get(label=next_survey_label)
         except models.Survey.DoesNotExist:
             current_survey = None
@@ -88,7 +86,7 @@ def survey_view(request):
     )
 
     if not current_survey:
-        return redirect(reverse("participation-intro"))
+        return redirect("participation-outro")
 
     has_participated_before = current_survey in current_participant.participations.all()
     if has_participated_before:
@@ -134,20 +132,16 @@ def survey_view(request):
             error_message = "Formulaire invalide. Veuillez vérifier vos réponses."
             messages.error(request, error_message)
 
-    if survey_current_step == len(selected_surveys):
-        logger.info("### No more surveys to serve")
-        return redirect("survey_outro")
-
+    next_theme = next_survey.hr_label if next_survey else "fin du questionnaire"
     questions = current_survey.get_questions()
     form = forms.SurveyForm(questions=questions)
-
     return render(
         request,
         "surveys/survey.html",
         {
             "form": form,
-            "theme": current_survey.theme.label,
-            "next_theme": next_survey.theme.label,
+            "theme": current_survey.hr_label,
+            "next_theme": next_theme,
             "current_step": int(survey_current_step),
             "steps": len(selected_surveys),
             "questions": questions,
