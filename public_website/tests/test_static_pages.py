@@ -81,3 +81,9 @@ class TestDSFR(TestCase):
             '<link rel="stylesheet" href="/static/dsfr/dist/utility/icons/icons.css">'
         )
         self.assertContains(response, dsfr_proof)
+
+
+class TestNoAdmin(TestCase):
+    def test_admin_app_returns_404(self):
+        response = self.client.get("/admin")
+        self.assertEqual(response.status_code, 404)
