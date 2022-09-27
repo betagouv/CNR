@@ -83,6 +83,7 @@ CSP_IMG_SRC = [
     "axeptio.imgix.net",
     "*.google.com",
     "*.gstatic.com",
+    "*.facebook.com",
 ]
 CSP_STYLE_SRC = [
     "'self'",
@@ -107,10 +108,12 @@ CSP_SCRIPT_SRC = [
     "service.mtcaptcha.com",
     "service2.mtcaptcha.com",
     "'sha256-UZ2I/y6SWrKs1gKjxUELei+nt5Om6TTRLTMIbocuE8E='",  # MTCaptcha
-    "'sha256-ZTMKNQ5MIpdbyJDEJu7yB2I1401ZvxXMEcFgk+0Gn6g='",  # Axeptio
+    "'sha256-JrtSQ2bkirD+nl4xwhY531dgeb8mNXVmku3TP69LZZM='",  # Axeptio
+    "connect.facebook.net",
     "static.axept.io",
 ]
 CSP_CONNECT_SRC = [
+    "connect.facebook.net",
     "'self'",
     "stats.conseil-refondation.fr",
     "client.axept.io",

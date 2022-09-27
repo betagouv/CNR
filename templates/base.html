@@ -57,21 +57,6 @@
     </script>
   <!-- MTCaptcha javascript configuration and import -->
 
-  <!-- Axeptio javascript configuration and import -->
-
-  <script>
-    window.axeptioSettings = {
-      clientId: "63248b7b1966100fcd9421b2",
-    };
-     
-    (function(d, s) {
-      var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
-      e.async = true; e.src = "//static.axept.io/sdk.js";
-      t.parentNode.insertBefore(e, t);
-    })(document, "script");
-  </script>
-  <!-- Axeptio javascript configuration and import -->
-
 </head>
 
 <body>
@@ -99,6 +84,40 @@
 
   {% dsfr_js %}
   {% block extra_js %}{% endblock extra_js %}
+
+  <!-- Axeptio javascript configuration and import -->
+
+  <script>
+    window.axeptioSettings = {
+      clientId: "63248b7b1966100fcd9421b2",
+    };
+     
+    (function(d, s) {
+      var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
+      e.async = true; e.src = "//static.axept.io/sdk.js";
+      t.parentNode.insertBefore(e, t);
+    })(document, "script");
+
+    void 0 === window._axcb && (window._axcb = []);
+    window._axcb.push(function(axeptio) {
+      axeptio.on("cookies:complete", function(choices) {
+        if(choices['Facebook Custom Audiences'])
+        {
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', '1456019414903044');
+          fbq('track', 'PageView');
+        }
+      })
+    })
+  </script>
+  <!-- Axeptio javascript configuration and import -->
 </body>
 
 </html>
