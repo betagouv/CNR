@@ -59,7 +59,7 @@ python manage.py migrate
 D'abord installer les dépendances de test :
 
 ```sh
-pip install -r requirements_for_test.txt
+pip install -r requirements.txt
 ```
 
 Les tests unitaires peuvent être lancés avec `make test-units`, les

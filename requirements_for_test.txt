@@ -1,4 +1,0 @@
--r requirements.txt
-behave==1.2.6
-selenium==4.4.3
-behave-django==1.4.0
