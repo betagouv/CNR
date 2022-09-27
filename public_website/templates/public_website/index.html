@@ -34,7 +34,7 @@
         <hr>
         <form action="{% url 'index' %}" method="post" id="home_email_form">
           {% csrf_token %}
-          <label class="fr-label" for="email">{{ form.email.label }}</label> TODO ok Chaib
+          <label class="fr-label" for="email">{{ form.email.label }}</label>
           <span class="fr-hint-text">Format attendu: nom@domaine.fr .</span>
           <input class="fr-input" type="email" id="email" name="email" autocomplete="email" value="{{ form.data.email }}" required>
           {{ form.errors.email }}

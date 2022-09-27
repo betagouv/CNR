@@ -10,7 +10,7 @@ from . import models
 class RegisterForm(Form):
 
     email = forms.EmailField(
-        label="Adresse électronique",
+        label="Inscrivez-vous à notre infolettre et choisissez votre niveau de participation",
     )
 
     gives_gdpr_consent = forms.BooleanField(
