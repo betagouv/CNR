@@ -14,31 +14,34 @@
 
                 <hr class="fr-mt-5w">
 
-                <h2>Contribuer dès maintenant</h2>
-                <p>Choisissez une ou plusieurs thématiques sur lesquelles vous
-                    souhaitez apporter une contribution dès maintenant.</p>
-
                 <form action="{% url 'survey_intro' %}" method="post">
                     {% csrf_token %}
                     <div class="fr-form-group">
-                        <fieldset class="fr-fieldset checkbox-group"
+                        <fieldset class="fr-fieldset"
                                   role="group">
-                            {% for survey in form.surveys %}
-                                <div class="checkbox">
-                                    <label class="checkbox-wrapper"
-                                           for="{{ survey.id_for_label }}">
-                                        <input type="checkbox"
-                                               class="checkbox-input"
-                                               name="surveys"
-                                               value="{{ survey.choice_label.label }}"
-                                               id="{{ survey.id_for_label }}"
-                                               {% if survey.choice_label.label in checked %}checked{% endif %}/>
-                                        <span class="checkbox-tile">
-                                            <span class="checkbox-label">{{ survey.choice_label.hr_label }}</span>
-                                        </span>
-                                    </label>
-                                </div>
-                            {% endfor %}
+                            <legend class="fr-fieldset__legend fr-h2 fr-mb-0">
+                              Contribuer dès maintenant
+                            </legend>
+                            <span class="fr-hint-text fr-mb-5w">Choisissez une ou plusieurs thématiques sur lesquelles vous
+                              souhaitez apporter une contribution dès maintenant.</span>
+                            <div class="checkbox-group">
+                              {% for survey in form.surveys %}
+                                  <div class="checkbox">
+                                      <label class="checkbox-wrapper"
+                                             for="{{ survey.id_for_label }}">
+                                          <input type="checkbox"
+                                                 class="checkbox-input"
+                                                 name="surveys"
+                                                 value="{{ survey.choice_label.label }}"
+                                                 id="{{ survey.id_for_label }}"
+                                                 {% if survey.choice_label.label in checked %}checked{% endif %}/>
+                                          <span class="checkbox-tile">
+                                              <span class="checkbox-label">{{ survey.choice_label.hr_label }}</span>
+                                          </span>
+                                      </label>
+                                  </div>
+                              {% endfor %}
+                            </div>
                         </fieldset>
                     </div>
                     <div class="fr-input-group fr-my-4w">
