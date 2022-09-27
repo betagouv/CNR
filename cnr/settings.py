@@ -101,19 +101,19 @@ CSP_STYLE_SRC = [
 ]
 CSP_SCRIPT_SRC = [
     "'self'",
-    "'sha256-3nqjSbGHbyxcg93jUSCv0aA9rA4otXw9BvbTMV83oig='",  # matomo
+    "'sha256-bniFC3kd4JwCYRuTuxW9AjUYecKEuyTLJ+5NH6TJBWE='",  # matomo
+    "stats.conseil-refondation.fr",  # matomo
     "service.mtcaptcha.com",
     "service2.mtcaptcha.com",
     "'sha256-UZ2I/y6SWrKs1gKjxUELei+nt5Om6TTRLTMIbocuE8E='",  # MTCaptcha
     "'sha256-ZTMKNQ5MIpdbyJDEJu7yB2I1401ZvxXMEcFgk+0Gn6g='",  # Axeptio
     "static.axept.io",
-    "cnr-matomo.osc-secnum-fr1.scalingo.io",
 ]
 CSP_CONNECT_SRC = [
     "'self'",
+    "stats.conseil-refondation.fr",
     "client.axept.io",
     "api.axept.io",
-    "cnr-matomo.osc-secnum-fr1.scalingo.io",
 ]
 
 ROOT_URLCONF = "cnr.urls"
