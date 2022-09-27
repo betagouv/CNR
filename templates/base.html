@@ -14,7 +14,14 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}" />
   <meta property="og:image" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}/static/images/macron_CNR.jpg" />
-
+  <!-- Matomo Tag Manager -->
+  <script>
+    var _mtm = window._mtm = window._mtm || [];
+    _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='https://stats.conseil-refondation.fr/js/container_IvjVA8F8.js'; s.parentNode.insertBefore(g,s);
+  </script>
+  <!-- End Matomo Tag Manager -->
   {% dsfr_css %}
   {% dsfr_favicon %}
   {% block extra_css %}
