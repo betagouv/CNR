@@ -48,6 +48,14 @@ class RegisterFormTest(TestCase):
         Participant.objects.filter(email=self.generate_base_user()["email"])
         self.assertTrue("uuid" in self.client.session)
 
+    def test_invalid_mail_returns_invalid_form(self):
+        invalid_email = "foo@foo"
+        response = self.generate_response(
+            changed_param="email", changed_value=invalid_email
+        )
+        self.assertContains(response, "Formulaire invalide.")
+        self.assertContains(response, "Saisissez une adresse de courriel valide")
+
 
 class ProfileForm(TestCase):
     def generate_base_user(self):
