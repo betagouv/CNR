@@ -44,10 +44,3 @@ class EmailProviderTest(TestCase):
             "THEME_NUMERIQUE": False,
         }
         self.assertEqual(payload_should_be, payload_is)
-
-    # TODO -> Mock email provider API
-    # def test_creating_a_contact(self):
-    #     subscription = SubscriptionFactory()
-    #     SubscriptionFactory(participant=subscription.participant, theme="SANTE")
-    #     send_participant_profile_to_email_provider(subscription.participant)
-    #     pass

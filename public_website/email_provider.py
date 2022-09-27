@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 def send_payload_to_send_in_blue(email: str, payload: dict) -> bool:
     configuration = sib_api_v3_sdk.Configuration()
-    configuration.api_key["api-key"] = settings.SEND_IN_BLUE
+    configuration.api_key["api-key"] = settings.SEND_IN_BLUE_API_KEY
     try:
         api_instance = sib_api_v3_sdk.ContactsApi(
             sib_api_v3_sdk.ApiClient(configuration)
