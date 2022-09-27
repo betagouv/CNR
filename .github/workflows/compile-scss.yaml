@@ -1,23 +1,13 @@
-name: Run tests
+name: Compile SCSS
 
 on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: ["3.9"]
-    services:
-      postgres:
-        image: postgres:14-alpine
-        env:
-          POSTGRES_USER: CNR
-          POSTGRES_PASSWORD: CNR
-          POSTGRES_DB: CNR
-        ports:
-          - 5432:5432
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
@@ -30,6 +20,12 @@ jobs:
       - name: Copy empty .env.test to .env
         run: |
           cp .env.test .env
-      - name: Run the unit tests
+      - name: Compile SCSS
         run: |
-          python manage.py test
+          python manage.py compilescss
+      - name: Add and commit changes
+        uses: EndBug/add-and-commit@v9.1.0
+        with:
+          author_name: "InfraBetaGouv "
+          author_email: "infra@beta.gouv.fr"
+          message: "chore: compile scss"
