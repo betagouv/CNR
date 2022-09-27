@@ -22,7 +22,7 @@
       </div>
 
       <hr>
-        <form action="{% url 'survey' %}" method="post">
+        <form action="{% url 'survey' %}" method="post" id="participation_form" >
             {% csrf_token %}
             {% for question in questions %}
                 <div class="fr-input-group">

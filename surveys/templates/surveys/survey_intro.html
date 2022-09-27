@@ -13,8 +13,8 @@
                 </div>
 
                 <hr class="fr-mt-5w">
+                <form action="{% url 'survey_intro' %}" method="post" id="participation_intro_form">
 
-                <form action="{% url 'survey_intro' %}" method="post">
                     {% csrf_token %}
                     <div class="fr-form-group">
                         <fieldset class="fr-fieldset"
