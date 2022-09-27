@@ -25,3 +25,6 @@ urllib3==1.26.12
 requests==2.28.1
 sib-api-v3-sdk==7.5.0
 factory-boy==3.2.1
+behave==1.2.6
+selenium==4.4.3
+behave-django==1.4.0
