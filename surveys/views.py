@@ -52,16 +52,28 @@ def survey_intro_view(request):
 
 
 def survey_view(request):
+    def get_current_next_surveys(
+        selected_surveys: list, survey_current_step: int
+    ) -> tuple:
+        try:
+            current_label = selected_surveys[survey_current_step - 1]
+            current_survey = models.Survey.objects.get(label=current_label)
+            is_last_step = (len(selected_surveys) - survey_current_step) == 0
+            if is_last_step:
+                next_survey = None
+            else:
+                next_survey_label = selected_surveys[survey_current_step]
+                next_survey = models.Survey.objects.get(label=next_survey_label)
+        except models.Survey.DoesNotExist:
+            current_survey = None
+
+        return (current_survey, next_survey)
+
     uuid = request.session.get("uuid", None)
     selected_surveys = request.session.get("surveys", None)
-    survey_steps = request.session.get("survey_steps", None)
     survey_current_step = request.session.get("survey_current_step", None)
 
-    if not selected_surveys:
-        logger.info("### ERROR No more surveys to serve")
-        return redirect("survey_outro")
-
-    for mandatory_attribute in [uuid, survey_steps, survey_current_step]:
+    for mandatory_attribute in [uuid, survey_current_step, selected_surveys]:
         if not mandatory_attribute:
             logger.info(f"### missing {mandatory_attribute}")
             return redirect("survey_intro")
@@ -70,26 +82,20 @@ def survey_view(request):
         current_participant = Participant.objects.get(uuid=request.session["uuid"])
     except Participant.DoesNotExist:
         return redirect("index")
-    try:
-        current_label = selected_surveys[0]
-        current_survey = models.Survey.objects.get(label=current_label)
-        current_theme = Theme[current_survey.theme].label
-        if len(selected_surveys) > 1:
-            next_label = selected_surveys[1]
-            next_survey_theme = models.Survey.objects.get(label=next_label).theme
-            next_theme = Theme[next_survey_theme].label
-        else:
-            next_theme = None
-    except models.Survey.DoesNotExist:
-        return redirect(reverse("index"))
 
-    questions = current_survey.get_questions()
+    current_survey, next_survey = get_current_next_surveys(
+        selected_surveys, survey_current_step
+    )
 
-    if request.method == "GET":
-        form = forms.SurveyForm(questions=questions)
+    if not current_survey:
+        return redirect(reverse("participation-intro"))
 
-    elif request.method == "POST":
+    has_participated_before = current_survey in current_participant.participations.all()
+    if has_participated_before:
+        return redirect(reverse("survey-intro"))
 
+    if request.method == "POST":
+        questions = current_survey.get_questions()
         form = forms.SurveyForm(request.POST, questions=questions)
         if form.is_valid():
             for field_name, field_object in form.fields.items():
@@ -110,32 +116,40 @@ def survey_view(request):
             ).save()
             # TODO display this message is user tries to access
             #  survey they already filled out
-            thank_you_message = "Données enregistrées. Merci pour votre intérêt !"
-            messages.success(request, thank_you_message)
-            if not request.session["surveys"]:
+            survey_current_step += 1
+            if not next_survey:
                 return render(
                     request,
                     "surveys/survey_outro.html",
                 )
-
-            session = request.session
-            session["surveys"].remove(current_label)
-            session["survey_current_step"] += 1
-            session.save()
+            else:
+                request.session["survey_current_step"] = survey_current_step
+                request.session.save()
+                current_survey, next_survey = get_current_next_surveys(
+                    selected_surveys, survey_current_step
+                )
+                questions = current_survey.get_questions()
 
         else:
             error_message = "Formulaire invalide. Veuillez vérifier vos réponses."
             messages.error(request, error_message)
+
+    if survey_current_step == len(selected_surveys):
+        logger.info("### No more surveys to serve")
+        return redirect("survey_outro")
+
+    questions = current_survey.get_questions()
+    form = forms.SurveyForm(questions=questions)
 
     return render(
         request,
         "surveys/survey.html",
         {
             "form": form,
-            "theme": current_theme,
-            "next_theme": next_theme,
+            "theme": current_survey.theme.label,
+            "next_theme": next_survey.theme.label,
             "current_step": int(survey_current_step),
-            "steps": int(survey_steps),
+            "steps": len(selected_surveys),
             "questions": questions,
         },
     )
