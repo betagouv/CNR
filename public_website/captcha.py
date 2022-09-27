@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 
 def check_captcha_token(form_data):
-    if settings.ENV_MODE == "TEST":
+    if settings.MOCK_EXTERNAL_API == "True":
         return True
     try:
         token = form_data["mtcaptcha-verifiedtoken"]

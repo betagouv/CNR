@@ -236,5 +236,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 SEND_IN_BLUE_API_KEY = os.getenv("SEND_IN_BLUE")
 SEND_IN_BLUE_LIST = int(os.getenv("SEND_IN_BLUE_LIST", 1))
 
-ENV_MODE = os.getenv("ENV_MODE", "LIVE")
+MOCK_EXTERNAL_API = os.getenv("MOCK_EXTERNAL_API", "True")
 MTCAPTCHA_PRIVATE_KEY = os.getenv("MTCAPTCHA_PRIVATE_KEY", "")

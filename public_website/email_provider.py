@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 
 def send_payload_to_send_in_blue(email: str, payload: dict) -> bool:
-    if settings.ENV_MODE == "TEST":
+    if settings.MOCK_EXTERNAL_API == "True":
         return True
     configuration = sib_api_v3_sdk.Configuration()
     configuration.api_key["api-key"] = settings.SEND_IN_BLUE_API_KEY
