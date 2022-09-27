@@ -27,11 +27,13 @@ class ProfileViewTest(TestCase):
                 "preferred_themes": ["SANTE"],
                 "csrfmiddlewaretoken": "fake-token",
             },
+            follow=True,
         )
         prudence = Participant.objects.get(email=prudence.email)
         self.assertTrue(prudence.has_profile)
         self.assertEqual(prudence.first_name, "Prudence")
 
+        self.assertContains(response, "Votre inscription est enregistrée")
         self.assertEqual(self.client.session.get("uuid"), str(prudence.uuid))
         self.assertRedirects(response, "/participation-intro/")
 
@@ -55,6 +57,7 @@ class ProfileViewTest(TestCase):
                 "preferred_themes": ["EDUCATION"],
                 "csrfmiddlewaretoken": "fake-token",
             },
+            follow=True,
         )
         prudence = Participant.objects.get(email=self.no_profile_participant.email)
         self.assertFalse(prudence.has_profile)
@@ -63,6 +66,7 @@ class ProfileViewTest(TestCase):
         self.assertTrue(ruben.exists())
         self.assertTrue(ruben[0].has_profile)
 
+        self.assertContains(response, "Votre inscription est enregistrée")
         self.assertEqual(self.client.session.get("uuid"), str(ruben[0].uuid))
         self.assertRedirects(response, "/participation-intro/")
 
@@ -81,16 +85,18 @@ class ProfileViewTest(TestCase):
                 "preferred_themes": ["SANTE"],
                 "csrfmiddlewaretoken": "fake-token",
             },
+            follow=True,
         )
         esther = Participant.objects.filter(email=email)
         self.assertTrue(esther.exists())
         self.assertEqual(esther[0].postal_code, "27120")
 
+        self.assertContains(response, "Votre inscription est enregistrée")
         self.assertEqual(self.client.session.get("uuid"), str(esther[0].uuid))
         self.assertRedirects(response, "/participation-intro/")
 
     def test_complete_profile_cannot_update(self):
-        self.assertEqual(self.participant.postal_code, "06331")
+        self.assertTrue(self.participant.has_profile)
         email = self.participant.email
         response = self.client.post(
             "/inscription/",
@@ -103,11 +109,13 @@ class ProfileViewTest(TestCase):
                 "preferred_themes": ["EDUCATION"],
                 "csrfmiddlewaretoken": "fake-token",
             },
+            follow=True,
         )
         still_prudence = Participant.objects.get(email=email)
         self.assertEqual(still_prudence.postal_code, "06331")
         self.assertEqual(still_prudence.first_name, "Prudence")
 
+        self.assertContains(response, "Votre profil est déjà rempli.")
         self.assertEqual(self.client.session.get("uuid"), str(still_prudence.uuid))
         self.assertRedirects(response, "/participation-intro/")
 
