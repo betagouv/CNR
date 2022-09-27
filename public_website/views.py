@@ -69,10 +69,10 @@ def inscription_view(request):
             try:
                 participant = Participant.objects.get(email=form.cleaned_data["email"])
                 if participant.has_profile:
-                    error_message = (
+                    info_message = (
                         "Votre profil est déjà rempli. Il n'a pas été mis à jour."
                     )
-                    messages.error(request, error_message)
+                    messages.info(request, info_message)
                     request.session["uuid"] = str(participant.uuid)
                     return redirect("survey_intro")
                 else:
@@ -85,6 +85,9 @@ def inscription_view(request):
                 send_participant_profile_to_email_provider(participant)
             )
             participant.save()
+
+            success_message = "Votre inscription est enregistrée : vous serez tenu au courant des consultations à venir sur vos thématiques sélectionnées."
+            messages.success(request, success_message)
             request.session["uuid"] = str(participant.uuid)
             return redirect("survey_intro")
         else:

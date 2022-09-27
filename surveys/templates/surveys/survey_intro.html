@@ -5,12 +5,19 @@
     <div class="fr-container fr-my-6w">
         <div class="fr-grid-row fr-grid-row--gutters">
             <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
-                <h1>Bravo</h1>
-                <div class="fr-alert fr-alert--success">
-                    <p>Votre inscription est enregistrée : vous serez tenus au
-                        courant des consultations à venir sur les thématiques
-                        sélectionnées.</p>
-                </div>
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags == "success" %}
+                            <div class="fr-alert fr-alert--success fr-alert--sm fr-mb-5w">
+                                <p>{{ message }}</p>
+                            </div>
+                        {% elif message.tags == "info" %}
+                            <div class="fr-alert fr-alert--info fr-alert--sm fr-mb-5w">
+                                <p>{{ message }}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
 
                 <hr class="fr-mt-5w">
                 <form action="{% url 'survey_intro' %}" method="post" id="participation_intro_form">
