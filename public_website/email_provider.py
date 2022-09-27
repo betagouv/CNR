@@ -1,4 +1,5 @@
 import logging
+import os
 
 import sib_api_v3_sdk
 from django.conf import settings
@@ -11,6 +12,8 @@ logger = logging.getLogger(__name__)
 
 
 def send_payload_to_send_in_blue(email: str, payload: dict) -> bool:
+    if os.getenv("ENV_MODE") == "TEST":
+        return True
     configuration = sib_api_v3_sdk.Configuration()
     configuration.api_key["api-key"] = settings.SEND_IN_BLUE_API_KEY
     try:

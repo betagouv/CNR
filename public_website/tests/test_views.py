@@ -1,7 +1,6 @@
 from django.test import TestCase
 
 from public_website.models import Participant
-from public_website.tests.decorators import patch_send_in_blue
 from public_website.tests.factories.factory import (
     NoProfileParticipantFactory, ParticipantFactory)
 
@@ -11,7 +10,6 @@ class ProfileViewTest(TestCase):
         self.no_profile_participant = NoProfileParticipantFactory()
         self.participant = ParticipantFactory()
 
-    @patch_send_in_blue
     def test_correct_info_with_existing_user_updates_profile(self):
         prudence = Participant.objects.get(email=self.no_profile_participant.email)
         self.assertFalse(prudence.has_profile)
@@ -35,7 +33,6 @@ class ProfileViewTest(TestCase):
         self.assertEqual(self.client.session.get("uuid"), str(prudence.uuid))
         self.assertRedirects(response, "/participation-intro/")
 
-    @patch_send_in_blue
     def test_incorrect_info_with_existing_user_create_new_participant(self):
         session = self.client.session
         session["uuid"] = str(self.no_profile_participant.uuid)
@@ -66,7 +63,6 @@ class ProfileViewTest(TestCase):
         self.assertEqual(self.client.session.get("uuid"), str(ruben[0].uuid))
         self.assertRedirects(response, "/participation-intro/")
 
-    @patch_send_in_blue
     def test_new_participant_infos_create_new_participant(self):
         email = "esther.crandall@beta.gouv.fr"
         self.assertFalse(Participant.objects.filter(email=email).exists())
