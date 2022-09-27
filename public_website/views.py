@@ -14,7 +14,6 @@ def index_view(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_captcha_valid() and form.is_valid():
-
             try:
                 participant = Participant.objects.get(email=form.cleaned_data["email"])
             except Participant.DoesNotExist:

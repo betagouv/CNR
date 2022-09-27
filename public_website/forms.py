@@ -19,7 +19,7 @@ class RegisterForm(Form):
     )
 
     def is_captcha_valid(self):
-        return check_captcha_token(self.data["csrfmiddlewaretoken"])
+        return check_captcha_token(self.data)
 
 
 class ProfileForm(ModelForm):
@@ -45,7 +45,7 @@ class ProfileForm(ModelForm):
     )
 
     def is_captcha_valid(self):
-        return check_captcha_token(self.data["csrfmiddlewaretoken"])
+        return check_captcha_token(self.data)
 
     def clean_postal_code(self):
         postal_code = self.cleaned_data["postal_code"]
