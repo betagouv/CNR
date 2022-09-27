@@ -16,9 +16,8 @@ class TestSurvey(TestCase):
         self.survey_1 = SurveyFactory(label="label_1")
         session = self.client.session
         session["uuid"] = str(self.current_participant.uuid)
-        session["surveys"] = ["label_1"]
-        session["survey_steps"] = 1
-        session["survey_current_step"] = 1
+        session["selected_surveys"] = ["label_1"]
+        session["survey_step"] = 1
         session.save()
 
     def test_survey_url_calls_right_view(self):
@@ -60,8 +59,7 @@ class TestSurveyView(TestCase):
         )
         self.survey_3 = SurveyFactory(theme=Theme.EDUCATION)
         self.survey_3_question_1 = SurveyQuestionFactory(
-            survey=self.survey_3,
-            hr_label="What do you think ?"
+            survey=self.survey_3, hr_label="What do you think ?"
         )
         self.survey_4 = SurveyFactory(theme=Theme.SANTE)
 
@@ -70,9 +68,8 @@ class TestSurveyView(TestCase):
 
         self.session = self.client.session
         self.session["uuid"] = str(self.known_participant.uuid)
-        self.session["surveys"] = ["survey_test_2", self.survey_3.label]
-        self.session["survey_steps"] = 2
-        self.session["survey_current_step"] = 1
+        self.session["selected_surveys"] = ["survey_test_2", self.survey_3.label]
+        self.session["survey_step"] = 1
         self.session.save()
 
     def test_survey_view_with_known_uuid_provided(self):
@@ -111,7 +108,6 @@ class TestSurveyView(TestCase):
         )
 
         self.assertContains(response_2, self.survey_3_question_1.hr_label)
-
 
 
 @tag("views")
