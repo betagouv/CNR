@@ -17,3 +17,4 @@ Fonctionnalité: Formulaire d'inscription
     Et je coche la case "j'accepte les CGU"
     Et je soumets le formulaire
     Alors je peux lire "Votre inscription est enregistrée" dans la page
+    Et un email a été envoyé à "micheline@france.org"

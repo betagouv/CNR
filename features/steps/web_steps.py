@@ -1,6 +1,7 @@
 from behave import *
 from selenium.webdriver.common.by import By
 from selenium.common import exceptions
+from unittest.mock import ANY
 
 # The Selenium API could be better in its interface so add a bit of
 # plumbing here to help us design sane, reusable steps
@@ -71,3 +72,7 @@ def step_impl(context, label):
 @when('je soumets le formulaire')
 def step_impl(context):
     context.browser.find_element(By.XPATH, '//form//*[@type="submit"]').click()
+
+@then('un email a été envoyé à "{}"')
+def step_impl(context, email):
+    context.mocks['sib'].assert_called_with(email, payload=ANY)
