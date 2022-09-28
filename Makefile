@@ -14,7 +14,7 @@ test-unit:
 
 .PHONY: test-e2e
 test-e2e:
-	python manage.py behave
+	python manage.py behave --settings cnr.settings_test
 
 .PHONY: test
 test: test-e2e test-unit
