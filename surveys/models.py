@@ -1,3 +1,4 @@
+from django.core.validators import MinLengthValidator
 from django.db import models
 
 from public_website.models import Theme
@@ -38,6 +39,12 @@ class SurveyAnswer(models.Model):
         max_length=5, verbose_name="Code postal", blank=False
     )
     created_at = models.DateTimeField(auto_now_add=True)
+    survey_response_id = models.CharField(
+        max_length=22,
+        verbose_name="Identificateur de réponse au questionnaire",
+        validators=[MinLengthValidator(16)],
+        null=False,
+    )
 
 
 class SurveyParticipation(models.Model):

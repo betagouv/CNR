@@ -4,8 +4,7 @@ from public_website.models import Theme
 from public_website.tests.factories.factory import SubscriptionFactory
 from surveys import forms
 from surveys.factories import SurveyFactory, SurveyQuestionFactory
-from surveys.models import (Survey, SurveyAnswer, SurveyParticipation,
-                            SurveyQuestion)
+from surveys.models import Survey, SurveyAnswer, SurveyParticipation, SurveyQuestion
 
 
 @tag("models")
@@ -68,6 +67,7 @@ class SurveyAnswerModelTests(TestCase):
             " Nulla aliquet dictum est non ornare. Donec imperdiet a"
             " lacus at porttitor.",
             postal_code="27120",
+            survey_response_id="X7NYIolv893DXLunTzeTIQ",
         )
 
         survey_answer.save()
