@@ -107,7 +107,7 @@ CSP_SCRIPT_SRC = [
     "stats.conseil-refondation.fr",  # matomo
     "service.mtcaptcha.com",
     "service2.mtcaptcha.com",
-    "'sha256-UZ2I/y6SWrKs1gKjxUELei+nt5Om6TTRLTMIbocuE8E='",  # MTCaptcha
+    "'sha256-jU1pIGvEWqCd3fkxyXEsy7NoGw0NZLsrWRt69jP8m6g='",  # MTCaptcha
     "'sha256-JrtSQ2bkirD+nl4xwhY531dgeb8mNXVmku3TP69LZZM='",  # Axeptio
     "connect.facebook.net",
     "static.axept.io",
