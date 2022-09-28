@@ -80,12 +80,11 @@ class SurveyAnswerModelTests(TestCase):
 class SurveyFormTests(TestCase):
     def test_form_generation(self):
         question1 = SurveyQuestionFactory(
-            answer_type=SurveyQuestion.AnswerType.THREE_TEXT_FIELD,
-            label="survey-1-Q-1"
+            answer_type=SurveyQuestion.AnswerType.THREE_TEXT_FIELD, label="survey-1-Q-1"
         )
         form = forms.SurveyForm(questions=[question1])
         self.assertEqual(len(form.fields), 3)
-        self.assertEqual(form.fields["survey-1-Q-1-0"].label, question1.label)
+        self.assertEqual(form.fields["survey-1-Q-1-A-0"].label, question1.label)
 
 
 @tag("models")

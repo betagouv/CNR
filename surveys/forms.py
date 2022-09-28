@@ -16,7 +16,7 @@ class SurveyForm(forms.Form):
             field_length = answer_types[question.answer_type][1]
             for i in range(0, field_length):
                 field_class = answer_types[question.answer_type][0]
-                self.fields[f"{question.label}-{i}"] = field_class(
+                self.fields[f"{question.label}-A-{i}"] = field_class(
                     label=question.label, required=False
                 )
 

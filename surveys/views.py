@@ -86,7 +86,7 @@ def survey_view(request):
         for field_name, field_object in valid_form.fields.items():
             answer = form.cleaned_data[field_name]
             if answer:
-                rank = int(field_name.split("-")[-1])
+                rank = int(field_name.split("-A-")[-1])
                 models.SurveyAnswer(
                     survey_question=models.SurveyQuestion.objects.get(
                         label=field_object.label

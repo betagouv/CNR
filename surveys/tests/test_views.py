@@ -81,9 +81,9 @@ class TestSurveyView(TestCase):
         self.client.post(
             "/participation/",
             {
-                "survey_2_Q-1-0": "Je pense que cette idée est bonne",
-                "survey_2_Q-1-1": "J'ajouterais que j'aimerais la voir appliquée localement",
-                "survey_2_Q-2-0": "je ne suis pas assez expert pour avoir une opinion",
+                "survey_2_Q-1-A-0": "Je pense que cette idée est bonne",
+                "survey_2_Q-1-A-1": "J'ajouterais que j'aimerais la voir appliquée localement",
+                "survey_2_Q-2-A-0": "je ne suis pas assez expert pour avoir une opinion",
             },
         )
         self.assertEqual(SurveyAnswer.objects.all().count(), 3)
@@ -101,9 +101,9 @@ class TestSurveyView(TestCase):
         response_2 = self.client.post(
             "/participation/",
             {
-                "survey_2_Q-1-0": "Je pense que cette idée est bonne",
-                "survey_2_Q-1-1": "J'ajouterais que j'aimerais la voir appliquée localement",
-                "survey_2_Q-2-0": "je ne suis pas assez expert pour avoir une opinion",
+                "survey_2_Q-1-A-0": "Je pense que cette idée est bonne",
+                "survey_2_Q-1-A-1": "J'ajouterais que j'aimerais la voir appliquée localement",
+                "survey_2_Q-2-A-0": "je ne suis pas assez expert pour avoir une opinion",
             },
         )
 
