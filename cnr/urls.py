@@ -18,4 +18,5 @@ from django.urls import include, path
 urlpatterns = [
     path("", include("public_website.urls")),
     path("", include("surveys.urls")),
+    path("__debug__/", include("debug_toolbar.urls")),
 ]
