@@ -10,7 +10,7 @@ web-prompt:
 
 .PHONY: test-unit
 test-unit:
-	python manage.py test
+	python manage.py test --settings cnr.settings_test
 
 .PHONY: test-e2e
 test-e2e:
