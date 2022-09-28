@@ -38,7 +38,7 @@ class SurveyAnswer(models.Model):
     postal_code = models.CharField(
         max_length=5, verbose_name="Code postal", blank=False
     )
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateField(auto_now_add=True)
     survey_response_id = models.CharField(
         max_length=22,
         verbose_name="Identificateur de réponse au questionnaire",
