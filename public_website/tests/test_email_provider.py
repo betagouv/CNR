@@ -1,7 +1,7 @@
 from django.test import TestCase
 
+from factories.factory import SubscriptionFactory
 from public_website.email_provider import create_payload_for_email_provider
-from public_website.tests.factories.factory import SubscriptionFactory
 
 
 class EmailProviderTest(TestCase):

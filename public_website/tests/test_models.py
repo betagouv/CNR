@@ -1,7 +1,6 @@
 from django.test import TestCase
 
-from public_website.tests.factories.factory import (
-    NoProfileParticipantFactory, ParticipantFactory)
+from factories.factory import NoProfileParticipantFactory, ParticipantFactory
 
 
 class ParticipantModelTest(TestCase):

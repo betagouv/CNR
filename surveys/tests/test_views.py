@@ -1,8 +1,8 @@
 from django.test import TestCase, tag
 from django.urls import resolve, reverse
 
+from factories.factory import ParticipantFactory
 from public_website.models import Theme
-from public_website.tests.factories.factory import ParticipantFactory
 from surveys import views
 from surveys.factories import (
     SurveyFactory,
