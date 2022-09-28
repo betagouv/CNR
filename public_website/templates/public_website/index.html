@@ -3,19 +3,6 @@
 
 {% block content %}
 
-<div class="fr-container">
-      <div class="fr-col-12 fr-col-sm-10 fr-col-offset-sm-1">
-        {% if messages %}
-            {% for message in messages %}
-                {% if message.tags == "error" %}
-                    <div class="fr-alert fr-alert--error fr-alert--sm fr-my-5w">
-                        <p>{{ message }}</p>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-      </div>
-</div>
 <div class="cover" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url({% static 'images/macron_CNR.jpg' %})">
   <div class="fr-container fr-py-6w">
     <div class="fr-grid-row fr-grid-row--gutters">
@@ -34,6 +21,17 @@
         <hr>
         <form action="{% url 'index' %}" method="post" id="home_email_form">
           {% csrf_token %}
+          <div class="fr-col-12 fr-col-sm-10 fr-col-offset-sm-1">
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == "error" %}
+                        <div class="fr-alert fr-alert--error fr-alert--sm fr-my-5w">
+                            <p>{{ message }}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+          </div>
           <div class="fr-input-group">
             <label class="fr-label" for="email">{{ form.email.label }}</label>
             <span class="fr-hint-text">Format attendu: nom@domaine.fr .</span>
@@ -45,6 +43,7 @@
             <label class="fr-label" for="id_gives_gdpr_consent">
               {{ form.gives_gdpr_consent.label }}
             </label>
+            <div class="mtcaptcha"></div>
             <div class="fr-input-group">
               <button type="submit" class="fr-btn fr-mt-3w" title="Valider ce formulaire">Je participe !</button>
             </div>

@@ -106,7 +106,8 @@ CSP_SCRIPT_SRC = [
     "stats.conseil-refondation.fr",  # matomo
     "service.mtcaptcha.com",
     "service2.mtcaptcha.com",
-    "'sha256-UZ2I/y6SWrKs1gKjxUELei+nt5Om6TTRLTMIbocuE8E='",  # MTCaptcha
+    "'sha256-jU1pIGvEWqCd3fkxyXEsy7NoGw0NZLsrWRt69jP8m6g='",  # MTCaptcha staging public key
+    "'sha256-taOKAZWPEC2SOqviO83qxLRLXWLc7lk22f4uZzbNsxU='",  # MTCaptcha production public key
     "'sha256-JrtSQ2bkirD+nl4xwhY531dgeb8mNXVmku3TP69LZZM='",  # Axeptio
     "connect.facebook.net",
     "static.axept.io",
@@ -234,3 +235,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 SEND_IN_BLUE_API_KEY = os.getenv("SEND_IN_BLUE")
 SEND_IN_BLUE_LIST = int(os.getenv("SEND_IN_BLUE_LIST", 1))
+
+MOCK_EXTERNAL_API = os.getenv("MOCK_EXTERNAL_API", "False")
+MTCAPTCHA_PRIVATE_KEY = os.getenv("MTCAPTCHA_PRIVATE_KEY", "")
+MTCAPTCHA_PUBLIC_KEY = os.getenv("MTCAPTCHA_PUBLIC_KEY", "")

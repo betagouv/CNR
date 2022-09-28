@@ -3,7 +3,6 @@ from django.urls import resolve, reverse
 
 from public_website import views
 from public_website.models import Participant
-from public_website.tests.decorators import patch_send_in_blue
 
 
 class FormPageTest(TestCase):
@@ -33,7 +32,6 @@ class RegisterFormTest(TestCase):
 
         return self.client.post(reverse("index"), user)
 
-    @patch_send_in_blue
     def test_valid_registerform_registers_participant(self):
         self.generate_response()
         new_participant = Participant.objects.filter(
@@ -42,7 +40,6 @@ class RegisterFormTest(TestCase):
         self.assertTrue(new_participant.exists())
         self.assertTrue(new_participant[0].registration_success)
 
-    @patch_send_in_blue
     def test_valid_registerform_sends_uuid_to_session(self):
         self.generate_response()
         Participant.objects.filter(email=self.generate_base_user()["email"])
@@ -78,14 +75,12 @@ class ProfileForm(TestCase):
         response["csrfmiddlewaretoken"] = "fake-token"
         return self.client.post(reverse("inscription"), response, follow=True)
 
-    @patch_send_in_blue
     def test_submit_successfully(self):
         response = self.generate_response()
         participant = Participant.objects.last()
         self.assertEqual(self.client.session.get("uuid"), str(participant.uuid))
         self.assertRedirects(response, "/participation-intro/")
 
-    @patch_send_in_blue
     def test_submit_successfully_several_interests(self):
         response = self.generate_response("preferred_themes", ["EDUCATION", "SANTE"])
         participant = Participant.objects.last()
@@ -117,7 +112,6 @@ class ProfileForm(TestCase):
             response, "Formulaire invalide. Veuillez vérifier vos réponses."
         )
 
-    @patch_send_in_blue
     def test_returning_user_gets_confirmation_form_message(self):
         self.generate_response()
         participant = Participant.objects.filter(email="prudence.crandall@educ.gouv.fr")
@@ -130,7 +124,6 @@ class ProfileForm(TestCase):
         self.assertEqual(self.client.session.get("uuid"), str(still_participant.uuid))
         self.assertRedirects(response, "/participation-intro/")
 
-    @patch_send_in_blue
     def test_99_validates_for_postal_code(self):
         response = self.generate_response("postal_code", "99")
         participant = Participant.objects.last()
