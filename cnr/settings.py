@@ -46,6 +46,7 @@ INTERNAL_IPS = [
 
 # Application definition
 INSTALLED_APPS = [
+    "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -59,6 +60,7 @@ INSTALLED_APPS = [
     "surveys",
     "behave_django",
     "debug_toolbar",
+    "django_rq",
 ]
 
 MIDDLEWARE = [
@@ -245,3 +247,11 @@ SEND_IN_BLUE_LIST = int(os.getenv("SEND_IN_BLUE_LIST", 1))
 MOCK_EXTERNAL_API = os.getenv("MOCK_EXTERNAL_API", "False")
 MTCAPTCHA_PRIVATE_KEY = os.getenv("MTCAPTCHA_PRIVATE_KEY", "")
 MTCAPTCHA_PUBLIC_KEY = os.getenv("MTCAPTCHA_PUBLIC_KEY", "")
+
+RQ_QUEUES = {
+    "default": {
+        "HOST": "localhost",
+        "PORT": 6379,
+        "DB": 0,
+    }
+}

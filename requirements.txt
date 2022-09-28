@@ -29,3 +29,4 @@ behave==1.2.6
 selenium==4.4.3
 behave-django==1.4.0
 django-debug-toolbar==3.6.0
+django_rq==2.5.1
