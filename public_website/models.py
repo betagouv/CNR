@@ -21,6 +21,13 @@ class ParticipantType(models.TextChoices):
     ASSOCIATION = "ASSOCIATION", "Représentant(e) d'un corps intermédiaire"
 
 
+class SanteParticipantType(models.TextChoices):
+    USAGER = "USAGER", "Usager"
+    PROSANTE = "PROSANTE", "Médecins, acteur ou actrice du secteur de la santé"
+    ASSOCIATION = "ASSOCIATION", "Association ou entreprise ayant un lien avec la santé"
+    ELU = "ELU", "Elu(e) local"
+
+
 class Participant(models.Model):
     email = models.EmailField(
         max_length=150,
@@ -40,6 +47,12 @@ class Participant(models.Model):
         blank=False,
         null=True,
         choices=ParticipantType.choices,
+        max_length=11,
+    )
+    sante_participant_type = models.CharField(
+        blank=False,
+        null=True,
+        choices=SanteParticipantType.choices,
         max_length=11,
     )
     registration_success = models.BooleanField(default=False)
