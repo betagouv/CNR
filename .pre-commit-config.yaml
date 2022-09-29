@@ -10,6 +10,8 @@ repos:
     hooks:
     - id: flake8
   - repo: https://github.com/pycqa/isort
-    rev: 5.6.4
+    rev: 5.10.1
     hooks:
-    - id: isort
+        - id: isort
+          name: isort (python)
+          args: ["--profile", "black", "--filter-files"]
