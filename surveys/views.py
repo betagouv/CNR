@@ -1,4 +1,5 @@
 import logging
+import secrets
 
 from django.contrib import messages
 from django.shortcuts import redirect, render, reverse
@@ -83,10 +84,12 @@ def survey_view(request):
         return (current_survey, next_survey)
 
     def anonymize_and_save_answers(participant, valid_form):
+
+        survey_response_id = secrets.token_urlsafe(16)
         for field_name, field_object in valid_form.fields.items():
             answer = form.cleaned_data[field_name]
             if answer:
-                rank = int(field_name.split("-")[-1])
+                rank = int(field_name.split("-A-")[-1])
                 models.SurveyAnswer(
                     survey_question=models.SurveyQuestion.objects.get(
                         label=field_object.label
@@ -94,6 +97,7 @@ def survey_view(request):
                     rank=rank,
                     answer=answer,
                     postal_code=participant.postal_code,
+                    survey_response_id=survey_response_id,
                 ).save()
 
         models.SurveyParticipation(

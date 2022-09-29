@@ -4,8 +4,7 @@ from public_website.models import Theme
 from public_website.tests.factories.factory import SubscriptionFactory
 from surveys import forms
 from surveys.factories import SurveyFactory, SurveyQuestionFactory
-from surveys.models import (Survey, SurveyAnswer, SurveyParticipation,
-                            SurveyQuestion)
+from surveys.models import Survey, SurveyAnswer, SurveyParticipation, SurveyQuestion
 
 
 @tag("models")
@@ -68,6 +67,7 @@ class SurveyAnswerModelTests(TestCase):
             " Nulla aliquet dictum est non ornare. Donec imperdiet a"
             " lacus at porttitor.",
             postal_code="27120",
+            survey_response_id="X7NYIolv893DXLunTzeTIQ",
         )
 
         survey_answer.save()
@@ -80,12 +80,11 @@ class SurveyAnswerModelTests(TestCase):
 class SurveyFormTests(TestCase):
     def test_form_generation(self):
         question1 = SurveyQuestionFactory(
-            answer_type=SurveyQuestion.AnswerType.THREE_TEXT_FIELD,
-            label="survey-1-Q-1"
+            answer_type=SurveyQuestion.AnswerType.THREE_TEXT_FIELD, label="survey-1-Q-1"
         )
         form = forms.SurveyForm(questions=[question1])
         self.assertEqual(len(form.fields), 3)
-        self.assertEqual(form.fields["survey-1-Q-1-0"].label, question1.label)
+        self.assertEqual(form.fields["survey-1-Q-1-A-0"].label, question1.label)
 
 
 @tag("models")

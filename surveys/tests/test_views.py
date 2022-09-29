@@ -4,8 +4,11 @@ from django.urls import resolve, reverse
 from public_website.models import Theme
 from public_website.tests.factories.factory import ParticipantFactory
 from surveys import views
-from surveys.factories import (SurveyFactory, SurveyParticipationFactory,
-                               SurveyQuestionFactory)
+from surveys.factories import (
+    SurveyFactory,
+    SurveyParticipationFactory,
+    SurveyQuestionFactory,
+)
 from surveys.models import SurveyAnswer, SurveyParticipation, SurveyQuestion
 
 
@@ -81,18 +84,24 @@ class TestSurveyView(TestCase):
         self.client.post(
             "/participation/",
             {
-                "survey_2_Q-1-0": "Je pense que cette idée est bonne",
-                "survey_2_Q-1-1": "J'ajouterais que j'aimerais la voir appliquée localement",
-                "survey_2_Q-2-0": "je ne suis pas assez expert pour avoir une opinion",
+                "survey_2_Q-1-A-0": "Je pense que cette idée est bonne",
+                "survey_2_Q-1-A-1": "J'ajouterais que j'aimerais la voir appliquée localement",
+                "survey_2_Q-2-A-0": "je ne suis pas assez expert pour avoir une opinion",
             },
         )
         self.assertEqual(SurveyAnswer.objects.all().count(), 3)
-        survey_2_question_1_answers = SurveyAnswer.objects.all().filter(
+        S2_Q1_answers = SurveyAnswer.objects.all().filter(
             survey_question=self.survey_2_question_1
         )
-        self.assertEqual(survey_2_question_1_answers.first().rank, 0)
-        self.assertEqual(survey_2_question_1_answers.last().rank, 1)
+        self.assertEqual(S2_Q1_answers.first().rank, 0)
+        self.assertEqual(S2_Q1_answers.last().rank, 1)
+        self.assertTrue(S2_Q1_answers.first().survey_response_id)
+        self.assertEqual(
+            S2_Q1_answers.first().survey_response_id,
+            S2_Q1_answers.last().survey_response_id,
+        )
         self.assertEqual(SurveyParticipation.objects.all().count(), 2)
+
         # TOD0: test the attributes of the instances
 
     def test_all_surveys_appear_in_order(self):
@@ -101,9 +110,9 @@ class TestSurveyView(TestCase):
         response_2 = self.client.post(
             "/participation/",
             {
-                "survey_2_Q-1-0": "Je pense que cette idée est bonne",
-                "survey_2_Q-1-1": "J'ajouterais que j'aimerais la voir appliquée localement",
-                "survey_2_Q-2-0": "je ne suis pas assez expert pour avoir une opinion",
+                "survey_2_Q-1-A-0": "Je pense que cette idée est bonne",
+                "survey_2_Q-1-A-1": "J'ajouterais que j'aimerais la voir appliquée localement",
+                "survey_2_Q-2-A-0": "je ne suis pas assez expert pour avoir une opinion",
             },
         )
 
