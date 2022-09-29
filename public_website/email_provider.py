@@ -25,7 +25,8 @@ def send_payload_to_send_in_blue(email: str, payload: dict) -> bool:
             attributes=payload,
             list_ids=[settings.SEND_IN_BLUE_LIST],
         )
-        api_instance.create_contact(contact)
+        response_from_api = api_instance.create_contact(contact)
+        print(response_from_api)
         return True
     except sib_api_v3_sdk.rest.ApiException as e:
         logger.exception("Exception when calling ContactsApi->create_contact: %s", e)
@@ -34,17 +35,41 @@ def send_payload_to_send_in_blue(email: str, payload: dict) -> bool:
 
 def create_payload_for_email_provider(participant: Participant):
     participant_type_mapping = {"PARTICULIER": 1, "ELU": 2, "ASSOCIATION": 3}
+    sante_participant_type_mapping = {
+        "USAGER": 1,
+        "PROSANTE": 2,
+        "ASSOCIATION": 3,
+        "ELU": 4,
+    }
+    education_participant_type_mapping = {
+        "PARENT": 1,
+        "PROFESSEUR": 2,
+        "ASSOCIATION": 3,
+        "ELU": 4,
+        "MAIRE": 5,
+    }
     try:
         participant_type = participant_type_mapping[participant.participant_type]
+        sante_participant_type = sante_participant_type_mapping.get(
+            participant.sante_participant_type, None
+        )
+        education_participant_type = education_participant_type_mapping.get(
+            participant.education_participant_type, None
+        )
+
     except KeyError:
         logger.error(
-            "%s does not exist in the participant_type_mapping dict", participant_type
+            "%s does not exist in the participant_type_mapping dict",
+            participant.participant_type,
         )
         raise
+
     subscription_list = participant.get_subscription_list()
     return {
         "PRENOM": participant.first_name,
         "PARTICIPANT_TYPE": participant_type,
+        "SANTE_PARTICIPANT_TYPE": sante_participant_type,
+        "EDUCATION_PARTICIPANT_TYPE": education_participant_type,
         "CODE_POSTAL": participant.postal_code,
         "THEME_SANTE": Theme.SANTE in subscription_list,
         "THEME_EDUCATION": Theme.EDUCATION in subscription_list,
