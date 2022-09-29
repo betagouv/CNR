@@ -57,13 +57,26 @@ class Participant(models.Model):
         choices=ParticipantType.choices,
         max_length=11,
     )
+    sante_city = models.CharField(
+        max_length=150,
+        verbose_name="Ville, département ou région",
+        blank=True,
+        null=True,
+    )
+    #  insee = models.CharField("Code INSEE", max_length=7)
     sante_participant_type = models.CharField(
         blank=False,
         null=True,
         choices=SanteParticipantType.choices,
         max_length=11,
     )
-
+    education_city = models.CharField(
+        max_length=150,
+        verbose_name="Ville, département ou région",
+        blank=True,
+        null=True,
+    )
+    #  insee = models.CharField("Code INSEE", max_length=7)
     education_participant_type = models.CharField(
         blank=False,
         null=True,
