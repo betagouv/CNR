@@ -28,6 +28,14 @@ class SanteParticipantType(models.TextChoices):
     ELU = "ELU", "Elu(e) local"
 
 
+class EducationParticipantType(models.TextChoices):
+    PARENT = "PARENT", "Parent d’élève"
+    PROFESSEUR = "PROFESSEUR", "Professeur(e)"
+    ASSOCIATION = "ASSOCIATION", "Association ou entreprise ayant un lien avec l’école"
+    ELU = "ELU", "Elu(e) local"
+    MAIRE = "MAIRE", "Maire ou président(e) d’exécutif"
+
+
 class Participant(models.Model):
     email = models.EmailField(
         max_length=150,
@@ -53,6 +61,13 @@ class Participant(models.Model):
         blank=False,
         null=True,
         choices=SanteParticipantType.choices,
+        max_length=11,
+    )
+
+    education_participant_type = models.CharField(
+        blank=False,
+        null=True,
+        choices=EducationParticipantType.choices,
         max_length=11,
     )
     registration_success = models.BooleanField(default=False)
