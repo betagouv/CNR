@@ -101,4 +101,16 @@ class ProfileForm(ModelForm):
         for theme in preferred_themes:
             subscription = models.Subscription(participant_id=instance.id, theme=theme)
             subscription.save()
+        if self.cleaned_data["sante_participant_type"]:
+            subscription = models.Subscription(
+                participant_id=instance.id, theme="SANTE"
+            )
+            subscription.save()
+
+        if self.cleaned_data["education_participant_type"]:
+            subscription = models.Subscription(
+                participant_id=instance.id, theme="EDUCATION"
+            )
+            subscription.save()
+
         return instance

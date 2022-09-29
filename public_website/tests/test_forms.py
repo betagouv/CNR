@@ -60,8 +60,12 @@ class ProfileForm(TestCase):
             "first_name": "Prudence",
             "email": "prudence.crandall@educ.gouv.fr",
             "postal_code": "06331",
-            "preferred_themes": ["LOGEMENT"],
             "participant_type": ["PARTICULIER"],
+            "preferred_themes": [],
+            "sante_participant_type": [],
+            "sante_city": [],
+            "education_participant_type": [],
+            "education_city": [],
             "gives_gdpr_consent": ["on"],
         }
 
@@ -86,6 +90,16 @@ class ProfileForm(TestCase):
         participant = Participant.objects.last()
         self.assertEqual(self.client.session.get("uuid"), str(participant.uuid))
         self.assertRedirects(response, "/participation-intro/")
+        self.assertEqual(participant.subscriptions.count(), 2)
+
+    def test_submit_successfully_local_interests(self):
+        response = self.generate_response("sante_participant_type", ["ELU"])
+        participant = Participant.objects.last()
+        self.assertRedirects(response, "/participation-intro/")
+        subscriptions = participant.subscriptions
+        self.assertEqual(participant.sante_participant_type, "ELU")
+        self.assertEqual(subscriptions.count(), 1)
+        self.assertEqual(subscriptions.last().theme, "SANTE")
 
     def test_fails_without_consent(self):
         response = self.generate_response("gives_gdpr_consent", None)
