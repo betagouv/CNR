@@ -1,5 +1,6 @@
 from django.test import TestCase, tag
 from django.urls import resolve, reverse
+from django.utils.text import slugify
 
 from public_website.factories import ParticipantFactory
 from public_website.models import Theme
@@ -24,15 +25,15 @@ class TestSurvey(TestCase):
         session.save()
 
     def test_survey_url_calls_right_view(self):
-        match = resolve("/participation/")
-        self.assertEqual(match.func, views.survey_view)
+        match = resolve("/participation/label_1")
+        self.assertEqual(match.func, views.survey_theme_view)
 
     def test_survey_url_calls_right_template(self):
-        response = self.client.get("/participation/")
+        response = self.client.get("/participation/label_1")
         self.assertTemplateUsed(response, "surveys/survey.html")
 
     def test_survey_response_contains_welcome_message(self):
-        response = self.client.get("/participation/")
+        response = self.client.get("/participation/label_1")
         self.assertContains(response, "Questionnaire")
 
 
@@ -76,13 +77,13 @@ class TestSurveyView(TestCase):
         self.session.save()
 
     def test_survey_view_with_known_uuid_provided(self):
-        response = self.client.get("/participation/")
+        response = self.client.get("/participation/survey_test_1")
         self.assertTemplateUsed(response, "surveys/survey.html")
 
     def test_well_formatted_post_creates_answers_instances(self):
 
         self.client.post(
-            "/participation/",
+            "/participation/survey_test_1",
             {
                 "survey_2_Q-1-A-0": "Je pense que cette idée est bonne",
                 "survey_2_Q-1-A-1": "J'ajouterais que j'aimerais la voir appliquée localement",
@@ -105,18 +106,24 @@ class TestSurveyView(TestCase):
         # TOD0: test the attributes of the instances
 
     def test_all_surveys_appear_in_order(self):
-        response = self.client.get("/participation/")
+        response = self.client.get("/participation/survey_test_2")
         self.assertContains(response, self.survey_2_question_1.hr_label)
         response_2 = self.client.post(
-            "/participation/",
+            "/participation/survey_test_2",
             {
                 "survey_2_Q-1-A-0": "Je pense que cette idée est bonne",
                 "survey_2_Q-1-A-1": "J'ajouterais que j'aimerais la voir appliquée localement",
                 "survey_2_Q-2-A-0": "je ne suis pas assez expert pour avoir une opinion",
             },
         )
-
-        self.assertContains(response_2, self.survey_3_question_1.hr_label)
+        self.assertRedirects(
+            response_2,
+            "/participation/" + slugify(self.survey_3.label),
+            status_code=302,
+            target_status_code=200,
+            msg_prefix="",
+            fetch_redirect_response=True,
+        )
 
 
 @tag("views")

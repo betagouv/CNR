@@ -3,6 +3,7 @@ import secrets
 
 from django.contrib import messages
 from django.shortcuts import redirect, render, reverse
+from django.utils.text import slugify
 
 from public_website.models import Participant
 
@@ -42,7 +43,7 @@ def survey_intro_view(request):
             request.session["survey_step"] = 1
             request.session.save()
             return redirect(
-                reverse("survey_theme", kwargs={"slug": selected_surveys[0]})
+                reverse("survey_theme", kwargs={"slug": slugify(selected_surveys[0])})
             )
         else:
             return render(
@@ -147,7 +148,9 @@ def survey_theme_view(request, slug):
                     selected_surveys, survey_step
                 )
                 return redirect(
-                    reverse("survey_theme", kwargs={"slug": current_survey.label})
+                    reverse(
+                        "survey_theme", kwargs={"slug": slugify(current_survey.label)}
+                    )
                 )
         else:
             error_message = "Formulaire invalide. Veuillez vérifier vos réponses."
@@ -162,7 +165,7 @@ def survey_theme_view(request, slug):
         {
             "form": form,
             "theme": current_survey.hr_label,
-            "slug": current_survey.label,
+            "slug": slugify(current_survey.label),
             "next_theme": next_theme,
             "current_step": int(survey_step),
             "steps": len(selected_surveys),
