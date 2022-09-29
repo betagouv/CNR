@@ -136,10 +136,7 @@ def survey_theme_view(request, slug):
             anonymize_and_save_answers(participant, form)
 
             if not next_survey:
-                return render(
-                    request,
-                    "surveys/survey_outro.html",
-                )
+                return redirect(reverse("survey_outro"))
             else:
                 survey_step += 1
                 request.session["survey_step"] = survey_step
