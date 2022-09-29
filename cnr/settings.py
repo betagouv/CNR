@@ -78,7 +78,7 @@ MIDDLEWARE = [
 
 # Sentry
 SENTRY_URL = os.getenv("SENTRY_URL", "")
-if SENTRY_URL != "":
+if SENTRY_URL:
     sentry_sdk.init(
         dsn=SENTRY_URL,
         integrations=[DjangoIntegration()],
