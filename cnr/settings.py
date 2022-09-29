@@ -160,7 +160,7 @@ if postgres_url:
     environment_info = turn_psql_url_into_param(postgres_url)
     DATABASES = {
         "default": {
-            # "CONN_MAX_AGE": None,
+            "CONN_MAX_AGE": None,
             "ENGINE": "django.db.backends.postgresql",
             "NAME": environment_info.get("db_name"),
             "USER": environment_info.get("db_user"),
@@ -176,7 +176,7 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            # "CONN_MAX_AGE": None,
+            "CONN_MAX_AGE": None,
             "NAME": os.getenv("DATABASE_NAME"),
             "USER": os.getenv("DATABASE_USER"),
             "PASSWORD": os.getenv("DATABASE_PASSWORD"),
