@@ -41,7 +41,9 @@ def survey_intro_view(request):
             request.session["selected_surveys"] = selected_surveys
             request.session["survey_step"] = 1
             request.session.save()
-            return redirect("survey")
+            return redirect(
+                reverse("survey_theme", kwargs={"slug": selected_surveys[0]})
+            )
         else:
             return render(
                 request,
@@ -50,7 +52,9 @@ def survey_intro_view(request):
             )
 
 
-def survey_view(request):
+def survey_theme_view(request, slug):
+    print(slug)
+
     def format_request_session(session):
         uuid = session.get("uuid", None)
         selected_surveys = session.get("selected_surveys", None)
@@ -142,6 +146,9 @@ def survey_view(request):
                 current_survey, next_survey = get_current_next_surveys(
                     selected_surveys, survey_step
                 )
+                return redirect(
+                    reverse("survey_theme", kwargs={"slug": current_survey.label})
+                )
         else:
             error_message = "Formulaire invalide. Veuillez vérifier vos réponses."
             messages.error(request, error_message)
@@ -155,6 +162,7 @@ def survey_view(request):
         {
             "form": form,
             "theme": current_survey.hr_label,
+            "slug": current_survey.label,
             "next_theme": next_theme,
             "current_step": int(survey_step),
             "steps": len(selected_surveys),
