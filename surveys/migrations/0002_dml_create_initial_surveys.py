@@ -4,6 +4,7 @@ import os.path
 
 from django.conf import settings
 from django.db import migrations
+from django.utils.text import slugify
 
 from public_website.models import Theme
 
@@ -14,7 +15,7 @@ def populate_surveys(apps, schema_editor):
 
     for theme in Theme:
         Survey.objects.create(
-            label=f"{theme.name}_1",
+            label=f"{slugify(theme.name)}_1",
             hr_label=theme.label,
             theme=theme.name,
         )
@@ -25,7 +26,7 @@ def populate_surveys(apps, schema_editor):
     with open(path) as file:
         data = csv.reader(file, delimiter=";")
         for row in data:
-            survey_label = f"{row[0]}"
+            survey_label = f"{slugify(row[0])}"
 
             survey = Survey.objects.get(label=survey_label)
             for i in range(1, len(row)):

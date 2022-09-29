@@ -21,7 +21,6 @@ class TestSurvey(TestCase):
         session = self.client.session
         session["uuid"] = str(self.current_participant.uuid)
         session["selected_surveys"] = ["label_1"]
-        session["survey_step"] = 1
         session.save()
 
     def test_survey_url_calls_right_view(self):
@@ -73,17 +72,16 @@ class TestSurveyView(TestCase):
         self.session = self.client.session
         self.session["uuid"] = str(self.known_participant.uuid)
         self.session["selected_surveys"] = ["survey_test_2", self.survey_3.label]
-        self.session["survey_step"] = 1
         self.session.save()
 
     def test_survey_view_with_known_uuid_provided(self):
-        response = self.client.get("/participation/survey_test_1")
+        response = self.client.get("/participation/survey_test_2")
         self.assertTemplateUsed(response, "surveys/survey.html")
 
     def test_well_formatted_post_creates_answers_instances(self):
 
         self.client.post(
-            "/participation/survey_test_1",
+            "/participation/survey_test_2",
             {
                 "survey_2_Q-1-A-0": "Je pense que cette idée est bonne",
                 "survey_2_Q-1-A-1": "J'ajouterais que j'aimerais la voir appliquée localement",
@@ -116,11 +114,12 @@ class TestSurveyView(TestCase):
                 "survey_2_Q-2-A-0": "je ne suis pas assez expert pour avoir une opinion",
             },
         )
+
         self.assertRedirects(
             response_2,
             "/participation/" + slugify(self.survey_3.label),
             status_code=302,
-            target_status_code=200,
+            target_status_code=302,
             msg_prefix="",
             fetch_redirect_response=True,
         )
