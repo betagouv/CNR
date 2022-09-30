@@ -31,7 +31,11 @@ def survey_intro_view(request):
         return render(
             request,
             "surveys/survey_intro.html",
-            {"form": form, "checked": pre_checked_surveys},
+            {
+                "form": form,
+                "checked": pre_checked_surveys,
+                "title": "Contribuez dès maintenant",
+            },
         )
 
     if request.method == "POST":
@@ -145,6 +149,7 @@ def survey_view(request, label):
             "current_step": current_survey_step,
             "steps": len(selected_surveys),
             "questions": questions,
+            "title": current_survey.hr_label,
         },
     )
 
@@ -153,7 +158,11 @@ def survey_outro_view(request):
     uuid = request.session.get("uuid", None)
     if uuid:
         del request.session["uuid"]
-        return render(request, "surveys/survey_outro.html")
+        return render(
+            request,
+            "surveys/survey_outro.html",
+            {"title": "Merci pour votre contribution"},
+        )
     else:
         logging.info("## Error : no UUID, return user to index")
         return redirect("index")
