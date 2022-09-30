@@ -1,8 +1,7 @@
 from django.test import TestCase
 
+from public_website.factories import NoProfileParticipantFactory, ParticipantFactory
 from public_website.models import Participant
-from public_website.tests.factories.factory import (
-    NoProfileParticipantFactory, ParticipantFactory)
 
 
 class ProfileViewTest(TestCase):

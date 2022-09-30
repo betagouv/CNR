@@ -1,7 +1,7 @@
 from django.test import TestCase, tag
 
+from public_website.factories import SubscriptionFactory
 from public_website.models import Theme
-from public_website.tests.factories.factory import SubscriptionFactory
 from surveys import forms
 from surveys.factories import SurveyFactory, SurveyQuestionFactory
 from surveys.models import Survey, SurveyAnswer, SurveyParticipation, SurveyQuestion

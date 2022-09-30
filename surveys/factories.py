@@ -1,7 +1,7 @@
 import factory
 
+from public_website.factories import ParticipantFactory
 from public_website.models import Theme
-from public_website.tests.factories.factory import ParticipantFactory
 from surveys import models
 
 
@@ -14,7 +14,7 @@ class SurveyFactory(factory.django.DjangoModelFactory):
     )
     hr_label = factory.LazyAttributeSequence(
         lambda survey, counter: f"Voici le questionnaire n°{counter} du thème "
-                                f"{survey.theme.label}"
+        f"{survey.theme.label}"
     )
     theme = Theme.EDUCATION
 

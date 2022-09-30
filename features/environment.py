@@ -1,8 +1,10 @@
-from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
 from unittest.mock import Mock
 
+from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
+
 from public_website import email_provider
+
 
 def before_all(context):
     options = Options()
@@ -14,13 +16,15 @@ def before_all(context):
 
     context.mocks = {}
 
-    context.mocks['sib'] = Mock()
+    context.mocks["sib"] = Mock()
 
-    email_provider.send_payload_to_send_in_blue = context.mocks['sib']
+    email_provider.send_payload_to_send_in_blue = context.mocks["sib"]
+
 
 def after_feature(context, feature):
     for mock in context.mocks.values():
         mock.reset_mock()
+
 
 def after_all(context):
     context.browser.quit()
