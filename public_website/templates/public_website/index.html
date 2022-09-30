@@ -54,6 +54,17 @@
   </div>
 </div>
 
+<div class="fr-container">
+  <div class="fr-grid-row fr-grid-row--gutters">
+    <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
+      <div class="fr-content-media">
+        <iframe title="Vidéo une méthode nouvelle" class="fr-responsive-vid " src="https://www.youtube.com/embed/gLzXOViPX-0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="fr-content-media__caption">Emmanuel Macron, Président de la République, présente la méthode du CNR.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="fr-background-alt--blue-france">
   <div class="fr-container fr-py-6w">
     <div class="fr-grid-row fr-grid-row--gutters">
@@ -61,7 +72,6 @@
         <h2>S'inscrire pour participer</h2>
         <p>Rejoindre dès maintenant le Conseil national de la Refondation vous permet de :</p>
       </div>
-
       <div class="fr-col-12 fr-col-sm-4">
         <img src="{% static 'artwork/community.svg' %}" alt="">
         <h3>Participer</h3>
@@ -78,7 +88,6 @@
         <p>Rester informé de l'avancement du Conseil de la refondation : en accédant aux comptes rendus et aux documents produits par les différents ateliers.</p>
       </div>
     </div>
-
     <ul class="fr-btns-group fr-btns-group--inline">
       <li>
         <a class="fr-btn" href="{% url 'inscription' %}">Je participe !</a>
@@ -98,10 +107,14 @@
       <p>Nous engageons aujourd'hui une nouvelle méthode de dialogue et d'action. Le Conseil national de la Refondation vise à aller plus loin en intégrant davantage les citoyens et les grands acteurs de notre société sur les grandes transitions de notre pays à venir  :</p>
     </div>
 
+    <div class="fr-col-12">
+       <h3>Les consultations nationales</h3>
+     </div>
+
     <div class="fr-col-12 fr-col-md-4">
       <div class="fr-tile fr-tile--horizontal">
         <div class="fr-tile__body">
-          <h3 class="fr-tile__title">Climat et biodiversité</h3>
+          <h4 class="fr-tile__title">Climat et biodiversité</h4>
         </div>
         <div class="fr-tile__img">
           <img src="{% static 'artwork/environment.svg' %}" class="fr-responsive-img" alt="">
@@ -112,7 +125,7 @@
     <div class="fr-col-12 fr-col-md-4">
       <div class="fr-tile fr-tile--horizontal">
         <div class="fr-tile__body">
-          <h3 class="fr-tile__title">Générations et vieillissement </h3>
+          <h4 class="fr-tile__title">Générations et vieillissement </h4>
         </div>
         <div class="fr-tile__img">
           <img src="{% static 'artwork/human-cooperation.svg' %}" class="fr-responsive-img" alt="">
@@ -123,7 +136,7 @@
     <div class="fr-col-12 fr-col-md-4">
       <div class="fr-tile fr-tile--horizontal">
         <div class="fr-tile__body">
-          <h3 class="fr-tile__title">Souveraineté économique</h3>
+          <h4 class="fr-tile__title">Souveraineté économique</h4>
         </div>
         <div class="fr-tile__img">
           <img src="{% static 'artwork/money.svg' %}" class="fr-responsive-img" alt="">
@@ -134,7 +147,7 @@
     <div class="fr-col-12 fr-col-md-4">
       <div class="fr-tile fr-tile--horizontal">
         <div class="fr-tile__body">
-          <h3 class="fr-tile__title">Futur du travail</h3>
+          <h4 class="fr-tile__title">Futur du travail</h4>
         </div>
         <div class="fr-tile__img">
           <img src="{% static 'artwork/map.svg' %}" class="fr-responsive-img" alt="">
@@ -145,29 +158,7 @@
     <div class="fr-col-12 fr-col-md-4">
       <div class="fr-tile fr-tile--horizontal">
         <div class="fr-tile__body">
-          <h3 class="fr-tile__title">Santé</h3>
-        </div>
-        <div class="fr-tile__img">
-          <img src="{% static 'artwork/health.svg' %}" class="fr-responsive-img" alt="">
-        </div>
-      </div>
-    </div>
-
-    <div class="fr-col-12 fr-col-md-4">
-      <div class="fr-tile fr-tile--horizontal">
-        <div class="fr-tile__body">
-          <h3 class="fr-tile__title">Éducation</h3>
-        </div>
-        <div class="fr-tile__img">
-          <img src="{% static 'artwork/school.svg' %}" class="fr-responsive-img" alt="">
-        </div>
-      </div>
-    </div>
-
-    <div class="fr-col-12 fr-col-md-4">
-      <div class="fr-tile fr-tile--horizontal">
-        <div class="fr-tile__body">
-          <h3 class="fr-tile__title">Logement</h3>
+          <h4 class="fr-tile__title">Logement</h4>
         </div>
         <div class="fr-tile__img">
           <img src="{% static 'artwork/france-localization.svg' %}" class="fr-responsive-img" alt="">
@@ -178,7 +169,7 @@
     <div class="fr-col-12 fr-col-md-4">
       <div class="fr-tile fr-tile--horizontal">
         <div class="fr-tile__body">
-          <h3 class="fr-tile__title">Jeunesse</h3>
+          <h4 class="fr-tile__title">Jeunesse</h4>
         </div>
         <div class="fr-tile__img">
           <img src="{% static 'artwork/avatar.svg' %}" class="fr-responsive-img" alt="">
@@ -189,7 +180,7 @@
     <div class="fr-col-12 fr-col-md-4">
       <div class="fr-tile fr-tile--horizontal">
         <div class="fr-tile__body">
-          <h3 class="fr-tile__title">Numérique</h3>
+          <h4 class="fr-tile__title">Numérique</h4>
         </div>
         <div class="fr-tile__img">
           <img src="{% static 'artwork/coding.svg' %}" class="fr-responsive-img" alt="">
@@ -200,6 +191,36 @@
     <div class="fr-col-12">
       <a href="{% url 'fonctionnement' %}#anchor_thematiques" target="_self" class="fr-link">Voir le détail des thématiques</a>
     </div>
+      <div class="fr-col-12">
+       <h3>Les projets locaux</h3>
+     </div>
+
+      <div class="fr-col-12 fr-col-md-4">
+      <div class="fr-tile fr-tile--horizontal">
+        <div class="fr-tile__body">
+          <h4 class="fr-tile__title">Notre santé</h4>
+        </div>
+        <div class="fr-tile__img">
+          <img src="{% static 'artwork/health.svg' %}" class="fr-responsive-img" alt="">
+        </div>
+      </div>
+    </div>
+
+      <div class="fr-col-12 fr-col-md-4">
+      <div class="fr-tile fr-tile--horizontal">
+        <div class="fr-tile__body">
+          <h4 class="fr-tile__title">Notre école</h4>
+        </div>
+        <div class="fr-tile__img">
+          <img src="{% static 'artwork/school.svg' %}" class="fr-responsive-img" alt="">
+        </div>
+      </div>
+    </div>
+
+      <div class="fr-col-12">
+      <a class="fr-btn" href="{% url 'inscription' %}">Comment lancer mon projet local ?</a>
+    </div>
+
   </div>
 
   <hr class="fr-my-6w">
