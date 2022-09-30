@@ -1,5 +1,6 @@
 from django.core.validators import MinLengthValidator
 from django.db import models
+from django.utils.text import slugify
 
 from public_website.models import Theme
 
@@ -14,6 +15,10 @@ class Survey(models.Model):
 
     def get_questions(self):
         return self.questions.order_by("label")
+
+    def save(self, *args, **kwargs):
+        self.label = slugify(self.label)
+        super().save(*args, **kwargs)
 
 
 class SurveyQuestion(models.Model):

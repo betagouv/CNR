@@ -20,19 +20,18 @@ class TestSurvey(TestCase):
         session = self.client.session
         session["uuid"] = str(self.current_participant.uuid)
         session["selected_surveys"] = ["label_1"]
-        session["survey_step"] = 1
         session.save()
 
     def test_survey_url_calls_right_view(self):
-        match = resolve("/participation/")
+        match = resolve("/participation/label_1")
         self.assertEqual(match.func, views.survey_view)
 
     def test_survey_url_calls_right_template(self):
-        response = self.client.get("/participation/")
+        response = self.client.get("/participation/label_1")
         self.assertTemplateUsed(response, "surveys/survey.html")
 
     def test_survey_response_contains_welcome_message(self):
-        response = self.client.get("/participation/")
+        response = self.client.get("/participation/label_1")
         self.assertContains(response, "Questionnaire")
 
 
@@ -60,7 +59,7 @@ class TestSurveyView(TestCase):
             label="survey_2_Q-2",
             answer_type=self.answer_type.ONE_TEXT_FIELD,
         )
-        self.survey_3 = SurveyFactory(theme=Theme.EDUCATION)
+        self.survey_3 = SurveyFactory(theme=Theme.EDUCATION, label="survey_test_3")
         self.survey_3_question_1 = SurveyQuestionFactory(
             survey=self.survey_3, hr_label="What do you think ?"
         )
@@ -71,18 +70,20 @@ class TestSurveyView(TestCase):
 
         self.session = self.client.session
         self.session["uuid"] = str(self.known_participant.uuid)
-        self.session["selected_surveys"] = ["survey_test_2", self.survey_3.label]
-        self.session["survey_step"] = 1
+        self.session["selected_surveys"] = [
+            "survey_test_2",
+            self.survey_3.label,
+        ]
         self.session.save()
 
     def test_survey_view_with_known_uuid_provided(self):
-        response = self.client.get("/participation/")
+        response = self.client.get("/participation/" + self.survey_3.label)
         self.assertTemplateUsed(response, "surveys/survey.html")
 
     def test_well_formatted_post_creates_answers_instances(self):
 
         self.client.post(
-            "/participation/",
+            "/participation/survey_test_2",
             {
                 "survey_2_Q-1-A-0": "Je pense que cette idée est bonne",
                 "survey_2_Q-1-A-1": "J'ajouterais que j'aimerais la voir appliquée localement",
@@ -105,10 +106,10 @@ class TestSurveyView(TestCase):
         # TOD0: test the attributes of the instances
 
     def test_all_surveys_appear_in_order(self):
-        response = self.client.get("/participation/")
+        response = self.client.get("/participation/survey_test_2")
         self.assertContains(response, self.survey_2_question_1.hr_label)
         response_2 = self.client.post(
-            "/participation/",
+            "/participation/survey_test_2",
             {
                 "survey_2_Q-1-A-0": "Je pense que cette idée est bonne",
                 "survey_2_Q-1-A-1": "J'ajouterais que j'aimerais la voir appliquée localement",
@@ -116,7 +117,14 @@ class TestSurveyView(TestCase):
             },
         )
 
-        self.assertContains(response_2, self.survey_3_question_1.hr_label)
+        self.assertRedirects(
+            response_2,
+            "/participation/" + self.survey_3.label,
+            status_code=302,
+            target_status_code=200,
+            msg_prefix="",
+            fetch_redirect_response=True,
+        )
 
 
 @tag("views")

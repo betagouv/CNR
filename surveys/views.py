@@ -39,24 +39,19 @@ def survey_intro_view(request):
         if form.is_valid():
             selected_surveys = form.cleaned_data["surveys"]
             request.session["selected_surveys"] = selected_surveys
-            request.session["survey_step"] = 1
             request.session.save()
-            return redirect("survey")
+            return redirect(reverse("survey", kwargs={"label": selected_surveys[0]}))
         else:
-            return render(
-                request,
-                "surveys/survey_intro.html",
-                {"form": form, "checked": pre_checked_surveys},
-            )
+            return redirect(reverse("survey_outro"))
 
 
-def survey_view(request):
-    def format_request_session(session):
+def survey_view(request, label):
+    def format_request_session(session, label):
         uuid = session.get("uuid", None)
         selected_surveys = session.get("selected_surveys", None)
-        survey_step = session.get("survey_step", None)
+        expected_label = label in selected_surveys
 
-        for mandatory_attribute in [uuid, survey_step, selected_surveys]:
+        for mandatory_attribute in [uuid, expected_label, selected_surveys]:
             if not mandatory_attribute:
                 logger.info(f"### missing {mandatory_attribute}")
                 raise KeyError
@@ -66,28 +61,27 @@ def survey_view(request):
         except Participant.DoesNotExist:
             raise KeyError
 
-        return (selected_surveys, int(survey_step), participant)
+        return (selected_surveys, participant)
 
-    def get_current_next_surveys(survey_list: list, step: int) -> tuple:
+    def get_current_next_surveys(survey_list: list, current_label: str) -> tuple:
         try:
-            current_label = survey_list[step - 1]
             current_survey = models.Survey.objects.get(label=current_label)
-            is_last_step = (len(survey_list) - step) == 0
+            current_survey_step = survey_list.index(current_label) + 1
+            is_last_step = len(survey_list) == current_survey_step
             if is_last_step:
                 next_survey = None
             else:
-                next_survey_label = survey_list[step]
+                next_survey_label = survey_list[current_survey_step]
                 next_survey = models.Survey.objects.get(label=next_survey_label)
         except models.Survey.DoesNotExist:
             current_survey = None
 
-        return (current_survey, next_survey)
+        return (current_survey, next_survey, current_survey_step)
 
-    def anonymize_and_save_answers(participant, valid_form):
-
+    def anonymize_and_save_answers(participant, valid_form, current_survey):
         survey_response_id = secrets.token_urlsafe(16)
         for field_name, field_object in valid_form.fields.items():
-            answer = form.cleaned_data[field_name]
+            answer = valid_form.cleaned_data[field_name]
             if answer:
                 rank = int(field_name.split("-A-")[-1])
                 models.SurveyAnswer(
@@ -105,18 +99,16 @@ def survey_view(request):
         ).save()
 
     try:
-        selected_surveys, survey_step, participant = format_request_session(
-            request.session
-        )
+        selected_surveys, participant = format_request_session(request.session, label)
     except KeyError:
-        return redirect("survey_into")
+        return redirect(reverse("survey_intro"))
 
-    current_survey, next_survey = get_current_next_surveys(
-        selected_surveys, survey_step
+    current_survey, next_survey, current_survey_step = get_current_next_surveys(
+        selected_surveys, label
     )
 
     if not current_survey:
-        return redirect("participation-outro")
+        return redirect(reverse("survey_outro"))
 
     has_participated_before = current_survey in participant.participations.all()
     if has_participated_before:
@@ -128,20 +120,13 @@ def survey_view(request):
         questions = current_survey.get_questions()
         form = forms.SurveyForm(request.POST, questions=questions)
         if form.is_valid():
-            anonymize_and_save_answers(participant, form)
+            anonymize_and_save_answers(participant, form, current_survey)
 
             if not next_survey:
-                return render(
-                    request,
-                    "surveys/survey_outro.html",
-                )
+                return redirect(reverse("survey_outro"))
             else:
-                survey_step += 1
-                request.session["survey_step"] = survey_step
                 request.session.save()
-                current_survey, next_survey = get_current_next_surveys(
-                    selected_surveys, survey_step
-                )
+                return redirect(reverse("survey", kwargs={"label": next_survey.label}))
         else:
             error_message = "Formulaire invalide. Veuillez vérifier vos réponses."
             messages.error(request, error_message)
@@ -155,8 +140,9 @@ def survey_view(request):
         {
             "form": form,
             "theme": current_survey.hr_label,
+            "label": label,
             "next_theme": next_theme,
-            "current_step": int(survey_step),
+            "current_step": current_survey_step,
             "steps": len(selected_surveys),
             "questions": questions,
         },
