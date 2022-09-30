@@ -60,7 +60,7 @@ class ProfileForm(TestCase):
             "first_name": "Prudence",
             "email": "prudence.crandall@educ.gouv.fr",
             "postal_code": "06331",
-            "preferred_themes": ["EDUCATION"],
+            "preferred_themes": ["LOGEMENT"],
             "participant_type": ["PARTICULIER"],
             "gives_gdpr_consent": ["on"],
         }
@@ -82,7 +82,7 @@ class ProfileForm(TestCase):
         self.assertRedirects(response, "/participation-intro/")
 
     def test_submit_successfully_several_interests(self):
-        response = self.generate_response("preferred_themes", ["EDUCATION", "SANTE"])
+        response = self.generate_response("preferred_themes", ["LOGEMENT", "CLIMAT"])
         participant = Participant.objects.last()
         self.assertEqual(self.client.session.get("uuid"), str(participant.uuid))
         self.assertRedirects(response, "/participation-intro/")

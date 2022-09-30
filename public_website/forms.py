@@ -34,10 +34,31 @@ class ProfileForm(ModelForm):
         label="Je suis :",
     )
 
+    sante_participant_type = forms.ChoiceField(
+        choices=models.SanteParticipantType.choices,
+        widget=forms.RadioSelect,
+        label="Je suis :",
+        required=False,
+    )
+
+    education_participant_type = forms.ChoiceField(
+        choices=models.EducationParticipantType.choices,
+        widget=forms.RadioSelect,
+        label="Je suis :",
+        required=False,
+    )
+
+    available_themes = []
+    unavailable_themes = [models.Theme.SANTE, models.Theme.EDUCATION]
+    for choice in models.Theme.choices:
+        if choice[0] not in unavailable_themes:
+            available_themes.append(choice)
+
     preferred_themes = forms.MultipleChoiceField(
-        choices=models.Theme.choices,
+        choices=available_themes,
         widget=forms.CheckboxSelectMultiple,
         label="Les thématiques sur lesquelles je veux m'investir :",
+        required=False,
     )
 
     gives_gdpr_consent = forms.BooleanField(
@@ -63,7 +84,15 @@ class ProfileForm(ModelForm):
 
     class Meta:
         model = models.Participant
-        fields = ["first_name", "postal_code", "participant_type"]
+        fields = [
+            "first_name",
+            "postal_code",
+            "participant_type",
+            "sante_city",
+            "sante_participant_type",
+            "education_city",
+            "education_participant_type",
+        ]
 
     def save(self, commit=True, *args, **kwargs):
         instance = super(ProfileForm, self).save(commit=commit)
