@@ -20,6 +20,14 @@ class SurveyModelTests(TestCase):
         self.assertEqual(last_saved_item.label, "survey_edu_1")
         self.assertEqual(last_saved_item.theme, "EDUCATION")
 
+    def test_slugfield_survey(self):
+        survey = Survey(
+            label="survey_éducation_1",
+        )
+        survey.save()
+        last_saved_item = Survey.objects.last()
+        self.assertEqual(last_saved_item.label, "survey_education_1")
+
     def test_model_get_questions_method(self):
         answer_type = SurveyQuestion.AnswerType
         question_1 = SurveyQuestionFactory(
