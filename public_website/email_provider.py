@@ -25,7 +25,7 @@ def send_payload_to_send_in_blue(email: str, payload: dict) -> bool:
             attributes=payload,
             list_ids=[settings.SEND_IN_BLUE_LIST],
         )
-        response_from_api = api_instance.create_contact(contact)
+        api_instance.create_contact(contact)
         return True
     except sib_api_v3_sdk.rest.ApiException as e:
         logger.exception("Exception when calling ContactsApi->create_contact: %s", e)

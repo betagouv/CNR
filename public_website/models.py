@@ -22,7 +22,7 @@ class ParticipantType(models.TextChoices):
 
 
 class SanteParticipantType(models.TextChoices):
-    USAGER = "USAGER", "Usager"
+    USAGER = "USAGER", "Usager ou usagère"
     PROSANTE = "PROSANTE", "Médecins, acteur ou actrice du secteur de la santé"
     ASSOCIATION = "ASSOCIATION", "Association ou entreprise ayant un lien avec la santé"
     ELU = "ELU", "Elu(e) local"
