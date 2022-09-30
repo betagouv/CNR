@@ -25,7 +25,7 @@ class TestSurvey(TestCase):
 
     def test_survey_url_calls_right_view(self):
         match = resolve("/participation/label_1")
-        self.assertEqual(match.func, views.survey_theme_view)
+        self.assertEqual(match.func, views.survey_view)
 
     def test_survey_url_calls_right_template(self):
         response = self.client.get("/participation/label_1")

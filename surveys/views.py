@@ -3,7 +3,6 @@ import secrets
 
 from django.contrib import messages
 from django.shortcuts import redirect, render, reverse
-from django.utils.text import slugify
 
 from public_website.models import Participant
 
@@ -41,20 +40,18 @@ def survey_intro_view(request):
             selected_surveys = form.cleaned_data["surveys"]
             request.session["selected_surveys"] = selected_surveys
             request.session.save()
-            return redirect(
-                reverse("survey_theme", kwargs={"slug": slugify(selected_surveys[0])})
-            )
+            return redirect(reverse("survey", kwargs={"label": selected_surveys[0]}))
         else:
             return redirect(reverse("survey_outro"))
 
 
-def survey_theme_view(request, slug):
-    def format_request_session(session, slug):
+def survey_view(request, label):
+    def format_request_session(session, label):
         uuid = session.get("uuid", None)
         selected_surveys = session.get("selected_surveys", None)
-        expected_slug = slug in selected_surveys
+        expected_label = label in selected_surveys
 
-        for mandatory_attribute in [uuid, expected_slug, selected_surveys]:
+        for mandatory_attribute in [uuid, expected_label, selected_surveys]:
             if not mandatory_attribute:
                 logger.info(f"### missing {mandatory_attribute}")
                 raise KeyError
@@ -102,12 +99,12 @@ def survey_theme_view(request, slug):
         ).save()
 
     try:
-        selected_surveys, participant = format_request_session(request.session, slug)
+        selected_surveys, participant = format_request_session(request.session, label)
     except KeyError:
         return redirect(reverse("survey_intro"))
 
     current_survey, next_survey, current_survey_step = get_current_next_surveys(
-        selected_surveys, slug
+        selected_surveys, label
     )
 
     if not current_survey:
@@ -129,9 +126,7 @@ def survey_theme_view(request, slug):
                 return redirect(reverse("survey_outro"))
             else:
                 request.session.save()
-                return redirect(
-                    reverse("survey_theme", kwargs={"slug": slugify(next_survey.label)})
-                )
+                return redirect(reverse("survey", kwargs={"label": next_survey.label}))
         else:
             error_message = "Formulaire invalide. Veuillez vérifier vos réponses."
             messages.error(request, error_message)
@@ -145,7 +140,7 @@ def survey_theme_view(request, slug):
         {
             "form": form,
             "theme": current_survey.hr_label,
-            "slug": slug,
+            "label": label,
             "next_theme": next_theme,
             "current_step": current_survey_step,
             "steps": len(selected_surveys),
