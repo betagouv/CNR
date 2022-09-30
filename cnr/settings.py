@@ -13,8 +13,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+import sentry_sdk
 from django.core.management.commands.runserver import Command as runserver
 from dotenv import load_dotenv
+from sentry_sdk.integrations.django import DjangoIntegration
 
 from cnr.utils.postgres import turn_psql_url_into_param
 
@@ -73,6 +75,21 @@ MIDDLEWARE = [
     "django_referrer_policy.middleware.ReferrerPolicyMiddleware",
     "csp.middleware.CSPMiddleware",
 ]
+
+# Sentry
+SENTRY_URL = os.getenv("SENTRY_URL", "")
+if SENTRY_URL:
+    sentry_sdk.init(
+        dsn=SENTRY_URL,
+        integrations=[DjangoIntegration()],
+        # Set traces_sample_rate to 1.0 to capture 100%
+        # of transactions for performance monitoring.
+        # We recommend adjusting this value in production.
+        traces_sample_rate=1.0,
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True,
+    )
 
 # Security headers
 SECURE_HSTS_SECONDS = 2592000
