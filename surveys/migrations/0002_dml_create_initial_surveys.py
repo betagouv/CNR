@@ -7,8 +7,6 @@ from django.db import migrations
 
 from public_website.models import Theme
 
-# from django.utils.text import slugify
-
 
 def populate_surveys(apps, schema_editor):
     Survey = apps.get_model("surveys", "Survey")
