@@ -37,7 +37,7 @@ class ProfileForm(ModelForm):
     sante_participant_type = forms.ChoiceField(
         choices=models.SanteParticipantType.choices,
         widget=forms.RadioSelect,
-        label="Je suis :",
+        label="Je participe en tant que :",
         required=False,
     )
 
