@@ -27,4 +27,4 @@ class SubscriptionFactory(factory.django.DjangoModelFactory):
         model = models.Subscription
 
     participant = factory.SubFactory(ParticipantFactory)
-    theme = models.Theme.EDUCATION
+    theme = models.Theme.CLIMAT

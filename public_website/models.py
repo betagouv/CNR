@@ -8,8 +8,8 @@ class Theme(models.TextChoices):
     VIEILLISSEMENT = "VIEILLISSEMENT", "Générations et vieillissement"
     SOUVERAINETE = "SOUVERAINETE", "Souveraineté économique"
     TRAVAIL = "TRAVAIL", "Futur du travail"
-    SANTE = "SANTE", "Santé"
-    EDUCATION = "EDUCATION", "Éducation"
+    SANTE = "SANTE", "Notre santé"
+    EDUCATION = "EDUCATION", "Notre école"
     LOGEMENT = "LOGEMENT", "Logement"
     JEUNESSE = "JEUNESSE", "Jeunesse"
     NUMERIQUE = "NUMERIQUE", "Numérique"
@@ -19,6 +19,23 @@ class ParticipantType(models.TextChoices):
     CITOYEN = "PARTICULIER", "Particulier"
     ELU = "ELU", "Élu(e)"
     ASSOCIATION = "ASSOCIATION", "Représentant(e) d'un corps intermédiaire"
+
+
+class SanteParticipantType(models.TextChoices):
+    USAGER = "USAGER", "Usager"
+    PROSANTE = "PROSANTE", "Médecins, acteur ou actrice du secteur de la santé"
+    ASSOCIATION = "ASSOCIATION", "Association ou entreprise ayant un lien avec la santé"
+    ELU = "ELU", "Elu(e) local"
+    AUTRE = "AUTRE", "Autre"
+
+
+class EducationParticipantType(models.TextChoices):
+    PARENT = "PARENT", "Parent d’élève"
+    PROFESSEUR = "PROFESSEUR", "Professeur(e)"
+    ASSOCIATION = "ASSOCIATION", "Association ou entreprise ayant un lien avec l’école"
+    ELU = "ELU", "Elu(e) local"
+    MAIRE = "MAIRE", "Maire ou président(e) d’exécutif"
+    AUTRE = "AUTRE", "Autre"
 
 
 class Participant(models.Model):
@@ -40,6 +57,32 @@ class Participant(models.Model):
         blank=False,
         null=True,
         choices=ParticipantType.choices,
+        max_length=11,
+    )
+    sante_city = models.CharField(
+        max_length=150,
+        verbose_name="Ville, département ou région",
+        blank=True,
+        null=True,
+    )
+    #  insee = models.CharField("Code INSEE", max_length=7)
+    sante_participant_type = models.CharField(
+        blank=False,
+        null=True,
+        choices=SanteParticipantType.choices,
+        max_length=11,
+    )
+    education_city = models.CharField(
+        max_length=150,
+        verbose_name="Ville, département ou région",
+        blank=True,
+        null=True,
+    )
+    #  insee = models.CharField("Code INSEE", max_length=7)
+    education_participant_type = models.CharField(
+        blank=False,
+        null=True,
+        choices=EducationParticipantType.choices,
         max_length=11,
     )
     registration_success = models.BooleanField(default=False)

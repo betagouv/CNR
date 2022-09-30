@@ -34,14 +34,43 @@ class ProfileForm(ModelForm):
         label="Je suis :",
     )
 
+    sante_participant_type = forms.ChoiceField(
+        choices=models.SanteParticipantType.choices,
+        widget=forms.RadioSelect,
+        label="Je participe en tant que :",
+        required=False,
+    )
+
+    education_participant_type = forms.ChoiceField(
+        choices=models.EducationParticipantType.choices,
+        widget=forms.RadioSelect,
+        label="Je participant en tant que :",
+        required=False,
+    )
+
+    available_themes = []
+    unavailable_themes = [models.Theme.SANTE, models.Theme.EDUCATION]
+    for choice in models.Theme.choices:
+        if choice[0] not in unavailable_themes:
+            available_themes.append(choice)
+
     preferred_themes = forms.MultipleChoiceField(
-        choices=models.Theme.choices,
+        choices=available_themes,
         widget=forms.CheckboxSelectMultiple,
         label="Les thématiques sur lesquelles je veux m'investir :",
+        required=False,
     )
 
     gives_gdpr_consent = forms.BooleanField(
         label="J'ai lu et j'accepte les CGU et la politique de protection des données",
+    )
+
+    pick_local_theme_sante = forms.BooleanField(
+        label="Pour améliorer notre santé", required=False
+    )
+
+    pick_local_theme_education = forms.BooleanField(
+        label="Pour améliorer notre école", required=False
     )
 
     def is_captcha_valid(self):
@@ -63,7 +92,15 @@ class ProfileForm(ModelForm):
 
     class Meta:
         model = models.Participant
-        fields = ["first_name", "postal_code", "participant_type"]
+        fields = [
+            "first_name",
+            "postal_code",
+            "participant_type",
+            "sante_city",
+            "sante_participant_type",
+            "education_city",
+            "education_participant_type",
+        ]
 
     def save(self, commit=True, *args, **kwargs):
         instance = super(ProfileForm, self).save(commit=commit)
@@ -72,4 +109,26 @@ class ProfileForm(ModelForm):
         for theme in preferred_themes:
             subscription = models.Subscription(participant_id=instance.id, theme=theme)
             subscription.save()
+        if self.cleaned_data["pick_local_theme_sante"]:
+            subscription = models.Subscription(
+                participant_id=instance.id, theme="SANTE"
+            )
+            subscription.save()
+        else:
+            if self.cleaned_data["sante_city"]:
+                instance.sante_city = None
+            if self.cleaned_data["sante_participant_type"]:
+                instance.sante_participant_type = None
+
+        if self.cleaned_data["pick_local_theme_education"]:
+            subscription = models.Subscription(
+                participant_id=instance.id, theme="EDUCATION"
+            )
+            subscription.save()
+        else:
+            if self.cleaned_data["education_city"]:
+                instance.education_city = None
+            if self.cleaned_data["education_participant_type"]:
+                instance.education_participant_type = None
+
         return instance

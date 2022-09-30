@@ -61,7 +61,7 @@
                         </div>
                     </fieldset>
 
-                    <div class="fr-form-group">
+                    <div class="fr-form-group" id="participant_type_field">
                         <fieldset class="fr-fieldset">
                             <legend class="fr-fieldset__legend fr-text--regular">{{ form.participant_type.label }}</legend>
                             <div class="fr-fieldset__content">
@@ -80,12 +80,90 @@
                             </div>
                         </fieldset>
                     </div>
+                    <hr>
+                    <div class="fr-form-group">
+                    <h2 class="fr-h2">Je veux m'investir localement</h2>
+                        <fieldset class="fr-fieldset" role="group">
+                          <div class="fr-form-group">
+                              <fieldset class="fr-fieldset" role="group">
+                                    <div class="fr-fieldset__content">
+                                        <div class="fr-checkbox-group">
+                                            <input type="checkbox" id="id_pick_local_theme_education" name="pick_local_theme_education">
+                                            <label class="fr-fieldset__legend fr-h3 fr-mb-0" for="id_pick_local_theme_education">
+                                                    {{ form.pick_local_theme_education.label }}
+                                            </label>
+                                            {{ form.errors.pick_local_theme_education }}
+                                        </div>
+                                    </div>
+                              </fieldset>
+
+                        </div>
+                        <div class="fr-col-12 fr-col-sm-6">
+                            <div class="fr-input-group">
+                                <label class="fr-label" for="education_city">{{ form.education_city.label }}</label>
+                                <input class="fr-input" type="text" id="education_city" name="education_city" value="{{ form.data.education_city }}">
+                                {{ form.errors.education_city }}
+                            </div>
+                        </div>
+                       <div class="fr-form-group">
+                        <fieldset class="fr-fieldset">
+                            <legend class="fr-fieldset__legend fr-text--regular">{{ form.education_participant_type.label }}</legend>
+                            <div class="fr-fieldset__content">
+                                {{ form.errors.education_participant_type }}
+                                {% for type in form.education_participant_type  %}
+                                <div class="fr-radio-group">
+                                    {{ type.tag }}
+                                    <label for="{{ type.id_for_label }}">
+                                        {{ type.choice_label }}
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="fr-form-group">
+                        <fieldset class="fr-fieldset" role="group">
+                            <div class="fr-fieldset__content">
+                                <div class="fr-checkbox-group">
+                                    <input type="checkbox" id="id_pick_local_theme_sante" name="pick_local_theme_sante">
+                                    <label class="fr-fieldset__legend fr-h3 fr-mb-0" for="id_pick_local_theme_sante">
+                                            {{ form.pick_local_theme_sante.label }}
+                                    </label>
+                                    {{ form.errors.pick_local_theme_sante }}
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                        <div class="fr-col-12 fr-col-sm-6">
+                            <div class="fr-input-group">
+                                <label class="fr-label" for="sante_city">{{ form.sante_city.label }}</label>
+                                <input class="fr-input" type="text" id="sante_city" name="sante_city" value="{{ form.data.sante_city }}">
+                                {{ form.errors.sante_city }}
+                            </div>
+                        </div>
+                        <div class="fr-form-group">
+                        <fieldset class="fr-fieldset">
+                            <legend class="fr-fieldset__legend fr-text--regular">{{ form.sante_participant_type.label }}</legend>
+                            <div class="fr-fieldset__content">
+                                {{ form.errors.sante_participant_type }}
+                                {% for type in form.sante_participant_type  %}
+                                <div class="fr-radio-group">
+                                    {{ type.tag }}
+                                    <label for="{{ type.id_for_label }}">
+                                        {{ type.choice_label }}
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </fieldset>
+                    </div>
+                            <hr>
 
                     <div class="fr-form-group">
                       {{ form.errors.preferred_themes }}
                         <fieldset class="fr-fieldset" role="group">
                           <legend class="fr-fieldset__legend fr-h2 fr-mb-0">
-                            Les thématiques sur lesquelles je veux m'investir
+                            Les thématiques sur lesquelles je veux être tenu(e) informé(e)
                           </legend>
                           <span class="fr-hint-text fr-mb-5w">Choisissez une ou plusieurs thématiques sur lesquelles vous souhaitez apporter une contribution ou participer à des débats au plus près de chez vous.</span>
                           <div class="checkbox-group">
