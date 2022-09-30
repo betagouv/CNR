@@ -6,7 +6,7 @@
             <div class="fr-col-12 fr-col-sm-10 fr-col-offset-sm-1">
                 <h1 class="fr-display--sm">S'inscrire pour participer</h1>
 
-                <p>Rejoindre dès maintenant le Conseil national de la Refondation vous permet de participer sur les thématiques qui vous intéressent, de vous engager localement et de suivre l'avancement du Conseil national de la Refondation.</p>
+                <p>Comment participer ? En vous inscrivant, vous serez informés de l'avancement des consultations et des prochains événements près de chez vous par notre <strong>infolettre</strong>. Si vous le souhaitez, vous pourrez également recevoir un guide pour participer à des <strong>projets locaux</strong> et/ou donner <strong>votre avis</strong> sur les thématiques de votre choix en répondant à quelques questions directement après avoir validé votre inscription. </p>
 
                 {% if messages %}
                     {% for message in messages %}
@@ -92,6 +92,7 @@
                                             <label class="fr-fieldset__legend fr-h3 fr-mb-0" for="id_pick_local_theme_education">
                                                     {{ form.pick_local_theme_education.label }}
                                             </label>
+                                            <em>Ex: participer à un débat dans l’établissement scolaire près de chez moi</em>
                                             {{ form.errors.pick_local_theme_education }}
                                         </div>
                                     </div>
@@ -129,6 +130,7 @@
                                     <label class="fr-fieldset__legend fr-h3 fr-mb-0" for="id_pick_local_theme_sante">
                                             {{ form.pick_local_theme_sante.label }}
                                     </label>
+                                    <em>Ex: participer à un débat sur mon territoire de santé</em>
                                     {{ form.errors.pick_local_theme_sante }}
                                 </div>
                             </div>
@@ -163,9 +165,9 @@
                       {{ form.errors.preferred_themes }}
                         <fieldset class="fr-fieldset" role="group">
                           <legend class="fr-fieldset__legend fr-h2 fr-mb-0">
-                            Les thématiques sur lesquelles je veux être tenu(e) informé(e)
+                            Les thématiques qui m'intéressent
                           </legend>
-                          <span class="fr-hint-text fr-mb-5w">Choisissez une ou plusieurs thématiques sur lesquelles vous souhaitez apporter une contribution ou participer à des débats au plus près de chez vous.</span>
+                          <span class="fr-hint-text fr-mb-5w">Vous pouvez choisir une ou plusieurs thématiques sur lesquelles vous souhaitez apporter une contribution ou participer à des débats au plus près de chez vous. Il vous sera ensuite proposé de donner votre avis en répondant à une série de questions.</span>
                           <div class="checkbox-group">
                             {% for theme in form.preferred_themes %}
                             <div class="checkbox">
@@ -198,7 +200,7 @@
                     </div>
                     <div class="mtcaptcha"></div>
                     <div class="fr-input-group fr-my-4w">
-                        <button type="submit" class="fr-btn" title="Valider ce formulaire">Je participe !</button>
+                        <button type="submit" class="fr-btn" title="Valider ce formulaire">Je valide mon inscription</button>
                     </div>
                 </form>
             </div>
