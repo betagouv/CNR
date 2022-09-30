@@ -1,6 +1,6 @@
 import factory
 
-from factories.factory import ParticipantFactory
+from public_website.factories import ParticipantFactory
 from public_website.models import Theme
 from surveys import models
 

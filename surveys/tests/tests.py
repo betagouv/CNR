@@ -1,6 +1,6 @@
 from django.test import TestCase, tag
 
-from factories.factory import SubscriptionFactory
+from public_website.factories import SubscriptionFactory
 from public_website.models import Theme
 from surveys import forms
 from surveys.factories import SurveyFactory, SurveyQuestionFactory
