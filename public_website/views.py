@@ -35,19 +35,33 @@ def index_view(request):
 
 
 def cgu_view(request):
-    return render(request, "public_website/cgu.html")
+    return render(
+        request,
+        "public_website/cgu.html",
+        {"title": "Conditions générales d'utilisation"},
+    )
 
 
 def mentions_legales_view(request):
-    return render(request, "public_website/mentions_legales.html")
+    return render(
+        request, "public_website/mentions_legales.html", {"title": "Mentions légales"}
+    )
 
 
 def accessibilite_view(request):
-    return render(request, "public_website/accessibilite.html")
+    return render(
+        request,
+        "public_website/accessibilite.html",
+        {"title": "Déclaration d’accessibilité"},
+    )
 
 
 def confidentialite_view(request):
-    return render(request, "public_website/confidentialite.html")
+    return render(
+        request,
+        "public_website/confidentialite.html",
+        {"title": "Politique de confidentialité"},
+    )
 
 
 def inscription_view(request):
@@ -97,4 +111,6 @@ def inscription_view(request):
 
 
 def fonctionnement_view(request):
-    return render(request, "public_website/fonctionnement.html")
+    return render(
+        request, "public_website/fonctionnement.html", {"title": "Une nouvelle méthode"}
+    )
