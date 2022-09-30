@@ -71,11 +71,14 @@ class TestSurveyView(TestCase):
 
         self.session = self.client.session
         self.session["uuid"] = str(self.known_participant.uuid)
-        self.session["selected_surveys"] = ["survey_test_2", self.survey_3.label]
+        self.session["selected_surveys"] = [
+            "survey_test_2",
+            slugify(self.survey_3.label),
+        ]
         self.session.save()
 
     def test_survey_view_with_known_uuid_provided(self):
-        response = self.client.get("/participation/survey_test_2")
+        response = self.client.get("/participation/" + slugify(self.survey_3.label))
         self.assertTemplateUsed(response, "surveys/survey.html")
 
     def test_well_formatted_post_creates_answers_instances(self):
@@ -119,7 +122,7 @@ class TestSurveyView(TestCase):
             response_2,
             "/participation/" + slugify(self.survey_3.label),
             status_code=302,
-            target_status_code=302,
+            target_status_code=200,
             msg_prefix="",
             fetch_redirect_response=True,
         )
