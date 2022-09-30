@@ -45,11 +45,7 @@ def survey_intro_view(request):
                 reverse("survey_theme", kwargs={"slug": slugify(selected_surveys[0])})
             )
         else:
-            return render(
-                request,
-                "surveys/survey_intro.html",
-                {"form": form, "checked": pre_checked_surveys},
-            )
+            return redirect(reverse("survey_outro"))
 
 
 def survey_theme_view(request, slug):
