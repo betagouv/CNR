@@ -1,6 +1,5 @@
 from django.test import TestCase, tag
 from django.urls import resolve, reverse
-from django.utils.text import slugify
 
 from public_website.factories import ParticipantFactory
 from public_website.models import Theme
@@ -60,7 +59,7 @@ class TestSurveyView(TestCase):
             label="survey_2_Q-2",
             answer_type=self.answer_type.ONE_TEXT_FIELD,
         )
-        self.survey_3 = SurveyFactory(theme=Theme.EDUCATION)
+        self.survey_3 = SurveyFactory(theme=Theme.EDUCATION, label="survey_test_3")
         self.survey_3_question_1 = SurveyQuestionFactory(
             survey=self.survey_3, hr_label="What do you think ?"
         )
@@ -73,12 +72,12 @@ class TestSurveyView(TestCase):
         self.session["uuid"] = str(self.known_participant.uuid)
         self.session["selected_surveys"] = [
             "survey_test_2",
-            slugify(self.survey_3.label),
+            self.survey_3.label,
         ]
         self.session.save()
 
     def test_survey_view_with_known_uuid_provided(self):
-        response = self.client.get("/participation/" + slugify(self.survey_3.label))
+        response = self.client.get("/participation/" + self.survey_3.label)
         self.assertTemplateUsed(response, "surveys/survey.html")
 
     def test_well_formatted_post_creates_answers_instances(self):
@@ -120,7 +119,7 @@ class TestSurveyView(TestCase):
 
         self.assertRedirects(
             response_2,
-            "/participation/" + slugify(self.survey_3.label),
+            "/participation/" + self.survey_3.label,
             status_code=302,
             target_status_code=200,
             msg_prefix="",

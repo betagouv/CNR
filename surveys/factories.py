@@ -1,5 +1,4 @@
 import factory
-from django.utils.text import slugify
 
 from public_website.factories import ParticipantFactory
 from public_website.models import Theme
@@ -11,7 +10,7 @@ class SurveyFactory(factory.django.DjangoModelFactory):
         model = models.Survey
 
     label = factory.LazyAttributeSequence(
-        lambda survey, counter: f"{slugify(survey.theme.label)}-{counter}"
+        lambda survey, counter: f"{survey.theme.label}-{counter}"
     )
     hr_label = factory.LazyAttributeSequence(
         lambda survey, counter: f"Voici le questionnaire n°{counter} du thème "
