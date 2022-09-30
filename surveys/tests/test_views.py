@@ -145,7 +145,7 @@ class TestSurveyIntro(TestCase):
 
     def test_survey_intro_response_contains_welcome_message(self):
         response = self.client.get("/participation-intro/")
-        self.assertContains(response, "Contribuez dès maintenant")
+        self.assertContains(response, "Donnez votre avis dès maintenant")
 
 
 @tag("views")

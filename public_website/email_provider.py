@@ -45,7 +45,6 @@ def create_payload_for_email_provider(participant: Participant):
         "PROFESSEUR": 2,
         "ASSOCIATION": 3,
         "ELU": 4,
-        "MAIRE": 5,
     }
     try:
         participant_type = participant_type_mapping[participant.participant_type]

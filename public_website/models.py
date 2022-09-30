@@ -22,19 +22,24 @@ class ParticipantType(models.TextChoices):
 
 
 class SanteParticipantType(models.TextChoices):
-    USAGER = "USAGER", "Usager ou usagère"
-    PROSANTE = "PROSANTE", "Médecins, acteur ou actrice du secteur de la santé"
-    ASSOCIATION = "ASSOCIATION", "Association ou entreprise ayant un lien avec la santé"
+    USAGER = "USAGER", "Patient"
+    PROSANTE = "PROSANTE", "Personnel soignant"
+    ASSOCIATION = (
+        "ASSOCIATION",
+        "Organisation ayant un lien avec mon territoire de santé",
+    )
     ELU = "ELU", "Elu(e) local"
     AUTRE = "AUTRE", "Autre"
 
 
 class EducationParticipantType(models.TextChoices):
     PARENT = "PARENT", "Parent d’élève"
-    PROFESSEUR = "PROFESSEUR", "Professeur(e)"
-    ASSOCIATION = "ASSOCIATION", "Association ou entreprise ayant un lien avec l’école"
-    ELU = "ELU", "Elu(e) local"
-    MAIRE = "MAIRE", "Maire ou président(e) d’exécutif"
+    PROFESSEUR = "PROFESSEUR", "Enseignant(e)"
+    ASSOCIATION = (
+        "ASSOCIATION",
+        "Organisation ayant un lien avec l’établissement scolaire",
+    )
+    ELU = "ELU", "Elu(e)"
     AUTRE = "AUTRE", "Autre"
 
 
