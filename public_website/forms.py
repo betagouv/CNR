@@ -65,6 +65,14 @@ class ProfileForm(ModelForm):
         label="J'ai lu et j'accepte les CGU et la politique de protection des données",
     )
 
+    pick_local_theme_sante = forms.BooleanField(
+        label="Pour améliorer notre santé", required=False
+    )
+
+    pick_local_theme_education = forms.BooleanField(
+        label="Pour améliorer notre école", required=False
+    )
+
     def is_captcha_valid(self):
         return check_captcha_token(self.data)
 
@@ -101,16 +109,26 @@ class ProfileForm(ModelForm):
         for theme in preferred_themes:
             subscription = models.Subscription(participant_id=instance.id, theme=theme)
             subscription.save()
-        if self.cleaned_data["sante_participant_type"]:
+        if self.cleaned_data["pick_local_theme_sante"]:
             subscription = models.Subscription(
                 participant_id=instance.id, theme="SANTE"
             )
             subscription.save()
+        else:
+            if self.cleaned_data["sante_city"]:
+                instance.sante_city = None
+            if self.cleaned_data["sante_participant_type"]:
+                instance.sante_participant_type = None
 
-        if self.cleaned_data["education_participant_type"]:
+        if self.cleaned_data["pick_local_theme_education"]:
             subscription = models.Subscription(
                 participant_id=instance.id, theme="EDUCATION"
             )
             subscription.save()
+        else:
+            if self.cleaned_data["education_city"]:
+                instance.education_city = None
+            if self.cleaned_data["education_participant_type"]:
+                instance.education_participant_type = None
 
         return instance

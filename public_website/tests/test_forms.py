@@ -62,19 +62,23 @@ class ProfileForm(TestCase):
             "postal_code": "06331",
             "participant_type": ["PARTICULIER"],
             "preferred_themes": [],
+            "pick_local_theme_sante": [],
             "sante_participant_type": [],
             "sante_city": [],
+            "pick_local_theme_education": [],
             "education_participant_type": [],
             "education_city": [],
             "gives_gdpr_consent": ["on"],
         }
 
-    def generate_response(self, changed_param=None, changed_value=None):
+    def generate_response(self, list_changed_param_value: list = None):
         response = self.generate_base_user()
-        if changed_param:
-            response[changed_param] = changed_value
-            if changed_value is None:
-                del response[changed_param]
+        if list_changed_param_value:
+            for changed_param, changed_value in list_changed_param_value:
+                if changed_value is None:
+                    del response[changed_param]
+                else:
+                    response[changed_param] = changed_value
 
         response["csrfmiddlewaretoken"] = "fake-token"
         return self.client.post(reverse("inscription"), response, follow=True)
@@ -86,42 +90,78 @@ class ProfileForm(TestCase):
         self.assertRedirects(response, "/participation-intro/")
 
     def test_submit_successfully_several_interests(self):
-        response = self.generate_response("preferred_themes", ["LOGEMENT", "CLIMAT"])
+        response = self.generate_response(
+            [("preferred_themes", ["LOGEMENT", "CLIMAT"])]
+        )
         participant = Participant.objects.last()
         self.assertEqual(self.client.session.get("uuid"), str(participant.uuid))
         self.assertRedirects(response, "/participation-intro/")
         self.assertEqual(participant.subscriptions.count(), 2)
 
     def test_submit_successfully_local_interests(self):
-        response = self.generate_response("sante_participant_type", ["ELU"])
+        response = self.generate_response(
+            [
+                ("pick_local_theme_sante", ["on"]),
+                ("sante_participant_type", ["ELU"]),
+                ("sante_city", ["Trouville"]),
+                ("pick_local_theme_education", ["on"]),
+                ("education_participant_type", ["PARENT"]),
+                ("education_city", ["Rouen"]),
+            ]
+        )
         participant = Participant.objects.last()
         self.assertRedirects(response, "/participation-intro/")
         subscriptions = participant.subscriptions
+        self.assertEqual(subscriptions.count(), 2)
+        self.assertEqual(subscriptions.first().theme, "SANTE")
+        self.assertEqual(subscriptions.last().theme, "EDUCATION")
+
         self.assertEqual(participant.sante_participant_type, "ELU")
-        self.assertEqual(subscriptions.count(), 1)
-        self.assertEqual(subscriptions.last().theme, "SANTE")
+        self.assertEqual(participant.education_participant_type, "PARENT")
+        self.assertEqual(participant.sante_city, "Trouville")
+        self.assertEqual(participant.education_city, "Rouen")
+
+    def test_submit_successfully_no_local_interests(self):
+        response = self.generate_response(
+            [
+                ("pick_local_theme_sante", None),
+                ("sante_participant_type", ["ELU"]),
+                ("sante_city", ["Trouville"]),
+                ("pick_local_theme_education", None),
+                ("education_participant_type", ["PARENT"]),
+                ("education_city", ["Rouen"]),
+            ]
+        )
+        participant = Participant.objects.last()
+        self.assertRedirects(response, "/participation-intro/")
+        subscriptions = participant.subscriptions
+        self.assertEqual(subscriptions.count(), 0)
+        self.assertEqual(participant.sante_participant_type, None)
+        self.assertEqual(participant.education_participant_type, None)
+        self.assertEqual(participant.education_city, None)
+        self.assertEqual(participant.sante_city, None)
 
     def test_fails_without_consent(self):
-        response = self.generate_response("gives_gdpr_consent", None)
+        response = self.generate_response([("gives_gdpr_consent", None)])
         self.assertContains(
             response,
             "Formulaire invalide. Veuillez vérifier vos réponses.",
         )
 
     def test_fails_with_non_existing_participant_type(self):
-        response = self.generate_response("participant_type", ["Le Père Noel"])
+        response = self.generate_response([("participant_type", ["Le Père Noel"])])
         self.assertContains(
             response, "Formulaire invalide. Veuillez vérifier vos réponses."
         )
 
     def test_fails_with_invalid_email(self):
-        response = self.generate_response("email", "a@acom")
+        response = self.generate_response([("email", "a@acom")])
         self.assertContains(
             response, "Formulaire invalide. Veuillez vérifier vos réponses."
         )
 
     def test_fails_without_themes(self):
-        response = self.generate_response("preferred_themes", "[]")
+        response = self.generate_response([("preferred_themes", "[]")])
         self.assertContains(
             response, "Formulaire invalide. Veuillez vérifier vos réponses."
         )
@@ -139,19 +179,19 @@ class ProfileForm(TestCase):
         self.assertRedirects(response, "/participation-intro/")
 
     def test_99_validates_for_postal_code(self):
-        response = self.generate_response("postal_code", "99")
+        response = self.generate_response([("postal_code", "99")])
         participant = Participant.objects.last()
         self.assertEqual(self.client.session.get("uuid"), str(participant.uuid))
         self.assertRedirects(response, "/participation-intro/")
 
     def test_98_does_not_validates_for_postal_code(self):
-        response = self.generate_response("postal_code", "98")
+        response = self.generate_response([("postal_code", "98")])
         self.assertContains(response, "Formulaire invalide.")
 
     def test_ABCDE_does_not_validates_for_postal_code(self):
-        response = self.generate_response("postal_code", "ABCDE")
+        response = self.generate_response([("postal_code", "ABCDE")])
         self.assertContains(response, "Formulaire invalide.")
 
     def test_123456_does_not_validates_for_postal_code(self):
-        response = self.generate_response("postal_code", "123456")
+        response = self.generate_response([("postal_code", "123456")])
         self.assertContains(response, "Formulaire invalide.")

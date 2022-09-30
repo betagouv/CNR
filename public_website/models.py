@@ -26,6 +26,7 @@ class SanteParticipantType(models.TextChoices):
     PROSANTE = "PROSANTE", "Médecins, acteur ou actrice du secteur de la santé"
     ASSOCIATION = "ASSOCIATION", "Association ou entreprise ayant un lien avec la santé"
     ELU = "ELU", "Elu(e) local"
+    AUTRE = "AUTRE", "Autre"
 
 
 class EducationParticipantType(models.TextChoices):
@@ -34,6 +35,7 @@ class EducationParticipantType(models.TextChoices):
     ASSOCIATION = "ASSOCIATION", "Association ou entreprise ayant un lien avec l’école"
     ELU = "ELU", "Elu(e) local"
     MAIRE = "MAIRE", "Maire ou président(e) d’exécutif"
+    AUTRE = "AUTRE", "Autre"
 
 
 class Participant(models.Model):
