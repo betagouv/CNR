@@ -60,8 +60,9 @@ class Participant(models.Model):
     )
     participant_type = models.CharField(
         blank=False,
-        null=True,
+        null=False,
         choices=ParticipantType.choices,
+        default=ParticipantType.CITOYEN,
         max_length=11,
     )
     sante_city = models.CharField(
