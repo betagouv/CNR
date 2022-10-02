@@ -1,7 +1,78 @@
-<div class="fr-container fr-my-6w">
-  <div class="fr-grid-row fr-grid-row--gutters">
-    <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
-      <h1>Le conseil national de la refondation commence à 12H00</h1>
+{% load static dsfr_tags %}
+{% load sass_tags %}
+
+<!doctype html>
+<html lang="fr" data-fr-scheme="system" {% if SITE_CONFIG.mourning %}data-fr-mourning{% endif %}>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="Citoyennes et citoyens, partenaires sociaux, professionnels, élus : nous avons tous une voix et des idées à apporter pour faire avancer notre pays. Le Conseil National de la Refondation vous propose plusieurs formats pour échanger ensemble et de manière constructive sur les défis à venir: au niveau national avec des ateliers et des consultations et au niveau local avec des concertations.">
+  <!-- OpenGraph metadata -->
+  <meta property="og:title" content="Conseil National de la Refondation - Construisons ensemble l'avenir de la France" />
+  <meta property="og:description" content="Inscrivez-vous à notre infolettre et choisissez votre niveau de participation. Citoyennes et citoyens, partenaires sociaux, professionnels, élus : nous avons tous une voix et des idées à apporter pour faire avancer notre pays. Le Conseil National de la Refondation vous propose plusieurs formats pour échanger ensemble et de manière constructive sur les défis à venir: au niveau national avec des ateliers et des consultations et au niveau local avec des concertations.">
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}" />
+  <meta property="og:image" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}/static/images/Logo_CNR.png" />
+
+  {% dsfr_css %}
+  {% dsfr_favicon %}
+  {% block extra_css %}
+    <link rel="stylesheet" href="/static/dsfr/dist/utility/utility.min.css">
+    <link href="{% sass_src 'css/style.sass' %}" rel="stylesheet" type="text/css" />
+  {% endblock extra_css %}
+
+  {% block title %}
+  <title>
+    {% if title %}
+      {{ title }} — Conseil National de la Refondation
+    {% else %}
+      Conseil National de la Refondation
+    {% endif %}
+  </title>
+  {% endblock title %}
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://stats.conseil-refondation.fr/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <!-- End Matomo Code -->
+
+</head>
+
+<body class="prelaunch-bluebody fr-my-12w">
+  <div class="fr-container">
+    <div class="fr-grid-row fr-grid-row--gutters">
+        <div class="fr-col-12 fr-col-lg-5 fr-pl-0 fr-pl-md-4w fr-pb-0">
+            <figure class="fr-content-media fr-my-0">
+                <div class="fr-content-media__img">
+                    <img src="{% static 'images/cnr_logo.svg' %}" alt="Logo du Conseil National de la Refondation" style="width:100%">
+                    <img src="/uploads/banner_img_aaa47076b8.png" alt="" style="width:100%">
+                </div>
+            </figure>
+        </div>
+        <div class="fr-col-lg-6 fr-col-offset-lg-1">
+            <h1 class="fr-mt-3w fr-mt-md-5w fr-mb-5w">Construisons ensemble l'avenir de la France</h1>
+            <p class="fr-mb-3w">
+              Une nouvelle méthode pour construire, ensemble et au plus près du terrain, des solutions pour faire face aux défis de l'avenir.
+              <br>
+              <br>
+              <b>
+                Lancement lundi 2 octobre à 12h00
+              </b>
+              <br>
+              <span class="fr-text--sm">Heure avancée d’Europe centrale (CEST) +0200 UTC</span>
+            </p>
+        </div>
     </div>
   </div>
-</div>
+</body>
