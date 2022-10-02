@@ -60,14 +60,14 @@ INSTALLED_APPS = [
     "public_website",
     "surveys",
     "behave_django",
-    "debug_toolbar",
+    # "debug_toolbar",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    # "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -275,3 +275,5 @@ MTCAPTCHA_PUBLIC_KEY = os.getenv("MTCAPTCHA_PUBLIC_KEY", "")
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 SESSION_COOKIE_AGE = 60 * 60
+
+IS_WAIT_PAGE_ON = os.getenv("IS_WAIT_PAGE_ON", False)
