@@ -114,3 +114,11 @@ def fonctionnement_view(request):
     return render(
         request, "public_website/fonctionnement.html", {"title": "Une nouvelle méthode"}
     )
+
+
+def pre_launch_view(request):
+    return render(
+        request,
+        "public_website/pre_launch.html",
+        {"title": "Conseil national de la refondation"},
+    )
