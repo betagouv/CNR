@@ -1,5 +1,4 @@
-from django.shortcuts import reverse
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import resolve
 
 from public_website import views
@@ -88,3 +87,20 @@ class TestNoAdmin(TestCase):
     def test_admin_app_returns_404(self):
         response = self.client.get("/admin")
         self.assertEqual(response.status_code, 404)
+
+
+class TestPreLaunch(TestCase):
+    @override_settings(ROOT_URLCONF="cnr.pre_launch_urls")
+    def test_pre_launch_index_returns_correct_view(self):
+        match = resolve("/")
+        self.assertEqual(match.func, views.pre_launch_view)
+
+    @override_settings(ROOT_URLCONF="cnr.pre_launch_urls")
+    def test_pre_launch_index_returns_correct_template(self):
+        response = self.client.get("/")
+        self.assertTemplateUsed(response, "public_website/pre_launch.html")
+
+    @override_settings(ROOT_URLCONF="cnr.urls")
+    def test_pre_launch_index_returns_correct_template_after_launch(self):
+        response = self.client.get("/")
+        self.assertTemplateUsed(response, "public_website/index.html")

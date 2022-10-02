@@ -151,7 +151,12 @@ CSP_CONNECT_SRC = [
     "googleads.g.doubleclick.net/",
 ]
 
-ROOT_URLCONF = "cnr.urls"
+IS_WAIT_PAGE_ON = os.getenv("IS_WAIT_PAGE_ON", False)
+
+if IS_WAIT_PAGE_ON:
+    ROOT_URLCONF = "cnr.pre_launch_urls"
+else:
+    ROOT_URLCONF = "cnr.urls"
 
 TEMPLATES = [
     {
@@ -275,5 +280,3 @@ MTCAPTCHA_PUBLIC_KEY = os.getenv("MTCAPTCHA_PUBLIC_KEY", "")
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 SESSION_COOKIE_AGE = 60 * 60
-
-IS_WAIT_PAGE_ON = os.getenv("IS_WAIT_PAGE_ON", False)
