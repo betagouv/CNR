@@ -115,6 +115,17 @@
           fbq('init', '1456019414903044');
           fbq('track', 'PageView');
         }
+        if(choices['Google_Ads']){
+          const s = document.createElement('script');
+          s.setAttribute('src', 'https://www.googletagmanager.com/gtag/js?id=AW-10990047927');
+          s.async = true;
+          document.head.appendChild(s);
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-10990047927');
+        }
       })
     })
   </script>
