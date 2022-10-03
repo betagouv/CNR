@@ -106,6 +106,7 @@ CSP_IMG_SRC = [
     "*.google.com",
     "*.gstatic.com",
     "*.facebook.com",
+    "*.google.fr",
 ]
 CSP_STYLE_SRC = [
     "'self'",
@@ -131,9 +132,12 @@ CSP_SCRIPT_SRC = [
     "service2.mtcaptcha.com",
     "'sha256-jU1pIGvEWqCd3fkxyXEsy7NoGw0NZLsrWRt69jP8m6g='",  # MTCaptcha staging public key
     "'sha256-taOKAZWPEC2SOqviO83qxLRLXWLc7lk22f4uZzbNsxU='",  # MTCaptcha production public key
-    "'sha256-JrtSQ2bkirD+nl4xwhY531dgeb8mNXVmku3TP69LZZM='",  # Axeptio
+    "'sha256-Oa6BZnRhi/9APENlptbCGkRRDfZFnkgCefn2wen8cYM='",  # Axeptio
     "connect.facebook.net",
     "static.axept.io",
+    "https://www.googletagmanager.com/gtag/js",
+    "https://www.googleadservices.com/pagead/conversion_async.js",
+    "https://googleads.g.doubleclick.net/",
 ]
 CSP_CONNECT_SRC = [
     "connect.facebook.net",
@@ -141,6 +145,9 @@ CSP_CONNECT_SRC = [
     "stats.conseil-refondation.fr",
     "client.axept.io",
     "api.axept.io",
+    "googletagmanager.com",
+    "googleadservices.com",
+    "https://googleads.g.doubleclick.net/",
 ]
 
 ROOT_URLCONF = "cnr.urls"
