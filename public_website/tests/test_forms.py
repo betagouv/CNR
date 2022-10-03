@@ -199,3 +199,8 @@ class ProfileForm(TestCase):
     def test_returning_email_should_not_duplicate(self):
         response = self.generate_response([("email", "")])
         self.assertContains(response, "Formulaire invalide.")
+
+    def test_empty_user_doesnt_prevent_new_subscription(self):
+        Participant.objects.create(email="")
+        response = self.generate_response()
+        self.assertRedirects(response, "/participation-intro/")
