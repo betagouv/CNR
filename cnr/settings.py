@@ -97,7 +97,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = "DENY"
 REFERRER_POLICY = "same-origin"
 CSP_DEFAULT_SRC = ["'self'", "data:", "localhost:" + runserver.default_port]
-CSP_FRAME_SRC = ["*.youtube.com", "*.mtcaptcha.com"]
+CSP_FRAME_SRC = ["*.youtube.com", "*.mtcaptcha.com", "*.facebook.com"]
 CSP_IMG_SRC = [
     "'self'",
     "data:",
@@ -137,7 +137,7 @@ CSP_SCRIPT_SRC = [
     "static.axept.io",
     "https://www.googletagmanager.com/gtag/js",
     "https://www.googleadservices.com/pagead/conversion_async.js",
-    "https://googleads.g.doubleclick.net/",
+    "googleads.g.doubleclick.net/",
 ]
 CSP_CONNECT_SRC = [
     "connect.facebook.net",
@@ -147,7 +147,7 @@ CSP_CONNECT_SRC = [
     "api.axept.io",
     "googletagmanager.com",
     "googleadservices.com",
-    "https://googleads.g.doubleclick.net/",
+    "googleads.g.doubleclick.net/",
 ]
 
 ROOT_URLCONF = "cnr.urls"
