@@ -28,7 +28,7 @@ class SanteParticipantType(models.TextChoices):
         "ASSOCIATION",
         "Organisation ayant un lien avec mon territoire de santé",
     )
-    ELU = "ELU", "Elu(e) local"
+    ELU = "ELU", "Élu(e)"
     AUTRE = "AUTRE", "Autre"
 
 
@@ -39,7 +39,7 @@ class EducationParticipantType(models.TextChoices):
         "ASSOCIATION",
         "Organisation ayant un lien avec l’établissement scolaire",
     )
-    ELU = "ELU", "Elu(e)"
+    ELU = "ELU", "Élu(e)"
     AUTRE = "AUTRE", "Autre"
 
 
