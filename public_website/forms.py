@@ -14,7 +14,6 @@ class RegisterForm(Form):
     )
 
     gives_gdpr_consent = forms.BooleanField(
-        label="J'ai lu et j'accepte les CGU et la politique de protection des données",
         required=True,
     )
 
@@ -61,9 +60,7 @@ class ProfileForm(ModelForm):
         required=False,
     )
 
-    gives_gdpr_consent = forms.BooleanField(
-        label="J'ai lu et j'accepte les CGU et la politique de protection des données",
-    )
+    gives_gdpr_consent = forms.BooleanField()
 
     pick_local_theme_sante = forms.BooleanField(
         label="Pour améliorer notre santé", required=False
