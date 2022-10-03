@@ -52,7 +52,7 @@ def survey_intro_view(request):
 def survey_view(request, label):
     def format_request_session(session, label):
         uuid = session.get("uuid", None)
-        selected_surveys = session.get("selected_surveys", None)
+        selected_surveys = session.get("selected_surveys", [])
         expected_label = label in selected_surveys
 
         for mandatory_attribute in [uuid, expected_label, selected_surveys]:
