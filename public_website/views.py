@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.db import IntegrityError
 from django.shortcuts import redirect, render
 
 from public_website.email_provider import send_participant_profile_to_email_provider
