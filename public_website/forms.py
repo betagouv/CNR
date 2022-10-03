@@ -100,8 +100,9 @@ class ProfileForm(ModelForm):
         ]
 
     def save(self, commit=True, *args, **kwargs):
-        instance = super(ProfileForm, self).save(commit=commit)
+        instance = super(ProfileForm, self).save(commit=False)
         instance.email = self.cleaned_data["email"]
+        instance.save()
         preferred_themes = self.cleaned_data["preferred_themes"]
         for theme in preferred_themes:
             subscription = models.Subscription(participant_id=instance.id, theme=theme)
