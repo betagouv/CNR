@@ -22,7 +22,7 @@ class ParticipantType(models.TextChoices):
 
 
 class SanteParticipantType(models.TextChoices):
-    USAGER = "USAGER", "Patient"
+    USAGER = "USAGER", "Usager ou usagère (patient(e), accompagnant(e) ...)"
     PROSANTE = "PROSANTE", "Personnel soignant"
     ASSOCIATION = (
         "ASSOCIATION",
