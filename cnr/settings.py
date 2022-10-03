@@ -141,6 +141,7 @@ CSP_SCRIPT_SRC = [
 ]
 CSP_CONNECT_SRC = [
     "connect.facebook.net",
+    "*.facebook.com",
     "'self'",
     "stats.conseil-refondation.fr",
     "client.axept.io",
