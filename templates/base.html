@@ -16,12 +16,17 @@
   <meta property="og:image" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}/static/images/Logo_CNR.png" />
 
   {% dsfr_css %}
-  {% dsfr_favicon %}
   {% block extra_css %}
     <link rel="stylesheet" href="/static/dsfr/dist/utility/utility.min.css">
     <link href="{% sass_src 'css/style.sass' %}" rel="stylesheet" type="text/css" />
   {% endblock extra_css %}
-
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/favico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favico/favicon-16x16.png">
+    <link rel="manifest" href="/static/site.webmanifest">
+    <link rel="mask-icon" href="/static/images/favico/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
   {% block title %}
   <title>
     {% if title %}
