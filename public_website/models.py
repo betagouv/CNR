@@ -5,7 +5,7 @@ from django.db import models
 
 class Theme(models.TextChoices):
     CLIMAT = "CLIMAT", "Climat et biodiversité"
-    VIEILLISSEMENT = "VIEILLISSEMENT", "Générations et vieillissement"
+    VIEILLISSEMENT = "VIEILLISSEMENT", "Bien vieillir"
     SOUVERAINETE = "SOUVERAINETE", "Souveraineté économique"
     TRAVAIL = "TRAVAIL", "Futur du travail"
     SANTE = "SANTE", "Notre santé"
