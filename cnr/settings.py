@@ -130,8 +130,8 @@ CSP_SCRIPT_SRC = [
     "stats.conseil-refondation.fr",  # matomo
     "service.mtcaptcha.com",
     "service2.mtcaptcha.com",
-    "'sha256-jU1pIGvEWqCd3fkxyXEsy7NoGw0NZLsrWRt69jP8m6g='",  # MTCaptcha staging public key
-    "'sha256-taOKAZWPEC2SOqviO83qxLRLXWLc7lk22f4uZzbNsxU='",  # MTCaptcha production public key
+    "'sha256-7I5+oMehC+KBd+/dcrEMSPXSBUa0CSjemqYTkGftfeo='",  # MTCaptcha staging public key
+    "'sha256-GWPBP28u9s4u/wssaakyNjieplIhhXg1ExHLViqsF6s='",  # MTCaptcha production public key
     "'sha256-Oa6BZnRhi/9APENlptbCGkRRDfZFnkgCefn2wen8cYM='",  # Axeptio
     "connect.facebook.net",
     "static.axept.io",
