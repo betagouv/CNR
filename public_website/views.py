@@ -57,6 +57,14 @@ def accessibilite_view(request):
     )
 
 
+def accessibilite_demarche_view(request):
+    return render(
+        request,
+        "public_website/accessibilite_demarche.html",
+        {"title": "Démarche d'accessibilité"},
+    )
+
+
 def confidentialite_view(request):
     return render(
         request,
