@@ -111,7 +111,9 @@ def inscription_view(request):
                 error_message = "Formulaire invalide. Veuillez vérifier vos réponses."
                 messages.error(request, error_message)
                 return render(
-                    request, "public_website/inscription.html", {"form": form}
+                    request,
+                    "public_website/inscription.html",
+                    {"form": form, "title": "Inscription"},
                 )
 
             success_message = "Votre inscription est enregistrée : vous serez tenu au courant des consultations à venir sur vos thématiques sélectionnées."
@@ -123,7 +125,11 @@ def inscription_view(request):
             error_message = "Formulaire invalide. Veuillez vérifier vos réponses."
             messages.error(request, error_message)
 
-    return render(request, "public_website/inscription.html", {"form": form})
+    return render(
+        request,
+        "public_website/inscription.html",
+        {"form": form, "title": "Inscription"},
+    )
 
 
 def fonctionnement_view(request):
