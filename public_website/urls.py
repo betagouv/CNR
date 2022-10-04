@@ -10,4 +10,9 @@ urlpatterns = [
     path("mentions-legales/", views.mentions_legales_view, name="mentions_legales"),
     path("accessibilite/", views.accessibilite_view, name="accessibilite"),
     path("confidentialite/", views.confidentialite_view, name="confidentialite"),
+    path(
+        "accessibilite-demarche/",
+        views.accessibilite_demarche_view,
+        name="accessibilite_demarche",
+    ),
 ]
