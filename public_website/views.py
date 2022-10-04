@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.db import IntegrityError
 from django.shortcuts import redirect, render
 
 from public_website.email_provider import send_participant_profile_to_email_provider
@@ -91,12 +92,19 @@ def inscription_view(request):
                     form = ProfileForm(request.POST, instance=participant)
             except Participant.DoesNotExist:
                 pass
-
-            participant = form.save()
-            participant.registration_success = (
-                send_participant_profile_to_email_provider(participant)
-            )
-            participant.save()
+            try:
+                participant = form.save()
+                participant.registration_success = (
+                    send_participant_profile_to_email_provider(participant)
+                )
+                participant.save()
+            except IntegrityError:
+                form = ProfileForm(request.POST, initial=form.data)
+                error_message = "Formulaire invalide. Veuillez vérifier vos réponses."
+                messages.error(request, error_message)
+                return render(
+                    request, "public_website/inscription.html", {"form": form}
+                )
 
             success_message = "Votre inscription est enregistrée : vous serez tenu au courant des consultations à venir sur vos thématiques sélectionnées."
             messages.success(request, success_message)

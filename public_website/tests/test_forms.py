@@ -195,3 +195,12 @@ class ProfileForm(TestCase):
     def test_123456_does_not_validates_for_postal_code(self):
         response = self.generate_response([("postal_code", "123456")])
         self.assertContains(response, "Formulaire invalide.")
+
+    def test_returning_email_should_not_duplicate(self):
+        response = self.generate_response([("email", "")])
+        self.assertContains(response, "Formulaire invalide.")
+
+    def test_empty_user_doesnt_prevent_new_subscription(self):
+        Participant.objects.create(email="")
+        response = self.generate_response()
+        self.assertRedirects(response, "/participation-intro/")
