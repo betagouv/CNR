@@ -24,29 +24,25 @@
 
                     {% csrf_token %}
                     <div class="fr-form-group">
-                        <fieldset class="fr-fieldset"
+                        <fieldset class="fr-fieldset fr-fieldset--inline"
                                   role="group">
                             <legend class="fr-fieldset__legend fr-h2 fr-mb-0">
                                 Donnez votre avis dès maintenant
                             </legend>
                             <span class="fr-hint-text fr-mb-5w">Vous pouvez répondre à une série de questions pour donner votre avis sur les thématiques de votre choix. Pour chaque thématique, 3 à 5 questions vous seront posées. Temps estimé pour y répondre : entre 5 et 10 minutes.</span>
-                            <div class="checkbox-group">
-                              {% for survey in form.surveys %}
-                                  <div class="checkbox">
-                                      <label class="checkbox-wrapper"
-                                             for="{{ survey.id_for_label }}">
-                                          <input type="checkbox"
-                                                 class="checkbox-input"
-                                                 name="surveys"
-                                                 value="{{ survey.choice_label.label }}"
-                                                 id="{{ survey.id_for_label }}"
-                                                 {% if survey.choice_label.label in checked %}checked{% endif %}/>
-                                          <span class="checkbox-tile">
-                                              <span class="checkbox-label">{{ survey.choice_label.hr_label }}</span>
-                                          </span>
-                                      </label>
-                                  </div>
-                              {% endfor %}
+                            <div class="fr-fieldset__content">
+                                {% for survey in form.surveys %}
+                                    <div class="fr-checkbox-group">
+                                        <input type="checkbox"
+                                                name="surveys"
+                                                value="{{ survey.choice_label.label }}"
+                                                id="{{ survey.id_for_label }}"
+                                                {% if survey.choice_label.label in checked %}checked{% endif %}/>
+                                        <label class="fr-label" for="{{ survey.id_for_label }}">
+                                            {{ survey.choice_label.hr_label }}
+                                        </label>
+                                    </div>
+                                {% endfor %}
                             </div>
                         </fieldset>
                     </div>
