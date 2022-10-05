@@ -24,16 +24,42 @@
       <hr>
         <form action="{% url 'survey' label %}" method="post" id="participation_form" >
             {% csrf_token %}
+            <div class="fr-form-group">
             {% for question in questions %}
-                <div class="fr-input-group">
-                    {{ question.hr_label }}
-                    {% for field in form %}
-                        {% if field.label == question.label %}
-                          <input class="fr-input fr-mt-1w" type="text" name="{{ field.html_name }}" id="{{ field.id_for_label }}"></input>
-                        {% endif %}
+                <fieldset class="fr-fieldset fr-my-4w">
+                    <legend class="fr-fieldset__legend fr-text--xl" id="text-legend">
+                        {{ question.hr_label }}
+                    </legend>
+                 <div class="fr-fieldset__content">
+                {% if question.answer_type == "ONE_TEXT_FIELD" %}
+                    {% for i in '1'|make_list %}
+                    <div class="fr-input-group">
+                        <label class="fr-label" for="id_{{ question.label }}-A-{{ forloop.counter0 }}">Indiquez votre réponse ici</label>
+                        <textarea class="fr-input fr-mt-1w" type="textarea" name="{{ question.label }}-A-{{ forloop.counter0 }}" id="id_{{ question.label }}-A-{{ forloop.counter0 }}"></textarea>
+                    </div>
                     {% endfor %}
-                </div>
+                {% endif %}
+                {% if question.answer_type == "THREE_TEXT_FIELD" %}
+                     {% for i in '123'|make_list %}
+                         <div class="fr-input-group">
+                        <label class="fr-label" for="id_{{ question.label }}-A-{{ forloop.counter0 }}">Réponse {{ forloop.counter }}</label>
+                        <input class="fr-input fr-mt-1w" type="text" name="{{ question.label }}-A-{{ forloop.counter0 }}" id="id_{{ question.label }}-A-{{ forloop.counter0 }}">
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% if question.answer_type == "FIVE_TEXT_FIELD" %}
+                     {% for i in '12345'|make_list %}
+                         <div class="fr-input-group">
+                        <label class="fr-label" for="id_{{ question.label }}-A-{{ forloop.counter0 }}">Réponse {{ forloop.counter }}</label>
+                        <input class="fr-input fr-mt-1w" type="text" name="{{ question.label }}-A-{{ forloop.counter0 }}" id="id_{{ question.label }}-A-{{ forloop.counter0 }}">
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                    </div>
+                </fieldset>
+                <hr>
             {% endfor %}
+
             <p class="fr-text--xs">Vos contributions ne seront pas rattachées à votre adresse mail et l’analyse des réponses collectives sera publiée en données ouvertes.
                 Vous pouvez participer à titre individuel, en tant qu’élu(e), professionnel(le) ou représentant(e) d’une association.</p>
 
