@@ -25,6 +25,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favico/favicon-16x16.png">
     <link rel="manifest" href="/static/site.webmanifest">
     <link rel="mask-icon" href="/static/images/favico/safari-pinned-tab.svg" color="#5bbad5">
+    <script src="/static/js/cookie-handler.js"></script>
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
   {% block title %}
@@ -121,76 +122,7 @@
 
   <script>
     
-    var CookiesHandler = function(cookieName){
-      let currentAuthorizations = {};
-      let cookiesEvents = [];
-      let thirdCookiesNames = [];
-      const self= this;
-
-      function removeAll(){
-        const authorizedList = [];
-        setAuthorizations(authorizedList);
-        console.log('remove all');
-      }
-
-      function acceptAll(){
-        const authorizedList = thirdCookiesNames;
-        setAuthorizations(authorizedList);
-        console.log('accept all');
-      }
-
-      function confirmChoices(){
-        const authorizedList = [];
-        setAuthorizations(authorizedList);
-      }
-
-      function initEvents(params){
-        params.acceptAllButton.addEventListener('click', (e) => {
-          acceptAll();
-        });
-
-        params.acceptNoneButton.addEventListener('click', (e) => {
-          removeAll();
-        });
-
-        params.confirmChoicesButton.addEventListener('click', (e) => {
-          confirmChoices();
-        });
-
-        cookiesEvents = thirdCookiesNames.map(thirdCookieName=> {
-          self.addEventListener(thirdCookieName, params.events[thirdCookieName]);
-          return new Event(thirdCookieName);   
-        })    
-      }
-
-      function init(params){
-        thirdCookiesNames = Object.keys(params.events);
-        currentAuthorizations = getAuthorizations();
-        initEvents(params);
-        dispatchCookies(currentAuthorizations);
-      }
-
-      function dispatchCookies(authorizedList){
-        cookiesEvents.map(event=> {
-          if(authorizedList.includes(event.type)){    
-            self.dispatchEvent(event);
-          }
-        })
-      }
-
-      function setAuthorizations(authorizedList){
-        localStorage.setItem('cnrAuthorisedCookies', authorizedList);
-        dispatchCookies(authorizedList);
-      }
-
-      function getAuthorizations(){
-        return localStorage.getItem('cnrAuthorisedCookies').split(',') || [];
-      }
-
-      return {
-        init
-      }
-    };
+    
 
     document.addEventListener("DOMContentLoaded", function() {
       
