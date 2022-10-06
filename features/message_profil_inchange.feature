@@ -8,8 +8,8 @@ Fonctionnalité: Formulaire d'inscription
         Et je remplis le champ "Adresse électronique" avec "micheline@france.org"
         Et je remplis le champ "Code postal" avec "12345"
         Et je choisis "Particulier" pour "Je suis :"
-        Et je choisis "Climat" pour "Les thématiques sur lesquelles je veux m'investir"
-        Et je coche la case "j'accepte les CGU"
+        Et je choisis "Climat" pour "Je veux contribuer aux thématiques nationales"
+        Et je coche la case "J'ai lu et j'accepte les"
         Et je soumets le formulaire
 
     Scénario: On me confirme mon inscription
@@ -21,8 +21,8 @@ Fonctionnalité: Formulaire d'inscription
         Et je remplis le champ "Adresse électronique" avec "micheline@france.org"
         Et je remplis le champ "Code postal" avec "54321"
         Et je choisis "Particulier" pour "Je suis :"
-        Et je choisis "Climat" pour "Les thématiques sur lesquelles je veux m'investir"
-        Et je choisis "Santé" pour "Les thématiques sur lesquelles je veux m'investir"
-        Et je coche la case "j'accepte les CGU"
+        Et je choisis "Climat" pour "Je veux contribuer aux thématiques nationales"
+        Et je choisis "Futur du travail" pour "Je veux contribuer aux thématiques nationales"
+        Et je coche la case "J'ai lu et j'accepte les"
         Et je soumets le formulaire
         Alors je peux lire "Votre profil est déjà rempli. Il n'a pas été mis à jour" dans la page

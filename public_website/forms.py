@@ -56,7 +56,6 @@ class ProfileForm(ModelForm):
     preferred_themes = forms.MultipleChoiceField(
         choices=available_themes,
         widget=forms.CheckboxSelectMultiple,
-        label="Les thématiques sur lesquelles je veux m'investir :",
         required=False,
     )
 
