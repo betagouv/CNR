@@ -1,6 +1,6 @@
 from django.test import TestCase, tag
 
-from public_website.factories import SubscriptionFactory
+from public_website.factories import ParticipantFactory, SubscriptionFactory
 from public_website.models import Theme
 from surveys import forms
 from surveys.factories import SurveyFactory, SurveyQuestionFactory
@@ -101,11 +101,23 @@ class SurveyParticipationModelTest(TestCase):
         SurveyFactory(theme=Theme.EDUCATION, label="first_survey_edu")
         survey_2 = SurveyFactory(theme=Theme.EDUCATION, label="second_survey_edu")
         SurveyFactory(theme=Theme.SANTE)
-        subscription_edu = SubscriptionFactory(theme=Theme.EDUCATION)
+
+        participant = ParticipantFactory()
+        subscription_edu = SubscriptionFactory(participant = participant, theme=Theme.EDUCATION)
         survey_participation = SurveyParticipation(
             participant=subscription_edu.participant, survey=survey_2
         )
         survey_participation.save()
         last_saved_item = SurveyParticipation.objects.last()
-        self.assertEqual(last_saved_item.survey.label, "second_survey_edu")
-        self.assertEqual(last_saved_item.participant.first_name, "Prudence")
+        self.assertEqual(last_saved_item.survey, survey_2)
+        self.assertEqual(last_saved_item.participant, participant)
+
+    def test_survey_unavailable_if_already_answered(self):
+        survey = SurveyFactory()
+
+        participant = ParticipantFactory()
+        self.assertTrue(survey in participant.get_available_surveys())
+        paticipation = SurveyParticipation(participant= participant, survey=survey)
+        paticipation.save()
+
+        self.assertFalse(survey in participant.get_available_surveys())
