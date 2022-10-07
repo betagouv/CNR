@@ -98,7 +98,7 @@
                                 <div class="fr-fieldset__content">
                                     {% for theme in form.preferred_themes %}
                                     <div class="fr-checkbox-group">
-                                        <input type="checkbox" id="{{ theme.id_for_label }}" name="{{ theme.id_for_label }}">
+                                        {{ theme.tag }}
                                         <label class="fr-label" for="{{ theme.id_for_label }}">{{ theme.choice_label }}
                                         </label>
                                     </div>
