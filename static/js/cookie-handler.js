@@ -70,7 +70,13 @@ const CookiesHandler = function (cookieName, dsfr) {
     }
 
     function closeBanner() {
-        banner.hidden = true;
+        banner.classList.remove('fr-unhidden');
+        banner.classList.add('fr-hidden');
+    }
+
+    function openBanner() {
+        banner.classList.remove('fr-hidden');
+        banner.classList.add('fr-unhidden');
     }
 
     function closeModal() {
@@ -88,9 +94,9 @@ const CookiesHandler = function (cookieName, dsfr) {
     function getAuthorizations() {
         console.log(localStorage.getItem('cnrAuthorisedCookies'));
         if (localStorage.getItem('cnrAuthorisedCookies') === null) {
+            openBanner();
             return [];
         } else {
-            closeBanner();
             return localStorage.getItem('cnrAuthorisedCookies').split(',');
         }
     }
