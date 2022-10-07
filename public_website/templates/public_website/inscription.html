@@ -25,11 +25,13 @@
                 <form action="{% url 'inscription' %}" method="post" id="inscription_form">
                     {% csrf_token %}
                     <div class="fr-form-group">
+                        <span class="fr-hint-text">Les champs marqués d'un astérisque sont obligatoires.</span>
+                        <hr>
                         <fieldset class="fr-fieldset fr-my-4w">
                             <div class="fr-grid-row fr-grid-row--gutters">
                             <div class="fr-col-12">
                                 <div class="fr-input-group">
-                                    <label class="fr-label" for="email">{{ form.email.label }}</label>
+                                    <label class="fr-label" for="email">{{ form.email.label }} *</label>
                                     <span class="fr-hint-text">Format attendu : nom@domaine.fr</span>
                                     <input class="fr-input" type="email" id="email" name="email"
                                     {% if form.data %}
@@ -44,7 +46,7 @@
 
                             <div class="fr-col-12 fr-col-sm-6">
                                 <div class="fr-input-group">
-                                    <label class="fr-label" for="first_name">{{ form.first_name.label }}</label>
+                                    <label class="fr-label" for="first_name">{{ form.first_name.label }} *</label>
                                     <span class="fr-hint-text">Pour personnaliser les futurs échanges</span>
                                     <input class="fr-input" type="text" id="first_name" name="first_name" value="{{ form.data.first_name }}" autocomplete="given-name" required>
                                     {{ form.errors.first_name }}
@@ -53,9 +55,9 @@
 
                             <div class="fr-col-12 fr-col-sm-6">
                                 <div class="fr-input-group">
-                                    <label class="fr-label" for="postal_code">{{ form.postal_code.label }}</label>
+                                    <label class="fr-label" for="postal_code">{{ form.postal_code.label }} *</label>
                                     <span class="fr-hint-text">Si vous résidez à l'étranger, saisissez 99</span>
-                                    <input class="fr-input" type="text" id="postal_code" name="postal_code" value="{{ form.data.postal_code }}" autocomplete="postal-code" inputmode="numeric" pattern="^(99)|[0-9]{5}$">
+                                    <input class="fr-input" type="text" id="postal_code" name="postal_code" value="{{ form.data.postal_code }}" autocomplete="postal-code" inputmode="numeric" pattern="^(99)|[0-9]{5}$" required>
                                     {{ form.errors.postal_code }}
                                 </div>
                             </div>
@@ -64,7 +66,7 @@
 
                         <div class="fr-form-group" id="participant_type_field">
                             <fieldset class="fr-fieldset">
-                                <legend class="fr-fieldset__legend fr-text--regular">{{ form.participant_type.label }}</legend>
+                                <legend class="fr-fieldset__legend fr-text--regular">{{ form.participant_type.label }} * :</legend>
                                 <div class="fr-fieldset__content">
                                     {{ form.errors.participant_type }}
                                     {% for type in form.participant_type  %}
@@ -192,7 +194,7 @@
                                     <div class="fr-checkbox-group">
                                         <input type="checkbox" id="id_gives_gdpr_consent" name="gives_gdpr_consent" required>
                                         <label class="fr-label" for="id_gives_gdpr_consent">
-                                            J'ai lu et j'accepte les <a title="Conditions Générales d'Utilisation - ouvre une nouvelle fenêtre" class="fr-link" href="{% url 'cgu' %}" target="_blank" rel="noopener">CGU</a> et la <a title="Politique de protection des données - ouvre une nouvelle fenêtre" class="fr-link" href="{% url 'confidentialite' %}" target="_blank" rel="noopener">politique de protection des données</a>
+                                            <p>J'ai lu et j'accepte les <a title="Conditions Générales d'Utilisation - ouvre une nouvelle fenêtre" class="fr-link" href="{% url 'cgu' %}" target="_blank" rel="noopener">CGU</a> et la <a title="Politique de protection des données - ouvre une nouvelle fenêtre" class="fr-link" href="{% url 'confidentialite' %}" target="_blank" rel="noopener">politique de protection des données</a>     *</p>
                                         </label>
                                         {{ form.errors.gives_gdpr_consent }}
                                     </div>
