@@ -1,24 +1,30 @@
-const CookiesHandler = function (cookieName) {
+const CookiesHandler = function (cookieName, dsfr) {
     let currentAuthorizations = {};
     let cookiesEvents = [];
     let thirdCookiesNames = [];
+    let modal = {};
+    let banner = {};
     const self = this;
 
     function removeAll() {
         const authorizedList = [];
         setAuthorizations(authorizedList);
-        console.log('remove all');
+        closeBanner();
     }
 
     function acceptAll() {
         const authorizedList = thirdCookiesNames;
         setAuthorizations(authorizedList);
-        console.log('accept all');
+        closeBanner();
     }
 
     function confirmChoices() {
-        const authorizedList = [];
+        const authorizedList = thirdCookiesNames.filter(thirdCookieName =>
+            document.querySelector('input[name=' + thirdCookieName + ']:checked').value === '1'
+        );
         setAuthorizations(authorizedList);
+        closeModal();
+        closeBanner();
     }
 
     function initEvents(params) {
@@ -41,14 +47,17 @@ const CookiesHandler = function (cookieName) {
     }
 
     function init(params) {
+        modal = params.modal;
+        banner = params.banner;
         thirdCookiesNames = Object.keys(params.events);
         currentAuthorizations = getAuthorizations();
         initEvents(params);
+        initCheckboxes(currentAuthorizations);
         dispatchCookies(currentAuthorizations);
     }
 
     function dispatchCookies(authorizedList) {
-        cookiesEvents.map(event => {
+        cookiesEvents.forEach(event => {
             if (authorizedList.includes(event.type)) {
                 self.dispatchEvent(event);
             }
@@ -60,8 +69,30 @@ const CookiesHandler = function (cookieName) {
         dispatchCookies(authorizedList);
     }
 
+    function closeBanner() {
+        banner.hidden = true;
+    }
+
+    function closeModal() {
+        dsfr(modal).modal.conceal();
+    }
+
+    function initCheckboxes(authorizedList) {
+        thirdCookiesNames.forEach(thirdCookieName =>
+            document.querySelectorAll('input[name=' + thirdCookieName + ']').forEach(radio =>
+                radio.checked = (radio.value === '1' && authorizedList.includes(thirdCookieName)) || (!authorizedList.includes(thirdCookieName))
+            )
+        );
+    }
+
     function getAuthorizations() {
-        return localStorage.getItem('cnrAuthorisedCookies').split(',') || [];
+        console.log(localStorage.getItem('cnrAuthorisedCookies'));
+        if (localStorage.getItem('cnrAuthorisedCookies') === null) {
+            return [];
+        } else {
+            closeBanner();
+            return localStorage.getItem('cnrAuthorisedCookies').split(',');
+        }
     }
 
     return {
