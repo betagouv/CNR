@@ -85,14 +85,17 @@ const CookiesHandler = function (cookieName, dsfr) {
 
     function initCheckboxes(authorizedList) {
         thirdCookiesNames.forEach(thirdCookieName =>
-            document.querySelectorAll('input[name=' + thirdCookieName + ']').forEach(radio =>
-                radio.checked = (radio.value === '1' && authorizedList.includes(thirdCookieName)) || (!authorizedList.includes(thirdCookieName))
-            )
+            document.querySelectorAll('input[name=' + thirdCookieName + ']').forEach(radio => {
+                if (radio.value === '1') {
+                    radio.checked = authorizedList.includes(thirdCookieName);
+                } else {
+                    radio.checked = !authorizedList.includes(thirdCookieName);
+                }
+            })
         );
     }
 
     function getAuthorizations() {
-        console.log(localStorage.getItem('cnrAuthorisedCookies'));
         if (localStorage.getItem('cnrAuthorisedCookies') === null) {
             openBanner();
             return [];
