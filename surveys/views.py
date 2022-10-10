@@ -34,7 +34,6 @@ def survey_intro_view(request):
             {
                 "form": form,
                 "checked": pre_checked_surveys,
-                "title": "Contribuez dès maintenant",
             },
         )
 

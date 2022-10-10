@@ -1,7 +1,6 @@
 from unittest.mock import ANY
 
-from behave import *
-from selenium.common import exceptions
+from behave import then, when
 from selenium.webdriver.common.by import By
 
 # The Selenium API could be better in its interface so add a bit of
@@ -15,6 +14,17 @@ Find a label containing LABEL on the page
 def find_label(context, label):
     return context.browser.find_element(
         By.XPATH, '//label[contains(.,"{}")]'.format(label)
+    )
+
+
+"""
+Find a checkbox by its label on the page
+"""
+
+
+def find_checkbox_label(context, label):
+    return context.browser.find_element(
+        By.XPATH, '//label[contains(.,"{}")]/span'.format(label)
     )
 
 
@@ -46,37 +56,37 @@ def find_option_with_label(context, legend, value):
 
 
 @when("je me rends sur la page d'accueil")
-def step_impl(context):
+def step_impl1(context):
     context.browser.get(context.get_url("/"))
 
 
 @then('je peux lire "{}" dans la page')
-def step_impl(context, text):
+def step_impl2(context, text):
     assert text in context.browser.find_element(By.TAG_NAME, "main").text
 
 
 @then('la page est titrée "{}"')
-def step_impl(context, title):
+def step_impl3(context, title):
     assert context.browser.title == title
 
 
 @when('je remplis le champ "{}" avec "{}"')
-def step_impl(context, label, value):
+def step_impl4(context, label, value):
     fill_input_with_label(context, label, value)
 
 
 @when('je coche la case "{}"')
-def step_impl(context, label):
-    find_label(context, label).click()
+def step_impl5(context, label):
+    find_checkbox_label(context, label).click()
 
 
 @when('je choisis "{}" pour "{}"')
-def step_impl(context, value, legend):
+def step_impl6(context, value, legend):
     find_option_with_label(context, legend, value).click()
 
 
 @when('je sélectionne "{}" pour "{}"')
-def step_impl(context, options_list, legend):
+def step_impl7(context, options_list, legend):
     options = options_list.split(", ")
 
     for option in options:
@@ -84,15 +94,15 @@ def step_impl(context, options_list, legend):
 
 
 @when('je clique sur "{}"')
-def step_impl(context, label):
+def step_impl8(context, label):
     context.browser.find_element(By.LINK_TEXT, label).click()
 
 
 @when("je soumets le formulaire")
-def step_impl(context):
+def step_impl9(context):
     context.browser.find_element(By.XPATH, '//form//*[@type="submit"]').click()
 
 
 @then('un email a été envoyé à "{}"')
-def step_impl(context, email):
+def step_impl10(context, email):
     context.mocks["sib"].assert_called_with(email, payload=ANY)
