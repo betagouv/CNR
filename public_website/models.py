@@ -102,7 +102,10 @@ class Participant(models.Model):
 
     @property
     def has_profile(self):
-        return self.postal_code is not None
+        if None in [self.postal_code, self.first_name, self.participant_type]:
+            return False
+        else: 
+            return True
 
     def get_available_surveys(self, themes: list = None):
         from surveys.models import Survey
