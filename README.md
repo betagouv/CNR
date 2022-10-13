@@ -69,7 +69,7 @@ Pour les tests E2E, si vous n'utilisez pas Docker, il vous faudra
 [Firefox](https://www.mozilla.org/fr/firefox/download/thanks/) et
 [`geckodriver`](https://github.com/mozilla/geckodriver/releases)
 accessibles sur votre machine pour lancer les tests E2E.  Sur MacOS,
-vous pouvez les installer via [brew](https://brew.sh/).
+vous pouvez les installer via [brew](https://brew.sh/) avec la commande: `brew install geckodriver`.
 
 ### via Docker
 

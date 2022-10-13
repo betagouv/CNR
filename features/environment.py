@@ -9,6 +9,7 @@ from public_website import email_provider
 def before_all(context):
     options = Options()
     options.headless = True
+    context.fixtures = ["fixtures.json"]
 
     context.browser = webdriver.Firefox(options=options)
     context.browser.set_window_size(1200, 900)

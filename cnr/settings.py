@@ -187,11 +187,16 @@ WSGI_APPLICATION = "cnr.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 postgres_url = os.getenv("DATABASE_URL")
+if DEBUG:
+    conn_max_age = 0
+else:
+    conn_max_age = int(os.getenv("DATABASE_MAX_CONN_AGE", 0))
+
 if postgres_url:
     environment_info = turn_psql_url_into_param(postgres_url)
     DATABASES = {
         "default": {
-            "CONN_MAX_AGE": 60,
+            "CONN_MAX_AGE": conn_max_age,
             "ENGINE": "django.db.backends.postgresql",
             "NAME": environment_info.get("db_name"),
             "USER": environment_info.get("db_user"),
@@ -206,7 +211,7 @@ if postgres_url:
 else:
     DATABASES = {
         "default": {
-            "CONN_MAX_AGE": 60,
+            "CONN_MAX_AGE": conn_max_age,
             "ENGINE": "django.db.backends.postgresql",
             "NAME": os.getenv("DATABASE_NAME"),
             "USER": os.getenv("DATABASE_USER"),
