@@ -126,6 +126,27 @@ class TestSurveyView(TestCase):
             fetch_redirect_response=True,
         )
 
+    def test_empty_participation_is_not_saved(self):
+        """Checks that empty contributions are not saved and don't prevent users from re-submitting in the future."""
+        survey = SurveyFactory()
+        participant = ParticipantFactory()
+        self.assertFalse(SurveyParticipation.objects.filter(participant=participant).exists())
+        last_answer_in_db = SurveyAnswer.objects.last()
+
+        response = self.client.post(
+            '/participation/survey_test_2',
+            {
+                "survey_2_Q-1-A-0": "",
+                "survey_2_Q-1-A-1": "",
+                "survey_2_Q-1-A-2": "",
+                "survey_2_Q-1-A-3": "",
+                "survey_2_Q-1-A-4": "",
+                "survey_2_Q-2-A-0": "",
+            })
+        
+        self.assertFalse(SurveyParticipation.objects.filter(participant=participant).exists())
+        self.assertEqual(SurveyAnswer.objects.last(), last_answer_in_db)
+
 
 @tag("views")
 class TestSurveyIntro(TestCase):
