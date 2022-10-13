@@ -160,11 +160,9 @@ class ProfileForm(TestCase):
             response, "Formulaire invalide. Veuillez vérifier vos réponses."
         )
 
-    def test_fails_without_themes(self):
-        response = self.generate_response([("preferred_themes", "[]")])
-        self.assertContains(
-            response, "Formulaire invalide. Veuillez vérifier vos réponses."
-        )
+    def test_valid_without_themes(self):
+        response = self.generate_response([("preferred_themes", [])])
+        self.assertRedirects(response, "/participation-intro/")
 
     def test_returning_user_gets_confirmation_form_message(self):
         self.generate_response()
