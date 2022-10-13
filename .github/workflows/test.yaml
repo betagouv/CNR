@@ -33,7 +33,7 @@ jobs:
       - name: Run the unit tests
         run: |
           make test-unit
-      - name: Run the e2e tests
-        uses: browser-actions/setup-geckodriver@latest
-        run: |
-          make test-e2e
+      # - name: Run the e2e tests
+      #   uses: browser-actions/setup-geckodriver@latest
+      #   run: |
+      #     make test-e2e
