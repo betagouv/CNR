@@ -149,7 +149,7 @@ def survey_view(request, label):
             "current_step": current_survey_step,
             "steps": len(selected_surveys),
             "questions": questions,
-            "title": current_survey.hr_label,
+            "title": f"Questionnaire {current_survey.hr_label}",
         },
     )
 
