@@ -16,6 +16,25 @@ def find_label(context, label):
     )
 
 
+def find_button(context, id):
+    """
+    Find a button by id in the page
+    """
+    return context.browser.find_element(By.XPATH, '//button[@id="{}"]'.format(id))
+
+
+def find_cookie_choice(context, name, value):
+    """
+    Find label of a radio button with name and value
+    """
+    return context.browser.find_element(
+        By.XPATH,
+        '//input[@name="{}"][@value="{}"]/following-sibling::label[1]'.format(
+            name, value
+        ),
+    )
+
+
 def find_checkbox_label(context, label):
     """
     Find a checkbox by its label on the page
@@ -51,6 +70,37 @@ def find_option_with_label(context, legend, value):
 @when("je me rends sur la page d'accueil")
 def step_go_to_homepage(context):
     context.browser.get(context.get_url("/"))
+
+
+@when("je refuse les cookies")
+def step_refuse_cookies(context):
+    find_button(context, "acceptNone").click()
+
+
+@when("j'accepte les cookies")
+def step_accept_cookies(context):
+    find_button(context, "acceptAll").click()
+
+
+@then('j\'ai une entrée "{}" dans le local storage qui contient "{}"')
+def step_look_local_storage(context, localStorageName, cookies):
+    assert (
+        context.browser.execute_script(
+            "return localStorage.getItem('{}')".format(localStorageName)
+        )
+        == cookies
+    )
+
+
+@when("je souhaite personnaliser les cookies")
+def step_ref_cookies(context):
+    find_button(context, "chooseCookies").click()
+
+
+@when('je choisis le cookie "{}"')
+def step_choose_cookie(context, cookie):
+    find_cookie_choice(context, cookie, "1").click()
+    find_button(context, "confirmChoices").click()
 
 
 @then('je peux lire "{}" dans la page')
