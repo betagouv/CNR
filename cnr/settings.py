@@ -123,7 +123,6 @@ CSP_STYLE_SRC = [
     "'sha256-R2Vkrx5FLpmMY0750ljuQem15/f/bIrrGl+TXyzeETo='",  # mtcaptcha
     "'sha256-8kPOCl/iIr6YgWLvLnIRMrYnCJHOzs6WNYAedT41SM8='",  # mtcaptcha
     "'sha256-2Go/yMtz4sEcAbw1TnjkjLz983Zxq7frCShdJs2OobM='",  # mtcaptcha
-    "'sha256-2Go/yMtz4sEcAbw1TnjkjLz983Zxq7frCShdJs2OobM='",  # mtcaptcha
     "'sha256-g6zf946PtVM63bZ+fe9QUc3hDXp5BMl6OBmAlKhKV60='",  # mtcaptcha
     "'sha256-zqo/Gf4mmbgvoqPGTNSkHYfibgllewm/seDhWyooOOk='",  # mtcaptcha
     "'sha256-FVE4UqDzJ5GzKFQlZqU4Zq3EAxxb/T0hpPQU9k6uwkA='",  # mtcaptcha

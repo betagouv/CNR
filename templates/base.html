@@ -68,7 +68,7 @@
 
 <body>
   <div class="fr-skiplinks">
-    <nav class="fr-container" role="navigation" aria-label="Accès rapide">
+    <nav class="fr-container" aria-label="Accès rapide">
       <ul class="fr-skiplinks__list">
         <li>
             <a class="fr-link" href="#content">Accéder au contenu</a>
@@ -83,7 +83,7 @@
     {% include "blocks/header.html" %}
     {% dsfr_theme_modale %}
 
-    <main id="content" role="main">
+    <main id="content">
       {% block content %}{% endblock content %}
     </main>
 

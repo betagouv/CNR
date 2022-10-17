@@ -63,59 +63,60 @@
                             </div>
                             </div>
                         </fieldset>
+                    </div>
 
-                        <div class="fr-form-group" id="participant_type_field">
-                            <fieldset class="fr-fieldset">
-                                <legend class="fr-fieldset__legend fr-text--regular">{{ form.participant_type.label }} * :</legend>
-                                <div class="fr-fieldset__content">
-                                    {{ form.errors.participant_type }}
-                                    {% for type in form.participant_type  %}
-                                    <div class="fr-radio-group">
-                                        {{ type.tag }}
-                                        <label for="{{ type.id_for_label }}">
-                                            {{ type.choice_label }}
-                                            {% if "corps intermédiaire" in  type.choice_label %}
-                                                <span class="fr-hint-text fr-mb-5w">(association, syndicat, organisation professionnelle, ...)</span>
-                                            {% endif %}
-                                        </label>
-                                    </div>
-                                    {% endfor %}
+                    <div class="fr-form-group" id="participant_type_field">
+                        <fieldset class="fr-fieldset">
+                            <legend class="fr-fieldset__legend fr-text--regular">{{ form.participant_type.label }} * :</legend>
+                            <div class="fr-fieldset__content">
+                                {{ form.errors.participant_type }}
+                                {% for type in form.participant_type  %}
+                                <div class="fr-radio-group">
+                                    {{ type.tag }}
+                                    <label for="{{ type.id_for_label }}">
+                                        {{ type.choice_label }}
+                                        {% if "corps intermédiaire" in  type.choice_label %}
+                                            <span class="fr-hint-text fr-mb-5w">(association, syndicat, organisation professionnelle, ...)</span>
+                                        {% endif %}
+                                    </label>
                                 </div>
-                            </fieldset>
-                        </div>
+                                {% endfor %}
+                            </div>
+                        </fieldset>
+                    </div>
 
-                        <hr>
+                    <hr>
 
-                        <div class="fr-form-group">
-                            {{ form.errors.preferred_themes }}
-                            <fieldset class="fr-fieldset fr-fieldset--inline">
-                                <legend class="fr-fieldset__legend fr-h2 fr-mb-0" id='checkboxes-inline-legend'>
-                                    <h2 class="fr-h2 fr-mb-0">1. Je veux contribuer aux thématiques nationales</h2>
-                                </legend>
-                                <span class="fr-hint-text fr-mb-5w">
-                                    Vous pouvez choisir une ou plusieurs thématiques sur lesquelles vous souhaitez apporter une contribution ou participer
-                                    à des débats au plus près de chez vous. Il vous sera ensuite proposé de donner votre avis en répondant à une série
-                                    de questions.
-                                </span>
-                                <div class="fr-fieldset__content">
-                                    {% for theme in form.preferred_themes %}
-                                    <div class="fr-checkbox-group">
-                                        {{ theme.tag }}
-                                        <label class="fr-label" for="{{ theme.id_for_label }}">{{ theme.choice_label }}
-                                        </label>
-                                    </div>
-                                    {% endfor %}
+                    <div class="fr-form-group">
+                        {{ form.errors.preferred_themes }}
+                        <fieldset class="fr-fieldset fr-fieldset--inline">
+                            <legend class="fr-fieldset__legend fr-h2 fr-mb-0" id='checkboxes-inline-legend'>
+                                <h2 class="fr-h2 fr-mb-0">1. Je veux contribuer aux thématiques nationales</h2>
+                            </legend>
+                            <span class="fr-hint-text fr-mb-5w">
+                                Vous pouvez choisir une ou plusieurs thématiques sur lesquelles vous souhaitez apporter une contribution ou participer
+                                à des débats au plus près de chez vous. Il vous sera ensuite proposé de donner votre avis en répondant à une série
+                                de questions.
+                            </span>
+                            <div class="fr-fieldset__content">
+                                {% for theme in form.preferred_themes %}
+                                <div class="fr-checkbox-group">
+                                    {{ theme.tag }}
+                                    <label class="fr-label" for="{{ theme.id_for_label }}">{{ theme.choice_label }}
+                                    </label>
                                 </div>
-                            </fieldset>
-                        </div>
+                                {% endfor %}
+                            </div>
+                        </fieldset>
+                    </div>
 
-                        <hr>
+                    <hr>
 
-                        <div class="fr-form-group">
+                    <div class="fr-form-group">
                         <h2 class="fr-h2 fr-mb-0">2. Je veux m'investir localement</h2>
                         <span class="fr-hint-text fr-mb-5w">Vous recevrez par mail des conseils pour initier un projet local dans votre ville.</span>
                             
-                        <fieldset class="fr-fieldset fr-mb-2w" role="group">
+                        <fieldset class="fr-fieldset fr-mb-2w">
                             <div class="fr-fieldset__content">
                                 <div class="fr-checkbox-group">
                                     <input type="checkbox" id="id_pick_local_theme_education" name="pick_local_theme_education">
@@ -127,7 +128,7 @@
                             </div>
                         </fieldset>
                         
-                        <fieldset class="fr-fieldset" role="group">
+                        <fieldset class="fr-fieldset">
                             <div class="fr-col-12 fr-col-sm-6 fr-mb-1">
                                 <div class="fr-input-group">
                                     <label class="fr-label" for="education_city">{{ form.education_city.label }}</label>
@@ -152,7 +153,7 @@
                                 </fieldset>
                             </div>
                         </fieldset>
-                        <fieldset class="fr-fieldset fr-mb-2w" role="group">
+                        <fieldset class="fr-fieldset fr-mb-2w">
                             <div class="fr-fieldset__content">
                                 <div class="fr-checkbox-group">
                                     <input type="checkbox" id="id_pick_local_theme_sante" name="pick_local_theme_sante">
@@ -185,11 +186,12 @@
                                 {% endfor %}
                             </div>
                         </fieldset>
+                    </div>
 
                         <hr>
 
                         <div class="fr-form-group">
-                            <fieldset class="fr-fieldset" role="group">
+                            <fieldset class="fr-fieldset">
                                 <div class="fr-fieldset__content">
                                     <div class="fr-checkbox-group">
                                         <input type="checkbox" id="id_gives_gdpr_consent" name="gives_gdpr_consent" required>
