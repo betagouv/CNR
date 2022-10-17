@@ -3,6 +3,7 @@
 Fonctionnalité: Formulaire d'inscription
   Contexte:
     Quand je me rends sur la page d'accueil
+    Et je refuse les cookies
     Et je clique sur "Participer"
 
   Scénario: Je peux accéder au formulaire d'inscription depuis la page d'accueil

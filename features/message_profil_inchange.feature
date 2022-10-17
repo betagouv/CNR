@@ -3,6 +3,7 @@
 Fonctionnalité: Formulaire d'inscription
     Contexte:
         Quand je me rends sur la page d'accueil
+        Et je refuse les cookies
         Et je clique sur "Participer"
         Quand je remplis le champ "Prénom" avec "Micheline"
         Et je remplis le champ "Adresse électronique" avec "micheline@france.org"

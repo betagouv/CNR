@@ -127,8 +127,6 @@ CSP_STYLE_SRC = [
     "'sha256-g6zf946PtVM63bZ+fe9QUc3hDXp5BMl6OBmAlKhKV60='",  # mtcaptcha
     "'sha256-zqo/Gf4mmbgvoqPGTNSkHYfibgllewm/seDhWyooOOk='",  # mtcaptcha
     "'sha256-FVE4UqDzJ5GzKFQlZqU4Zq3EAxxb/T0hpPQU9k6uwkA='",  # mtcaptcha
-    "'sha256-jPZyQpI7D4ke0fa/phXRncbbLQIiMkuCkTySdu4EzXc='",  # Axeptio
-    "'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='",  # Axeptio
 ]
 CSP_SCRIPT_SRC = [
     "'self'",
@@ -138,7 +136,7 @@ CSP_SCRIPT_SRC = [
     "service2.mtcaptcha.com",
     "'sha256-7I5+oMehC+KBd+/dcrEMSPXSBUa0CSjemqYTkGftfeo='",  # MTCaptcha staging public key
     "'sha256-GWPBP28u9s4u/wssaakyNjieplIhhXg1ExHLViqsF6s='",  # MTCaptcha production public key
-    "'sha256-Oa6BZnRhi/9APENlptbCGkRRDfZFnkgCefn2wen8cYM='",  # Axeptio
+    "'sha256-1neh+DsrMKevQd7CmK4xkhFjYHtrpaiR8ncbjLw/w5E='",  # cookies handler
     "connect.facebook.net",
     "static.axept.io",
     "https://www.googletagmanager.com/gtag/js",
