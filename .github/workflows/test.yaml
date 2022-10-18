@@ -52,3 +52,8 @@ jobs:
           fi
 
           curl https://img.shields.io/badge/coverage-$total%25-$color > .github/workflows/badge.svg
+      - name: Upload coverage badge
+        - uses: actions/upload-artifact@v3
+            with:
+              name: coverage-badge
+              path: .github/workflows/badge.svg
