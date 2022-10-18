@@ -4,7 +4,6 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -38,22 +37,29 @@ jobs:
       - name: Run the e2e tests
         run: |
           make test-e2e
+  update-coverage:
+    runs-on: 
+    needs: build
+    steps:
       - name: Calculate coverage
         run: |
           coverage run manage.py test --settings cnr.settings_test
+      - name: Generate badge
+        run: |
           total=`coverage report | grep TOTAL | grep -Eo '[0-9]+%' | sed 's/%//'`
           
           if (( $(echo "$total <= 50" | bc -l) )) ; then
             color=red
-          elif (( $(echo "$total > 90" | bc -l) )); then
+          elif (( $(echo "$total > 85" | bc -l) )); then
             color=green
           else
             color=orange
           fi
 
           curl https://img.shields.io/badge/coverage-$total%25-$color > .github/workflows/badge.svg
-      - name: Upload coverage badge
-        - uses: actions/upload-artifact@v3
-            with:
-              name: coverage-badge
-              path: .github/workflows/badge.svg
+      - name: Add and commit changes
+        uses: EndBug/add-and-commit@v9.1.0
+        with:
+          author_name: "InfraBetaGouv"
+          author_email: "infra@beta.gouv.fr"
+          message: "chore: update coverage"
