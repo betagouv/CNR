@@ -1,4 +1,4 @@
-![](.github/workflows/coverage_badge.svg)
+![](./coverage_badge.svg)
 
 # CNR
 

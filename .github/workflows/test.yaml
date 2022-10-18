@@ -52,9 +52,9 @@ jobs:
             color=orange
           fi
 
-          curl https://img.shields.io/badge/coverage-$total%25-$color > .github/workflows/badge.svg
+          curl https://img.shields.io/badge/coverage-$total%25-$color > ./coverage_badge.svg
       - name: Add and commit changes
-        uses: EndBug/add-and-commit@v9.1.0
+        uses: EndBug/add-and-commit@v9.1.1
         with:
           author_name: "InfraBetaGouv"
           author_email: "infra@beta.gouv.fr"
