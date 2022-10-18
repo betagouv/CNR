@@ -37,10 +37,6 @@ jobs:
       - name: Run the e2e tests
         run: |
           make test-e2e
-  update-coverage:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Calculate coverage
         run: |
           coverage run manage.py test --settings cnr.settings_test
