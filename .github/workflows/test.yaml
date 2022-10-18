@@ -37,11 +37,11 @@ jobs:
       - name: Run the e2e tests
         run: |
           make test-e2e
-      - name: Calculate coverage
+      - name: Generate coverage badge
+        if: github.ref == 'refs/heads/main'
         run: |
           coverage run manage.py test --settings cnr.settings_test
-      - name: Generate badge
-        run: |
+          
           total=`coverage report | grep TOTAL | grep -Eo '[0-9]+%' | sed 's/%//'`
           
           if (( $(echo "$total <= 50" | bc -l) )) ; then
@@ -54,6 +54,7 @@ jobs:
 
           curl https://img.shields.io/badge/coverage-$total%25-$color > ./coverage_badge.svg
       - name: Add and commit changes
+        if: github.ref == 'refs/heads/main'
         uses: EndBug/add-and-commit@v9.1.1
         with:
           author_name: "InfraBetaGouv"
