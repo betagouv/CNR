@@ -41,3 +41,14 @@ jobs:
       - name: Calculate coverage
         run: |
           coverage run manage.py test --settings cnr.settings_test
+          total=`coverage report | grep TOTAL | grep -Eo '[0-9]+%' | sed 's/%//'`
+          
+          if (( $(echo "$total <= 50" | bc -l) )) ; then
+            color=red
+          elif (( $(echo "$total > 90" | bc -l) )); then
+            color=green
+          else
+            color=orange
+          fi
+
+          curl https://img.shields.io/badge/coverage-$total%25-$color > .github/workflows/badge.svg

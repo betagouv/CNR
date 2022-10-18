@@ -1,3 +1,5 @@
+![](.github/workflows/badge.svg)
+
 # CNR
 
 L'application web qui soutient le projet du Conseil National de la Refondation (CNR).
