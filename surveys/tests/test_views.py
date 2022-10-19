@@ -102,6 +102,25 @@ class TestSurvey(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "surveys/survey.html")
 
+    def test_no_uuid_returns_to_index(self):
+        """Checks that the page cannot be reached without providing an uuid."""
+        session = self.client.session
+        session.pop("uuid")
+        session.save()
+        response = self.client.get(f"/participation/{self.climate_survey.label}")
+        self.assertRedirects(response, reverse("index"))
+
+    def test_invalid_uuid_returns_to_index(self):
+        """Checks that the page cannot be reached with an unregistered uuid."""
+        random_uuid = uuid.uuid4()
+        self.assertFalse(Participant.objects.filter(uuid=random_uuid).exists())
+
+        session = self.client.session
+        session["uuid"] = str(random_uuid)
+        session.save()
+        response = self.client.get(f"/participation/{self.climate_survey.label}")
+        self.assertRedirects(response, reverse("index"))
+
     def test_invalid_survey_returns_to_survey_intro(self):
         response = self.client.get("/participation/not_a_label")
         self.assertRedirects(response, reverse("survey_home"))
