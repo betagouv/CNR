@@ -156,15 +156,15 @@ class TestSurveyIntro(TestCase):
         session["uuid"] = str(self.prudence.uuid)
         session.save()
 
-    def test_survey_intro_url_calls_right_view(self):
+    def test_survey_home_url_calls_right_view(self):
         match = resolve("/participation-intro/")
-        self.assertEqual(match.func, views.survey_intro_view)
+        self.assertEqual(match.func, views.survey_home_view)
 
-    def test_survey_intro_url_calls_right_template(self):
+    def test_survey_home_url_calls_right_template(self):
         response = self.client.get("/participation-intro/")
-        self.assertTemplateUsed(response, "surveys/survey_intro.html")
+        self.assertTemplateUsed(response, "surveys/survey_home.html")
 
-    def test_survey_intro_response_contains_welcome_message(self):
+    def test_survey_home_response_contains_welcome_message(self):
         response = self.client.get("/participation-intro/")
         self.assertContains(response, "Donnez votre avis dès maintenant")
 

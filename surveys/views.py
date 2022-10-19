@@ -4,14 +4,15 @@ import secrets
 from django.contrib import messages
 from django.shortcuts import redirect, render, reverse
 
-from public_website.models import Participant
+from public_website.models import Participant, Theme
+from surveys.models import Survey
 
 from . import forms, models
 
 logger = logging.getLogger(__name__)
 
 
-def survey_intro_view(request):
+def survey_home_view(request):
     uuid = request.session.get("uuid", None)
 
     if not uuid:
@@ -22,34 +23,36 @@ def survey_intro_view(request):
         return redirect("index")
     surveys = current_participant.get_available_surveys()
     subscriptions = current_participant.subscriptions.values_list("theme", flat=True)
-    pre_checked_surveys = [
-        survey.label for survey in surveys.filter(theme__in=subscriptions)
-    ]
+    already_answered = set([participation.survey for participation in current_participant.participations.all()])
 
-    if request.method == "GET":
-        form = forms.SelectSurveysForm(surveys=surveys)
-        return render(
-            request,
-            "surveys/survey_intro.html",
-            {
-                "form": form,
-                "checked": pre_checked_surveys,
-                "title": "Contribuez dès maintenant",
-            },
-        )
+    if list(already_answered) == list(Survey.objects.all()):
+        info_message = ("Vous avez répondu à tous les questionnaires disponibles pour l'instant. Merci pour votre contribution !")
+        messages.info(request, info_message)
 
-    if request.method == "POST":
-        form = forms.SelectSurveysForm(data=request.POST, surveys=surveys)
-        if form.is_valid():
-            selected_surveys = form.cleaned_data["surveys"]
-            request.session["selected_surveys"] = selected_surveys
-            request.session.save()
-            return redirect(reverse("survey", kwargs={"label": selected_surveys[0]}))
-        else:
-            return redirect(reverse("survey_outro"))
+    return render(
+        request,
+        "surveys/survey_home.html",
+        {
+            "themes_surveys": Survey.objects.all(),
+            "already_answered": already_answered,
+            "title": "Contribuez dès maintenant",
+        },
+    )
 
 
 def survey_view(request, label):
+
+    def get_participant(session):
+        uuid = session.get("uuid", None)
+        try:
+            return Participant.objects.get(uuid=uuid)
+        except Participant.DoesNotExist:
+            raise KeyError
+
+    def label_is_known(label):
+        if label in [theme for theme in Theme]:
+            return True
+
     def format_request_session(session, label):
         uuid = session.get("uuid", None)
         selected_surveys = session.get("selected_surveys", [])
@@ -66,21 +69,6 @@ def survey_view(request, label):
             raise KeyError
 
         return (selected_surveys, participant)
-
-    def get_current_next_surveys(survey_list: list, current_label: str) -> tuple:
-        try:
-            current_survey = models.Survey.objects.get(label=current_label)
-            current_survey_step = survey_list.index(current_label) + 1
-            is_last_step = len(survey_list) == current_survey_step
-            if is_last_step:
-                next_survey = None
-            else:
-                next_survey_label = survey_list[current_survey_step]
-                next_survey = models.Survey.objects.get(label=next_survey_label)
-        except models.Survey.DoesNotExist:
-            current_survey = None
-
-        return (current_survey, next_survey, current_survey_step)
 
     def anonymize_and_save_answers(participant, valid_form, current_survey):
         survey_response_id = secrets.token_urlsafe(16)
@@ -102,68 +90,45 @@ def survey_view(request, label):
             participant=participant, survey=current_survey
         ).save()
 
-    try:
-        selected_surveys, participant = format_request_session(request.session, label)
+    try: 
+        participant = get_participant(request.session)
+        current_survey = models.Survey.objects.get(label=label)
     except KeyError:
-        return redirect(reverse("survey_intro"))
+        return redirect(reverse('survey_home'))
+    except Survey.DoesNotExist:
+        return redirect(reverse('survey_home'))
 
-    current_survey, next_survey, current_survey_step = get_current_next_surveys(
-        selected_surveys, label
-    )
+    already_answered = set([participation.survey for participation in participant.participations.all()])
+    if current_survey in already_answered:
+        info_message = f"Vous avez déjà répondu au questionnaire {current_survey.hr_label}."
+        messages.info(request, info_message)
+        return redirect(reverse("survey_home"))
 
-    if not current_survey:
-        return redirect(reverse("survey_outro"))
+    questions = current_survey.get_questions()
+    if request.method == "GET":
+        form = forms.SurveyForm(questions=questions)
 
-    has_participated_before = current_survey in participant.participations.all()
-    if has_participated_before:
-        # TODO display this message is user tries to access
-        #  survey they already filled out
-        return redirect(reverse("survey-intro"))
-
-    if request.method == "POST":
-        questions = current_survey.get_questions()
+    if request.method == "POST": 
         form = forms.SurveyForm(request.POST, questions=questions)
         if form.is_valid():
             if set(form.cleaned_data.values()) != {''}:
                 anonymize_and_save_answers(participant, form, current_survey)
 
-            if not next_survey:
-                return redirect(reverse("survey_outro"))
-            else:
-                request.session.save()
-                return redirect(reverse("survey", kwargs={"label": next_survey.label}))
+            request.session.save()
+            success_message = "Votre contribution a bien été enregistrée. Merci !"
+            messages.success(request, success_message)
+            return redirect(reverse("survey_home"))
         else:
             error_message = "Formulaire invalide. Veuillez vérifier vos réponses."
             messages.error(request, error_message)
 
-    next_theme = next_survey.hr_label if next_survey else "fin du questionnaire"
-    questions = current_survey.get_questions()
-    form = forms.SurveyForm(questions=questions)
     return render(
-        request,
-        "surveys/survey.html",
-        {
-            "form": form,
-            "theme": current_survey.hr_label,
-            "label": label,
-            "next_theme": next_theme,
-            "current_step": current_survey_step,
-            "steps": len(selected_surveys),
-            "questions": questions,
-            "title": current_survey.hr_label,
-        },
-    )
-
-
-def survey_outro_view(request):
-    uuid = request.session.get("uuid", None)
-    if uuid:
-        del request.session["uuid"]
-        return render(
             request,
-            "surveys/survey_outro.html",
-            {"title": "Merci pour votre contribution"},
-        )
-    else:
-        logging.info("## Error : no UUID, return user to index")
-        return redirect("index")
+            "surveys/survey.html",
+            {
+                "form": form,
+                "theme": current_survey.hr_label,
+                "label": label,
+                "questions": questions,
+                "title": current_survey.hr_label,
+            })

@@ -20,9 +20,6 @@
                 {% endif %}
 
                 <hr class="fr-mt-5w">
-                <form action="{% url 'survey_intro' %}" method="post" id="participation_intro_form">
-
-                    {% csrf_token %}
                     <div class="fr-form-group">
                         <fieldset class="fr-fieldset fr-fieldset--inline"
                                   role="group">
@@ -31,29 +28,22 @@
                             </legend>
                             <span class="fr-hint-text fr-mb-5w">Vous pouvez répondre à une série de questions pour donner votre avis sur les thématiques de votre choix. Pour chaque thématique, 3 à 5 questions vous seront posées. Temps estimé pour y répondre : entre 5 et 10 minutes.</span>
                             <div class="fr-fieldset__content">
-                                {% for survey in form.surveys %}
-                                    <div class="fr-checkbox-group">
-                                        <input type="checkbox"
-                                                name="surveys"
-                                                value="{{ survey.choice_label.label }}"
-                                                id="{{ survey.id_for_label }}"
-                                                {% if survey.choice_label.label in checked %}checked{% endif %}/>
-                                        <label class="fr-label" for="{{ survey.id_for_label }}">
-                                            {{ survey.choice_label.hr_label }}
-                                        </label>
-                                    </div>
+                                <ul class="fr-btns-group fr-btns-group--inline">
+                                {% for survey in themes_surveys %}
+                                    <li>
+                                        <button 
+                                            {% if survey in already_answered %}
+                                                class="fr-btn fr-btn--secondary" disabled>{{ survey.hr_label }}
+                                            {% else %}
+                                                class="fr-btn"><a href="{% url 'survey' label=survey.label %}">{{ survey.hr_label }}</a>
+                                            {% endif %}
+                                        </button>
+                                    </li>
                                 {% endfor %}
+                                </ul>
                             </div>
                         </fieldset>
                     </div>
-                    <div class="fr-input-group fr-my-4w">
-                        <button type="submit" class="fr-btn"
-                                title="Contribuer aux thèmes sélectionnés">Je
-                            contribue
-                        </button>
-                    </div>
-                </form>
-
             </div>
         </div>
     </div>
