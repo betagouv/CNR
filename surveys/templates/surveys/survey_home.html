@@ -19,31 +19,25 @@
                     {% endfor %}
                 {% endif %}
 
-                <hr class="fr-mt-5w">
-                    <div class="fr-form-group">
-                        <fieldset class="fr-fieldset fr-fieldset--inline"
-                                  role="group">
-                            <legend class="fr-fieldset__legend fr-h2 fr-mb-0">
-                                Donnez votre avis dès maintenant
-                            </legend>
-                            <span class="fr-hint-text fr-mb-5w">Vous pouvez répondre à une série de questions pour donner votre avis sur les thématiques de votre choix. Pour chaque thématique, 3 à 5 questions vous seront posées. Temps estimé pour y répondre : entre 5 et 10 minutes.</span>
-                            <div class="fr-fieldset__content">
-                                <ul class="fr-btns-group fr-btns-group--inline">
-                                {% for survey in themes_surveys %}
-                                    <li>
-                                        <button 
-                                            {% if survey in already_answered %}
-                                                class="fr-btn fr-btn--secondary" disabled>{{ survey.hr_label }}
-                                            {% else %}
-                                                class="fr-btn"><a href="{% url 'survey' label=survey.label %}">{{ survey.hr_label }}</a>
-                                            {% endif %}
-                                        </button>
-                                    </li>
-                                {% endfor %}
-                                </ul>
-                            </div>
-                        </fieldset>
+                <h1>Donnez votre avis dès maintenant</h1>
+                <div class="fr-form-group">
+                    <span class="fr-hint-text fr-mb-5w">Vous pouvez répondre à une série de questions pour donner votre avis sur les thématiques de votre choix. Pour chaque thématique, 3 à 5 questions vous seront posées. Temps estimé pour y répondre : entre 5 et 10 minutes.</span>
+                    <div class="fr-fieldset__content">
+                        <ul class="fr-btns-group fr-btns-group--inline">
+                        {% for survey in themes_surveys %}
+                            <li>
+                                <button 
+                                    {% if survey in already_answered %}
+                                        class="fr-btn fr-btn--secondary" disabled>{{ survey.hr_label }}
+                                    {% else %}
+                                        class="fr-btn"><a href="{% url 'survey' label=survey.label %}">{{ survey.hr_label }}</a>
+                                    {% endif %}
+                                </button>
+                            </li>
+                        {% endfor %}
+                        </ul>
                     </div>
+                </div>
             </div>
         </div>
     </div>
