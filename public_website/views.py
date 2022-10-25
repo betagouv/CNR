@@ -95,7 +95,7 @@ def inscription_view(request):
                     )
                     messages.info(request, info_message)
                     request.session["uuid"] = str(participant.uuid)
-                    return redirect("survey_intro")
+                    return redirect("survey_home")
                 else:
                     form = ProfileForm(request.POST, instance=participant)
             except Participant.DoesNotExist:
@@ -119,7 +119,7 @@ def inscription_view(request):
             success_message = "Votre inscription est enregistrée : vous serez tenu au courant des consultations à venir sur vos thématiques sélectionnées."
             messages.success(request, success_message)
             request.session["uuid"] = str(participant.uuid)
-            return redirect("survey_intro")
+            return redirect("survey_home")
         else:
             form = ProfileForm(request.POST, initial=form.data)
             error_message = "Formulaire invalide. Veuillez vérifier vos réponses."
