@@ -27,8 +27,7 @@
                     <div class="fr-form-group">
                         <p class="fr-hint-text">Les champs marqués d'un astérisque sont obligatoires.</p>
                         <hr>
-                        <fieldset class="fr-fieldset fr-my-4w">
-                            <div class="fr-grid-row fr-grid-row--gutters">
+                        <div class="fr-grid-row fr-grid-row--gutters">
                             <div class="fr-col-12">
                                 <div class="fr-input-group">
                                     <label class="fr-label" for="email">{{ form.email.label }} *</label>
@@ -61,8 +60,7 @@
                                     {{ form.errors.postal_code }}
                                 </div>
                             </div>
-                            </div>
-                        </fieldset>
+                        </div>
                     </div>
 
                     <div class="fr-form-group" id="participant_type_field">
@@ -114,56 +112,46 @@
 
                     <div class="fr-form-group">
                         <h2 class="fr-h2 fr-mb-0">2. Je veux m'investir localement</h2>
-                        <span class="fr-hint-text fr-mb-5w">Vous recevrez par mail des conseils pour initier un projet local dans votre ville.</span>
+                        <span class="fr-hint-text fr-mb-3w">Vous recevrez par mail des conseils pour initier un projet local dans votre ville.</span>
                             
-                        <fieldset class="fr-fieldset fr-mb-2w">
-                            <div class="fr-fieldset__content">
-                                <div class="fr-checkbox-group">
-                                    <input type="checkbox" id="id_pick_local_theme_education" name="pick_local_theme_education">
-                                    <label class="fr-fieldset__legend fr-h4 fr-mb-0" for="id_pick_local_theme_education">
-                                            {{ form.pick_local_theme_education.label }}
-                                    </label>
-                                    <em>Exemple: participer à un débat dans l’établissement scolaire près de chez moi</em>
-                                </div>
-                            </div>
-                        </fieldset>
+                        <div class="fr-checkbox-group">
+                            <input type="checkbox" id="id_pick_local_theme_education" name="pick_local_theme_education">
+                            <label class="fr-fieldset__legend fr-h4 fr-mb-0" for="id_pick_local_theme_education">
+                                    {{ form.pick_local_theme_education.label }}
+                            </label>
+                            <em>Exemple: participer à un débat dans l’établissement scolaire près de chez moi</em>
+                        </div>
                         
-                        <fieldset class="fr-fieldset">
-                            <div class="fr-col-12 fr-col-sm-6 fr-mb-1">
-                                <div class="fr-input-group">
-                                    <label class="fr-label" for="education_city">{{ form.education_city.label }}</label>
-                                    <input class="fr-input" type="text" id="education_city" name="education_city" value="{{ form.data.education_city }}">
-                                    {{ form.errors.education_city }}
-                                </div>
+                        <div class="fr-col-12 fr-col-sm-6 fr-mb-1">
+                            <div class="fr-input-group">
+                                <label class="fr-label" for="education_city">{{ form.education_city.label }}</label>
+                                <input class="fr-input" type="text" id="education_city" name="education_city" value="{{ form.data.education_city }}">
+                                {{ form.errors.education_city }}
                             </div>
-                            <div class="fr-form-group">
-                                <fieldset class="fr-fieldset">
-                                    <legend class="fr-fieldset__legend fr-text--regular">{{ form.education_participant_type.label }}</legend>
-                                    <div class="fr-fieldset__content">
-                                        {{ form.errors.education_participant_type }}
-                                        {% for type in form.education_participant_type  %}
-                                        <div class="fr-radio-group">
-                                            {{ type.tag }}
-                                            <label for="{{ type.id_for_label }}">
-                                                {{ type.choice_label }}
-                                            </label>
-                                        </div>
-                                        {% endfor %}
+                        </div>
+                        <div class="fr-form-group">
+                            <fieldset class="fr-fieldset">
+                                <legend class="fr-fieldset__legend fr-text--regular">{{ form.education_participant_type.label }}</legend>
+                                <div class="fr-fieldset__content">
+                                    {{ form.errors.education_participant_type }}
+                                    {% for type in form.education_participant_type  %}
+                                    <div class="fr-radio-group">
+                                        {{ type.tag }}
+                                        <label for="{{ type.id_for_label }}">
+                                            {{ type.choice_label }}
+                                        </label>
                                     </div>
-                                </fieldset>
-                            </div>
-                        </fieldset>
-                        <fieldset class="fr-fieldset fr-mb-2w">
-                            <div class="fr-fieldset__content">
-                                <div class="fr-checkbox-group">
-                                    <input type="checkbox" id="id_pick_local_theme_sante" name="pick_local_theme_sante">
-                                    <label class="fr-fieldset__legend fr-h4 fr-mb-0" for="id_pick_local_theme_sante">
-                                            {{ form.pick_local_theme_sante.label }}
-                                    </label>
-                                    <em>Exemple: participer à un débat sur mon territoire de santé</em>
+                                    {% endfor %}
                                 </div>
-                            </div>                                                
-                        </fieldset>
+                            </fieldset>
+                        </div>
+                        <div class="fr-checkbox-group">
+                            <input type="checkbox" id="id_pick_local_theme_sante" name="pick_local_theme_sante">
+                            <label class="fr-fieldset__legend fr-h4 fr-mb-0" for="id_pick_local_theme_sante">
+                                    {{ form.pick_local_theme_sante.label }}
+                            </label>
+                            <em>Exemple: participer à un débat sur mon territoire de santé</em>
+                        </div>
                         <div class="fr-col-12 fr-col-sm-6">
                             <div class="fr-input-group">
                                 <label class="fr-label" for="sante_city">{{ form.sante_city.label }}</label>
@@ -187,21 +175,15 @@
                             </div>
                         </fieldset>
                     </div>
-
                         <hr>
-
                         <div class="fr-form-group">
-                            <fieldset class="fr-fieldset">
-                                <div class="fr-fieldset__content">
-                                    <div class="fr-checkbox-group">
-                                        <input type="checkbox" id="id_gives_gdpr_consent" name="gives_gdpr_consent" required>
-                                        <label class="fr-label" for="id_gives_gdpr_consent">
-                                            <span>J'ai lu et j'accepte les</span> <a title="Conditions Générales d'Utilisation - ouvre une nouvelle fenêtre" class="fr-link" href="{% url 'cgu' %}" target="_blank" rel="noopener">CGU</a> et la <a title="Politique de protection des données - ouvre une nouvelle fenêtre" class="fr-link" href="{% url 'confidentialite' %}" target="_blank" rel="noopener">politique de protection des données</a>.
-                                        </label>
-                                        {{ form.errors.gives_gdpr_consent }}
-                                    </div>
-                                </div>
-                            </fieldset>
+                            <div class="fr-checkbox-group">
+                                <input type="checkbox" id="id_gives_gdpr_consent" name="gives_gdpr_consent" required>
+                                <label class="fr-label" for="id_gives_gdpr_consent">
+                                    <span>J'ai lu et j'accepte les</span> <a title="Conditions Générales d'Utilisation - ouvre une nouvelle fenêtre" class="fr-link" href="{% url 'cgu' %}" target="_blank" rel="noopener">CGU</a> et la <a title="Politique de protection des données - ouvre une nouvelle fenêtre" class="fr-link" href="{% url 'confidentialite' %}" target="_blank" rel="noopener">politique de protection des données</a>.
+                                </label>
+                                {{ form.errors.gives_gdpr_consent }}
+                            </div>
                         </div>
                         <div class="mtcaptcha"></div>
                         <div class="fr-input-group fr-my-4w">
