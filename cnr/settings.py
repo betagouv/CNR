@@ -138,9 +138,9 @@ CSP_SCRIPT_SRC = [
     "'sha256-1neh+DsrMKevQd7CmK4xkhFjYHtrpaiR8ncbjLw/w5E='",  # cookies handler
     "connect.facebook.net",
     "static.axept.io",
-    "https://www.googletagmanager.com/gtag/js",
-    "https://www.googleadservices.com/pagead/conversion_async.js",
-    "googleads.g.doubleclick.net/",
+    "www.googletagmanager.com",
+    "www.googleadservices.com",
+    "googleads.g.doubleclick.net",
 ]
 CSP_CONNECT_SRC = [
     "connect.facebook.net",
