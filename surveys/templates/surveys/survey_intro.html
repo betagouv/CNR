@@ -20,8 +20,6 @@
                 {% endif %}
 
                 <hr class="fr-mt-5w">
-                <form action="{% url 'survey_intro' %}" method="post" id="participation_intro_form">
-
                     {% csrf_token %}
                     <div class="fr-form-group">
                         <fieldset class="fr-fieldset fr-fieldset--inline"
@@ -30,30 +28,71 @@
                                 Donnez votre avis dès maintenant
                             </legend>
                             <span class="fr-hint-text fr-mb-5w">Vous pouvez répondre à une série de questions pour donner votre avis sur les thématiques de votre choix. Pour chaque thématique, 3 à 5 questions vous seront posées. Temps estimé pour y répondre : entre 5 et 10 minutes.</span>
-                            <div class="fr-fieldset__content">
-                                {% for survey in form.surveys %}
-                                    <div class="fr-checkbox-group">
-                                        <input type="checkbox"
-                                                name="surveys"
-                                                value="{{ survey.choice_label.label }}"
-                                                id="{{ survey.id_for_label }}"
-                                                {% if survey.choice_label.label in checked %}checked{% endif %}/>
-                                        <label class="fr-label" for="{{ survey.id_for_label }}">
-                                            {{ survey.choice_label.hr_label }}
-                                        </label>
+                            
+                            <div class="fr-container fr-py-6w">
+                                <div class="fr-grid-row fr-grid-row--gutters">
+
+                                <div class="fr-col-12 fr-col-md-6">
+                                    <div class="fr-card fr-card--sm fr-enlarge-link fr-card--horizontal fr-card--horizontal-half">
+                                        <div class="fr-card__body">
+                                            <div class="fr-card__content">
+                                                <h3 class="fr-card__title">
+                                                    <a href="https://jeparticipe.conseil-refondation.fr/">Climat et biodiversité </a>
+                                                </h3>
+                                                <p class="fr-card__desc">C'est l'urgence du siècle, et elle exige une planification de nos actions, de l'échelle planétaire à l'échelle locale, une accélération de nos efforts pour réduire les émissions de gaz à effet de serre et une adaptation de notre société aux effets du changement climatique.</p>
+                                            </div>
+                                        </div>
+                              
                                     </div>
-                                {% endfor %}
-                            </div>
+                                </div>
+
+                                <div class="fr-col-12 fr-col-md-6">
+                                    <div class="fr-card fr-card--sm fr-enlarge-link fr-card--horizontal fr-card--horizontal-half">
+                                        <div class="fr-card__body">
+                                            <div class="fr-card__content">
+                                                <h3 class="fr-card__title">
+                                                    <a href="https://jeparticipe.conseil-refondation.fr/">Bien vieillir</a>
+                                                </h3>
+                                                <p class="fr-card__desc">Notre société fait face à une forte transition démographique (baisse de la natalité, vieillissement de la population) et doit prendre en compte ses conséquences : prendre soin de nos plus âgés, les aider à vieillir dans les meilleures conditions, sauvegarder l'équilibre de la protection sociale et renforcer la solidarité entre les générations.
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+
+                                <div class="fr-col-12 fr-col-md-6">
+                                    <div class="fr-card fr-card--sm fr-enlarge-link fr-card--horizontal fr-card--horizontal-half">
+                                        <div class="fr-card__body">
+                                            <div class="fr-card__content">
+                                                <h3 class="fr-card__title">
+                                                    <a href="https://jeparticipe.conseil-refondation.fr/">Numérique</a>
+                                                </h3>
+                                                <p class="fr-card__desc">La transition numérique est partout : démarches quotidiennes, digitalisation de nos activités et consommation, sécurité et information… À la croisée de ces enjeux, des solutions communes et inclusives doivent être trouvées.
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="fr-col-12 fr-col-md-6">
+                                    <div class="fr-card fr-card--sm fr-enlarge-link fr-card--horizontal fr-card--horizontal-half">
+                                        <div class="fr-card__body">
+                                            <div class="fr-card__content">
+                                                <h3 class="fr-card__title">
+                                                    <a href="https://jeparticipe.conseil-refondation.fr/">Logement</a>
+                                                </h3>
+                                                <p class="fr-card__desc">Rendre l'accès au logement plus facile, améliorer les conditions de vie, préparer les transitions de la vie : autant de défis à relever ensemble.
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>   
                         </fieldset>
                     </div>
-                    <div class="fr-input-group fr-my-4w">
-                        <button type="submit" class="fr-btn"
-                                title="Contribuer aux thèmes sélectionnés">Je
-                            contribue
-                        </button>
-                    </div>
-                </form>
-
             </div>
         </div>
     </div>
