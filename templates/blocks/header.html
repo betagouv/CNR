@@ -36,7 +36,15 @@
             <a class="fr-nav__link" {% if request.resolver_match.url_name == "inscription" %}aria-current="page"{% endif %} href="{% url 'inscription' %}" target="_self">Participer</a>
           </li>
           <li class="fr-nav__item">
-            <a class="fr-nav__link" {% if request.resolver_match.url_name == "fonctionnement" %}aria-current="page"{% endif %} href="{% url 'fonctionnement' %}" target="_self">Découvrir</a>
+            <button class="fr-nav__btn" aria-expanded="false" aria-controls="menu-774">Découvrir</button>
+            <div class="fr-collapse fr-menu" id="menu-774">
+              <ul class="fr-menu__list">
+                  <li><a class="fr-nav__link" {% if request.resolver_match.url_name == "fonctionnement" %}aria-current="page"{% endif %} href="{% url 'fonctionnement' %}" target="_self">Esprit et méthode</a>
+                  </li>
+                  <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "climat_biodiversite" %}aria-current="page"{% endif %} href="{% url 'climat-biodiversite' %}" target="_self">Climat et Biodiversité</a> </li>
+                  <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "bien_vieillir" %}aria-current="page"{% endif %} href="{% url 'bien-vieillir' %}" target="_self">Bien vieillir</a> </li>
+              </ul>
+          </div>
           </li>
         </ul>
       </nav>

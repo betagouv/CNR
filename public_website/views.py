@@ -136,3 +136,14 @@ def fonctionnement_view(request):
     return render(
         request, "public_website/fonctionnement.html", {"title": "Une nouvelle méthode"}
     )
+
+def climat_biodiversite_view(request):
+    return render(
+        request, "public_website/climat_biodiversite.html", {"title": "Climat et Biodiversité"}
+    )
+
+
+def bien_vieillir_view(request):
+    return render(
+        request, "public_website/bien_vieillir.html", {"title": "Bien vieillir"}
+    )
