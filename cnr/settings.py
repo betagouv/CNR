@@ -103,7 +103,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = "DENY"
 REFERRER_POLICY = "same-origin"
 CSP_DEFAULT_SRC = ["'self'", "data:", "localhost:" + runserver.default_port]
-CSP_FRAME_SRC = ["*.youtube.com", "*.mtcaptcha.com", "*.facebook.com"]
+CSP_FRAME_SRC = ["*.youtube.com", "*.mtcaptcha.com", "*.facebook.com", "*.vimeo.com"]
 CSP_IMG_SRC = [
     "'self'",
     "data:",
