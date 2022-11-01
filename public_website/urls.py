@@ -11,6 +11,7 @@ urlpatterns = [
     path("sante/", views.sante_view, name="sante"),
     path("logement/", views.logement_view, name="logement"),
     path("numerique/", views.numerique_view, name="numerique"),
+    path("futur-du-travail/", views.futur_du_travail_view, name="futur-du-travail"),
     path("cgu/", views.cgu_view, name="cgu"),
     path("mentions-legales/", views.mentions_legales_view, name="mentions_legales"),
     path("accessibilite/", views.accessibilite_view, name="accessibilite"),

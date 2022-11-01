@@ -161,3 +161,8 @@ def numerique_view(request):
     return render(
         request, "public_website/numerique.html", {"title": "Numérique"}
     )
+
+def futur_du_travail_view(request):
+    return render(
+        request, "public_website/futur-du-travail.html", {"title": " futur du travail"}
+    )
