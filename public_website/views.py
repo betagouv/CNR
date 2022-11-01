@@ -142,8 +142,22 @@ def climat_biodiversite_view(request):
         request, "public_website/climat_biodiversite.html", {"title": "Climat et Biodiversité"}
     )
 
-
 def bien_vieillir_view(request):
     return render(
         request, "public_website/bien_vieillir.html", {"title": "Bien vieillir"}
+    )
+
+def sante_view(request):
+    return render(
+        request, "public_website/sante.html", {"title": "Santé"}
+    )
+
+def logement_view(request):
+    return render(
+        request, "public_website/logement.html", {"title": "Logement"}
+    )
+
+def numerique_view(request):
+    return render(
+        request, "public_website/numerique.html", {"title": "Numérique"}
     )
