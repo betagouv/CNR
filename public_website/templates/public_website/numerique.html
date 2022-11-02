@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="fr-container fr-mt-5w">
+  <div class="fr-grid-row fr-grid-row--gutters">
+    <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
+      <h1 class="fr-display--sm">Numérique</h1>
+<p>Le numérique transforme rapidement notre quotidien : de nombreux pans de l’économie, de la sphère non-marchande et même nos relations sociales. Cette réalité est tangible dans la vie de tous les Français, à des degrés divers. 
+<p>Si la transition numérique s’impose à tous, elle n’est pas vécue de la même manière par tous nos concitoyens. Source d’opportunités, d’information, de partage ou de création pour les uns, la transition numérique peut aussi être vécue comme une source de complexité, d’insécurité, une épreuve culturelle voire une relégation imposée pour de nombreux Français plus ou moins éloignés des usages de base du numérique.</p>
+<p>La France défend une certaine idée du pacte social. Le succès des uns dans l’espace numérique doit profiter collectivement au pays. Notre attachement à la cohésion sociale nous oblige également à agir ensemble pour que personne ne se sente abandonné dans un contexte de numérisation croissante de notre quotidien. L’accompagnement de la transition numérique devient dès lors un enjeu démocratique. </p>
+<p>S’agissant du numérique, la rapidité du développement technologique précède presque toujours l’accompagnement humain nécessaire à son appropriation et la juste régulation dont il doit être l’objet dans une société démocratique. C’est pour répondre à ces enjeux que des actions d’accompagnement vers l’autonomie de nos concitoyens ont été lancées, via la création des conseillers numériques par exemple. C’est aussi le sens des évolutions majeures qu’a initiées la France au niveau européen via deux règlements qui vont réguler les plateformes numériques et les réseaux sociaux. Ces initiatives étaient nécessaires. Elles doivent être amplifiées pour que la démocratie s’empare complètement de l’espace numérique.</p> 
+<p>L’enjeu face auquel se trouve notre société est aussi simple qu’il demande la mobilisation de tous : faire que le numérique du quotidien améliore la vie des citoyens plutôt qu’il ne la bouscule, veiller à ce que le cyber-espace demeure un espace de confiance, à la portée de tous et vecteur d’opportunités. Qu’il soit un espace au service des personnes et de leurs aspirations à interagir et s’informer en confiance, à œuvre pour l’intérêt collectif, à créer et entreprendre, à être des citoyens y compris en ligne. Qu’il soit à l’image de la société physique que nous souhaitons. </p>
+<p>Ces réalités nous imposent d’agir collectivement à la fois pour garantir à la France une position de leader dans la transition numérique – enjeu de souveraineté - mais aussi pour nous assurer que tout le monde adhère à la transition numérique en y trouvant sa place, en confiance et en autonomie – enjeu de cohésion.</p>  
+<p>Ces enjeux qui touchent à votre quotidien nous amènent ici à vous ouvrir la possibilité de partager vos préoccupations, vos réflexions, vos idées pour que l’espace numérique devienne plus sûr, accessibles à tous et source d’opportunités. </p>
+    </div>
+  </div>
+</div><!--container -->
+<div class="fr-follow">
+  <div class="fr-container">
+      <div class="fr-grid-row">
+          <div class="fr-col-12">
+              <div class="fr-follow__newsletter">
+                  <div>
+                      <h5 class="fr-h5 fr-follow__title">Rejoignez-nous</h5>
+                      <p class="fr-text--sm fr-follow__desc">Rejoindre dès maintenant le Conseil national de la Refondation vous permet de participer à cette nouvelle méthode de dialogue aux côtés de ceux qui font vivre nos services publics et nos territoires, des associations et de milliers d'autres citoyens.</p>
+                  </div>
+                  <div>
+                      <a class="fr-btn" href="{% url 'inscription' %}">Je participe !</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock content %}
