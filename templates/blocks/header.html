@@ -41,7 +41,6 @@
               <ul class="fr-menu__list">
                   <li><a class="fr-nav__link" {% if request.resolver_match.url_name == "fonctionnement" %}aria-current="page"{% endif %} href="{% url 'fonctionnement' %}" target="_self">Esprit et méthode</a>
                   </li>
-                  <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "climat_biodiversite" %}aria-current="page"{% endif %} href="{% url 'climat-biodiversite' %}" target="_self">Climat et Biodiversité</a> </li>
                   <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "bien_vieillir" %}aria-current="page"{% endif %} href="{% url 'bien-vieillir' %}" target="_self">Bien vieillir</a> </li>
                   <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "sante" %}aria-current="page"{% endif %} href="{% url 'sante' %}" target="_self">Santé</a> </li>
                   <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "numerique" %}aria-current="page"{% endif %} href="{% url 'numerique' %}" target="_self">Numérique</a> </li>
