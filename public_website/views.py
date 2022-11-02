@@ -162,7 +162,12 @@ def numerique_view(request):
         request, "public_website/numerique.html", {"title": "Numérique"}
     )
 
-def futur_du_travail_view(request):
+def travail_view(request):
     return render(
-        request, "public_website/futur-du-travail.html", {"title": " futur du travail"}
+        request, "public_website/assises-du-travail.html", {"title": "Assises du travail"}
+    )
+
+def jeunesse_view(request):
+    return render(
+        request, "public_website/jeunesse.html", {"title": "Jeunesse"}
     )
