@@ -171,3 +171,8 @@ def jeunesse_view(request):
     return render(
         request, "public_website/jeunesse.html", {"title": "Jeunesse"}
     )
+
+def economie_view(request):
+    return render(
+        request, "public_website/economie.html", {"title": "Modèle productif et social"}
+    )
