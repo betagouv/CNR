@@ -14,6 +14,7 @@ urlpatterns = [
     path("jeunesse/", views.jeunesse_view, name="jeunesse"),
     path("travail/", views.travail_view, name="travail"),
     path("economie/", views.economie_view, name="economie"),
+    path("education/", views.education_view, name="education"),
     path("cgu/", views.cgu_view, name="cgu"),
     path("mentions-legales/", views.mentions_legales_view, name="mentions_legales"),
     path("accessibilite/", views.accessibilite_view, name="accessibilite"),

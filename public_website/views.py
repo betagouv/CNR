@@ -176,3 +176,8 @@ def economie_view(request):
     return render(
         request, "public_website/economie.html", {"title": "Modèle productif et social"}
     )
+
+def education_view(request):
+    return render(
+        request, "public_website/education.html", {"title": "Notre école"}
+    )
