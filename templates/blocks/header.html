@@ -41,14 +41,14 @@
               <ul class="fr-menu__list">
                   <li><a class="fr-nav__link" {% if request.resolver_match.url_name == "fonctionnement" %}aria-current="page"{% endif %} href="{% url 'fonctionnement' %}" target="_self">Esprit et méthode</a></li>
                   <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "bien_vieillir" %}aria-current="page"{% endif %} href="{% url 'bien-vieillir' %}" target="_self">Bien vieillir</a> </li>
-                  <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "sante" %}aria-current="page"{% endif %} href="{% url 'sante' %}" target="_self">Santé</a> </li>
-                  <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "numerique" %}aria-current="page"{% endif %} href="{% url 'numerique' %}" target="_self">Numérique</a> </li>
-                  <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "jeunesse" %}aria-current="page"{% endif %} href="{% url 'jeunesse' %}" target="_self">Jeunesse</a> </li>
                   <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "travail" %}aria-current="page"{% endif %} href="{% url 'travail' %}" target="_self">Assises du travail</a> </li>
                   <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "economie" %}aria-current="page"{% endif %} href="{% url 'economie' %}" target="_self">Modèle productif et social</a> </li>
+                  <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "numerique" %}aria-current="page"{% endif %} href="{% url 'numerique' %}" target="_self">Numérique</a> </li>
+                  <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "jeunesse" %}aria-current="page"{% endif %} href="{% url 'jeunesse' %}" target="_self">Jeunesse</a> </li>
                   <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "logement" %}aria-current="page"{% endif %} href="{% url 'logement' %}" target="_self">Logement</a> </li>
-                  <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "education" %}aria-current="page"{% endif %} href="{% url 'education' %}" target="_self">Notre école</a> </li>
                   <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "climat-biodiversite" %}aria-current="page"{% endif %} href="{% url 'climat-biodiversite' %}" target="_self">Climat et biodiversité</a> </li>
+                  <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "sante" %}aria-current="page"{% endif %} href="{% url 'sante' %}" target="_self">Notre santé</a> </li>
+                  <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "education" %}aria-current="page"{% endif %} href="{% url 'education' %}" target="_self">Notre école</a> </li>
                 </ul>
           </div>
           </li>
