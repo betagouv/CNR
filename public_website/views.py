@@ -136,3 +136,48 @@ def fonctionnement_view(request):
     return render(
         request, "public_website/fonctionnement.html", {"title": "Une nouvelle méthode"}
     )
+
+def climat_biodiversite_view(request):
+    return render(
+        request, "public_website/climat_biodiversite.html", {"title": "Climat et Biodiversité"}
+    )
+
+def bien_vieillir_view(request):
+    return render(
+        request, "public_website/bien_vieillir.html", {"title": "Bien vieillir"}
+    )
+
+def sante_view(request):
+    return render(
+        request, "public_website/sante.html", {"title": "Santé"}
+    )
+
+def logement_view(request):
+    return render(
+        request, "public_website/logement.html", {"title": "Logement"}
+    )
+
+def numerique_view(request):
+    return render(
+        request, "public_website/numerique.html", {"title": "Numérique"}
+    )
+
+def travail_view(request):
+    return render(
+        request, "public_website/assises-du-travail.html", {"title": "Assises du travail"}
+    )
+
+def jeunesse_view(request):
+    return render(
+        request, "public_website/jeunesse.html", {"title": "Jeunesse"}
+    )
+
+def economie_view(request):
+    return render(
+        request, "public_website/economie.html", {"title": "Modèle productif et social"}
+    )
+
+def education_view(request):
+    return render(
+        request, "public_website/education.html", {"title": "Notre école"}
+    )

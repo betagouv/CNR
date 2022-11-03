@@ -9,7 +9,7 @@
 
 {% block service_title %}
   <img src="{% static 'images/cnr_logo_horizontal.svg' %}" alt="Conseil National de la Refondation" class="logo">
-  <span class="fr-badge fr-badge--sm fr-badge--blue-cumulus">Beta</span>
+
 {% endblock service_title %}
 
 {% block service_tagline %}
@@ -36,7 +36,21 @@
             <a class="fr-nav__link" {% if request.resolver_match.url_name == "inscription" %}aria-current="page"{% endif %} href="{% url 'inscription' %}" target="_self">Participer</a>
           </li>
           <li class="fr-nav__item">
-            <a class="fr-nav__link" {% if request.resolver_match.url_name == "fonctionnement" %}aria-current="page"{% endif %} href="{% url 'fonctionnement' %}" target="_self">Fonctionnement</a>
+            <button class="fr-nav__btn" aria-expanded="false" aria-controls="menu-774">Découvrir</button>
+            <div class="fr-collapse fr-menu" id="menu-774">
+              <ul class="fr-menu__list">
+                  <li><a class="fr-nav__link" {% if request.resolver_match.url_name == "fonctionnement" %}aria-current="page"{% endif %} href="{% url 'fonctionnement' %}" target="_self">Esprit et méthode</a></li>
+                  <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "bien_vieillir" %}aria-current="page"{% endif %} href="{% url 'bien-vieillir' %}" target="_self">Bien vieillir</a> </li>
+                  <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "sante" %}aria-current="page"{% endif %} href="{% url 'sante' %}" target="_self">Santé</a> </li>
+                  <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "numerique" %}aria-current="page"{% endif %} href="{% url 'numerique' %}" target="_self">Numérique</a> </li>
+                  <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "jeunesse" %}aria-current="page"{% endif %} href="{% url 'jeunesse' %}" target="_self">Jeunesse</a> </li>
+                  <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "travail" %}aria-current="page"{% endif %} href="{% url 'travail' %}" target="_self">Assises du travail</a> </li>
+                  <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "economie" %}aria-current="page"{% endif %} href="{% url 'economie' %}" target="_self">Modèle productif et social</a> </li>
+                  <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "logement" %}aria-current="page"{% endif %} href="{% url 'logement' %}" target="_self">Logement</a> </li>
+                  <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "education" %}aria-current="page"{% endif %} href="{% url 'education' %}" target="_self">Notre école</a> </li>
+                  <li> <a class="fr-nav__link" {% if request.resolver_match.url_name == "climat-biodiversite" %}aria-current="page"{% endif %} href="{% url 'climat-biodiversite' %}" target="_self">Climat et biodiversité</a> </li>
+                </ul>
+          </div>
           </li>
         </ul>
       </nav>

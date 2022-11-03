@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="fr-container fr-mt-5w">
+  <div class="fr-grid-row fr-grid-row--gutters">
+    <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
+      <h1 class="fr-display--sm">Logement</h1>
+      <p><i>« Ce Conseil national de la Refondation est le vôtre. Bâtissons ensemble le logement de demain. Nous ferons avec vous, les uns avec les autres, dans l’unité. »</i>  <strong>-- Olivier KLEIN, Ministre délégué à la Ville et au Logement</strong></p>
+      <p>Le Conseil national de la Refondation c’est une volonté et c’est une ambition. </p>
+  <p>C’est la volonté de faire ensemble, de construire le logement de demain en réunissant des citoyens, des professionnels, des responsables publics et privés qui sont souvent côte à côte – voire face à face – mais qui ne travaillent pas ensemble. C’est la volonté de sortir des silos et de travailler, main dans la main. De s’écouter et de se parler.   </p>
+  <p>Nous devons être en capacité de donner un logement à tous, partout, qui protège ses habitants. C’est notre ambition. C’est notre devoir. </p>
+  <p>Alors, pour dégager des solutions et dessiner ensemble la politique du logement en France, trois grandes ambitions doivent guider nos échanges : une ambition sociale, avec l’hébergement d’urgence et le logement social, parce que chacun a le droit à un logement digne et abordable, partout ; une ambition économique, parce qu'il nous appartient de rénover et construire mieux, plus et d'être innovants ; une ambition écologique, enfin, parce que la ville change, nos modes de vie changent et le logement s'adapte face à ces évolutions.</p>
+  <p>Le Conseil national de la refondation pour le logement débutera à la fin du mois de novembre lors d’un grand évènement de lancement. Il se poursuivra sur plusieurs mois, au travers de réunions publiques dans les territoires et de consultations dématérialisées.</p>
+  <p>Par cette nouvelle méthode de concertation, il y a une volonté simple : créer un lien plus direct entre les citoyens et la vie politique. Ce Conseil national de la refondation, c’est l’occasion d’aller à votre rencontre : citoyens, élus et forces vives de nos territoires, pour recueillir toutes les idées afin de construire la politique du logement de demain. </p>
+  <p>Cette démarche doit aboutir à l’élaboration d’outils et d’actions concrètes en faveur d’une politique du logement ambitieuse, soucieuse de la justice sociale et de la transition écologique. </p>
+  <p>Pour réussir à faire face aux transitions profondes que nous vivons, nous devons créer du consensus pour bâtir des solutions partagées. </p>
+  <p>Pour faire avancer le pays, le Conseil national de la refondation permettra de remettre les citoyens au cœur des grandes décisions, ils ont toute leur légitimité. </p>
+
+
+    </div>
+  </div>
+</div><!--container -->
+
+<div class="fr-follow">
+  <div class="fr-container">
+      <div class="fr-grid-row">
+          <div class="fr-col-12">
+              <div class="fr-follow__newsletter">
+                  <div>
+                      <h5 class="fr-h5 fr-follow__title">Rejoignez-nous</h5>
+                      <p class="fr-text--sm fr-follow__desc">Rejoindre dès maintenant le Conseil national de la Refondation vous permet de participer à cette nouvelle méthode de dialogue aux côtés de ceux qui font vivre nos services publics et nos territoires, des associations et de milliers d'autres citoyens.</p>
+                  </div>
+                  <div>
+                      <a class="fr-btn" href="{% url 'inscription' %}">Je participe !</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock content %}

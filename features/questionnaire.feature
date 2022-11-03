@@ -12,9 +12,3 @@ Fonctionnalité: Questionnaire
     Et je choisis "Climat" pour "Je veux contribuer aux thématiques nationales"
     Et je coche la case "J'ai lu et j'accepte les"
     Et je soumets le formulaire
-    Et je soumets le formulaire
-
-  Scénario: Je peux soumettre mes réponses
-    Quand je remplis toutes les questions du formulaire
-    Et je soumets le formulaire
-    Alors il existe une réponse "foobar"

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="fr-container fr-mt-5w">
+  <div class="fr-grid-row fr-grid-row--gutters">
+    <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
+      <h1 class="fr-display--sm">Notre école</h1>
+      <h2>Le CNR pour l’éducation : « Notre école, faisons-la ensemble ! »</h2>
+      <p>Parce qu’elle est la garante du contrat social républicain, l’école est au cœur de la démarche du conseil national de la refondation. Qu’attendons-nous en effet de l’école ? Qu’elle permette à chaque jeune d’aller au bout de ses potentialités, de devenir un citoyen libre, éclairé, doté des mêmes droits et devoirs que ses concitoyens, et conscient d’une destinée partagée. Autrement dit, de faire vivre pour tous la devise républicaine : Liberté, Egalité, Fraternité.</p>
+      <p>Une telle promesse n’est jamais acquise : elle est le fruit de l’investissement incomparable de plus d’un million de femmes et d’hommes qui, chaque jour, s’engagent pour la réussite de nos élèves sur tout le territoire. Elle est aussi le fruit de l’engagement de toutes les collectivités locales : communes, départements, régions. L’école est en effet le service public national au maillage territorial
+        le plus fin, avec près de 60 000 implantations sur tout le territoire, et accueille chaque jour 20 % de la population française dans ses murs.</p>
+      <p>C’est pourquoi toutes les écoles, mais aussi tous les collèges et lycées, sont invités à engager une concertation, à leur échelle ou à celle de leur bassin ou réseau d’établissements, associant l’ensemble des parties prenantes : personnels, élèves, familles, collectivités locales, tissu associatif et économique local.</p>
+  <p>La démarche se compose de trois étapes, sur la base du volontariat des équipes pédagogiques. </p>
+  
+  <h3>1ère étape : la concertation initiale</h3>
+  <p>Sous la responsabilité du directeur d’école ou du chef d’établissement, les discussions associent les personnels, les élèves, leurs parents, les collectivités territoriales, les services déconcentrés et l’ensemble des partenaires qui le souhaitent. Cette discussion permet de partager la situation actuelle de l’école ou de l’établissement, ses caractéristiques, ses succès et ses objectifs. Elle permet de faire émerger des idées d’évolution ou de transformation.</p>
+  <h3>2ème étape : l’élaboration d’un projet d’école ou d’établissement au service de la réussite des élèves</h3>
+  <p>Les écoles et établissements qui le souhaitent peuvent aller au-delà de la concertation et élaborer ou adapter, de manière consensuelle, un projet pédagogique ayant vocation à nourrir leur projet d’école ou d’établissement. Ce projet, pluriannuel, ne répond pas à un cahier des charges préétabli mais fixe, sur tout ou partie des trois dimensions fondamentales (excellence, égalité, bien-être), les priorités de la communauté éducative et le plan d’action permettant de les réaliser.</p>
+  <h3>3ème étape : le soutien financier du Fonds d’innovation pédagogique</h3>
+    <p>Les écoles et établissements qui le souhaitent et dont le projet nécessite un soutien financier bénéficient d’un accompagnement de la part des autorités académiques et de crédits du Fonds d’innovation pédagogique. Ce soutien peut être sollicité à tout moment, l’élaboration des projets n’étant pas contrainte par un calendrier, et peut être ponctuel ou pluriannuel en fonction de la nature du projet. Le fonds d’innovation pédagogique est doté de 500 millions d’euros au moins sur l’ensemble du quinquennat.</p>
+    <p>Au 1er novembre 2022, près de 3000 écoles, collèges ou lycées sont d’ores et déjà engagés ou sur le point de s’engager dans la démarche, dans tous les départements de France.</p>
+    <p>Pour en savoir plus, participer, retrouver les ressources sur le CNR éducation, rendez-vous sur :  <a href="https://eduscol.education.fr/3595/notre-ecole-faisons-la-ensemble">https://eduscol.education.fr/3595/notre-ecole-faisons-la-ensemble</a>
+
+    </p>
+    </div>
+  </div>
+</div><!--container -->
+
+
+<div class="fr-follow">
+  <div class="fr-container">
+      <div class="fr-grid-row">
+          <div class="fr-col-12">
+              <div class="fr-follow__newsletter">
+                  <div>
+                      <h5 class="fr-h5 fr-follow__title">Rejoignez-nous</h5>
+                      <p class="fr-text--sm fr-follow__desc">Rejoindre dès maintenant le Conseil national de la Refondation vous permet de participer à cette nouvelle méthode de dialogue aux côtés de ceux qui font vivre nos services publics et nos territoires, des associations et de milliers d'autres citoyens.</p>
+                  </div>
+                  <div>
+                      <a class="fr-btn" href="{% url 'inscription' %}">Je participe !</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="fr-container fr-mt-5w">
+  <div class="fr-grid-row fr-grid-row--gutters">
+    <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
+      <h1 class="fr-display--sm">Modèle productif et social</h1>
+      <p>Aujourd'hui, notre modèle économique et productif doit se transformer en ayant pour objectif la réindustrialisation de notre pays, le renforcement de notre souveraineté technologique, les défis écologiques et climatiques et la lutte contre les inégalités, ainsi que la nécessaire justice sociale et redistribution des richesses.</p>
+      <p>Plus d’informations très prochainement.</p>
+    </div>
+  </div>
+</div><!--container -->
+<div class="fr-follow">
+  <div class="fr-container">
+      <div class="fr-grid-row">
+          <div class="fr-col-12">
+              <div class="fr-follow__newsletter">
+                  <div>
+                      <h5 class="fr-h5 fr-follow__title">Rejoignez-nous</h5>
+                      <p class="fr-text--sm fr-follow__desc">Rejoindre dès maintenant le Conseil national de la Refondation vous permet de participer à cette nouvelle méthode de dialogue aux côtés de ceux qui font vivre nos services publics et nos territoires, des associations et de milliers d'autres citoyens.</p>
+                  </div>
+                  <div>
+                      <a class="fr-btn" href="{% url 'inscription' %}">Je participe !</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock content %}

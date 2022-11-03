@@ -32,7 +32,7 @@
                 {% endfor %}
             {% endif %}
           </div>
-          <div class="fr-input-group">
+          <div class="fr-input-group" id="nl">
             <label class="fr-label" for="email">{{ form.email.label }}</label>
             <span class="fr-hint-text">Format attendu : nom@domaine.fr</span>
             <input class="fr-input" type="email" id="email" name="email" autocomplete="email" value="{{ form.data.email }}" required>
@@ -54,28 +54,15 @@
   </div>
 </div>
 
-<div class="fr-container">
-  <div class="fr-grid-row fr-grid-row--gutters">
-    <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
-      <div class="fr-content-media">
-        <iframe title="Vidéo une méthode nouvelle" class="fr-responsive-vid " src="https://www.youtube.com/embed/gLzXOViPX-0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <div class="fr-content-media__caption">Emmanuel Macron, Président de la République, présente la méthode du CNR.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="fr-background-alt--blue-france">
   <div class="fr-container fr-py-6w">
-    <div class="fr-grid-row fr-grid-row--gutters">
-      <div class="fr-col-12">
-        <h2>S'inscrire pour participer</h2>
-        <p>Rejoindre dès maintenant le Conseil national de la Refondation vous permet de :</p>
-      </div>
+    <div class="fr-grid-row fr-grid-row--gutters">          
       <div class="fr-col-12 fr-col-sm-4">
-        <img src="{% static 'artwork/community.svg' %}" alt="">
-        <h3>Participer</h3>
-        <p>Participez dès maintenant sur les thématiques qui vous intéressent : des consultations sont déjà ouvertes, et vos réponses seront présentées et discutées lors des ateliers nationaux avec les acteurs de chaque secteur.</p>
+        <img src="{% static 'artwork/notification.svg' %}" alt="">
+        <h3>Rester informé</h3>
+        <p>Restez informé de l'avancement du Conseil de la Refondation : en accédant aux comptes rendus et aux documents produits par les différents ateliers.</p>
+        <a class="fr-btn fr-btn--secondary" href="#nl">Inscrivez-vous à notre infolettre</a>
+
       </div>
       <div class="fr-col-12 fr-col-sm-4">
         <img src="{% static 'artwork/france-localization.svg' %}" alt="">
@@ -83,38 +70,29 @@
         <p>Rencontrez des citoyens et des professionnels près de chez vous : dans le cadre de réunions publiques locales qui seront organisées partout en France.</p>
       </div>
       <div class="fr-col-12 fr-col-sm-4">
-        <img src="{% static 'artwork/notification.svg' %}" alt="">
-        <h3>Rester informé</h3>
-        <p>Restez informé de l'avancement du Conseil de la Refondation : en accédant aux comptes rendus et aux documents produits par les différents ateliers.</p>
+        <img src="{% static 'artwork/community.svg' %}" alt="">
+        <h3>Participer</h3>
+        <p>Donnez dès maintenant votre avis sur les thématiques qui vous intéressent : des consultations sont ouvertes, et vos réponses seront présentées et discutées lors des ateliers nationaux avec les acteurs de chaque secteur.
+        </p>
+        <ul class="fr-btns-group fr-btns-group--inline">
+          <li>
+            <a class="fr-btn" href="{% url 'inscription' %}">Je participe !</a>
+          </li>
+        </ul>
       </div>
     </div>
-    <ul class="fr-btns-group fr-btns-group--inline">
-      <li>
-        <a class="fr-btn" href="{% url 'inscription' %}">Je participe !</a>
-      </li>
-      <li>
-        <a class="fr-btn fr-btn--secondary" href="{% url 'fonctionnement' %}">Je découvre le fonctionnement</a>
-      </li>
-    </ul>
   </div>
 </div>
-
 <div class="fr-container fr-py-6w">
   <div class="fr-grid-row fr-grid-row--gutters">
     <div class="fr-col-12">
-      <h2>Les thématiques</h2>
-      <p>Lors du quinquennat précédent, <a title="Le Grand débat national - ouvre une nouvelle fenêtre" href="https://granddebat.fr/" target="_blank" rel="noopener" class="fr-link">Le Grand débat national</a>, <a title="la Convention citoyenne pour le climat - ouvre une nouvelle fenêtre" href="https://www.conventioncitoyennepourleclimat.fr/" target="_blank" rel="noopener" class="fr-link">la Convention citoyenne pour le climat</a>, l'enrichissement des missions du <a title="Conseil économique, social et environnemental - ouvre une nouvelle fenêtre" href="https://www.lecese.fr/" target="_blank" rel="noopener" class="fr-link">Conseil économique, social et environnemental</a>, ont été autant de manières de créer un rapport plus direct entre les citoyens et la vie politique.</p>
-      <p>Nous engageons aujourd'hui une nouvelle méthode de dialogue et d'action. Le Conseil national de la Refondation vise à aller plus loin en intégrant davantage les citoyens et les grands acteurs de notre société sur les grandes transitions de notre pays à venir  :</p>
-    </div>
-
-    <div class="fr-col-12">
-       <h3>Les consultations nationales</h3>
+       <h2>Les consultations nationales</h2>
      </div>
 
     <div class="fr-col-12 fr-col-md-4">
-      <div class="fr-tile fr-tile--horizontal">
+      <div class="fr-tile fr-tile--horizontal fr-enlarge-link">
         <div class="fr-tile__body">
-          <h4 class="fr-tile__title">Climat et biodiversité</h4>
+          <h4 class="fr-tile__title"><a href="/climat-biodiversite/">Climat et biodiversité</a></h4>
         </div>
         <div class="fr-tile__img">
           <img src="{% static 'artwork/environment.svg' %}" class="fr-responsive-img" alt="">
@@ -123,9 +101,9 @@
     </div>
 
     <div class="fr-col-12 fr-col-md-4">
-      <div class="fr-tile fr-tile--horizontal">
+      <div class="fr-tile fr-tile--horizontal fr-enlarge-link">
         <div class="fr-tile__body">
-          <h4 class="fr-tile__title">Bien vieillir</h4>
+          <h4 class="fr-tile__title"><a href="/bien-vieillir/">Bien vieillir</a></h4>
         </div>
         <div class="fr-tile__img">
           <img src="{% static 'artwork/human-cooperation.svg' %}" class="fr-responsive-img" alt="">
@@ -134,9 +112,9 @@
     </div>
 
     <div class="fr-col-12 fr-col-md-4">
-      <div class="fr-tile fr-tile--horizontal">
+      <div class="fr-tile fr-tile--horizontal fr-enlarge-link">
         <div class="fr-tile__body">
-          <h4 class="fr-tile__title">Souveraineté économique</h4>
+          <h4 class="fr-tile__title"><a href="/economie/">Modèle productif et social</a></h4>
         </div>
         <div class="fr-tile__img">
           <img src="{% static 'artwork/money.svg' %}" class="fr-responsive-img" alt="">
@@ -145,9 +123,9 @@
     </div>
 
     <div class="fr-col-12 fr-col-md-4">
-      <div class="fr-tile fr-tile--horizontal">
+      <div class="fr-tile fr-tile--horizontal fr-enlarge-link">
         <div class="fr-tile__body">
-          <h4 class="fr-tile__title">Futur du travail</h4>
+          <h4 class="fr-tile__title"><a href="/travail/">Assises du travail</a></h4>
         </div>
         <div class="fr-tile__img">
           <img src="{% static 'artwork/map.svg' %}" class="fr-responsive-img" alt="">
@@ -156,9 +134,9 @@
     </div>
 
     <div class="fr-col-12 fr-col-md-4">
-      <div class="fr-tile fr-tile--horizontal">
+      <div class="fr-tile fr-tile--horizontal fr-enlarge-link">
         <div class="fr-tile__body">
-          <h4 class="fr-tile__title">Logement</h4>
+          <h4 class="fr-tile__title"><a href="/logement">Logement</a></h4>
         </div>
         <div class="fr-tile__img">
           <img src="{% static 'artwork/france-localization.svg' %}" class="fr-responsive-img" alt="">
@@ -167,9 +145,9 @@
     </div>
 
     <div class="fr-col-12 fr-col-md-4">
-      <div class="fr-tile fr-tile--horizontal">
+      <div class="fr-tile fr-tile--horizontal fr-enlarge-link">
         <div class="fr-tile__body">
-          <h4 class="fr-tile__title">Jeunesse</h4>
+          <h4 class="fr-tile__title"><a href="/jeunesse/">Jeunesse</a></h4>
         </div>
         <div class="fr-tile__img">
           <img src="{% static 'artwork/avatar.svg' %}" class="fr-responsive-img" alt="">
@@ -178,27 +156,23 @@
     </div>
 
     <div class="fr-col-12 fr-col-md-4">
-      <div class="fr-tile fr-tile--horizontal">
+      <div class="fr-tile fr-tile--horizontal fr-enlarge-link">
         <div class="fr-tile__body">
-          <h4 class="fr-tile__title">Numérique</h4>
+          <h4 class="fr-tile__title"><a href="/numerique/">Numérique</a></h4>
         </div>
         <div class="fr-tile__img">
           <img src="{% static 'artwork/coding.svg' %}" class="fr-responsive-img" alt="">
         </div>
       </div>
     </div>
-
-    <div class="fr-col-12">
-      <a href="{% url 'fonctionnement' %}#anchor_thematiques" target="_self" class="fr-link">Voir le détail des thématiques</a>
-    </div>
       <div class="fr-col-12">
        <h3>Les projets locaux</h3>
      </div>
 
       <div class="fr-col-12 fr-col-md-4">
-      <div class="fr-tile fr-tile--horizontal">
+      <div class="fr-tile fr-tile--horizontal fr-enlarge-link">
         <div class="fr-tile__body">
-          <h4 class="fr-tile__title">Notre santé</h4>
+          <h4 class="fr-tile__title"><a href="/sante/">Notre santé</a></h4>
         </div>
         <div class="fr-tile__img">
           <img src="{% static 'artwork/health.svg' %}" class="fr-responsive-img" alt="">
@@ -207,9 +181,9 @@
     </div>
 
       <div class="fr-col-12 fr-col-md-4">
-      <div class="fr-tile fr-tile--horizontal">
+      <div class="fr-tile fr-tile--horizontal fr-enlarge-link">
         <div class="fr-tile__body">
-          <h4 class="fr-tile__title">Notre école</h4>
+          <h4 class="fr-tile__title"><a href="/education/">Notre école</a></h4>
         </div>
         <div class="fr-tile__img">
           <img src="{% static 'artwork/school.svg' %}" class="fr-responsive-img" alt="">
