@@ -73,6 +73,11 @@ Pour les tests E2E, si vous n'utilisez pas Docker, il vous faudra
 accessibles sur votre machine pour lancer les tests E2E.  Sur MacOS,
 vous pouvez les installer via [brew](https://brew.sh/) avec la commande: `brew install geckodriver`.
 
+Vous pouvez également générer un rapport sur la couverture de tests :
+```sh 
+coverage run manage.py test --settings cnr.settings_test
+```
+
 ### via Docker
 
 #### Copier les variables d'environnement
