@@ -52,6 +52,9 @@
                 </ul>
           </div>
           </li>
+          <li class="fr-nav__item">
+            <a class="fr-nav__link" {% if request.resolver_match.url_name == "resultats" %}aria-current="page"{% endif %} href="{% url 'resultats' %}" target="_self">Voir les résultats</a>
+          </li>
         </ul>
       </nav>
     </div>
