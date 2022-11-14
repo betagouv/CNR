@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="fr-container fr-mt-5w ">
+  <div class="fr-grid-row fr-grid-row--gutters">
+    <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
+      <h1 >Résultats de la première consultation</h1>
+    
+      <div class="fr-grid-row fr-grid-row--gutters">
+                                
+
+        <div class="fr-col-6">
+        <div class="fr-card fr-card--sm fr-enlarge-link fr-card--horizontal">
+            <div class="fr-card__body">
+                <div class="fr-card__content">
+                    <h3 class="fr-card__title">
+                        <a href="{% static 'pdf/Synthese-Bien-vieillir.pdf' %}">Bien vieillir</a>
+                    </h3>
+                    <p class="fr-card__desc">Télécharger la synthèse des resultats de la première consultation</p>
+                    <div class="fr-card__end">
+                        <p class="fr-card__detail ">PDF - 1.1 Mo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-card__header">
+                <div class="fr-tile__img">
+                    <img class="fr-responsive-img" src="{% static 'artwork/human-cooperation.svg' %}" alt="[À MODIFIER - vide ou texte alternatif de l’image]" />
+                    <!-- L’alternative de l’image (attribut alt) doit toujours être présente, sa valeur peut-être vide (image n’apportant pas de sens supplémentaire au contexte) ou non (porteuse de texte ou apportant du sens) selon votre contexte -->
+                </div>
+            </div>
+        </div>
+</div>
+
+<div class="fr-col-6">
+    <div class="fr-card fr-card--sm fr-enlarge-link fr-card--horizontal">
+        <div class="fr-card__body">
+            <div class="fr-card__content">
+                <h3 class="fr-card__title">
+                    <a href="{% static 'pdf/Synthese-Climat-et-Biodiversite.pdf' %}">Climat et biodiversité</a>
+                </h3>
+                <p class="fr-card__desc">Télécharger la synthèse des resultats de la première consultation</p>
+                <div class="fr-card__end">
+                    <p class="fr-card__detail ">PDF - 0.8 Mo</p>
+                </div>
+            </div>
+        </div>
+        <div class="fr-card__header">
+            <div class="fr-tile__img">
+                <img class="fr-responsive-img" src="{% static 'artwork/environment.svg' %}" alt="[À MODIFIER - vide ou texte alternatif de l’image]" />
+                <!-- L’alternative de l’image (attribut alt) doit toujours être présente, sa valeur peut-être vide (image n’apportant pas de sens supplémentaire au contexte) ou non (porteuse de texte ou apportant du sens) selon votre contexte -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="fr-col-6">
+    <div class="fr-card fr-card--sm fr-enlarge-link fr-card--horizontal">
+        <div class="fr-card__body">
+            <div class="fr-card__content">
+                <h3 class="fr-card__title">
+                    <a href="{% static 'pdf/Synthese-Logement.pdf' %}">Logement</a>
+                </h3>
+                <p class="fr-card__desc">Télécharger la synthèse des resultats de la première consultation</p>
+                <div class="fr-card__end">
+                    <p class="fr-card__detail ">PDF - 1.2 Mo</p>
+                </div>
+            </div>
+        </div>
+        <div class="fr-card__header">
+            <div class="fr-tile__img">
+                <img class="fr-responsive-img" src="{% static 'artwork/france-localization.svg' %}" alt="[À MODIFIER - vide ou texte alternatif de l’image]" />
+                <!-- L’alternative de l’image (attribut alt) doit toujours être présente, sa valeur peut-être vide (image n’apportant pas de sens supplémentaire au contexte) ou non (porteuse de texte ou apportant du sens) selon votre contexte -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="fr-col-6">
+    <div class="fr-card fr-enlarge-link  fr-card--sm fr-card--horizontal">
+        <div class="fr-card__body">
+            <div class="fr-card__content">
+                <h3 class="fr-card__title">
+                    <a href="{% static 'pdf/Synthese-Numerique.pdf' %}">Numérique</a>
+                </h3>
+                <p class="fr-card__desc">Télécharger la synthèse des resultats de la première consultation</p>
+                <div class="fr-card__end">
+                    <p class="fr-card__detail ">PDF - 1.0  Mo</p>
+                </div>
+            </div>
+        </div>
+        <div class="fr-card__header">
+            <div class="fr-tile__img">
+                <img class="fr-responsive-img" src="{% static 'artwork/coding.svg' %}" alt="[À MODIFIER - vide ou texte alternatif de l’image]" />
+                <!-- L’alternative de l’image (attribut alt) doit toujours être présente, sa valeur peut-être vide (image n’apportant pas de sens supplémentaire au contexte) ou non (porteuse de texte ou apportant du sens) selon votre contexte -->
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+
+
+    </div>
+  </div>
+</div><!--container -->
+<div class="fr-follow">
+  <div class="fr-container">
+      <div class="fr-grid-row">
+          <div class="fr-col-12">
+              <div class="fr-follow__newsletter">
+                  <div>
+                      <h5 class="fr-h5 fr-follow__title">Rejoignez-nous</h5>
+                      <p class="fr-text--sm fr-follow__desc">Rejoindre dès maintenant le Conseil national de la Refondation vous permet de participer à cette nouvelle méthode de dialogue aux côtés de ceux qui font vivre nos services publics et nos territoires, des associations et de milliers d'autres citoyens.</p>
+                  </div>
+                  <div>
+                      <a class="fr-btn" href="{% url 'inscription' %}">Je participe !</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock content %}

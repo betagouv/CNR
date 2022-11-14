@@ -181,3 +181,8 @@ def education_view(request):
     return render(
         request, "public_website/education.html", {"title": "Notre école"}
     )
+
+def resultats_view(request):
+    return render(
+        request, "public_website/resultats.html", {"title": "Resultats"}
+    )
