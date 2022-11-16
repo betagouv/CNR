@@ -16,5 +16,6 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: chummy
+      POSTGRES_DB: cnr
     ports:
       - "5432:5432"
