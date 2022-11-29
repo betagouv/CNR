@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="fr-container fr-my-6w">
+        <div class="fr-grid-row fr-grid-row--gutters">
+            <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
+                    <div class="fr-form-group">
+                        <fieldset class="fr-fieldset fr-fieldset--inline"
+                                  role="group">
+                            <legend class="fr-fieldset__legend fr-h2 fr-mb-0">
+                                Donnez votre avis dès maintenant
+                            </legend>
+                            <span class="fr-hint-text fr-mb-5w">Vous pouvez répondre à une série de questions pour donner votre avis sur les thématiques de votre choix. Temps estimé pour y répondre : entre 5 et 10 minutes.</span>
+                            <div class="fr-grid-row fr-grid-row--gutters">
+                                
+                                <div class="fr-col-12 fr-col-md-4">
+                                    <div class="fr-tile fr-tile--horizontal fr-enlarge-link">
+                                      <div class="fr-tile__body">
+                                        <h4 class="fr-tile__title"><a target="_blank" href="https://jeparticipe.conseil-refondation.fr/bienvieillir/?mtm_campaign=frontcnr ">Bien vieillir</a></h4>
+                                      </div>
+                                      <div class="fr-tile__img">
+                                        <img src="{% static 'artwork/human-cooperation.svg' %}" class="fr-responsive-img" alt="">
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="fr-col-12 fr-col-md-4">
+                                    <div class="fr-tile fr-tile--horizontal fr-enlarge-link">
+                                      <div class="fr-tile__body">
+                                        <h4 class="fr-tile__title"><a target="_blank" href="https://jeparticipe.conseil-refondation.fr/logement/?mtm_campaign=frontcnr">Logement</a></h4>
+                                      </div>
+                                      <div class="fr-tile__img">
+                                        <img src="{% static 'artwork/france-localization.svg' %}" class="fr-responsive-img" alt="">
+                                      </div>
+                                    </div>
+                                  </div>
+
+
+                                  <div class="fr-col-12 fr-col-md-4">
+                                    <div class="fr-tile fr-tile--horizontal fr-enlarge-link">
+                                      <div class="fr-tile__body">
+                                        <h4 class="fr-tile__title"><a target="_blank" href="https://jeparticipe.conseil-refondation.fr/numerique/?mtm_campaign=frontcnr">Numérique</a></h4>
+                                      </div>
+                                      <div class="fr-tile__img">
+                                        <img src="{% static 'artwork/coding.svg' %}" class="fr-responsive-img" alt="">
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}

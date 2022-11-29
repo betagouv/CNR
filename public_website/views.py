@@ -186,3 +186,8 @@ def resultats_view(request):
     return render(
         request, "public_website/resultats.html", {"title": "Résultats"}
     )
+
+def choix_thematique_view(request):
+    return render(
+        request, "public_website/choix-thematique.html", {"title": "Choix de la thématique"}
+    )
