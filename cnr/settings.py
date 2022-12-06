@@ -38,8 +38,10 @@ if os.getenv("IS_DEBUG_ENABLED") == "True":
 else:
     DEBUG = False
 
+HOST_URL = os.getenv("HOST_URL", "127.0.0.1, localhost")
+
 ALLOWED_HOSTS = (
-    os.getenv("HOST_URL", "127.0.0.1, localhost").replace(" ", "").split(",")
+    HOST_URL.replace(" ", "").split(",")
 )
 
 INTERNAL_IPS = [
@@ -305,9 +307,7 @@ WAGTAIL_SITE_NAME = "Conseil National de la Refondation"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-WAGTAILADMIN_BASE_URL = (
-    f"{os.getenv('HOST_PROTO', 'https')}://{os.getenv('HOST_URL', 'localhost')}:8000"
-)
+WAGTAILADMIN_BASE_URL = f"{os.getenv('HOST_PROTO', 'https')}://{HOST_URL[-1]}"
 
 # Disable Gravatar service
 WAGTAIL_GRAVATAR_PROVIDER_URL = None
