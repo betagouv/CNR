@@ -20,7 +20,7 @@ urlpatterns = [
     path("accessibilite/", views.accessibilite_view, name="accessibilite"),
     path("confidentialite/", views.confidentialite_view, name="confidentialite"),
     path("resultats/", views.resultats_view, name="resultats"),
-    path("choix-thematique/", views.choix_thematique_view, name="resultats"),
+    path("choix-thematique/", views.choix_thematique_view, name="choix_thematique"),
     path(
         "accessibilite-demarche/",
         views.accessibilite_demarche_view,
