@@ -48,6 +48,15 @@ INTERNAL_IPS = [
 
 # Application definition
 INSTALLED_APPS = [
+    "wagtail.contrib.redirects",
+    "wagtail.embeds",
+    "wagtail.sites",
+    "wagtail.users",
+    "wagtail.documents",
+    "wagtail.images",
+    "wagtail.admin",
+    "wagtail",
+    "taggit",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -60,6 +69,7 @@ INSTALLED_APPS = [
     "public_website",
     "surveys",
     "behave_django",
+    "cms",
 ]
 
 MIDDLEWARE = [
@@ -72,6 +82,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_referrer_policy.middleware.ReferrerPolicyMiddleware",
     "csp.middleware.CSPMiddleware",
+    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
 
@@ -153,6 +164,9 @@ CSP_CONNECT_SRC = [
     "googleadservices.com",
     "googleads.g.doubleclick.net/",
 ]
+
+# https://django-csp.readthedocs.io/en/latest/configuration.html?highlight=CSP_EXCLUDE_URL_PREFIXES#other-settings
+CSP_EXCLUDE_URL_PREFIXES = ("/cms-admin/",)
 
 ROOT_URLCONF = "cnr.urls"
 
@@ -283,3 +297,37 @@ MTCAPTCHA_PUBLIC_KEY = os.getenv("MTCAPTCHA_PUBLIC_KEY", "")
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 SESSION_COOKIE_AGE = 60 * 60
+
+# Wagtail settings
+# https://docs.wagtail.org/en/stable/reference/settings.html
+
+WAGTAIL_SITE_NAME = "Conseil National de la Refondation"
+
+# Base URL to use when referring to full URLs within the Wagtail admin backend -
+# e.g. in notification emails. Don't include '/admin' or a trailing slash
+WAGTAILADMIN_BASE_URL = (
+    f"{os.getenv('HOST_PROTO', 'https')}://{os.getenv('HOST_URL', 'localhost')}:8000"
+)
+
+# Disable Gravatar service
+WAGTAIL_GRAVATAR_PROVIDER_URL = None
+
+WAGTAIL_RICHTEXT_FIELD_FEATURES = [
+    "h2",
+    "h3",
+    "h4",
+    "bold",
+    "italic",
+    "link",
+    "document-link",
+    "image",
+    "embed",
+]
+
+WAGTAILEMBEDS_RESPONSIVE_HTML = True
+WAGTAIL_MODERATION_ENABLED = False
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
+MEDIA_URL = "/media/"
+
+DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
