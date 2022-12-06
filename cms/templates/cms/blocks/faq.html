@@ -1,0 +1,29 @@
+{% load wagtailcore_tags %}
+
+<div class="fr-container fr-py-3w">
+    <div class="fr-grid-row fr-grid-row--gutters">
+        <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
+            {% for subblock in block.value %}
+                {% if subblock.block_type == 'title' %}
+                    <div class="fr-col-12">
+                        <h2>{{ subblock.value }}</h2>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <div class="fr-accordions-group">
+                {% for subblock in block.value %}
+                    {% if subblock.block_type == 'question' %}
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="accordion-{{ faq_id }}-{{ forloop.counter0 }}">{{ subblock.value.question }}</button>
+                            </h3>
+                            <div class="fr-collapse" id="accordion-{{ faq_id }}-{{ forloop.counter0 }}">
+                                {{ subblock.value.answer|richtext }}
+                            </div>
+                        </section>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

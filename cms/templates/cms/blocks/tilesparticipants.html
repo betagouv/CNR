@@ -1,0 +1,40 @@
+{% load static %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+<div class="fr-container fr-my-6w">
+    <div class="fr-grid-row fr-grid-row--gutters">
+        <div class="fr-col-12 fr-col-sm-{{ block.value.ratio }}">
+            <div class="fr-grid-row fr-grid-row--gutters">
+                <div class="fr-col-12">
+                    <h2>{{ block.value.tilestitle }}</h2>
+                </div>
+            </div>
+            <div class="fr-grid-row fr-grid-row--gutters">
+                {% for subblock in block.value.tiles %}
+                    {% if block.value.ratio == "6" %}
+                        {% include "cms/blocks/tile.html" with block=subblock colsuffix="-12" %}
+                    {% else %}
+                        {% include "cms/blocks/tile.html" with block=subblock colsuffix="-6" %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="fr-col-12 fr-col-sm{{ -12|add:block.value.ratio }}">            
+            <div class="fr-grid-row fr-grid-row--gutters">
+                <div class="fr-col-12">
+                    <h2>{{ block.value.participantstitle }}</h2>
+                </div>
+            </div>
+            <div class="fr-grid-row fr-grid-row--gutters">
+                <div class="fr-col-12">
+                    <ul class="participantlist no-bullets">
+                        {% for subblock in block.value.participants %}
+                        <li><span class="fr-icon-user-line participantlist-icon" aria-hidden="true"></span> {{ subblock.value }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
