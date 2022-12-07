@@ -171,6 +171,22 @@ class TilesAndParticipantsBlock(blocks.StructBlock):
     participants = ParticipantsListBlock(label="Les participants")
 
 
+class StepBlock(blocks.StructBlock):
+    title = blocks.CharBlock(label="Titre de l'étape")
+    detail = blocks.TextBlock(label="Détail")
+
+
+class StepsListBlock(blocks.StreamBlock):
+    step = StepBlock(label="Étape")
+
+
+class StepperBlock(blocks.StructBlock):
+    title = blocks.CharBlock(label="Titre")
+    total = blocks.IntegerBlock(label="Nombre d'étape")
+    current = blocks.IntegerBlock(label="Étape en cours")
+    steps = StepsListBlock(label="Les étapes")
+
+
 class ContentPage(Page):
 
     body = StreamField([
@@ -190,6 +206,7 @@ class ContentPage(Page):
         ('cardhorizontal', CardHorizontalBlock(label="Carte Document")),
         ('participantlist', ParticipantsListBlock(label="Liste de participants")),
         ('tilesparticipants', TilesAndParticipantsBlock(label="Thématiques & participants")),
+        ('stepper', StepperBlock(label="Étapes")),
     ], blank=True, use_json_field=True)
 
     # Editor panels configuration
