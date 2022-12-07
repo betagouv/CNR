@@ -21,8 +21,9 @@
   align-items: center;
   text-align: center; }
   .cover h1 {
-    color: #fff;
-    margin-top: -20vh; }
+    color: #fff; }
+  .cover p {
+    color: #fff; }
 
 .mt-n30vh {
   margin-top: -30vh; }
@@ -31,3 +32,18 @@
   list-style: none;
   padding: 0;
   color: var(--text-label-red-marianne); }
+
+.number-block h3 {
+  text-align: center;
+  color: var(--text-label-blue-france);
+  font-size: 2.5rem;
+  line-height: 3rem; }
+
+.number-block p {
+  text-align: center; }
+
+.no-bullets {
+  list-style-type: none; }
+
+.participantlist-icon {
+  color: var(--text-label-blue-france); }

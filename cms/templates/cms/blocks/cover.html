@@ -1,0 +1,12 @@
+{% load static %}
+<div class="cover" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url({% static 'images/macron_CNR.jpg' %})">
+    <div class="fr-container fr-py-6w">
+        <div class="fr-grid-row fr-grid-row--gutters">
+        <div class="fr-col-12">
+            <h1 class="fr-display--sm">{{ block.value.title }}</h1>
+            <p class="fr-text--lead"><strong>{{ block.value.text }}</strong></p>
+            <a class="fr-btn fr-btn--icon-left fr-icon-question-answer-fill fr-btn--secondary fr-background-alt--blue-france" href="{{ block.value.cta_link }}">{{ block.value.cta_label }}</a>
+        </div>
+        </div>
+    </div>
+</div>

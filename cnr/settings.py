@@ -38,8 +38,10 @@ if os.getenv("IS_DEBUG_ENABLED") == "True":
 else:
     DEBUG = False
 
+HOST_URL = os.getenv("HOST_URL", "127.0.0.1, localhost")
+
 ALLOWED_HOSTS = (
-    os.getenv("HOST_URL", "127.0.0.1, localhost").replace(" ", "").split(",")
+    HOST_URL.replace(" ", "").split(",")
 )
 
 INTERNAL_IPS = [
@@ -48,6 +50,16 @@ INTERNAL_IPS = [
 
 # Application definition
 INSTALLED_APPS = [
+    "storages",
+    "wagtail.contrib.redirects",
+    "wagtail.embeds",
+    "wagtail.sites",
+    "wagtail.users",
+    "wagtail.documents",
+    "wagtail.images",
+    "wagtail.admin",
+    "wagtail",
+    "taggit",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -60,6 +72,7 @@ INSTALLED_APPS = [
     "public_website",
     "surveys",
     "behave_django",
+    "cms",
 ]
 
 MIDDLEWARE = [
@@ -72,6 +85,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_referrer_policy.middleware.ReferrerPolicyMiddleware",
     "csp.middleware.CSPMiddleware",
+    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
 
@@ -113,6 +127,7 @@ CSP_IMG_SRC = [
     "*.gstatic.com",
     "*.facebook.com",
     "*.google.fr",
+    "cellar-c2.services.clever-cloud.com",
 ]
 CSP_STYLE_SRC = [
     "'self'",
@@ -153,6 +168,9 @@ CSP_CONNECT_SRC = [
     "googleadservices.com",
     "googleads.g.doubleclick.net/",
 ]
+
+# https://django-csp.readthedocs.io/en/latest/configuration.html?highlight=CSP_EXCLUDE_URL_PREFIXES#other-settings
+CSP_EXCLUDE_URL_PREFIXES = ("/cms-admin/",)
 
 ROOT_URLCONF = "cnr.urls"
 
@@ -283,3 +301,49 @@ MTCAPTCHA_PUBLIC_KEY = os.getenv("MTCAPTCHA_PUBLIC_KEY", "")
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 SESSION_COOKIE_AGE = 60 * 60
+
+# S3 uploads
+# ------------------------------------------------------------------------------
+
+AWS_S3_ACCESS_KEY_ID = os.getenv("S3_KEY_ID", "123")
+AWS_S3_SECRET_ACCESS_KEY = os.getenv("S3_KEY_SECRET", "secret")
+AWS_S3_ENDPOINT_URL = (
+    f"{os.getenv('S3_PROTOCOL', 'https')}://{os.getenv('S3_HOST', 'set-var-env.com/')}"
+)
+AWS_STORAGE_BUCKET_NAME = os.getenv("S3_BUCKET_NAME", "set-bucket-name")
+AWS_S3_STORAGE_BUCKET_REGION = os.getenv("S3_BUCKET_REGION", "fr")
+
+# MEDIA CONFIGURATION
+# ------------------------------------------------------------------------------
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
+MEDIA_URL = f"https://{AWS_S3_ENDPOINT_URL}/"  # noqa
+
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+# Wagtail settings
+# https://docs.wagtail.org/en/stable/reference/settings.html
+
+WAGTAIL_SITE_NAME = "Conseil National de la Refondation"
+
+# Base URL to use when referring to full URLs within the Wagtail admin backend -
+# e.g. in notification emails. Don't include '/admin' or a trailing slash
+WAGTAILADMIN_BASE_URL = f"{os.getenv('HOST_PROTO', 'https')}://{HOST_URL[-1]}"
+
+# Disable Gravatar service
+WAGTAIL_GRAVATAR_PROVIDER_URL = None
+
+WAGTAIL_RICHTEXT_FIELD_FEATURES = [
+    "h2",
+    "h3",
+    "h4",
+    "bold",
+    "italic",
+    "link",
+    "document-link",
+    "image",
+    "embed",
+]
+
+WAGTAILEMBEDS_RESPONSIVE_HTML = True
+WAGTAIL_MODERATION_ENABLED = False

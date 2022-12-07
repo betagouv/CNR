@@ -1,0 +1,21 @@
+{% load static %}
+{% load wagtailcore_tags %}
+<div class="fr-col{{ colsuffix }}">
+    <div class="fr-tile{% if block.value.url %} fr-enlarge-link{% endif %} fr-tile--horizontal">
+        <div class="fr-tile__body">
+            <h4 class="fr-tile__title">
+                {% if block.value.url %}<a class="fr-tile__link" href="{{ block.value.url }}">{% endif %}{{ block.value.title }}{% if block.value.url %}</a>{% endif %}
+            </h4>
+            {% if block.value.text %}
+                <p class="fr-tile__desc">{{ block.value.text|richtext }}</p>
+            {% endif %}
+        </div>
+        {% if block.value.svg_icon %}
+        <div class="fr-tile__img">
+            {% with 'artwork/'|add:block.value.svg_icon|add:'.svg' as ico_static %}
+                <img src="{% static ico_static %}" class="fr-responsive-img" alt="">
+            {% endwith %}
+        </div>
+        {% endif %}
+    </div>
+</div>

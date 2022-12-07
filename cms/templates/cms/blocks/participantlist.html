@@ -1,0 +1,5 @@
+<ul class="participantlist no-bullets">
+    {% for subblock in block.value %}
+    <li><span class="fr-icon-user-line participantlist-icon" aria-hidden="true"></span> {{ subblock.value }}</li>
+    {% endfor %}
+</ul>
