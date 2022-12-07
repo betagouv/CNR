@@ -8,7 +8,6 @@ from wagtail.documents.blocks import DocumentChooserBlock
 
 # Wagtail Block Documentation : https://docs.wagtail.org/en/stable/reference/streamfield/blocks.html
 class CoverImage(blocks.StructBlock):
-    image = ImageChooserBlock(label="Image d'arrière plan")
     title = blocks.CharBlock(label="Titre")
     text = blocks.CharBlock(label="Texte")
     cta_label = blocks.CharBlock(label="Texte du bouton", required=False)
@@ -175,7 +174,7 @@ class TilesAndParticipantsBlock(blocks.StructBlock):
 class ContentPage(Page):
 
     body = StreamField([
-        ('cover', CoverImage(label="Image pleine largeur avec texte")),
+        ('cover', CoverImage(label="Image pleine largeur avec texte (homepage)")),
         ('paragraph', blocks.RichTextBlock(label="Texte avec mise en forme")),
         ('paragraphlarge', blocks.RichTextBlock(label="Texte avec mise en forme (large)")),
         ('image', ImageChooserBlock()),
