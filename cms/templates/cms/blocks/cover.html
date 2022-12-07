@@ -2,7 +2,7 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
 {% image block.value.image original as tmp_image %}
-<div class="cover" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(/media/images/macron_CNR.width-800.jpg)">
+<div class="cover" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url({{ tmp_image.url }})">
     <div class="fr-container fr-py-6w">
         <div class="fr-grid-row fr-grid-row--gutters">
             <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">

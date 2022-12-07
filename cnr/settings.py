@@ -50,6 +50,7 @@ INTERNAL_IPS = [
 
 # Application definition
 INSTALLED_APPS = [
+    "storages",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
     "wagtail.sites",
@@ -126,6 +127,7 @@ CSP_IMG_SRC = [
     "*.gstatic.com",
     "*.facebook.com",
     "*.google.fr",
+    "cellar-c2.services.clever-cloud.com",
 ]
 CSP_STYLE_SRC = [
     "'self'",
@@ -300,6 +302,25 @@ MTCAPTCHA_PUBLIC_KEY = os.getenv("MTCAPTCHA_PUBLIC_KEY", "")
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 SESSION_COOKIE_AGE = 60 * 60
 
+# S3 uploads
+# ------------------------------------------------------------------------------
+
+AWS_S3_ACCESS_KEY_ID = os.getenv("S3_KEY_ID", "123")
+AWS_S3_SECRET_ACCESS_KEY = os.getenv("S3_KEY_SECRET", "secret")
+AWS_S3_ENDPOINT_URL = (
+    f"{os.getenv('S3_PROTOCOL', 'https')}://{os.getenv('S3_HOST', 'set-var-env.com/')}"
+)
+AWS_STORAGE_BUCKET_NAME = os.getenv("S3_BUCKET_NAME", "set-bucket-name")
+AWS_S3_STORAGE_BUCKET_REGION = os.getenv("S3_BUCKET_REGION", "fr")
+
+# MEDIA CONFIGURATION
+# ------------------------------------------------------------------------------
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
+MEDIA_URL = f"https://{AWS_S3_ENDPOINT_URL}/"  # noqa
+
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
 # Wagtail settings
 # https://docs.wagtail.org/en/stable/reference/settings.html
 
@@ -326,8 +347,3 @@ WAGTAIL_RICHTEXT_FIELD_FEATURES = [
 
 WAGTAILEMBEDS_RESPONSIVE_HTML = True
 WAGTAIL_MODERATION_ENABLED = False
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
-MEDIA_URL = "/media/"
-
-DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
