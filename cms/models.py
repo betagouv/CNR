@@ -7,6 +7,14 @@ from wagtail.documents.blocks import DocumentChooserBlock
 
 
 # Wagtail Block Documentation : https://docs.wagtail.org/en/stable/reference/streamfield/blocks.html
+class ImageBlock(blocks.StructBlock):
+    title = blocks.CharBlock(label="Titre", required=False)
+    image = ImageChooserBlock(label="Illustration")
+    alt = blocks.CharBlock(label="Texte alternatif (description textuelle de l'image)", required=False)
+    caption = blocks.CharBlock(label="Légende", required=False)
+    url = blocks.URLBlock(label="Lien", required=False)
+
+
 class CoverImage(blocks.StructBlock):
     title = blocks.CharBlock(label="Titre")
     text = blocks.CharBlock(label="Texte")
@@ -70,7 +78,7 @@ class NumberBlock(blocks.StructBlock):
 
 class NumbersBlock(blocks.StreamBlock):
     title = blocks.CharBlock(label="Titre", required=True)
-    image = ImageChooserBlock(label="Illustration en première colonne (optionnelle)", required=False)
+    image = ImageBlock(label="Image", required=False)
     number = NumberBlock(label="Chiffre", min_num=3, max_num=4)
 
 
@@ -127,14 +135,6 @@ class CardHorizontalBlock(blocks.StructBlock):
     text = blocks.TextBlock(label="Texte")
     document = DocumentChooserBlock(label="Document", required=False)
     svg_icon = blocks.ChoiceBlock(label="Image d'illustration", choices=svg_icon_choices, required=False)
-
-
-class ImageBlock(blocks.StructBlock):
-    title = blocks.CharBlock(label="Titre", required=False)
-    image = ImageChooserBlock(label="Illustration")
-    alt = blocks.CharBlock(label="Texte alternatif (description textuelle de l'image)", required=False)
-    caption = blocks.CharBlock(label="Légende", required=False)
-    url = blocks.URLBlock(label="Lien", required=False)
 
 
 class MultiColumnsBlock(blocks.StreamBlock):

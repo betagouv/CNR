@@ -2,7 +2,7 @@
 {% if block.value.title %}
 <h5>{{ block.value.title }}</h5>
 {% endif %}
-<div class="fr-content-media{% if block.value.url %} fr-enlarge-link{% endif %}">
+<div class="{% if not noclass %}fr-content-media{% endif %}{% if block.value.url %} fr-enlarge-link{% endif %}">
     {% if block.value.url %}
         <a href="{{ block.value.url }}" />
     {% endif %}
