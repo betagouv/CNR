@@ -15,14 +15,14 @@
 .cover {
   background-size: cover;
   background-position: center;
+  height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center; }
   .cover h1 {
-    color: #fff; }
-  .cover p {
-    color: #fff; }
+    color: #fff;
+    margin-top: -20vh; }
 
 .mt-n30vh {
   margin-top: -30vh; }
@@ -31,6 +31,18 @@
   list-style: none;
   padding: 0;
   color: var(--text-label-red-marianne); }
+
+.cover-baseline {
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; }
+  .cover-baseline h1 {
+    color: #fff; }
+  .cover-baseline p {
+    color: #fff; }
 
 .number-block h3 {
   text-align: center;
