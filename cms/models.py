@@ -202,7 +202,6 @@ class ContentPage(Page):
         ('video', VideoBlock(label="Vidéo")),
         ('multicolumns', MultiColumnsBlock(label="Multi-colonnes")),
         ('faq', FaqBlock(label="Questions fréquentes")),
-        ('card', FaqBlock(label="Carte")),
         ('cardhorizontal', CardHorizontalBlock(label="Carte Document")),
         ('participantlist', ParticipantsListBlock(label="Liste de participants")),
         ('tilesparticipants', TilesAndParticipantsBlock(label="Thématiques & participants")),
