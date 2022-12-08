@@ -16,7 +16,7 @@
                 
                 {% if subblock.block_type == 'image' %}
                     <div class="fr-col">
-                        {% image subblock.value original class="fr-responsive-img" %}
+                        {% include "cms/blocks/image.html" with block=subblock noclass=True %}
                     </div>
                 {% elif subblock.block_type == 'number' %}
                     <div class="fr-col number-block">

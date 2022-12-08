@@ -10,10 +10,7 @@
                     </div>
                 {% elif subblock.block_type == 'image' %}
                     <div class="fr-col">
-                        <h5>{{ subblock.value.title }}</h5>
-                        <div class="fr-content-media">
-                            {% image subblock.value.image original class="fr-responsive-img" %}
-                        </div>
+                        {% include "cms/blocks/image.html" with block=subblock %}
                     </div>
                 {% elif subblock.block_type == 'video' %}
                     <div class="fr-col">

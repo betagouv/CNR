@@ -7,6 +7,14 @@ from wagtail.documents.blocks import DocumentChooserBlock
 
 
 # Wagtail Block Documentation : https://docs.wagtail.org/en/stable/reference/streamfield/blocks.html
+class ImageBlock(blocks.StructBlock):
+    title = blocks.CharBlock(label="Titre", required=False)
+    image = ImageChooserBlock(label="Illustration")
+    alt = blocks.CharBlock(label="Texte alternatif (description textuelle de l'image)", required=False)
+    caption = blocks.CharBlock(label="Légende", required=False)
+    url = blocks.URLBlock(label="Lien", required=False)
+
+
 class CoverImage(blocks.StructBlock):
     title = blocks.CharBlock(label="Titre")
     text = blocks.CharBlock(label="Texte")
@@ -70,7 +78,7 @@ class NumberBlock(blocks.StructBlock):
 
 class NumbersBlock(blocks.StreamBlock):
     title = blocks.CharBlock(label="Titre", required=True)
-    image = ImageChooserBlock(label="Illustration en première colonne (optionnelle)", required=False)
+    image = ImageBlock(label="Image", required=False)
     number = NumberBlock(label="Chiffre", min_num=3, max_num=4)
 
 
@@ -78,11 +86,6 @@ class VideoBlock(blocks.StructBlock):
     title = blocks.CharBlock(label="Titre", required=False)
     caption = blocks.CharBlock(label="Légende")
     url = blocks.URLBlock(label="Lien de la vidéo")
-
-
-class ImageWithTitleBlock(blocks.StructBlock):
-    title = blocks.CharBlock(label="Titre", required=False)
-    image = ImageChooserBlock(label="Illustration")
 
 
 badge_level_choices = [
@@ -136,7 +139,7 @@ class CardHorizontalBlock(blocks.StructBlock):
 
 class MultiColumnsBlock(blocks.StreamBlock):
     text = blocks.RichTextBlock(label="Texte avec mise en forme")
-    image = ImageWithTitleBlock(label="Illustration")
+    image = ImageBlock(label="Image")
     video = VideoBlock(label="Vidéo")
     card = CardBlock(label="Carte")
     tile = TileBlock(label="Tuile thématique")
@@ -193,7 +196,7 @@ class ContentPage(Page):
         ('cover', CoverImage(label="Image pleine largeur avec texte (homepage)")),
         ('paragraph', blocks.RichTextBlock(label="Texte avec mise en forme")),
         ('paragraphlarge', blocks.RichTextBlock(label="Texte avec mise en forme (large)")),
-        ('image', ImageChooserBlock()),
+        ('image', ImageBlock()),
         ('imageandtext', ImageAndTextBlock(label="Bloc image à gauche et texte à droite")),
         ('alert', AlertBlock(label="Message d'alerte")),
         ('callout', CalloutBlock(label="Texte mise en avant")),
@@ -202,7 +205,6 @@ class ContentPage(Page):
         ('video', VideoBlock(label="Vidéo")),
         ('multicolumns', MultiColumnsBlock(label="Multi-colonnes")),
         ('faq', FaqBlock(label="Questions fréquentes")),
-        ('card', FaqBlock(label="Carte")),
         ('cardhorizontal', CardHorizontalBlock(label="Carte Document")),
         ('participantlist', ParticipantsListBlock(label="Liste de participants")),
         ('tilesparticipants', TilesAndParticipantsBlock(label="Thématiques & participants")),
