@@ -76,6 +76,8 @@
             </div>
         {% elif block.block_type == 'tilesparticipants' %}
             {% include "cms/blocks/tilesparticipants.html" %}
+        {% elif block.block_type == 'stepper' %}
+            {% include "cms/blocks/stepper.html" %}
         {% endif %}
     {% endfor %}
 {% endblock content %}
