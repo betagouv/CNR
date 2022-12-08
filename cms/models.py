@@ -80,11 +80,6 @@ class VideoBlock(blocks.StructBlock):
     url = blocks.URLBlock(label="Lien de la vidéo")
 
 
-class ImageWithTitleBlock(blocks.StructBlock):
-    title = blocks.CharBlock(label="Titre", required=False)
-    image = ImageChooserBlock(label="Illustration")
-
-
 badge_level_choices = [
     ('error', 'Erreur'),
     ('success', 'Succès'),
@@ -134,9 +129,17 @@ class CardHorizontalBlock(blocks.StructBlock):
     svg_icon = blocks.ChoiceBlock(label="Image d'illustration", choices=svg_icon_choices, required=False)
 
 
+class ImageBlock(blocks.StructBlock):
+    title = blocks.CharBlock(label="Titre", required=False)
+    image = ImageChooserBlock(label="Illustration")
+    alt = blocks.CharBlock(label="Texte alternatif (description textuelle de l'image)", required=False)
+    caption = blocks.CharBlock(label="Légende", required=False)
+    url = blocks.URLBlock(label="Lien", required=False)
+
+
 class MultiColumnsBlock(blocks.StreamBlock):
     text = blocks.RichTextBlock(label="Texte avec mise en forme")
-    image = ImageWithTitleBlock(label="Illustration")
+    image = ImageBlock(label="Image")
     video = VideoBlock(label="Vidéo")
     card = CardBlock(label="Carte")
     tile = TileBlock(label="Tuile thématique")
@@ -193,7 +196,7 @@ class ContentPage(Page):
         ('cover', CoverImage(label="Image pleine largeur avec texte (homepage)")),
         ('paragraph', blocks.RichTextBlock(label="Texte avec mise en forme")),
         ('paragraphlarge', blocks.RichTextBlock(label="Texte avec mise en forme (large)")),
-        ('image', ImageChooserBlock()),
+        ('image', ImageBlock()),
         ('imageandtext', ImageAndTextBlock(label="Bloc image à gauche et texte à droite")),
         ('alert', AlertBlock(label="Message d'alerte")),
         ('callout', CalloutBlock(label="Texte mise en avant")),

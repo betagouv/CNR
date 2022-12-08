@@ -28,6 +28,14 @@
             {% include "cms/blocks/quote.html"  %}
         {% elif block.block_type == 'numbers' %}
             {% include "cms/blocks/numbers.html"  %}
+        {% elif block.block_type == 'image' %}
+            <div class="fr-container fr-my-3w">
+                <div class="fr-grid-row fr-grid-row--gutters">
+                    <div class="fr-col-12">
+                        {% include "cms/blocks/image.html"  %}
+                    </div>
+                </div>
+            </div>
         {% elif block.block_type == 'video' %}
             <div class="fr-container fr-my-3w">
                 <div class="fr-grid-row fr-grid-row--gutters">
@@ -54,8 +62,6 @@
                     </div>
                 </div>
             </div>
-        {% elif block.block_type == 'image' %}
-            {% image block.value original class="fr-responsive-img" %}</p>
         {% elif block.block_type == 'faq' %}
             {% include "cms/blocks/faq.html" with faq_id=forloop.counter0 %}
         {% elif block.block_type == 'cardhorizontal' %}
