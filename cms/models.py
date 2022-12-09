@@ -70,7 +70,7 @@ class CalloutBlock(blocks.StructBlock):
 
 
 class QuoteBlock(blocks.StructBlock):
-    image = ImageChooserBlock(label="Illustration (à gauche)")
+    image = ImageChooserBlock(label="Illustration (à gauche)", required=False)
     quote = blocks.CharBlock(label="Citation")
     author_name = blocks.CharBlock(label="Nom de l'auteur")
     author_title = blocks.CharBlock(label="Titre de l'auteur")

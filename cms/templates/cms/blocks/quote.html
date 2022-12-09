@@ -1,5 +1,5 @@
 {% load wagtailimages_tags %}
-<figure class="fr-quote fr-quote--column">
+<figure class="fr-quote {% if block.value.image %}fr-quote--column{% endif %}">
     <blockquote>
         <p>« {{ block.value.quote }} »</p>
     </blockquote>
@@ -10,8 +10,10 @@
                 <cite>{{ block.value.author_title }}</cite>
             </li>
         </ul>
+        {% if block.value.image %}
         <div class="fr-quote__image">
             {% image block.value.image original class="fr-responsive-img" %}
         </div>
+        {% endif %}
     </figcaption>
 </figure>
