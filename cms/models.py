@@ -91,7 +91,7 @@ class NumbersBlock(blocks.StreamBlock):
 class VideoBlock(blocks.StructBlock):
     title = blocks.CharBlock(label="Titre", required=False)
     caption = blocks.CharBlock(label="Légende")
-    url = blocks.URLBlock(label="Lien de la vidéo")
+    url = blocks.URLBlock(label="Lien de la vidéo", help_text="URL au format 'embed' (Ex. : https://www.youtube.com/embed/gLzXOViPX-0)")
 
 
 badge_level_choices = [
