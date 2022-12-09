@@ -198,6 +198,10 @@ class StepperBlock(blocks.StructBlock):
     steps = StepsListBlock(label="Les étapes")
 
 
+class FooterJeParticipeBlock(blocks.StructBlock):
+    pass
+
+
 class ContentPage(Page):
 
     body = StreamField([
@@ -218,6 +222,7 @@ class ContentPage(Page):
         ('tilesparticipants', TilesAndParticipantsBlock(label="Thématiques & participants")),
         ('stepper', StepperBlock(label="Étapes")),
         ('multitiles', MultiTilesBlock(label="Les thématiques")),
+        ('jeparticipe', FooterJeParticipeBlock(label="Bandeau Je participe")),
     ], blank=True, use_json_field=True)
 
     # Editor panels configuration
