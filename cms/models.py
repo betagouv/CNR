@@ -100,6 +100,9 @@ badge_level_choices = [
     ('info', 'Information'),
     ('warning', 'Attention'),
     ('new', 'Nouveau'),
+    ('grey', 'Gris'),
+    ('green-emeraude', 'Vert'),
+    ('blue-ecume', 'Bleu'),
 ]
 
 
@@ -130,11 +133,22 @@ svg_icon_choices = [
 ]
 
 
+class BadgeBlock(blocks.StructBlock):
+    text = blocks.CharBlock(label="Texte du badge", required=False)
+    color = blocks.ChoiceBlock(label="Couleur de badge", choices=badge_level_choices, required=False)
+    hide_icon = blocks.BooleanBlock(label="Masquer l'icon du badge", required=False)
+
+
+class BadgesListBlock(blocks.StreamBlock):
+    badge = BadgeBlock(label="Badge")
+
+
 class TileBlock(blocks.StructBlock):
     title = blocks.CharBlock(label="Titre", required=False)
     text = blocks.TextBlock(label="Texte", required=False)
     url = blocks.URLBlock(label="Lien", required=False)
     svg_icon = blocks.ChoiceBlock(label="Image d'illustration", choices=svg_icon_choices, required=False)
+    badges = BadgesListBlock(label="Badges")
 
 
 class CardHorizontalBlock(blocks.StructBlock):
