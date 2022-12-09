@@ -226,12 +226,15 @@ class MapsBlock(blocks.StructBlock):
     title_right = blocks.CharBlock(label="Titre carte de droite")
 
 
+class NPSBlock(blocks.StructBlock):
+    title = blocks.CharBlock(label="Titre")
+
+
 class FooterJeParticipeBlock(blocks.StructBlock):
     pass
 
 
 class ContentPage(Page):
-
     body = StreamField([
         ('cover', CoverImage(label="Image pleine largeur avec texte (homepage)")),
         ('title', TitleBlock(label="Titre de page")),
@@ -252,6 +255,7 @@ class ContentPage(Page):
         ('stepper', StepperBlock(label="Étapes")),
         ('multitiles', MultiTilesBlock(label="Les thématiques")),
         ('maps', MapsBlock(label="Les cartes concertations")),
+        ('nps', NPSBlock(label="Embed NPS")),
         ('jeparticipe', FooterJeParticipeBlock(label="Bandeau Je participe")),
     ], blank=True, use_json_field=True)
 

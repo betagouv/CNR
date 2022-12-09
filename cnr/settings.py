@@ -117,7 +117,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = "DENY"
 REFERRER_POLICY = "same-origin"
 CSP_DEFAULT_SRC = ["'self'", "data:", "localhost:" + runserver.default_port]
-CSP_FRAME_SRC = ["*.youtube.com", "*.mtcaptcha.com", "*.facebook.com", "*.vimeo.com", "datawrapper.dwcdn.net"]
+CSP_FRAME_SRC = ["*.youtube.com", "*.mtcaptcha.com", "*.facebook.com", "*.vimeo.com", "datawrapper.dwcdn.net", "form.typeform.com"]
 CSP_IMG_SRC = [
     "'self'",
     "data:",
@@ -143,6 +143,8 @@ CSP_STYLE_SRC = [
     "'sha256-zqo/Gf4mmbgvoqPGTNSkHYfibgllewm/seDhWyooOOk='",  # mtcaptcha
     "'sha256-FVE4UqDzJ5GzKFQlZqU4Zq3EAxxb/T0hpPQU9k6uwkA='",  # mtcaptcha
     "'sha256-/68szNaQXdlDug09n2c6rD/J5VWzEfkXCRsVxk+Bc7s='",  # datawrapper
+    "'sha256-AthIs6YNuVjwfheHgESE8WAfJ61fXMZXX7s/UwRV5Dg='",  # typeform nps
+    "embed.typeform.com",  # typeform nps
 ]
 CSP_SCRIPT_SRC = [
     "'self'",
@@ -158,6 +160,7 @@ CSP_SCRIPT_SRC = [
     "www.googletagmanager.com",
     "www.googleadservices.com",
     "googleads.g.doubleclick.net",
+    "embed.typeform.com",  # typeform nps
 ]
 CSP_CONNECT_SRC = [
     "connect.facebook.net",
@@ -169,6 +172,7 @@ CSP_CONNECT_SRC = [
     "googletagmanager.com",
     "googleadservices.com",
     "googleads.g.doubleclick.net/",
+    "form.typeform.com",
 ]
 
 # https://django-csp.readthedocs.io/en/latest/configuration.html?highlight=CSP_EXCLUDE_URL_PREFIXES#other-settings
