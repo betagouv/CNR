@@ -166,6 +166,7 @@ class MultiColumnsBlock(blocks.StreamBlock):
     card = CardBlock(label="Carte")
     tile = TileBlock(label="Tuile thématique")
     cardhorizontal = CardHorizontalBlock(label="Carte Document")
+    quote = QuoteBlock(label="Citation")
 
 
 class QuestionBlock(blocks.StructBlock):

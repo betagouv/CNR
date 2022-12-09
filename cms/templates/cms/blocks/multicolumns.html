@@ -29,6 +29,10 @@
                 <div class="fr-col-{{ block.value.ratio }}">
                     {% include "cms/blocks/cardhorizontal.html" with block=subblock %}
                 </div>
+            {% elif subblock.block_type == 'quote' %}
+                <div class="fr-col">
+                    {% include "cms/blocks/quote.html" with block=subblock %}
+                </div>
             {% endif %}
         {% endfor %}
     </div>
