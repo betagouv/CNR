@@ -65,7 +65,9 @@
             <div class="fr-container fr-my-3w">
                 <div class="fr-grid-row fr-grid-row--gutters">
                     <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
-                        {% include "cms/blocks/cardhorizontal.html" %}
+                        <div class="fr-col-{{ block.value.ratio }}">
+                            {% include "cms/blocks/cardhorizontal.html" %}
+                        </div>
                     </div>
                 </div>
             </div>

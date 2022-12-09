@@ -142,6 +142,7 @@ class CardHorizontalBlock(blocks.StructBlock):
     text = blocks.TextBlock(label="Texte")
     document = DocumentChooserBlock(label="Document", required=False)
     svg_icon = blocks.ChoiceBlock(label="Image d'illustration", choices=svg_icon_choices, required=False)
+    ratio = blocks.ChoiceBlock(label="Largeur", choices=[('6', '6/12'), ('12', '12/12')])
 
 
 class MultiColumnsBlock(blocks.StreamBlock):
