@@ -117,7 +117,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = "DENY"
 REFERRER_POLICY = "same-origin"
 CSP_DEFAULT_SRC = ["'self'", "data:", "localhost:" + runserver.default_port]
-CSP_FRAME_SRC = ["*.youtube.com", "*.mtcaptcha.com", "*.facebook.com", "*.vimeo.com"]
+CSP_FRAME_SRC = ["*.youtube.com", "*.mtcaptcha.com", "*.facebook.com", "*.vimeo.com", "datawrapper.dwcdn.net"]
 CSP_IMG_SRC = [
     "'self'",
     "data:",
@@ -142,6 +142,7 @@ CSP_STYLE_SRC = [
     "'sha256-g6zf946PtVM63bZ+fe9QUc3hDXp5BMl6OBmAlKhKV60='",  # mtcaptcha
     "'sha256-zqo/Gf4mmbgvoqPGTNSkHYfibgllewm/seDhWyooOOk='",  # mtcaptcha
     "'sha256-FVE4UqDzJ5GzKFQlZqU4Zq3EAxxb/T0hpPQU9k6uwkA='",  # mtcaptcha
+    "'sha256-/68szNaQXdlDug09n2c6rD/J5VWzEfkXCRsVxk+Bc7s='",  # datawrapper
 ]
 CSP_SCRIPT_SRC = [
     "'self'",

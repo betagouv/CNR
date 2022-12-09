@@ -221,6 +221,11 @@ class StepperBlock(blocks.StructBlock):
     steps = StepsListBlock(label="Les étapes")
 
 
+class MapsBlock(blocks.StructBlock):
+    title_left = blocks.CharBlock(label="Titre carte de gauche")
+    title_right = blocks.CharBlock(label="Titre carte de droite")
+
+
 class FooterJeParticipeBlock(blocks.StructBlock):
     pass
 
@@ -246,6 +251,7 @@ class ContentPage(Page):
         ('tilesparticipants', TilesAndParticipantsBlock(label="Thématiques & participants")),
         ('stepper', StepperBlock(label="Étapes")),
         ('multitiles', MultiTilesBlock(label="Les thématiques")),
+        ('maps', MapsBlock(label="Les cartes concertations")),
         ('jeparticipe', FooterJeParticipeBlock(label="Bandeau Je participe")),
     ], blank=True, use_json_field=True)
 

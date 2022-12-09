@@ -93,8 +93,10 @@
             {% include "cms/blocks/stepper.html" %}
         {% elif block.block_type == 'multitiles' %}
             {% include "cms/blocks/multitiles.html" %}
+        {% elif block.block_type == 'maps' %}
+            {% include "cms/blocks/maps.html" %}
         {% elif block.block_type == 'jeparticipe' %}
-                {% include "cms/blocks/footer_je_participe.html" %}
+            {% include "cms/blocks/footer_je_participe.html" %}
         {% endif %}
     {% endfor %}
 {% endblock content %}
