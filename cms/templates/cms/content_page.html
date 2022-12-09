@@ -84,6 +84,8 @@
             {% include "cms/blocks/tilesparticipants.html" %}
         {% elif block.block_type == 'stepper' %}
             {% include "cms/blocks/stepper.html" %}
+        {% elif block.block_type == 'multitiles' %}
+            {% include "cms/blocks/multitiles.html" %}
         {% endif %}
     {% endfor %}
 {% endblock content %}

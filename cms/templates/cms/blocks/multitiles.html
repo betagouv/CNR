@@ -1,0 +1,13 @@
+{% load static %}
+<div class="fr-container fr-my-3w">
+    <div class="fr-grid-row fr-grid-row--gutters">
+        <div class="fr-col-12">
+            <h2>{{ block.value.title }}</h2>
+        </div>
+    </div>
+    <div class="fr-grid-row fr-grid-row--gutters">
+        {% for subblock in block.value.tiles %}
+            {% include "cms/blocks/tile.html" with block=subblock colsuffix="-"|add:block.value.ratio %}
+        {% endfor %}
+    </div>
+</div>

@@ -164,6 +164,14 @@ class TilesListBlock(blocks.StreamBlock):
     tile = TileBlock(label="Tuile thématique")
 
 
+class MultiTilesBlock(blocks.StructBlock):
+    title = blocks.CharBlock(label="Titre", required=True)
+    ratio = blocks.ChoiceBlock(label="Largeur des tuiles thématique", choices=[
+         ('3', '3/12'), ('4', '4/12'), ('6', '6/12'),
+    ])
+    tiles = TilesListBlock(label="Thématique",)
+
+
 class TilesAndParticipantsBlock(blocks.StructBlock):
     ratio = blocks.ChoiceBlock(label="Largeur de la colonne thématique", choices=[
          ('6', '6/12'), ('8', '8/12'),
@@ -209,6 +217,7 @@ class ContentPage(Page):
         ('participantlist', ParticipantsListBlock(label="Liste de participants")),
         ('tilesparticipants', TilesAndParticipantsBlock(label="Thématiques & participants")),
         ('stepper', StepperBlock(label="Étapes")),
+        ('multitiles', MultiTilesBlock(label="Les thématiques")),
     ], blank=True, use_json_field=True)
 
     # Editor panels configuration
