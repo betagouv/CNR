@@ -1,37 +1,35 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
-<div class="fr-background-alt--blue-france">
-    <div class="fr-container fr-py-3w">
-        <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--center">
-            {% for subblock in block.value %}
-                {% if subblock.block_type == 'text' %}
-                    <div class="fr-col">
-                        {{ subblock.value|richtext }}
+<div class="fr-container fr-py-3w">
+    <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--center">
+        {% for subblock in block.value %}
+            {% if subblock.block_type == 'text' %}
+                <div class="fr-col">
+                    {{ subblock.value|richtext }}
+                </div>
+            {% elif subblock.block_type == 'image' %}
+                <div class="fr-col">
+                    {% include "cms/blocks/image.html" with block=subblock %}
+                </div>
+            {% elif subblock.block_type == 'video' %}
+                <div class="fr-col">
+                    <h2>{{ subblock.value.title }}</h2>
+                    <div class="fr-content-media">
+                        <iframe title="{{ subblock.value.title }}" class="fr-responsive-vid" src="{{ subblock.value.url }}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div class="fr-content-media__caption">{{ subblock.value.caption }}</div>
                     </div>
-                {% elif subblock.block_type == 'image' %}
-                    <div class="fr-col">
-                        {% include "cms/blocks/image.html" with block=subblock %}
-                    </div>
-                {% elif subblock.block_type == 'video' %}
-                    <div class="fr-col">
-                        <h2>{{ subblock.value.title }}</h2>
-                        <div class="fr-content-media">
-                            <iframe title="{{ subblock.value.title }}" class="fr-responsive-vid" src="{{ subblock.value.url }}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            <div class="fr-content-media__caption">{{ subblock.value.caption }}</div>
-                        </div>
-                    </div>
-                {% elif subblock.block_type == 'card' %}
-                    <div class="fr-col">
-                        {% include "cms/blocks/card.html" with block=subblock %}
-                    </div>
-                {% elif subblock.block_type == 'tile' %}
-                    {% include "cms/blocks/tile.html" with block=subblock colsuffix="" %}
-                {% elif subblock.block_type == 'cardhorizontal' %}
-                    <div class="fr-col">
-                        {% include "cms/blocks/cardhorizontal.html" with block=subblock %}
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
+                </div>
+            {% elif subblock.block_type == 'card' %}
+                <div class="fr-col">
+                    {% include "cms/blocks/card.html" with block=subblock %}
+                </div>
+            {% elif subblock.block_type == 'tile' %}
+                {% include "cms/blocks/tile.html" with block=subblock colsuffix="" %}
+            {% elif subblock.block_type == 'cardhorizontal' %}
+                <div class="fr-col">
+                    {% include "cms/blocks/cardhorizontal.html" with block=subblock %}
+                </div>
+            {% endif %}
+        {% endfor %}
     </div>
 </div>
