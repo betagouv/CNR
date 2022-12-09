@@ -126,6 +126,7 @@ svg_icon_choices = [
     ('money', 'Modèle productif et social'),
     ('notification', 'Notification'),
     ('school', 'Notre école'),
+    ('document-download', 'Document'),
 ]
 
 
