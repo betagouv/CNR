@@ -134,7 +134,8 @@ CSP_STYLE_SRC = [
     "'unsafe-hashes'",
     "'sha256-d//Lck7pNf/OY9MPfGYaIOTmqjEzvwlSukK3UObI08A='",  # inject-svg.js de django-dsfr
     "'sha256-Eyt3MCqJJqqqUJzUlVq9BLYX+kVGQZVLpJ4toZz4mb8='",  # inject-svg.js de django-dsfr
-    "'sha256-Xhd5+zYamb/dMdyIkYwXmzaXokrsMrINTdCsO/s+Hcc='",  # inject style inline for homepage cover
+    "'sha256-Xhd5+zYamb/dMdyIkYwXmzaXokrsMrINTdCsO/s+Hcc='",  # inject style inline for homepage cover (old)
+    "'sha256-dDZkVrIJy1Xyahb04E1npPS7ONJw3g8949x7gAc/kEY='",  # inject style inline for homepage cover
     "'sha256-R2Vkrx5FLpmMY0750ljuQem15/f/bIrrGl+TXyzeETo='",  # mtcaptcha
     "'sha256-8kPOCl/iIr6YgWLvLnIRMrYnCJHOzs6WNYAedT41SM8='",  # mtcaptcha
     "'sha256-2Go/yMtz4sEcAbw1TnjkjLz983Zxq7frCShdJs2OobM='",  # mtcaptcha

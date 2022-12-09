@@ -4,20 +4,17 @@
 {% load wagtailimages_tags %}
 
 {% block content %}
-
-    {% if not request.path == "/" %}
-    <div class="fr-container fr-my-6w">
-        <div class="fr-grid-row fr-grid-row--gutters">
-            <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
-                <h1 class="fr-display--sm">{{ page.title }}</h1>
-            </div>
-        </div>
-    </div>
-    {% endif %}
-
     {% for block in page.body %}
         {% if block.block_type == 'cover' %}
             {% include "cms/blocks/cover.html" %}
+        {% elif block.block_type == 'title' %}
+            <div class="fr-container fr-my-2w">
+                <div class="fr-grid-row fr-grid-row--gutters">
+                    <div class="fr-col-12{% if not block.value.large %} fr-col-offset-md-2 fr-col-md-8{% endif %}">
+                        <h1 class="fr-display--sm">{{ block.value.title }}</h1>
+                    </div>
+                </div>
+            </div>
         {% elif block.block_type == 'imageandtext' %}
             {% include "cms/blocks/imageandtext.html" %}
         {% elif block.block_type == 'alert' %}
@@ -84,6 +81,10 @@
             {% include "cms/blocks/tilesparticipants.html" %}
         {% elif block.block_type == 'stepper' %}
             {% include "cms/blocks/stepper.html" %}
+        {% elif block.block_type == 'multitiles' %}
+            {% include "cms/blocks/multitiles.html" %}
+        {% elif block.block_type == 'jeparticipe' %}
+                {% include "cms/blocks/footer_je_participe.html" %}
         {% endif %}
     {% endfor %}
 {% endblock content %}

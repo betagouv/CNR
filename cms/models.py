@@ -7,6 +7,12 @@ from wagtail.documents.blocks import DocumentChooserBlock
 
 
 # Wagtail Block Documentation : https://docs.wagtail.org/en/stable/reference/streamfield/blocks.html
+
+class TitleBlock(blocks.StructBlock):
+    title = blocks.CharBlock(label="Titre")
+    large = blocks.BooleanBlock(label="Large", required=False)
+
+
 class ImageBlock(blocks.StructBlock):
     title = blocks.CharBlock(label="Titre", required=False)
     image = ImageChooserBlock(label="Illustration")
@@ -164,6 +170,14 @@ class TilesListBlock(blocks.StreamBlock):
     tile = TileBlock(label="Tuile thématique")
 
 
+class MultiTilesBlock(blocks.StructBlock):
+    title = blocks.CharBlock(label="Titre", required=True)
+    ratio = blocks.ChoiceBlock(label="Largeur des tuiles thématique", choices=[
+         ('3', '3/12'), ('4', '4/12'), ('6', '6/12'),
+    ])
+    tiles = TilesListBlock(label="Thématique",)
+
+
 class TilesAndParticipantsBlock(blocks.StructBlock):
     ratio = blocks.ChoiceBlock(label="Largeur de la colonne thématique", choices=[
          ('6', '6/12'), ('8', '8/12'),
@@ -190,10 +204,15 @@ class StepperBlock(blocks.StructBlock):
     steps = StepsListBlock(label="Les étapes")
 
 
+class FooterJeParticipeBlock(blocks.StructBlock):
+    pass
+
+
 class ContentPage(Page):
 
     body = StreamField([
         ('cover', CoverImage(label="Image pleine largeur avec texte (homepage)")),
+        ('title', TitleBlock(label="Titre de page")),
         ('paragraph', blocks.RichTextBlock(label="Texte avec mise en forme")),
         ('paragraphlarge', blocks.RichTextBlock(label="Texte avec mise en forme (large)")),
         ('image', ImageBlock()),
@@ -209,6 +228,8 @@ class ContentPage(Page):
         ('participantlist', ParticipantsListBlock(label="Liste de participants")),
         ('tilesparticipants', TilesAndParticipantsBlock(label="Thématiques & participants")),
         ('stepper', StepperBlock(label="Étapes")),
+        ('multitiles', MultiTilesBlock(label="Les thématiques")),
+        ('jeparticipe', FooterJeParticipeBlock(label="Bandeau Je participe")),
     ], blank=True, use_json_field=True)
 
     # Editor panels configuration
