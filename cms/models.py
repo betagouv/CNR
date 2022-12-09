@@ -7,6 +7,12 @@ from wagtail.documents.blocks import DocumentChooserBlock
 
 
 # Wagtail Block Documentation : https://docs.wagtail.org/en/stable/reference/streamfield/blocks.html
+
+class TitleBlock(blocks.StructBlock):
+    title = blocks.CharBlock(label="Titre")
+    large = blocks.BooleanBlock(label="Large", required=False)
+
+
 class ImageBlock(blocks.StructBlock):
     title = blocks.CharBlock(label="Titre", required=False)
     image = ImageChooserBlock(label="Illustration")
@@ -206,6 +212,7 @@ class ContentPage(Page):
 
     body = StreamField([
         ('cover', CoverImage(label="Image pleine largeur avec texte (homepage)")),
+        ('title', TitleBlock(label="Titre de page")),
         ('paragraph', blocks.RichTextBlock(label="Texte avec mise en forme")),
         ('paragraphlarge', blocks.RichTextBlock(label="Texte avec mise en forme (large)")),
         ('image', ImageBlock()),
