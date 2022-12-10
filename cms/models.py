@@ -70,7 +70,7 @@ class CalloutBlock(blocks.StructBlock):
 
 
 class QuoteBlock(blocks.StructBlock):
-    image = ImageChooserBlock(label="Illustration (à gauche)")
+    image = ImageChooserBlock(label="Illustration (à gauche)", required=False)
     quote = blocks.CharBlock(label="Citation")
     author_name = blocks.CharBlock(label="Nom de l'auteur")
     author_title = blocks.CharBlock(label="Titre de l'auteur")
@@ -91,7 +91,7 @@ class NumbersBlock(blocks.StreamBlock):
 class VideoBlock(blocks.StructBlock):
     title = blocks.CharBlock(label="Titre", required=False)
     caption = blocks.CharBlock(label="Légende")
-    url = blocks.URLBlock(label="Lien de la vidéo")
+    url = blocks.URLBlock(label="Lien de la vidéo", help_text="URL au format 'embed' (Ex. : https://www.youtube.com/embed/gLzXOViPX-0)")
 
 
 badge_level_choices = [
@@ -100,6 +100,9 @@ badge_level_choices = [
     ('info', 'Information'),
     ('warning', 'Attention'),
     ('new', 'Nouveau'),
+    ('grey', 'Gris'),
+    ('green-emeraude', 'Vert'),
+    ('blue-ecume', 'Bleu'),
 ]
 
 
@@ -126,7 +129,18 @@ svg_icon_choices = [
     ('money', 'Modèle productif et social'),
     ('notification', 'Notification'),
     ('school', 'Notre école'),
+    ('document-download', 'Document'),
 ]
+
+
+class BadgeBlock(blocks.StructBlock):
+    text = blocks.CharBlock(label="Texte du badge", required=False)
+    color = blocks.ChoiceBlock(label="Couleur de badge", choices=badge_level_choices, required=False)
+    hide_icon = blocks.BooleanBlock(label="Masquer l'icon du badge", required=False)
+
+
+class BadgesListBlock(blocks.StreamBlock):
+    badge = BadgeBlock(label="Badge")
 
 
 class TileBlock(blocks.StructBlock):
@@ -134,6 +148,7 @@ class TileBlock(blocks.StructBlock):
     text = blocks.TextBlock(label="Texte", required=False)
     url = blocks.URLBlock(label="Lien", required=False)
     svg_icon = blocks.ChoiceBlock(label="Image d'illustration", choices=svg_icon_choices, required=False)
+    badges = BadgesListBlock(label="Badges")
 
 
 class CardHorizontalBlock(blocks.StructBlock):
@@ -141,6 +156,7 @@ class CardHorizontalBlock(blocks.StructBlock):
     text = blocks.TextBlock(label="Texte")
     document = DocumentChooserBlock(label="Document", required=False)
     svg_icon = blocks.ChoiceBlock(label="Image d'illustration", choices=svg_icon_choices, required=False)
+    ratio = blocks.ChoiceBlock(label="Largeur", choices=[('6', '6/12'), ('12', '12/12')])
 
 
 class MultiColumnsBlock(blocks.StreamBlock):
@@ -150,6 +166,7 @@ class MultiColumnsBlock(blocks.StreamBlock):
     card = CardBlock(label="Carte")
     tile = TileBlock(label="Tuile thématique")
     cardhorizontal = CardHorizontalBlock(label="Carte Document")
+    quote = QuoteBlock(label="Citation")
 
 
 class QuestionBlock(blocks.StructBlock):
@@ -204,12 +221,20 @@ class StepperBlock(blocks.StructBlock):
     steps = StepsListBlock(label="Les étapes")
 
 
+class MapsBlock(blocks.StructBlock):
+    title_left = blocks.CharBlock(label="Titre carte de gauche")
+    title_right = blocks.CharBlock(label="Titre carte de droite")
+
+
+class NPSBlock(blocks.StructBlock):
+    title = blocks.CharBlock(label="Titre")
+
+
 class FooterJeParticipeBlock(blocks.StructBlock):
     pass
 
 
 class ContentPage(Page):
-
     body = StreamField([
         ('cover', CoverImage(label="Image pleine largeur avec texte (homepage)")),
         ('title', TitleBlock(label="Titre de page")),
@@ -229,6 +254,8 @@ class ContentPage(Page):
         ('tilesparticipants', TilesAndParticipantsBlock(label="Thématiques & participants")),
         ('stepper', StepperBlock(label="Étapes")),
         ('multitiles', MultiTilesBlock(label="Les thématiques")),
+        ('maps', MapsBlock(label="Les cartes concertations")),
+        ('nps', NPSBlock(label="Embed NPS")),
         ('jeparticipe', FooterJeParticipeBlock(label="Bandeau Je participe")),
     ], blank=True, use_json_field=True)
 

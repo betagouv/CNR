@@ -1,25 +1,19 @@
 {% load wagtailimages_tags %}
-<div class="fr-background-alt--blue-france fr-my-6w fr-py-6w">
-    <div class="fr-container">
-        <div class="fr-grid-row fr-grid-row--gutters">
-            <div class="fr-col-8 fr-col-offset-2">
-                <figure class="fr-quote fr-quote--column">
-                    <blockquote>
-                        <p>« {{ block.value.quote }} »</p>
-                    </blockquote>
-                    <figcaption>
-                        <p class="fr-quote__author">{{ block.value.author_name }}</p>
-                        <ul class="fr-quote__source">
-                            <li>
-                                <cite>{{ block.value.author_title }}</cite>
-                            </li>
-                        </ul>
-                        <div class="fr-quote__image">
-                            {% image block.value.image original class="fr-responsive-img" %}
-                        </div>
-                    </figcaption>
-                </figure>
-            </div>
+<figure class="fr-quote {% if block.value.image %}fr-quote--column{% endif %}">
+    <blockquote>
+        <p>« {{ block.value.quote }} »</p>
+    </blockquote>
+    <figcaption>
+        <p class="fr-quote__author">{{ block.value.author_name }}</p>
+        <ul class="fr-quote__source">
+            <li>
+                <cite>{{ block.value.author_title }}</cite>
+            </li>
+        </ul>
+        {% if block.value.image %}
+        <div class="fr-quote__image">
+            {% image block.value.image original class="fr-responsive-img" %}
         </div>
-    </div>
-</div>
+        {% endif %}
+    </figcaption>
+</figure>

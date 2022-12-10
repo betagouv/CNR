@@ -6,6 +6,13 @@
             <h4 class="fr-tile__title">
                 {% if block.value.url %}<a class="fr-tile__link" href="{{ block.value.url }}">{% endif %}{{ block.value.title }}{% if block.value.url %}</a>{% endif %}
             </h4>
+            <ul class="fr-badge-group">
+                {% for subblock in block.value.badges %}
+                <li>
+                    <p class="fr-badge fr-badge--sm fr-badge--{{ subblock.value.color }}{% if subblock.value.hide_icon %} fr-badge--no-icon{% endif%}">{{ subblock.value.text }}</p>
+                </li>
+                {% endfor %}
+            </ul>
             {% if block.value.text %}
                 <p class="fr-tile__desc">{{ block.value.text|richtext }}</p>
             {% endif %}

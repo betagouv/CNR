@@ -8,7 +8,7 @@
         {% if block.block_type == 'cover' %}
             {% include "cms/blocks/cover.html" %}
         {% elif block.block_type == 'title' %}
-            <div class="fr-container fr-my-2w">
+            <div class="fr-container fr-mt-3w">
                 <div class="fr-grid-row fr-grid-row--gutters">
                     <div class="fr-col-12{% if not block.value.large %} fr-col-offset-md-2 fr-col-md-8{% endif %}">
                         <h1 class="fr-display--sm">{{ block.value.title }}</h1>
@@ -22,7 +22,15 @@
         {% elif block.block_type == 'callout' %}
             {% include "cms/blocks/callout.html"  %}
         {% elif block.block_type == 'quote' %}
-            {% include "cms/blocks/quote.html"  %}
+            <div class="fr-background-alt--blue-france fr-my-6w fr-py-6w">
+                <div class="fr-container">
+                    <div class="fr-grid-row fr-grid-row--gutters">
+                        <div class="fr-col-8 fr-col-offset-2">
+                            {% include "cms/blocks/quote.html"  %}
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% elif block.block_type == 'numbers' %}
             {% include "cms/blocks/numbers.html"  %}
         {% elif block.block_type == 'image' %}
@@ -65,7 +73,9 @@
             <div class="fr-container fr-my-3w">
                 <div class="fr-grid-row fr-grid-row--gutters">
                     <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
-                        {% include "cms/blocks/cardhorizontal.html" %}
+                        <div class="fr-col-{{ block.value.ratio }}">
+                            {% include "cms/blocks/cardhorizontal.html" %}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -83,8 +93,12 @@
             {% include "cms/blocks/stepper.html" %}
         {% elif block.block_type == 'multitiles' %}
             {% include "cms/blocks/multitiles.html" %}
+        {% elif block.block_type == 'maps' %}
+            {% include "cms/blocks/maps.html" %}
+        {% elif block.block_type == 'nps' %}
+            {% include "cms/blocks/nps.html" %}
         {% elif block.block_type == 'jeparticipe' %}
-                {% include "cms/blocks/footer_je_participe.html" %}
+            {% include "cms/blocks/footer_je_participe.html" %}
         {% endif %}
     {% endfor %}
 {% endblock content %}
