@@ -148,7 +148,7 @@ class TileBlock(blocks.StructBlock):
     text = blocks.TextBlock(label="Texte", required=False)
     url = blocks.URLBlock(label="Lien", required=False)
     svg_icon = blocks.ChoiceBlock(label="Image d'illustration", choices=svg_icon_choices, required=False)
-    badges = BadgesListBlock(label="Badges")
+    badges = BadgesListBlock(label="Badges", required=False)
 
 
 class CardHorizontalBlock(blocks.StructBlock):
