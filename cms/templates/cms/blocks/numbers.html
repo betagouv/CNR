@@ -13,13 +13,12 @@
         </div>
         <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--center">
             {% for subblock in block.value %}
-                
                 {% if subblock.block_type == 'image' %}
-                    <div class="fr-col">
+                    <div class="fr-col-12 fr-col-sm">
                         {% include "cms/blocks/image.html" with block=subblock noclass=True %}
                     </div>
                 {% elif subblock.block_type == 'number' %}
-                    <div class="fr-col number-block">
+                    <div class="fr-col-12 fr-col-sm number-block">
                         <h3 class="fr-display-xs">{{ subblock.value.number }}</h3>
                         <p>{{ subblock.value.label|upper }}</p>
                         {% if subblock.value.info %}

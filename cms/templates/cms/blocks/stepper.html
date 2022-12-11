@@ -6,7 +6,7 @@
         <div class="fr-stepper__steps" data-fr-current-step="{{ block.value.current }}" data-fr-steps="{{ block.value.total }}"></div>
         <div class="fr-grid-row fr-grid-row--gutters">
             {% for subblock in block.value.steps %}
-            <div class="fr-col">
+            <div class="fr-col-12 fr-col-sm">
                 <p><strong>{{ subblock.value.title }}</strong></p>
                 <p>{{ subblock.value.detail|linebreaksbr }}</p>
             </div>
