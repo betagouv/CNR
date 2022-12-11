@@ -1,5 +1,5 @@
 from django.test import TestCase, tag
-from django.urls import resolve, reverse
+from django.urls import resolve
 
 from public_website.factories import ParticipantFactory
 from public_website.models import Theme
@@ -128,12 +128,12 @@ class TestSurveyView(TestCase):
 
     def test_empty_participation_is_not_saved(self):
         """Checks that empty contributions are not saved and don't prevent users from re-submitting in the future."""
-        survey = SurveyFactory()
+        SurveyFactory()
         participant = ParticipantFactory()
         self.assertFalse(SurveyParticipation.objects.filter(participant=participant).exists())
         last_answer_in_db = SurveyAnswer.objects.last()
 
-        response = self.client.post(
+        self.client.post(
             '/participation/survey_test_2',
             {
                 "survey_2_Q-1-A-0": "",
