@@ -15,45 +15,6 @@ class FormPageTest(TestCase):
         self.assertTemplateUsed(response, "public_website/inscription.html")
 
 
-class RegisterFormTest(TestCase):
-    def generate_base_user(self):
-        return {
-            "email": "prudence.crandall@educ.gouv.fr",
-            "gives_gdpr_consent": True,
-            "csrfmiddlewaretoken": "fake-token",
-        }
-
-    def generate_response(self, changed_param=None, changed_value=None):
-        user = self.generate_base_user()
-        if changed_param:
-            user[changed_param] = changed_value
-            if changed_value is None:
-                del user[changed_param]
-
-        return self.client.post(reverse("index"), user)
-
-    def test_valid_registerform_registers_participant(self):
-        self.generate_response()
-        new_participant = Participant.objects.filter(
-            email=self.generate_base_user()["email"]
-        )
-        self.assertTrue(new_participant.exists())
-        self.assertTrue(new_participant[0].registration_success)
-
-    def test_valid_registerform_sends_uuid_to_session(self):
-        self.generate_response()
-        Participant.objects.filter(email=self.generate_base_user()["email"])
-        self.assertTrue("uuid" in self.client.session)
-
-    def test_invalid_mail_returns_invalid_form(self):
-        invalid_email = "foo@foo"
-        response = self.generate_response(
-            changed_param="email", changed_value=invalid_email
-        )
-        self.assertContains(response, "Formulaire invalide.")
-        self.assertContains(response, "Saisissez une adresse de courriel valide")
-
-
 class ProfileForm(TestCase):
     def generate_base_user(self):
         return {

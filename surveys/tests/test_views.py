@@ -200,4 +200,4 @@ class TestSurveyOutro(TestCase):
         self.session["uuid"] = None
         self.session.save()
         response = self.client.get("/participation-fin/")
-        self.assertRedirects(response, reverse("index"))
+        self.assertRedirects(response, "/")

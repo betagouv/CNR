@@ -7,20 +7,6 @@ from public_website.captcha import check_captcha_token
 from . import models
 
 
-class RegisterForm(Form):
-
-    email = forms.EmailField(
-        label="Inscrivez-vous à notre infolettre et choisissez votre niveau de participation",
-    )
-
-    gives_gdpr_consent = forms.BooleanField(
-        required=True,
-    )
-
-    def is_captcha_valid(self):
-        return check_captcha_token(self.data)
-
-
 class ProfileForm(ModelForm):
 
     email = forms.EmailField(
