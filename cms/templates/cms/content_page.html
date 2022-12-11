@@ -8,7 +8,7 @@
         {% if block.block_type == 'cover' %}
             {% include "cms/blocks/cover.html" %}
         {% elif block.block_type == 'title' %}
-            <div class="fr-container fr-mt-3w">
+            <div class="fr-container fr-mt-6w">
                 <div class="fr-grid-row fr-grid-row--gutters">
                     <div class="fr-col-12{% if not block.value.large %} fr-col-offset-md-2 fr-col-md-8{% endif %}">
                         <h1 class="fr-display--sm">{{ block.value.title }}</h1>
