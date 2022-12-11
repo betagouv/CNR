@@ -15,11 +15,11 @@ def survey_intro_view(request):
     uuid = request.session.get("uuid", None)
 
     if not uuid:
-        return redirect("index")
+        return redirect("/")
     try:
         current_participant = Participant.objects.get(uuid=request.session["uuid"])
     except Participant.DoesNotExist:
-        return redirect("index")
+        return redirect("/")
     surveys = current_participant.get_available_surveys()
     subscriptions = current_participant.subscriptions.values_list("theme", flat=True)
     pre_checked_surveys = [
@@ -166,4 +166,4 @@ def survey_outro_view(request):
         )
     else:
         logging.info("## Error : no UUID, return user to index")
-        return redirect("index")
+        return redirect("/")

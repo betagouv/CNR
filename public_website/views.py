@@ -3,36 +3,8 @@ from django.db import IntegrityError
 from django.shortcuts import redirect, render
 
 from public_website.email_provider import send_participant_profile_to_email_provider
-from public_website.forms import ProfileForm, RegisterForm
+from public_website.forms import ProfileForm
 from public_website.models import Participant
-
-
-def index_view(request):
-
-    form = RegisterForm()
-
-    if request.method == "POST":
-        form = RegisterForm(request.POST)
-        if form.is_captcha_valid() and form.is_valid():
-            try:
-                participant = Participant.objects.get(email=form.cleaned_data["email"])
-            except Participant.DoesNotExist:
-                participant = Participant.objects.create(
-                    email=form.cleaned_data["email"]
-                )
-                participant.registration_success = (
-                    send_participant_profile_to_email_provider(participant)
-                )
-                participant.save()
-
-            request.session["uuid"] = str(participant.uuid)
-            return redirect("inscription")
-        else:
-            form = RegisterForm(request.POST, initial=form.data)
-            error_message = "Formulaire invalide. Veuillez vérifier vos réponses."
-            messages.error(request, error_message)
-
-    return render(request, "public_website/index.html", {"form": form})
 
 
 def cgu_view(request):
@@ -132,60 +104,11 @@ def inscription_view(request):
     )
 
 
-def fonctionnement_view(request):
-    return render(
-        request, "public_website/fonctionnement.html", {"title": "Une nouvelle méthode"}
-    )
-
-def climat_biodiversite_view(request):
-    return render(
-        request, "public_website/climat_biodiversite.html", {"title": "Climat et Biodiversité"}
-    )
-
-def bien_vieillir_view(request):
-    return render(
-        request, "public_website/bien_vieillir.html", {"title": "Bien vieillir"}
-    )
-
-def sante_view(request):
-    return render(
-        request, "public_website/sante.html", {"title": "Santé"}
-    )
-
-def logement_view(request):
-    return render(
-        request, "public_website/logement.html", {"title": "Logement"}
-    )
-
-def numerique_view(request):
-    return render(
-        request, "public_website/numerique.html", {"title": "Numérique"}
-    )
-
-def travail_view(request):
-    return render(
-        request, "public_website/assises-du-travail.html", {"title": "Assises du travail"}
-    )
-
-def jeunesse_view(request):
-    return render(
-        request, "public_website/jeunesse.html", {"title": "Jeunesse"}
-    )
-
-def economie_view(request):
-    return render(
-        request, "public_website/economie.html", {"title": "Modèle productif et social"}
-    )
-
-def education_view(request):
-    return render(
-        request, "public_website/education.html", {"title": "Notre école"}
-    )
-
 def resultats_view(request):
     return render(
         request, "public_website/resultats.html", {"title": "Résultats"}
     )
+
 
 def choix_thematique_view(request):
     return render(
