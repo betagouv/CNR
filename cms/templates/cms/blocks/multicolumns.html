@@ -26,7 +26,7 @@
             {% elif subblock.block_type == 'tile' %}
                 {% include "cms/blocks/tile.html" with block=subblock colsuffix="" %}
             {% elif subblock.block_type == 'cardhorizontal' %}
-                <div class="fr-col-12 fr-col-sm-{{ block.value.ratio }}">
+                <div class="fr-col-12 fr-col-sm-{{ subblock.value.ratio }}">
                     {% include "cms/blocks/cardhorizontal.html" with block=subblock %}
                 </div>
             {% elif subblock.block_type == 'quote' %}
