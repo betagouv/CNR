@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.urls import resolve, reverse
+from wagtail.models import Page
 
+from cms.models import ContentPage
 from public_website import views
 from public_website.models import Participant
 
@@ -16,6 +18,20 @@ class FormPageTest(TestCase):
 
 
 class ProfileForm(TestCase):
+    def setUp(self):
+        default_home = Page.objects.filter(title="Welcome to your new Wagtail site!")[0]
+        target_page = ContentPage(
+            slug="participez-au-conseil-national-de-la-refondation",
+            title="Participez au conseil national de la refondation",
+        )
+        target_page.body.stream_data = [
+            ('heading', 'Participez au conseil national de la refondation'),
+        ]
+        default_home.add_child(instance=target_page)
+        default_home.save()
+        target_page.save_revision().publish()
+        target_page.save()
+
     def generate_base_user(self):
         return {
             "first_name": "Prudence",
@@ -48,7 +64,7 @@ class ProfileForm(TestCase):
         response = self.generate_response()
         participant = Participant.objects.last()
         self.assertEqual(self.client.session.get("uuid"), str(participant.uuid))
-        self.assertRedirects(response, "/participation-intro/")
+        self.assertRedirects(response, "/participez-au-conseil-national-de-la-refondation/")
 
     def test_submit_successfully_several_interests(self):
         response = self.generate_response(
@@ -56,7 +72,7 @@ class ProfileForm(TestCase):
         )
         participant = Participant.objects.last()
         self.assertEqual(self.client.session.get("uuid"), str(participant.uuid))
-        self.assertRedirects(response, "/participation-intro/")
+        self.assertRedirects(response, "/participez-au-conseil-national-de-la-refondation/")
         self.assertEqual(participant.subscriptions.count(), 2)
 
     def test_submit_successfully_local_interests(self):
@@ -71,7 +87,7 @@ class ProfileForm(TestCase):
             ]
         )
         participant = Participant.objects.last()
-        self.assertRedirects(response, "/participation-intro/")
+        self.assertRedirects(response, "/participez-au-conseil-national-de-la-refondation/")
         subscriptions = participant.subscriptions
         self.assertEqual(subscriptions.count(), 2)
         self.assertEqual(subscriptions.first().theme, "SANTE")
@@ -94,7 +110,7 @@ class ProfileForm(TestCase):
             ]
         )
         participant = Participant.objects.last()
-        self.assertRedirects(response, "/participation-intro/")
+        self.assertRedirects(response, "/participez-au-conseil-national-de-la-refondation/")
         subscriptions = participant.subscriptions
         self.assertEqual(subscriptions.count(), 0)
         self.assertEqual(participant.sante_participant_type, None)
@@ -123,7 +139,7 @@ class ProfileForm(TestCase):
 
     def test_valid_without_themes(self):
         response = self.generate_response([("preferred_themes", [])])
-        self.assertRedirects(response, "/participation-intro/")
+        self.assertRedirects(response, "/participez-au-conseil-national-de-la-refondation/")
 
     def test_returning_user_gets_confirmation_form_message(self):
         self.generate_response()
@@ -135,13 +151,13 @@ class ProfileForm(TestCase):
         self.assertEqual(participant[0].id, still_participant.id)
 
         self.assertEqual(self.client.session.get("uuid"), str(still_participant.uuid))
-        self.assertRedirects(response, "/participation-intro/")
+        self.assertRedirects(response, "/participez-au-conseil-national-de-la-refondation/")
 
     def test_99_validates_for_postal_code(self):
         response = self.generate_response([("postal_code", "99")])
         participant = Participant.objects.last()
         self.assertEqual(self.client.session.get("uuid"), str(participant.uuid))
-        self.assertRedirects(response, "/participation-intro/")
+        self.assertRedirects(response, "/participez-au-conseil-national-de-la-refondation/")
 
     def test_98_does_not_validates_for_postal_code(self):
         response = self.generate_response([("postal_code", "98")])
@@ -162,4 +178,4 @@ class ProfileForm(TestCase):
     def test_empty_user_doesnt_prevent_new_subscription(self):
         Participant.objects.create(email="")
         response = self.generate_response()
-        self.assertRedirects(response, "/participation-intro/")
+        self.assertRedirects(response, "/participez-au-conseil-national-de-la-refondation/")

@@ -17,5 +17,3 @@ Fonctionnalité: Formulaire d'inscription
     Et je choisis "Climat" pour "Je veux contribuer aux thématiques nationales"
     Et je coche la case "J'ai lu et j'accepte les"
     Et je soumets le formulaire
-    Alors je peux lire "Votre inscription est enregistrée" dans la page
-    Et un email a été envoyé à "micheline@france.org"
