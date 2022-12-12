@@ -40,12 +40,12 @@
               <li><a class="fr-nav__link" {% if "fonctionnement/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/fonctionnement/" target="_self">La méthode CNR</a></li>
           </li>
           <li class="fr-nav__item">
-            <button class="fr-nav__btn" aria-expanded="false" aria-controls="menu-773">Par instance</button>
+            <button class="fr-nav__btn" aria-expanded="false" aria-controls="menu-773">Concertations</button>
             <div class="fr-collapse fr-menu" id="menu-773">
               <ul class="fr-menu__list">
-                  <li><a class="fr-nav__link" {% if "sessions-plenieres/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/sessions-plenieres/" target="_self">Sessions plénières</a></li>
-                  <li><a class="fr-nav__link" {% if "concertations-nationales/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/concertations-nationales/" target="_self">Concertations nationales</a></li>
-                  <li><a class="fr-nav__link" {% if "concertations-locales/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/concertations-locales/" target="_self">Concertations locales</a></li>
+                <li><a class="fr-nav__link" {% if "concertations-locales/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/concertations-locales/" target="_self">Concertations locales</a></li>
+                <li><a class="fr-nav__link" {% if "concertations-nationales/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/concertations-nationales/" target="_self">Concertations nationales</a></li>
+                <li><a class="fr-nav__link" {% if "sessions-plenieres/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/sessions-plenieres/" target="_self">Sessions plénières</a></li>
               </ul>
             </div>
           </li>
