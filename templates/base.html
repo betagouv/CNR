@@ -106,6 +106,9 @@
     </nav>
 </div>
 
+    {% if request.path == "/" %}
+      {% include "blocks/headband.html" %}
+    {% endif %}
     {% include "blocks/header.html" %}
     {% dsfr_theme_modale %}
 
