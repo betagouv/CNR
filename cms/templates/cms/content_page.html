@@ -3,6 +3,10 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
 
+{% block title %}
+<title>{{ page.title }} — Conseil National de la Refondation</title>
+{% endblock title %}
+
 {% block content %}
     {% for block in page.body %}
         {% if block.block_type == 'cover' %}
