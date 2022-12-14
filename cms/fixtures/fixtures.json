@@ -1,0 +1,73 @@
+[
+    {
+        "model": "auth.user",
+        "fields": {
+            "password": "pbkdf2_sha256$260000$iAni1OtFy4XpCStRZODaXS$vvz+f3ep3sh5ejDg/chV5awFEl2cfkLuoyv0FEpe6cY=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "redacteur",
+            "first_name": "",
+            "last_name": "",
+            "email": "redacteur@exemple.fr",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2022-12-14T08:25:20.840Z",
+            "groups": [
+                [
+                    "Moderators"
+                ],
+                [
+                    "Editors"
+                ]
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "wagtailcore.page",
+        "pk": 2,
+        "fields": {
+            "path": "00010001",
+            "depth": 2,
+            "numchild": 0,
+            "translation_key": "8bc78a49-3bb7-4521-b5ac-9adc54081de9",
+            "locale": 1,
+            "latest_revision": null,
+            "live": true,
+            "has_unpublished_changes": false,
+            "first_published_at": null,
+            "last_published_at": null,
+            "live_revision": null,
+            "go_live_at": null,
+            "expire_at": null,
+            "expired": false,
+            "locked": false,
+            "locked_at": null,
+            "locked_by": null,
+            "title": "Conseil National de la Refondation - Construisons ensemble l'avenir de la France",
+            "draft_title": "Conseil National de la Refondation - Construisons ensemble l'avenir de la France",
+            "slug": "home",
+            "content_type": [
+                "cms",
+                "contentpage"
+            ],
+            "url_path": "/home/",
+            "owner": [
+                "redacteur"
+            ],
+            "seo_title": "",
+            "show_in_menus": false,
+            "search_description": "",
+            "latest_revision_created_at": null,
+            "alias_of": null
+        }
+    },
+    {
+        "model": "cms.contentpage",
+        "pk": 2,
+        "fields": {
+            "page_ptr": 2,
+            "body": "[{\"id\": \"e23179b1-a7cb-47b4-9447-73606787fbef\", \"type\": \"cover\", \"value\": {\"text\": \"Donnez votre avis sur les th\\u00e9matiques qui vous int\\u00e9ressent.\", \"title\": \"Construisons ensemble l'avenir de la France\", \"cta_link\": \"http://localhost:8000/participer\", \"cta_label\": \"Participez\"}}]"
+        }
+    }
+]
