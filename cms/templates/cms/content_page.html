@@ -4,8 +4,14 @@
 {% load wagtailimages_tags %}
 
 {% block title %}
-<title>{{ page.title }} — Conseil National de la Refondation</title>
+<title>{{ page.seo_title|default:page.title }} — Conseil National de la Refondation</title>
 {% endblock title %}
+
+{% if page.search_description %}
+    {% block description %}
+        <meta name="description" content="{{ page.search_description }}">
+    {% endblock description %}
+{% endif %}
 
 {% block content %}
     {% for block in page.body %}
