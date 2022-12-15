@@ -1,5 +1,128 @@
 [
     {
+        "model": "wagtailcore.locale",
+        "pk": 1,
+        "fields": {
+            "language_code": "fr"
+        }
+    },
+    {
+        "model": "wagtailcore.site",
+        "fields": {
+            "hostname": "localhost",
+            "port": 80,
+            "site_name": "",
+            "root_page": 2,
+            "is_default_site": true
+        }
+    },
+    {
+        "model": "auth.group",
+        "fields": {
+            "name": "Moderators",
+            "permissions": [
+                [
+                    "access_admin",
+                    "wagtailadmin",
+                    "admin"
+                ],
+                [
+                    "add_document",
+                    "wagtaildocs",
+                    "document"
+                ],
+                [
+                    "change_document",
+                    "wagtaildocs",
+                    "document"
+                ],
+                [
+                    "choose_document",
+                    "wagtaildocs",
+                    "document"
+                ],
+                [
+                    "delete_document",
+                    "wagtaildocs",
+                    "document"
+                ],
+                [
+                    "add_image",
+                    "wagtailimages",
+                    "image"
+                ],
+                [
+                    "change_image",
+                    "wagtailimages",
+                    "image"
+                ],
+                [
+                    "choose_image",
+                    "wagtailimages",
+                    "image"
+                ],
+                [
+                    "delete_image",
+                    "wagtailimages",
+                    "image"
+                ]
+            ]
+        }
+    },
+    {
+        "model": "auth.group",
+        "fields": {
+            "name": "Editors",
+            "permissions": [
+                [
+                    "access_admin",
+                    "wagtailadmin",
+                    "admin"
+                ],
+                [
+                    "add_document",
+                    "wagtaildocs",
+                    "document"
+                ],
+                [
+                    "change_document",
+                    "wagtaildocs",
+                    "document"
+                ],
+                [
+                    "choose_document",
+                    "wagtaildocs",
+                    "document"
+                ],
+                [
+                    "delete_document",
+                    "wagtaildocs",
+                    "document"
+                ],
+                [
+                    "add_image",
+                    "wagtailimages",
+                    "image"
+                ],
+                [
+                    "change_image",
+                    "wagtailimages",
+                    "image"
+                ],
+                [
+                    "choose_image",
+                    "wagtailimages",
+                    "image"
+                ],
+                [
+                    "delete_image",
+                    "wagtailimages",
+                    "image"
+                ]
+            ]
+        }
+    },
+    {
         "model": "auth.user",
         "fields": {
             "password": "pbkdf2_sha256$260000$iAni1OtFy4XpCStRZODaXS$vvz+f3ep3sh5ejDg/chV5awFEl2cfkLuoyv0FEpe6cY=",
@@ -24,13 +147,191 @@
         }
     },
     {
-        "model": "wagtailcore.page",
-        "pk": 2,
+        "model": "wagtailcore.collection",
+        "pk": 1,
         "fields": {
-            "path": "00010001",
-            "depth": 2,
+            "path": "0001",
+            "depth": 1,
             "numchild": 0,
-            "translation_key": "8bc78a49-3bb7-4521-b5ac-9adc54081de9",
+            "name": "Root"
+        }
+    },
+    {
+        "model": "wagtailcore.groupcollectionpermission",
+        "fields": {
+            "group": [
+                "Moderators"
+            ],
+            "collection": 1,
+            "permission": [
+                "add_document",
+                "wagtaildocs",
+                "document"
+            ]
+        }
+    },
+    {
+        "model": "wagtailcore.groupcollectionpermission",
+        "fields": {
+            "group": [
+                "Editors"
+            ],
+            "collection": 1,
+            "permission": [
+                "add_document",
+                "wagtaildocs",
+                "document"
+            ]
+        }
+    },
+    {
+        "model": "wagtailcore.groupcollectionpermission",
+        "fields": {
+            "group": [
+                "Moderators"
+            ],
+            "collection": 1,
+            "permission": [
+                "change_document",
+                "wagtaildocs",
+                "document"
+            ]
+        }
+    },
+    {
+        "model": "wagtailcore.groupcollectionpermission",
+        "fields": {
+            "group": [
+                "Editors"
+            ],
+            "collection": 1,
+            "permission": [
+                "change_document",
+                "wagtaildocs",
+                "document"
+            ]
+        }
+    },
+    {
+        "model": "wagtailcore.groupcollectionpermission",
+        "fields": {
+            "group": [
+                "Moderators"
+            ],
+            "collection": 1,
+            "permission": [
+                "choose_document",
+                "wagtaildocs",
+                "document"
+            ]
+        }
+    },
+    {
+        "model": "wagtailcore.groupcollectionpermission",
+        "fields": {
+            "group": [
+                "Editors"
+            ],
+            "collection": 1,
+            "permission": [
+                "choose_document",
+                "wagtaildocs",
+                "document"
+            ]
+        }
+    },
+    {
+        "model": "wagtailcore.groupcollectionpermission",
+        "fields": {
+            "group": [
+                "Moderators"
+            ],
+            "collection": 1,
+            "permission": [
+                "add_image",
+                "wagtailimages",
+                "image"
+            ]
+        }
+    },
+    {
+        "model": "wagtailcore.groupcollectionpermission",
+        "fields": {
+            "group": [
+                "Editors"
+            ],
+            "collection": 1,
+            "permission": [
+                "add_image",
+                "wagtailimages",
+                "image"
+            ]
+        }
+    },
+    {
+        "model": "wagtailcore.groupcollectionpermission",
+        "fields": {
+            "group": [
+                "Moderators"
+            ],
+            "collection": 1,
+            "permission": [
+                "change_image",
+                "wagtailimages",
+                "image"
+            ]
+        }
+    },
+    {
+        "model": "wagtailcore.groupcollectionpermission",
+        "fields": {
+            "group": [
+                "Editors"
+            ],
+            "collection": 1,
+            "permission": [
+                "change_image",
+                "wagtailimages",
+                "image"
+            ]
+        }
+    },
+    {
+        "model": "wagtailcore.groupcollectionpermission",
+        "fields": {
+            "group": [
+                "Moderators"
+            ],
+            "collection": 1,
+            "permission": [
+                "choose_image",
+                "wagtailimages",
+                "image"
+            ]
+        }
+    },
+    {
+        "model": "wagtailcore.groupcollectionpermission",
+        "fields": {
+            "group": [
+                "Editors"
+            ],
+            "collection": 1,
+            "permission": [
+                "choose_image",
+                "wagtailimages",
+                "image"
+            ]
+        }
+    },
+    {
+        "model": "wagtailcore.page",
+        "pk": 1,
+        "fields": {
+            "path": "0001",
+            "depth": 1,
+            "numchild": 1,
+            "translation_key": "40d42a3c-cec8-44bc-9fe0-f84a487e3110",
             "locale": 1,
             "latest_revision": null,
             "live": true,
@@ -38,6 +339,43 @@
             "first_published_at": null,
             "last_published_at": null,
             "live_revision": null,
+            "go_live_at": null,
+            "expire_at": null,
+            "expired": false,
+            "locked": false,
+            "locked_at": null,
+            "locked_by": null,
+            "title": "Root",
+            "draft_title": "Root",
+            "slug": "root",
+            "content_type": [
+                "wagtailcore",
+                "page"
+            ],
+            "url_path": "/",
+            "owner": null,
+            "seo_title": "",
+            "show_in_menus": false,
+            "search_description": "",
+            "latest_revision_created_at": null,
+            "alias_of": null
+        }
+    },
+    {
+        "model": "wagtailcore.page",
+        "pk": 2,
+        "fields": {
+            "path": "00010001",
+            "depth": 2,
+            "numchild": 1,
+            "translation_key": "8bc78a49-3bb7-4521-b5ac-9adc54081de9",
+            "locale": 1,
+            "latest_revision": 1,
+            "live": true,
+            "has_unpublished_changes": false,
+            "first_published_at": "2022-12-14T08:50:21.571Z",
+            "last_published_at": "2022-12-14T08:50:21.571Z",
+            "live_revision": 1,
             "go_live_at": null,
             "expire_at": null,
             "expired": false,
@@ -58,8 +396,304 @@
             "seo_title": "",
             "show_in_menus": false,
             "search_description": "",
-            "latest_revision_created_at": null,
+            "latest_revision_created_at": "2022-12-14T08:50:21.556Z",
             "alias_of": null
+        }
+    },
+    {
+        "model": "wagtailcore.page",
+        "pk": 3,
+        "fields": {
+            "path": "000100010001",
+            "depth": 3,
+            "numchild": 0,
+            "translation_key": "b49911fd-ca1b-4016-9316-ed9a40ba96bb",
+            "locale": 1,
+            "latest_revision": 2,
+            "live": true,
+            "has_unpublished_changes": false,
+            "first_published_at": "2022-12-15T09:50:18.111Z",
+            "last_published_at": "2022-12-15T09:50:18.111Z",
+            "live_revision": 2,
+            "go_live_at": null,
+            "expire_at": null,
+            "expired": false,
+            "locked": false,
+            "locked_at": null,
+            "locked_by": null,
+            "title": "Participez au conseil national de la refondation",
+            "draft_title": "Participez au conseil national de la refondation",
+            "slug": "participez-au-conseil-national-de-la-refondation",
+            "content_type": [
+                "cms",
+                "contentpage"
+            ],
+            "url_path": "/home/participez-au-conseil-national-de-la-refondation/",
+            "owner": [
+                "redacteur"
+            ],
+            "seo_title": "",
+            "show_in_menus": false,
+            "search_description": "",
+            "latest_revision_created_at": "2022-12-15T09:50:18.096Z",
+            "alias_of": null
+        }
+    },
+    {
+        "model": "wagtailcore.revision",
+        "pk": 1,
+        "fields": {
+            "content_type": [
+                "cms",
+                "contentpage"
+            ],
+            "base_content_type": [
+                "wagtailcore",
+                "page"
+            ],
+            "object_id": "1",
+            "submitted_for_moderation": false,
+            "created_at": "2022-12-14T08:50:21.556Z",
+            "user": [
+                "redacteur"
+            ],
+            "object_str": "Conseil National de la Refondation - Construisons ensemble l'avenir de la France",
+            "content": {
+                "pk": 1,
+                "body": "[{\"type\": \"cover\", \"value\": {\"title\": \"Construisons ensemble l'avenir de la France\", \"text\": \"Donnez votre avis sur les th\\u00e9matiques qui vous int\\u00e9ressent.\", \"cta_label\": \"Participez\", \"cta_link\": \"http://localhost:8000/participer\"}, \"id\": \"e23179b1-a7cb-47b4-9447-73606787fbef\"}]",
+                "live": true,
+                "path": "00010001",
+                "slug": "home",
+                "depth": 2,
+                "owner": 1,
+                "title": "Conseil National de la Refondation - Construisons ensemble l'avenir de la France",
+                "locale": 1,
+                "locked": false,
+                "expired": false,
+                "alias_of": null,
+                "numchild": 0,
+                "url_path": "/home/",
+                "expire_at": null,
+                "locked_at": null,
+                "locked_by": null,
+                "seo_title": "",
+                "go_live_at": null,
+                "draft_title": "Conseil National de la Refondation - Construisons ensemble l'avenir de la France",
+                "content_type": 46,
+                "live_revision": null,
+                "show_in_menus": false,
+                "latest_revision": null,
+                "translation_key": "8bc78a49-3bb7-4521-b5ac-9adc54081de9",
+                "last_published_at": null,
+                "first_published_at": null,
+                "search_description": "",
+                "wagtail_admin_comments": [],
+                "has_unpublished_changes": true,
+                "latest_revision_created_at": "2022-12-14T08:50:15.984Z"
+            },
+            "approved_go_live_at": null
+        }
+    },
+    {
+        "model": "wagtailcore.revision",
+        "pk": 2,
+        "fields": {
+            "content_type": [
+                "cms",
+                "contentpage"
+            ],
+            "base_content_type": [
+                "wagtailcore",
+                "page"
+            ],
+            "object_id": "2",
+            "submitted_for_moderation": false,
+            "created_at": "2022-12-15T09:50:18.096Z",
+            "user": [
+                "redacteur"
+            ],
+            "object_str": "Participez au conseil national de la refondation",
+            "content": {
+                "pk": 2,
+                "body": "[{\"type\": \"title\", \"value\": {\"title\": \"Participez d\\u00e8s maintenant en ligne\", \"large\": true}, \"id\": \"618befd1-b423-4313-bd73-6d74aa84803b\"}, {\"type\": \"multitiles\", \"value\": {\"title\": \"Vous pouvez r\\u00e9pondre \\u00e0 une s\\u00e9rie de questions pour donner votre avis sur les th\\u00e9matiques de votre choix.\", \"ratio\": \"6\", \"tiles\": [{\"type\": \"tile\", \"value\": {\"title\": \"Bien vieillir\", \"text\": \"Temps estim\\u00e9 pour y r\\u00e9pondre : entre 3 et 5 minutes.\", \"url\": \"\", \"svg_icon\": \"human-cooperation\", \"badges\": []}, \"id\": \"f51aed88-b02c-4b0e-8d11-d8e4c3cd97c7\"}, {\"type\": \"tile\", \"value\": {\"title\": \"Logement\", \"text\": \"Temps estim\\u00e9 pour y r\\u00e9pondre : entre 3 et 5 minutes.\", \"url\": \"\", \"svg_icon\": \"france-localization\", \"badges\": []}, \"id\": \"67aead36-67bd-4a26-94c1-e0a3662b2f7a\"}, {\"type\": \"tile\", \"value\": {\"title\": \"Num\\u00e9rique\", \"text\": \"Temps estim\\u00e9 pour y r\\u00e9pondre : entre 3 et 5 minutes.\", \"url\": \"\", \"svg_icon\": \"coding\", \"badges\": []}, \"id\": \"2ed0d354-21b4-44df-a136-12aaf413f6cb\"}, {\"type\": \"tile\", \"value\": {\"title\": \"Assises du travail\", \"text\": \"Temps estim\\u00e9 pour y r\\u00e9pondre : entre 3 et 5 minutes.\", \"url\": \"\", \"svg_icon\": \"map\", \"badges\": []}, \"id\": \"f0a2900b-dafa-41cd-a9ea-87d395804235\"}, {\"type\": \"tile\", \"value\": {\"title\": \"Climat et biodiversit\\u00e9\", \"text\": \"1er r\\u00e9sultats disponibles\", \"url\": \"\", \"svg_icon\": \"environment\", \"badges\": []}, \"id\": \"1609639e-c9b0-4304-b2a8-50a3bdb3d668\"}, {\"type\": \"tile\", \"value\": {\"title\": \"Mod\\u00e8le productif et social\", \"text\": \"1er r\\u00e9sultats disponibles\", \"url\": \"\", \"svg_icon\": \"money\", \"badges\": []}, \"id\": \"e7b68d14-49ff-454b-afa7-4faacff2b59a\"}]}, \"id\": \"2a3ce741-62f0-4018-a007-5926807833f0\"}]",
+                "live": false,
+                "path": "000100010001",
+                "slug": "participez-au-conseil-national-de-la-refondation",
+                "depth": 3,
+                "owner": 1,
+                "title": "Participez au conseil national de la refondation",
+                "locale": 1,
+                "locked": false,
+                "expired": false,
+                "alias_of": null,
+                "numchild": 0,
+                "url_path": "/home/participez-au-conseil-national-de-la-refondation/",
+                "expire_at": null,
+                "locked_at": null,
+                "locked_by": null,
+                "seo_title": "",
+                "go_live_at": null,
+                "draft_title": "Participez au conseil national de la refondation",
+                "content_type": 46,
+                "live_revision": null,
+                "show_in_menus": false,
+                "latest_revision": null,
+                "translation_key": "b49911fd-ca1b-4016-9316-ed9a40ba96bb",
+                "last_published_at": null,
+                "first_published_at": null,
+                "search_description": "",
+                "wagtail_admin_comments": [],
+                "has_unpublished_changes": true,
+                "latest_revision_created_at": "2022-12-15T09:50:02.062Z"
+            },
+            "approved_go_live_at": null
+        }
+    },
+    {
+        "model": "wagtailcore.grouppagepermission",
+        "pk": 1,
+        "fields": {
+            "group": [
+                "Moderators"
+            ],
+            "page": 1,
+            "permission_type": "add"
+        }
+    },
+    {
+        "model": "wagtailcore.grouppagepermission",
+        "pk": 2,
+        "fields": {
+            "group": [
+                "Moderators"
+            ],
+            "page": 1,
+            "permission_type": "edit"
+        }
+    },
+    {
+        "model": "wagtailcore.grouppagepermission",
+        "pk": 3,
+        "fields": {
+            "group": [
+                "Moderators"
+            ],
+            "page": 1,
+            "permission_type": "publish"
+        }
+    },
+    {
+        "model": "wagtailcore.grouppagepermission",
+        "pk": 4,
+        "fields": {
+            "group": [
+                "Editors"
+            ],
+            "page": 1,
+            "permission_type": "add"
+        }
+    },
+    {
+        "model": "wagtailcore.grouppagepermission",
+        "pk": 5,
+        "fields": {
+            "group": [
+                "Editors"
+            ],
+            "page": 1,
+            "permission_type": "edit"
+        }
+    },
+    {
+        "model": "wagtailcore.grouppagepermission",
+        "pk": 6,
+        "fields": {
+            "group": [
+                "Moderators"
+            ],
+            "page": 1,
+            "permission_type": "lock"
+        }
+    },
+    {
+        "model": "wagtailcore.grouppagepermission",
+        "pk": 7,
+        "fields": {
+            "group": [
+                "Moderators"
+            ],
+            "page": 1,
+            "permission_type": "unlock"
+        }
+    },
+    {
+        "model": "wagtailcore.workflowpage",
+        "pk": 1,
+        "fields": {
+            "workflow": 1
+        }
+    },
+    {
+        "model": "wagtailcore.workflowtask",
+        "pk": 1,
+        "fields": {
+            "sort_order": 0,
+            "workflow": 1,
+            "task": 1
+        }
+    },
+    {
+        "model": "wagtailcore.task",
+        "pk": 1,
+        "fields": {
+            "name": "Moderators approval",
+            "content_type": [
+                "wagtailcore",
+                "groupapprovaltask"
+            ],
+            "active": true
+        }
+    },
+    {
+        "model": "wagtailcore.workflow",
+        "pk": 1,
+        "fields": {
+            "name": "Moderators approval",
+            "active": true
+        }
+    },
+    {
+        "model": "wagtailcore.groupapprovaltask",
+        "pk": 1,
+        "fields": {
+            "task_ptr": 1,
+            "groups": [
+                [
+                    "Moderators"
+                ]
+            ]
+        }
+    },
+    {
+        "model": "wagtailcore.pagesubscription",
+        "pk": 1,
+        "fields": {
+            "user": [
+                "redacteur"
+            ],
+            "page": 2,
+            "comment_notifications": false
+        }
+    },
+    {
+        "model": "wagtailcore.pagesubscription",
+        "pk": 2,
+        "fields": {
+            "user": [
+                "redacteur"
+            ],
+            "page": 3,
+            "comment_notifications": true
         }
     },
     {
@@ -68,6 +702,14 @@
         "fields": {
             "page_ptr": 2,
             "body": "[{\"id\": \"e23179b1-a7cb-47b4-9447-73606787fbef\", \"type\": \"cover\", \"value\": {\"text\": \"Donnez votre avis sur les th\\u00e9matiques qui vous int\\u00e9ressent.\", \"title\": \"Construisons ensemble l'avenir de la France\", \"cta_link\": \"http://localhost:8000/participer\", \"cta_label\": \"Participez\"}}]"
+        }
+    },
+    {
+        "model": "cms.contentpage",
+        "pk": 3,
+        "fields": {
+            "page_ptr": 3,
+            "body": "[{\"id\": \"618befd1-b423-4313-bd73-6d74aa84803b\", \"type\": \"title\", \"value\": {\"large\": true, \"title\": \"Participez d\\u00e8s maintenant en ligne\"}}, {\"id\": \"2a3ce741-62f0-4018-a007-5926807833f0\", \"type\": \"multitiles\", \"value\": {\"ratio\": \"6\", \"tiles\": [{\"id\": \"f51aed88-b02c-4b0e-8d11-d8e4c3cd97c7\", \"type\": \"tile\", \"value\": {\"url\": \"\", \"text\": \"Temps estim\\u00e9 pour y r\\u00e9pondre : entre 3 et 5 minutes.\", \"title\": \"Bien vieillir\", \"badges\": [], \"svg_icon\": \"human-cooperation\"}}, {\"id\": \"67aead36-67bd-4a26-94c1-e0a3662b2f7a\", \"type\": \"tile\", \"value\": {\"url\": \"\", \"text\": \"Temps estim\\u00e9 pour y r\\u00e9pondre : entre 3 et 5 minutes.\", \"title\": \"Logement\", \"badges\": [], \"svg_icon\": \"france-localization\"}}, {\"id\": \"2ed0d354-21b4-44df-a136-12aaf413f6cb\", \"type\": \"tile\", \"value\": {\"url\": \"\", \"text\": \"Temps estim\\u00e9 pour y r\\u00e9pondre : entre 3 et 5 minutes.\", \"title\": \"Num\\u00e9rique\", \"badges\": [], \"svg_icon\": \"coding\"}}, {\"id\": \"f0a2900b-dafa-41cd-a9ea-87d395804235\", \"type\": \"tile\", \"value\": {\"url\": \"\", \"text\": \"Temps estim\\u00e9 pour y r\\u00e9pondre : entre 3 et 5 minutes.\", \"title\": \"Assises du travail\", \"badges\": [], \"svg_icon\": \"map\"}}, {\"id\": \"1609639e-c9b0-4304-b2a8-50a3bdb3d668\", \"type\": \"tile\", \"value\": {\"url\": \"\", \"text\": \"1er r\\u00e9sultats disponibles\", \"title\": \"Climat et biodiversit\\u00e9\", \"badges\": [], \"svg_icon\": \"environment\"}}, {\"id\": \"e7b68d14-49ff-454b-afa7-4faacff2b59a\", \"type\": \"tile\", \"value\": {\"url\": \"\", \"text\": \"1er r\\u00e9sultats disponibles\", \"title\": \"Mod\\u00e8le productif et social\", \"badges\": [], \"svg_icon\": \"money\"}}], \"title\": \"Vous pouvez r\\u00e9pondre \\u00e0 une s\\u00e9rie de questions pour donner votre avis sur les th\\u00e9matiques de votre choix.\"}}]"
         }
     }
 ]
