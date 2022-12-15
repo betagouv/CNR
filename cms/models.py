@@ -111,6 +111,7 @@ class CardBlock(blocks.StructBlock):
     text = blocks.TextBlock(label="Texte")
     image = ImageChooserBlock(label="Image")
     url = blocks.URLBlock(label="Lien", required=False)
+    document = DocumentChooserBlock(label="ou Document", help_text="Sélectionnez un document pour rendre la carte cliquable vers celui ci (si le champ `Lien` n'est pas renseigné).", required=False)
 
     badge_text = blocks.CharBlock(label="Texte du badge", required=False)
     badge_level = blocks.ChoiceBlock(label="Type de badge", choices=badge_level_choices, required=False)
