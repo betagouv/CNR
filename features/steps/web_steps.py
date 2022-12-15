@@ -69,7 +69,7 @@ def find_option_with_label(context, legend, value):
 
 @when("je me rends sur la page d'accueil")
 def step_go_to_homepage(context):
-    context.browser.get(context.get_url("/cgu/"))
+    context.browser.get(context.get_url("/"))
 
 
 @when("je refuse les cookies")

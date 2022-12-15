@@ -4,8 +4,8 @@ Fonctionnalité: Page d'accueil
   Scénario: Je découvre le site
     Quand je me rends sur la page d'accueil
     Et je refuse les cookies
-#    Alors je peux lire "Construisons ensemble l'avenir de la France" dans la page
-#    Et la page est titrée "Conseil National de la Refondation"
+    Alors je peux lire "Construisons ensemble l'avenir de la France" dans la page
+    Et la page est titrée "Accueil — Conseil National de la Refondation"
 
 
   Scénario: J'accepte les cookies
