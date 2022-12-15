@@ -1,10 +1,10 @@
 {% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
-<div class="fr-card{% if block.value.url %} fr-enlarge-link{% endif %}">
+<div class="fr-card{% if block.value.url or block.value.document %} fr-enlarge-link{% endif %}">
     <div class="fr-card__body">
         <div class="fr-card__content">
             <h3 class="fr-card__title">
-                {% if block.value.url %}<a href="{{ block.value.url }}">{% endif %}{{ block.value.title }}{% if block.value.url %}</a>{% endif %}
+                {% if block.value.url %}<a href="{{ block.value.url }}">{% elif block.value.document %}<a href="{{ block.value.document.url }}">{% endif %}{{ block.value.title }}{% if block.value.url or block.value.document.url %}</a>{% endif %}
             </h3>
             <p class="fr-card__desc">{{ block.value.text|linebreaksbr }}</p>
         </div>
