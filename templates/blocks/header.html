@@ -37,7 +37,7 @@
             <a class="fr-nav__link" {% if request.resolver_match.url_name == "inscription" %}aria-current="page"{% endif %} href="{% url 'inscription' %}" target="_self">Participer</a>
           </li>
           <li class="fr-nav__item">
-              <li><a class="fr-nav__link" {% if "fonctionnement/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/fonctionnement/" target="_self">La méthode CNR</a></li>
+            <a class="fr-nav__link" {% if "fonctionnement/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/fonctionnement/" target="_self">La méthode CNR</a>
           </li>
           <li class="fr-nav__item">
             <button class="fr-nav__btn" aria-expanded="false" aria-controls="menu-773">Concertations</button>
