@@ -1,13 +1,13 @@
-from wagtail.models import Page
-from wagtail.admin.panels import FieldPanel
-from wagtail.fields import StreamField
 from wagtail import blocks
-from wagtail.images.blocks import ImageChooserBlock
+from wagtail.admin.panels import FieldPanel
 from wagtail.documents.blocks import DocumentChooserBlock
+from wagtail.fields import StreamField
+from wagtail.images.blocks import ImageChooserBlock
+from wagtail.models import Page
+from wagtail.search import index
 
 
 # Wagtail Block Documentation : https://docs.wagtail.org/en/stable/reference/streamfield/blocks.html
-
 class TitleBlock(blocks.StructBlock):
     title = blocks.CharBlock(label="Titre")
     large = blocks.BooleanBlock(label="Large", required=False)
@@ -16,7 +16,9 @@ class TitleBlock(blocks.StructBlock):
 class ImageBlock(blocks.StructBlock):
     title = blocks.CharBlock(label="Titre", required=False)
     image = ImageChooserBlock(label="Illustration")
-    alt = blocks.CharBlock(label="Texte alternatif (description textuelle de l'image)", required=False)
+    alt = blocks.CharBlock(
+        label="Texte alternatif (description textuelle de l'image)", required=False
+    )
     caption = blocks.CharBlock(label="Légende", required=False)
     url = blocks.URLBlock(label="Lien", required=False)
 
@@ -30,23 +32,28 @@ class CoverImage(blocks.StructBlock):
 
 class ImageAndTextBlock(blocks.StructBlock):
     image = ImageChooserBlock(label="Illustration (à gauche)")
-    image_ratio = blocks.ChoiceBlock(label="Largeur de l'image", choices=[
-        ('3', '3/12'), ('5', '5/12'), ('6', '6/12'),
-    ])
+    image_ratio = blocks.ChoiceBlock(
+        label="Largeur de l'image",
+        choices=[
+            ("3", "3/12"),
+            ("5", "5/12"),
+            ("6", "6/12"),
+        ],
+    )
     text = blocks.RichTextBlock(label="Texte avec mise en forme (à droite)")
     link_label = blocks.CharBlock(
         label="Titre du lien",
         help_text="Le lien apparait en bas du bloc de droite, avec une flèche",
-        required=False
+        required=False,
     )
     link_url = blocks.URLBlock(label="Lien", required=False)
 
 
 level_choices = [
-    ('error', 'Erreur'),
-    ('success', 'Succès'),
-    ('info', 'Information'),
-    ('warning', 'Attention'),
+    ("error", "Erreur"),
+    ("success", "Succès"),
+    ("info", "Information"),
+    ("warning", "Attention"),
 ]
 
 
@@ -57,9 +64,9 @@ class AlertBlock(blocks.StructBlock):
 
 
 color_choices = [
-    ('', 'Bleu/Gris'),
-    ('fr-callout--brown-caramel', 'Marron'),
-    ('fr-callout--green-emeraude', 'Vert'),
+    ("", "Bleu/Gris"),
+    ("fr-callout--brown-caramel", "Marron"),
+    ("fr-callout--green-emeraude", "Vert"),
 ]
 
 
@@ -91,18 +98,21 @@ class NumbersBlock(blocks.StreamBlock):
 class VideoBlock(blocks.StructBlock):
     title = blocks.CharBlock(label="Titre", required=False)
     caption = blocks.CharBlock(label="Légende")
-    url = blocks.URLBlock(label="Lien de la vidéo", help_text="URL au format 'embed' (Ex. : https://www.youtube.com/embed/gLzXOViPX-0)")
+    url = blocks.URLBlock(
+        label="Lien de la vidéo",
+        help_text="URL au format 'embed' (Ex. : https://www.youtube.com/embed/gLzXOViPX-0)",
+    )
 
 
 badge_level_choices = [
-    ('error', 'Erreur'),
-    ('success', 'Succès'),
-    ('info', 'Information'),
-    ('warning', 'Attention'),
-    ('new', 'Nouveau'),
-    ('grey', 'Gris'),
-    ('green-emeraude', 'Vert'),
-    ('blue-ecume', 'Bleu'),
+    ("error", "Erreur"),
+    ("success", "Succès"),
+    ("info", "Information"),
+    ("warning", "Attention"),
+    ("new", "Nouveau"),
+    ("grey", "Gris"),
+    ("green-emeraude", "Vert"),
+    ("blue-ecume", "Bleu"),
 ]
 
 
@@ -111,32 +121,40 @@ class CardBlock(blocks.StructBlock):
     text = blocks.TextBlock(label="Texte")
     image = ImageChooserBlock(label="Image")
     url = blocks.URLBlock(label="Lien", required=False)
-    document = DocumentChooserBlock(label="ou Document", help_text="Sélectionnez un document pour rendre la carte cliquable vers celui ci (si le champ `Lien` n'est pas renseigné).", required=False)
+    document = DocumentChooserBlock(
+        label="ou Document",
+        help_text="Sélectionnez un document pour rendre la carte cliquable vers celui ci (si le champ `Lien` n'est pas renseigné).",
+        required=False,
+    )
 
     badge_text = blocks.CharBlock(label="Texte du badge", required=False)
-    badge_level = blocks.ChoiceBlock(label="Type de badge", choices=badge_level_choices, required=False)
+    badge_level = blocks.ChoiceBlock(
+        label="Type de badge", choices=badge_level_choices, required=False
+    )
     badge_icon = blocks.BooleanBlock(label="Masquer l'icon du badge", required=False)
 
 
 svg_icon_choices = [
-    ('avatar', 'Jeunesse'),
-    ('coding', 'Numérique'),
-    ('community', 'Communication'),
-    ('environment', 'Climat et biodiversité'),
-    ('france-localization', 'Logement'),
-    ('health', 'Notre santé'),
-    ('human-cooperation', 'Bien vieillir'),
-    ('map', 'Assises du travail'),
-    ('money', 'Modèle productif et social'),
-    ('notification', 'Notification'),
-    ('school', 'Notre école'),
-    ('document-download', 'Document'),
+    ("avatar", "Jeunesse"),
+    ("coding", "Numérique"),
+    ("community", "Communication"),
+    ("environment", "Climat et biodiversité"),
+    ("france-localization", "Logement"),
+    ("health", "Notre santé"),
+    ("human-cooperation", "Bien vieillir"),
+    ("map", "Assises du travail"),
+    ("money", "Modèle productif et social"),
+    ("notification", "Notification"),
+    ("school", "Notre école"),
+    ("document-download", "Document"),
 ]
 
 
 class BadgeBlock(blocks.StructBlock):
     text = blocks.CharBlock(label="Texte du badge", required=False)
-    color = blocks.ChoiceBlock(label="Couleur de badge", choices=badge_level_choices, required=False)
+    color = blocks.ChoiceBlock(
+        label="Couleur de badge", choices=badge_level_choices, required=False
+    )
     hide_icon = blocks.BooleanBlock(label="Masquer l'icon du badge", required=False)
 
 
@@ -148,7 +166,9 @@ class TileBlock(blocks.StructBlock):
     title = blocks.CharBlock(label="Titre", required=False)
     text = blocks.TextBlock(label="Texte", required=False)
     url = blocks.URLBlock(label="Lien", required=False)
-    svg_icon = blocks.ChoiceBlock(label="Image d'illustration", choices=svg_icon_choices, required=False)
+    svg_icon = blocks.ChoiceBlock(
+        label="Image d'illustration", choices=svg_icon_choices, required=False
+    )
     badges = BadgesListBlock(label="Badges", required=False)
 
 
@@ -156,8 +176,12 @@ class CardHorizontalBlock(blocks.StructBlock):
     title = blocks.CharBlock(label="Titre")
     text = blocks.TextBlock(label="Texte")
     document = DocumentChooserBlock(label="Document", required=False)
-    svg_icon = blocks.ChoiceBlock(label="Image d'illustration", choices=svg_icon_choices, required=False)
-    ratio = blocks.ChoiceBlock(label="Largeur", choices=[('6', '6/12'), ('12', '12/12')])
+    svg_icon = blocks.ChoiceBlock(
+        label="Image d'illustration", choices=svg_icon_choices, required=False
+    )
+    ratio = blocks.ChoiceBlock(
+        label="Largeur", choices=[("6", "6/12"), ("12", "12/12")]
+    )
 
 
 class MultiColumnsBlock(blocks.StreamBlock):
@@ -190,16 +214,27 @@ class TilesListBlock(blocks.StreamBlock):
 
 class MultiTilesBlock(blocks.StructBlock):
     title = blocks.CharBlock(label="Titre", required=True)
-    ratio = blocks.ChoiceBlock(label="Largeur des tuiles thématique", choices=[
-         ('3', '3/12'), ('4', '4/12'), ('6', '6/12'),
-    ])
-    tiles = TilesListBlock(label="Thématique",)
+    ratio = blocks.ChoiceBlock(
+        label="Largeur des tuiles thématique",
+        choices=[
+            ("3", "3/12"),
+            ("4", "4/12"),
+            ("6", "6/12"),
+        ],
+    )
+    tiles = TilesListBlock(
+        label="Thématique",
+    )
 
 
 class TilesAndParticipantsBlock(blocks.StructBlock):
-    ratio = blocks.ChoiceBlock(label="Largeur de la colonne thématique", choices=[
-         ('6', '6/12'), ('8', '8/12'),
-    ])
+    ratio = blocks.ChoiceBlock(
+        label="Largeur de la colonne thématique",
+        choices=[
+            ("6", "6/12"),
+            ("8", "8/12"),
+        ],
+    )
     tilestitle = blocks.CharBlock(label="Titre des thématiques")
     tiles = TilesListBlock(label="Les thématiques")
     participantstitle = blocks.CharBlock(label="Titre des participants")
@@ -236,31 +271,49 @@ class FooterJeParticipeBlock(blocks.StructBlock):
 
 
 class ContentPage(Page):
-    body = StreamField([
-        ('cover', CoverImage(label="Image pleine largeur avec texte (homepage)")),
-        ('title', TitleBlock(label="Titre de page")),
-        ('paragraph', blocks.RichTextBlock(label="Texte avec mise en forme")),
-        ('paragraphlarge', blocks.RichTextBlock(label="Texte avec mise en forme (large)")),
-        ('image', ImageBlock()),
-        ('imageandtext', ImageAndTextBlock(label="Bloc image à gauche et texte à droite")),
-        ('alert', AlertBlock(label="Message d'alerte")),
-        ('callout', CalloutBlock(label="Texte mise en avant")),
-        ('quote', QuoteBlock(label="Citation")),
-        ('numbers', NumbersBlock(label="Chiffres")),
-        ('video', VideoBlock(label="Vidéo")),
-        ('multicolumns', MultiColumnsBlock(label="Multi-colonnes")),
-        ('faq', FaqBlock(label="Questions fréquentes")),
-        ('cardhorizontal', CardHorizontalBlock(label="Carte Document")),
-        ('participantlist', ParticipantsListBlock(label="Liste de participants")),
-        ('tilesparticipants', TilesAndParticipantsBlock(label="Thématiques & participants")),
-        ('stepper', StepperBlock(label="Étapes")),
-        ('multitiles', MultiTilesBlock(label="Les thématiques")),
-        ('maps', MapsBlock(label="Les cartes concertations")),
-        ('nps', NPSBlock(label="Embed NPS")),
-        ('jeparticipe', FooterJeParticipeBlock(label="Bandeau Je participe")),
-    ], blank=True, use_json_field=True)
+    body = StreamField(
+        [
+            ("cover", CoverImage(label="Image pleine largeur avec texte (homepage)")),
+            ("title", TitleBlock(label="Titre de page")),
+            ("paragraph", blocks.RichTextBlock(label="Texte avec mise en forme")),
+            (
+                "paragraphlarge",
+                blocks.RichTextBlock(label="Texte avec mise en forme (large)"),
+            ),
+            ("image", ImageBlock()),
+            (
+                "imageandtext",
+                ImageAndTextBlock(label="Bloc image à gauche et texte à droite"),
+            ),
+            ("alert", AlertBlock(label="Message d'alerte")),
+            ("callout", CalloutBlock(label="Texte mise en avant")),
+            ("quote", QuoteBlock(label="Citation")),
+            ("numbers", NumbersBlock(label="Chiffres")),
+            ("video", VideoBlock(label="Vidéo")),
+            ("multicolumns", MultiColumnsBlock(label="Multi-colonnes")),
+            ("faq", FaqBlock(label="Questions fréquentes")),
+            ("cardhorizontal", CardHorizontalBlock(label="Carte Document")),
+            ("participantlist", ParticipantsListBlock(label="Liste de participants")),
+            (
+                "tilesparticipants",
+                TilesAndParticipantsBlock(label="Thématiques & participants"),
+            ),
+            ("stepper", StepperBlock(label="Étapes")),
+            ("multitiles", MultiTilesBlock(label="Les thématiques")),
+            ("maps", MapsBlock(label="Les cartes concertations")),
+            ("nps", NPSBlock(label="Embed NPS")),
+            ("jeparticipe", FooterJeParticipeBlock(label="Bandeau Je participe")),
+        ],
+        blank=True,
+        use_json_field=True,
+    )
 
     # Editor panels configuration
     content_panels = Page.content_panels + [
-        FieldPanel('body'),
+        FieldPanel("body"),
+    ]
+
+    # Inherit search_fields from Page and add body to index
+    search_fields = Page.search_fields + [
+        index.SearchField("body"),
     ]
