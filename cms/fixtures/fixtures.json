@@ -460,7 +460,7 @@
             "object_str": "Conseil National de la Refondation - Construisons ensemble l'avenir de la France",
             "content": {
                 "pk": 1,
-                "body": "[{\"type\": \"cover\", \"value\": {\"title\": \"Construisons ensemble l'avenir de la France\", \"text\": \"Donnez votre avis sur les th\\u00e9matiques qui vous int\\u00e9ressent.\", \"cta_label\": \"Participez\", \"cta_link\": \"http://localhost:8000/participer\"}, \"id\": \"e23179b1-a7cb-47b4-9447-73606787fbef\"}]",
+                "body": "[{\"type\": \"cover\", \"value\": {\"title\": \"Construisons ensemble l'avenir de la France\", \"text\": \"Donnez votre avis sur les th\\u00e9matiques qui vous int\\u00e9ressent.\", \"cta_label\": \"Participez\", \"cta_link\": \"http://localhost:8000/inscription/\"}, \"id\": \"e23179b1-a7cb-47b4-9447-73606787fbef\"}]",
                 "live": true,
                 "path": "00010001",
                 "slug": "home",
@@ -701,7 +701,7 @@
         "pk": 2,
         "fields": {
             "page_ptr": 2,
-            "body": "[{\"id\": \"e23179b1-a7cb-47b4-9447-73606787fbef\", \"type\": \"cover\", \"value\": {\"text\": \"Donnez votre avis sur les th\\u00e9matiques qui vous int\\u00e9ressent.\", \"title\": \"Construisons ensemble l'avenir de la France\", \"cta_link\": \"http://localhost:8000/participer\", \"cta_label\": \"Participez\"}}]"
+            "body": "[{\"id\": \"e23179b1-a7cb-47b4-9447-73606787fbef\", \"type\": \"cover\", \"value\": {\"text\": \"Donnez votre avis sur les th\\u00e9matiques qui vous int\\u00e9ressent.\", \"title\": \"Construisons ensemble l'avenir de la France\", \"cta_link\": \"http://localhost:8000/inscription/\", \"cta_label\": \"Participez\"}}]"
         }
     },
     {
