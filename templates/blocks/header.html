@@ -1,6 +1,5 @@
 {% extends "dsfr/header.html" %}
-{% load static %}
-{% load wagtailcore_tags %}
+{% load static wagtailcore_tags menu_tags %}
 
 {% block brand %}
   <a href="/" title="Accueil — {{ SITE_CONFIG.site_title }}">
@@ -29,44 +28,7 @@
       <button type="button" class="fr-btn--close fr-btn" aria-controls="fr-menu-mobile">Fermer</button>
       <div class="fr-header__menu-links"></div>
       <nav class="fr-nav" id="fr-navigation" aria-label="Menu principal">
-        <ul class="fr-nav__list">
-          <li class="fr-nav__item">
-            <a class="fr-nav__link" {% if request.path == "/" %}aria-current="page"{% endif %} href="/" target="_self">Accueil</a>
-          </li>
-          <li class="fr-nav__item">
-            <a class="fr-nav__link" {% if request.resolver_match.url_name == "inscription" %}aria-current="page"{% endif %} href="{% url 'inscription' %}" target="_self">Participer</a>
-          </li>
-          <li class="fr-nav__item">
-            <a class="fr-nav__link" {% if "fonctionnement/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/fonctionnement/" target="_self">La méthode CNR</a>
-          </li>
-          <li class="fr-nav__item">
-            <button class="fr-nav__btn" aria-expanded="false" aria-controls="menu-773">Concertations</button>
-            <div class="fr-collapse fr-menu" id="menu-773">
-              <ul class="fr-menu__list">
-                <li><a class="fr-nav__link" {% if "concertations-locales/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/concertations-locales/" target="_self">Concertations locales</a></li>
-                <li><a class="fr-nav__link" {% if "concertations-nationales/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/concertations-nationales/" target="_self">Concertations nationales</a></li>
-                <li><a class="fr-nav__link" {% if "sessions-plenieres/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/sessions-plenieres/" target="_self">Sessions plénières</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="fr-nav__item">
-            <button class="fr-nav__btn" aria-expanded="false" aria-controls="menu-774">Thématiques</button>
-            <div class="fr-collapse fr-menu" id="menu-774">
-              <ul class="fr-menu__list">
-                  <li><a class="fr-nav__link" {% if "bien-vieillir/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/bien-vieillir/" target="_self">Bien vieillir</a></li>
-                  <li><a class="fr-nav__link" {% if "travail/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/travail/" target="_self">Assises du travail</a></li>
-                  <li><a class="fr-nav__link" {% if "economie/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/economie/" target="_self">Modèle productif et social</a></li>
-                  <li><a class="fr-nav__link" {% if "numerique/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/numerique/" target="_self">Numérique</a></li>
-                  <li><a class="fr-nav__link" {% if "jeunesse/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/jeunesse/" target="_self">Jeunesse</a></li>
-                  <li><a class="fr-nav__link" {% if "logement/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/logement/" target="_self">Logement</a></li>
-                  <li><a class="fr-nav__link" {% if "climat-biodiversite/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/climat-biodiversite/" target="_self">Climat et biodiversité</a></li>
-                  <li><a class="fr-nav__link" {% if "sante/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/sante/" target="_self">Notre santé</a></li>
-                  <li><a class="fr-nav__link" {% if "education/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/education/" target="_self">Notre école</a></li>
-                  <li><a class="fr-nav__link" {% if "france-travail/" in request.resolver_match.args %}aria-current="page"{% endif %} href="/france-travail/" target="_self">France Travail</a></li>
-              </ul>
-            </div>
-          </li>
-        </ul>
+        {% main_menu max_levels=2 template="menus/custom_main_menu.html" sub_menu_template="menus/custom_sub_menu.html" %}
       </nav>
     </div>
   </div>
