@@ -8,13 +8,11 @@ class StaticViewSitemap(sitemaps.Sitemap):
     def items(self):
         return [
             "inscription",
-            "choix_thematique",
-            "resultats",
-            "cgu",
-            "mentions_legales",
             "accessibilite",
             "accessibilite_demarche",
+            "mentions_legales",
             "confidentialite",
+            "cgu",
         ]
 
     def location(self, item):
