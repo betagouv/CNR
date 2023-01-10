@@ -40,9 +40,7 @@ else:
 
 HOST_URL = os.getenv("HOST_URL", "127.0.0.1, localhost")
 
-ALLOWED_HOSTS = (
-    HOST_URL.replace(" ", "").split(",")
-)
+ALLOWED_HOSTS = HOST_URL.replace(" ", "").split(",")
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -66,6 +64,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sitemaps",
     "django.forms",
     "widget_tweaks",
     "dsfr",
@@ -118,7 +117,14 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = "DENY"
 REFERRER_POLICY = "same-origin"
 CSP_DEFAULT_SRC = ["'self'", "data:", "localhost:" + runserver.default_port]
-CSP_FRAME_SRC = ["*.youtube.com", "*.mtcaptcha.com", "*.facebook.com", "*.vimeo.com", "datawrapper.dwcdn.net", "form.typeform.com"]
+CSP_FRAME_SRC = [
+    "*.youtube.com",
+    "*.mtcaptcha.com",
+    "*.facebook.com",
+    "*.vimeo.com",
+    "datawrapper.dwcdn.net",
+    "form.typeform.com",
+]
 CSP_IMG_SRC = [
     "'self'",
     "data:",
