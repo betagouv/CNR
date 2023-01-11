@@ -1,5 +1,4 @@
-from behave import *
-from selenium.webdriver.common.by import By
+from behave import then
 
 from surveys.models import SurveyAnswer
 

@@ -1,4 +1,4 @@
-from behave import *
+from behave import then
 
 from public_website.models import Participant
 

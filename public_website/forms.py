@@ -1,6 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from django.forms import Form, ModelForm
+from django.forms import ModelForm
 
 from public_website.captcha import check_captcha_token
 
