@@ -103,7 +103,9 @@ class SurveyParticipationModelTest(TestCase):
         SurveyFactory(theme=Theme.SANTE)
 
         participant = ParticipantFactory()
-        subscription_edu = SubscriptionFactory(participant = participant, theme=Theme.EDUCATION)
+        subscription_edu = SubscriptionFactory(
+            participant=participant, theme=Theme.EDUCATION
+        )
         survey_participation = SurveyParticipation(
             participant=subscription_edu.participant, survey=survey_2
         )
@@ -117,7 +119,7 @@ class SurveyParticipationModelTest(TestCase):
 
         participant = ParticipantFactory()
         self.assertTrue(survey in participant.get_available_surveys())
-        paticipation = SurveyParticipation(participant= participant, survey=survey)
+        paticipation = SurveyParticipation(participant=participant, survey=survey)
         paticipation.save()
 
         self.assertFalse(survey in participant.get_available_surveys())

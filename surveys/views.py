@@ -124,7 +124,7 @@ def survey_view(request, label):
         questions = current_survey.get_questions()
         form = forms.SurveyForm(request.POST, questions=questions)
         if form.is_valid():
-            if set(form.cleaned_data.values()) != {''}:
+            if set(form.cleaned_data.values()) != {""}:
                 anonymize_and_save_answers(participant, form, current_survey)
 
             if not next_survey:

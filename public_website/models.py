@@ -104,7 +104,7 @@ class Participant(models.Model):
     def has_profile(self):
         if None in [self.postal_code, self.first_name, self.participant_type]:
             return False
-        else: 
+        else:
             return True
 
     def get_available_surveys(self, themes: list = None):

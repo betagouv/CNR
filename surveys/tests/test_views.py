@@ -130,11 +130,13 @@ class TestSurveyView(TestCase):
         """Checks that empty contributions are not saved and don't prevent users from re-submitting in the future."""
         SurveyFactory()
         participant = ParticipantFactory()
-        self.assertFalse(SurveyParticipation.objects.filter(participant=participant).exists())
+        self.assertFalse(
+            SurveyParticipation.objects.filter(participant=participant).exists()
+        )
         last_answer_in_db = SurveyAnswer.objects.last()
 
         self.client.post(
-            '/participation/survey_test_2',
+            "/participation/survey_test_2",
             {
                 "survey_2_Q-1-A-0": "",
                 "survey_2_Q-1-A-1": "",
@@ -142,9 +144,12 @@ class TestSurveyView(TestCase):
                 "survey_2_Q-1-A-3": "",
                 "survey_2_Q-1-A-4": "",
                 "survey_2_Q-2-A-0": "",
-            })
-        
-        self.assertFalse(SurveyParticipation.objects.filter(participant=participant).exists())
+            },
+        )
+
+        self.assertFalse(
+            SurveyParticipation.objects.filter(participant=participant).exists()
+        )
         self.assertEqual(SurveyAnswer.objects.last(), last_answer_in_db)
 
 
