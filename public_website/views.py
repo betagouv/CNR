@@ -67,7 +67,9 @@ def inscription_view(request):
                     )
                     messages.info(request, info_message)
                     request.session["uuid"] = str(participant.uuid)
-                    return redirect("/participez-au-conseil-national-de-la-refondation/")
+                    return redirect(
+                        "/participez-au-conseil-national-de-la-refondation/"
+                    )
                 else:
                     form = ProfileForm(request.POST, instance=participant)
             except Participant.DoesNotExist:
@@ -105,12 +107,12 @@ def inscription_view(request):
 
 
 def resultats_view(request):
-    return render(
-        request, "public_website/resultats.html", {"title": "Résultats"}
-    )
+    return render(request, "public_website/resultats.html", {"title": "Résultats"})
 
 
 def choix_thematique_view(request):
     return render(
-        request, "public_website/choix-thematique.html", {"title": "Choix de la thématique"}
+        request,
+        "public_website/choix-thematique.html",
+        {"title": "Choix de la thématique"},
     )

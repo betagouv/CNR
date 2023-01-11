@@ -73,7 +73,9 @@ class TestDSFR(TestCase):
 class TestNoAdmin(TestCase):
     def test_admin_app_redirect(self):
         response = self.client.get("/admin")
-        self.assertRedirects(response, "/admin/", status_code=301, fetch_redirect_response=False)
+        self.assertRedirects(
+            response, "/admin/", status_code=301, fetch_redirect_response=False
+        )
 
     def test_admin_app_with_slash_returns_404(self):
         response = self.client.get("/admin/")

@@ -1,5 +1,6 @@
 import factory
 from wagtail.models import Page
+
 from cms.models import ContentPage
 
 
@@ -24,10 +25,14 @@ class ContentPageFactory(PageFactory):
 
     class Params:
         with_seo_title = factory.Trait(
-            seo_title=factory.Faker("sentence", nb_words=5, variable_nb_words=True, locale="fr_FR")
+            seo_title=factory.Faker(
+                "sentence", nb_words=5, variable_nb_words=True, locale="fr_FR"
+            )
         )
         with_search_description = factory.Trait(
-            search_description=factory.Faker("sentence", nb_words=10, variable_nb_words=True, locale="fr_FR")
+            search_description=factory.Faker(
+                "sentence", nb_words=10, variable_nb_words=True, locale="fr_FR"
+            )
         )
 
     slug = factory.Faker("slug")
