@@ -8,6 +8,7 @@
     },
     {
         "model": "wagtailcore.site",
+        "pk": 1,
         "fields": {
             "hostname": "localhost",
             "port": 80,
@@ -460,7 +461,7 @@
             "object_str": "Conseil National de la Refondation - Construisons ensemble l'avenir de la France",
             "content": {
                 "pk": 1,
-                "body": "[{\"type\": \"cover\", \"value\": {\"title\": \"Construisons ensemble l'avenir de la France\", \"text\": \"Donnez votre avis sur les th\\u00e9matiques qui vous int\\u00e9ressent.\", \"cta_label\": \"Participez\", \"cta_link\": \"http://localhost:8000/participer\"}, \"id\": \"e23179b1-a7cb-47b4-9447-73606787fbef\"}]",
+                "body": "[{\"type\": \"cover\", \"value\": {\"title\": \"Construisons ensemble l'avenir de la France\", \"text\": \"Donnez votre avis sur les th\\u00e9matiques qui vous int\\u00e9ressent.\", \"cta_label\": \"Participez\", \"cta_link\": \"http://localhost:8000/inscription/\"}, \"id\": \"e23179b1-a7cb-47b4-9447-73606787fbef\"}]",
                 "live": true,
                 "path": "00010001",
                 "slug": "home",
@@ -701,7 +702,7 @@
         "pk": 2,
         "fields": {
             "page_ptr": 2,
-            "body": "[{\"id\": \"e23179b1-a7cb-47b4-9447-73606787fbef\", \"type\": \"cover\", \"value\": {\"text\": \"Donnez votre avis sur les th\\u00e9matiques qui vous int\\u00e9ressent.\", \"title\": \"Construisons ensemble l'avenir de la France\", \"cta_link\": \"http://localhost:8000/participer\", \"cta_label\": \"Participez\"}}]"
+            "body": "[{\"id\": \"e23179b1-a7cb-47b4-9447-73606787fbef\", \"type\": \"cover\", \"value\": {\"text\": \"Donnez votre avis sur les th\\u00e9matiques qui vous int\\u00e9ressent.\", \"title\": \"Construisons ensemble l'avenir de la France\", \"cta_link\": \"http://localhost:8000/inscription/\", \"cta_label\": \"Participez\"}}]"
         }
     },
     {
@@ -710,6 +711,42 @@
         "fields": {
             "page_ptr": 3,
             "body": "[{\"id\": \"618befd1-b423-4313-bd73-6d74aa84803b\", \"type\": \"title\", \"value\": {\"large\": true, \"title\": \"Participez d\\u00e8s maintenant en ligne\"}}, {\"id\": \"2a3ce741-62f0-4018-a007-5926807833f0\", \"type\": \"multitiles\", \"value\": {\"ratio\": \"6\", \"tiles\": [{\"id\": \"f51aed88-b02c-4b0e-8d11-d8e4c3cd97c7\", \"type\": \"tile\", \"value\": {\"url\": \"\", \"text\": \"Temps estim\\u00e9 pour y r\\u00e9pondre : entre 3 et 5 minutes.\", \"title\": \"Bien vieillir\", \"badges\": [], \"svg_icon\": \"human-cooperation\"}}, {\"id\": \"67aead36-67bd-4a26-94c1-e0a3662b2f7a\", \"type\": \"tile\", \"value\": {\"url\": \"\", \"text\": \"Temps estim\\u00e9 pour y r\\u00e9pondre : entre 3 et 5 minutes.\", \"title\": \"Logement\", \"badges\": [], \"svg_icon\": \"france-localization\"}}, {\"id\": \"2ed0d354-21b4-44df-a136-12aaf413f6cb\", \"type\": \"tile\", \"value\": {\"url\": \"\", \"text\": \"Temps estim\\u00e9 pour y r\\u00e9pondre : entre 3 et 5 minutes.\", \"title\": \"Num\\u00e9rique\", \"badges\": [], \"svg_icon\": \"coding\"}}, {\"id\": \"f0a2900b-dafa-41cd-a9ea-87d395804235\", \"type\": \"tile\", \"value\": {\"url\": \"\", \"text\": \"Temps estim\\u00e9 pour y r\\u00e9pondre : entre 3 et 5 minutes.\", \"title\": \"Assises du travail\", \"badges\": [], \"svg_icon\": \"map\"}}, {\"id\": \"1609639e-c9b0-4304-b2a8-50a3bdb3d668\", \"type\": \"tile\", \"value\": {\"url\": \"\", \"text\": \"1er r\\u00e9sultats disponibles\", \"title\": \"Climat et biodiversit\\u00e9\", \"badges\": [], \"svg_icon\": \"environment\"}}, {\"id\": \"e7b68d14-49ff-454b-afa7-4faacff2b59a\", \"type\": \"tile\", \"value\": {\"url\": \"\", \"text\": \"1er r\\u00e9sultats disponibles\", \"title\": \"Mod\\u00e8le productif et social\", \"badges\": [], \"svg_icon\": \"money\"}}], \"title\": \"Vous pouvez r\\u00e9pondre \\u00e0 une s\\u00e9rie de questions pour donner votre avis sur les th\\u00e9matiques de votre choix.\"}}]"
+        }
+    },
+    {
+        "model": "wagtailmenus.mainmenuitem",
+        "pk": 1,
+        "fields": {
+            "sort_order": 0,
+            "link_page": null,
+            "link_url": "/",
+            "url_append": "",
+            "handle": "",
+            "link_text": "Accueil",
+            "allow_subnav": false,
+            "menu": 1
+        }
+    },
+    {
+        "model": "wagtailmenus.mainmenuitem",
+        "pk": 2,
+        "fields": {
+            "sort_order": 1,
+            "link_page": null,
+            "link_url": "/inscription/",
+            "url_append": "",
+            "handle": "",
+            "link_text": "Participer",
+            "allow_subnav": false,
+            "menu": 1
+        }
+    },
+    {
+        "model": "wagtailmenus.mainmenu",
+        "pk": 1,
+        "fields": {
+            "site": 1,
+            "max_levels": 2
         }
     }
 ]
