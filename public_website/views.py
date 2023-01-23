@@ -116,3 +116,11 @@ def choix_thematique_view(request):
         "public_website/choix-thematique.html",
         {"title": "Choix de la thématique"},
     )
+
+
+def plan_du_site_view(request):
+    return render(
+        request,
+        "public_website/plan_du_site.html",
+        {"title": "Plan du site"},
+    )

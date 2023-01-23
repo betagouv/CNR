@@ -15,4 +15,5 @@ urlpatterns = [
         views.accessibilite_demarche_view,
         name="accessibilite_demarche",
     ),
+    path("plan-du-site/", views.plan_du_site_view, name="plan_du_site"),
 ]
