@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django.urls import resolve
+from django.urls import resolve, reverse
 
 from public_website import views
 
@@ -93,3 +93,8 @@ class TestPlanDuSite(TestCase):
     def test_plan_du_site_response_contains_title(self):
         response = self.client.get("/plan-du-site/")
         self.assertContains(response, "Plan du site")
+
+    def test_plan_du_site_response_contains_static_pages(self):
+        response = self.client.get("/plan-du-site/")
+        self.assertContains(response, reverse("accessibilite"), 2)
+        self.assertContains(response, reverse("mentions_legales"), 2)
