@@ -1,0 +1,9 @@
+{% if menu_items %}
+    <ul>
+        {% for item in menu_items %}
+            <li>
+                <a href="{{ item.href }}" target="_self">{{ item.text }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

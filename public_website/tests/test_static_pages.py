@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django.urls import resolve
+from django.urls import resolve, reverse
 
 from public_website import views
 
@@ -79,3 +79,22 @@ class TestNoAdmin(TestCase):
     def test_admin_app_with_slash_returns_404(self):
         response = self.client.get("/admin/")
         self.assertEqual(response.status_code, 404)
+
+
+class TestPlanDuSite(TestCase):
+    def test_plan_du_site_url_calls_right_view(self):
+        match = resolve("/plan-du-site/")
+        self.assertEqual(match.func, views.plan_du_site_view)
+
+    def test_plan_du_site_url_calls_right_template(self):
+        response = self.client.get("/plan-du-site/")
+        self.assertTemplateUsed(response, "public_website/plan_du_site.html")
+
+    def test_plan_du_site_response_contains_title(self):
+        response = self.client.get("/plan-du-site/")
+        self.assertContains(response, "Plan du site")
+
+    def test_plan_du_site_response_contains_static_pages(self):
+        response = self.client.get("/plan-du-site/")
+        self.assertContains(response, reverse("accessibilite"), 2)
+        self.assertContains(response, reverse("mentions_legales"), 2)
