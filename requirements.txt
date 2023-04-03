@@ -31,7 +31,7 @@ behave-django==1.4.0
 django-debug-toolbar==3.6.0
 sentry-sdk==1.9.9
 coverage==6.5.0
-wagtail==4.1.1
+wagtail==4.1.4
 boto3==1.26.24
 django-storages==1.13.1
 wagtailmenus==3.1.3
