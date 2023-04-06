@@ -184,6 +184,16 @@ class CardHorizontalBlock(blocks.StructBlock):
     )
 
 
+class TextAndCTA(blocks.StructBlock):
+    text = blocks.RichTextBlock(label="Texte avec mise en forme", required=False)
+    cta_label = blocks.CharBlock(
+        label="Titre de l'appel à l'action",
+        help_text="Le lien apparait comme un bouton sous le bloc de texte",
+        required=False,
+    )
+    cta_url = blocks.CharBlock(label="Lien", required=False)
+
+
 class MultiColumnsBlock(blocks.StreamBlock):
     text = blocks.RichTextBlock(label="Texte avec mise en forme")
     image = ImageBlock(label="Image")
@@ -192,6 +202,7 @@ class MultiColumnsBlock(blocks.StreamBlock):
     tile = TileBlock(label="Tuile thématique")
     cardhorizontal = CardHorizontalBlock(label="Carte Document")
     quote = QuoteBlock(label="Citation")
+    text_cta = TextAndCTA(label="Texte et appel à l'action")
 
 
 class QuestionBlock(blocks.StructBlock):
