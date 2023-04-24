@@ -58,7 +58,7 @@ def inscription_view(request):
 
     if request.method == "POST":
         form = ProfileForm(request.POST)
-        if form.is_captcha_valid() and form.is_valid():
+        if form.is_valid():
             try:
                 participant = Participant.objects.get(email=form.cleaned_data["email"])
                 if participant.has_profile:

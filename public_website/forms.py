@@ -2,13 +2,10 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 
-from public_website.captcha import check_captcha_token
-
 from . import models
 
 
 class ProfileForm(ModelForm):
-
     email = forms.EmailField(
         label="Adresse électronique",
     )
@@ -54,9 +51,6 @@ class ProfileForm(ModelForm):
     pick_local_theme_education = forms.BooleanField(
         label="Pour améliorer notre école", required=False
     )
-
-    def is_captcha_valid(self):
-        return check_captcha_token(self.data)
 
     def clean_postal_code(self):
         postal_code = self.cleaned_data["postal_code"]

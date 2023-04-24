@@ -121,7 +121,6 @@ REFERRER_POLICY = "same-origin"
 CSP_DEFAULT_SRC = ["'self'", "data:", "localhost:" + runserver.default_port]
 CSP_FRAME_SRC = [
     "*.youtube.com",
-    "*.mtcaptcha.com",
     "*.facebook.com",
     "*.vimeo.com",
     "datawrapper.dwcdn.net",
@@ -131,7 +130,6 @@ CSP_IMG_SRC = [
     "'self'",
     "data:",
     "localhost:" + runserver.default_port,
-    "axeptio.imgix.net",
     "*.google.com",
     "*.gstatic.com",
     "*.facebook.com",
@@ -145,12 +143,6 @@ CSP_STYLE_SRC = [
     "'sha256-Eyt3MCqJJqqqUJzUlVq9BLYX+kVGQZVLpJ4toZz4mb8='",  # inject-svg.js de django-dsfr
     "'sha256-Xhd5+zYamb/dMdyIkYwXmzaXokrsMrINTdCsO/s+Hcc='",  # inject style inline for homepage cover (old)
     "'sha256-dDZkVrIJy1Xyahb04E1npPS7ONJw3g8949x7gAc/kEY='",  # inject style inline for homepage cover
-    "'sha256-R2Vkrx5FLpmMY0750ljuQem15/f/bIrrGl+TXyzeETo='",  # mtcaptcha
-    "'sha256-8kPOCl/iIr6YgWLvLnIRMrYnCJHOzs6WNYAedT41SM8='",  # mtcaptcha
-    "'sha256-2Go/yMtz4sEcAbw1TnjkjLz983Zxq7frCShdJs2OobM='",  # mtcaptcha
-    "'sha256-g6zf946PtVM63bZ+fe9QUc3hDXp5BMl6OBmAlKhKV60='",  # mtcaptcha
-    "'sha256-zqo/Gf4mmbgvoqPGTNSkHYfibgllewm/seDhWyooOOk='",  # mtcaptcha
-    "'sha256-FVE4UqDzJ5GzKFQlZqU4Zq3EAxxb/T0hpPQU9k6uwkA='",  # mtcaptcha
     "'sha256-/68szNaQXdlDug09n2c6rD/J5VWzEfkXCRsVxk+Bc7s='",  # datawrapper
     "'sha256-AthIs6YNuVjwfheHgESE8WAfJ61fXMZXX7s/UwRV5Dg='",  # typeform nps
     "embed.typeform.com",  # typeform nps
@@ -159,10 +151,6 @@ CSP_SCRIPT_SRC = [
     "'self'",
     "'sha256-bniFC3kd4JwCYRuTuxW9AjUYecKEuyTLJ+5NH6TJBWE='",  # matomo
     "stats.conseil-refondation.fr",  # matomo
-    "service.mtcaptcha.com",
-    "service2.mtcaptcha.com",
-    "'sha256-7I5+oMehC+KBd+/dcrEMSPXSBUa0CSjemqYTkGftfeo='",  # MTCaptcha staging public key
-    "'sha256-GWPBP28u9s4u/wssaakyNjieplIhhXg1ExHLViqsF6s='",  # MTCaptcha production public key
     "'sha256-1neh+DsrMKevQd7CmK4xkhFjYHtrpaiR8ncbjLw/w5E='",  # cookies handler
     "connect.facebook.net",
     "static.axept.io",
@@ -312,8 +300,6 @@ SEND_IN_BLUE_API_KEY = os.getenv("SEND_IN_BLUE_API_KEY")
 SEND_IN_BLUE_LIST = int(os.getenv("SEND_IN_BLUE_LIST", 1))
 
 MOCK_EXTERNAL_API = os.getenv("MOCK_EXTERNAL_API", "False")
-MTCAPTCHA_PRIVATE_KEY = os.getenv("MTCAPTCHA_PRIVATE_KEY", "")
-MTCAPTCHA_PUBLIC_KEY = os.getenv("MTCAPTCHA_PUBLIC_KEY", "")
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 SESSION_COOKIE_AGE = 60 * 60
